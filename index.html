@@ -68,8 +68,35 @@
 </h1>
 </div>
 <!-- badges: start -->
-<!-- badges: end -->
+
 <p><strong>Spatial Empirical Dynamic Modeling</strong></p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<ul>
+<li>Install from <a href="https://CRAN.R-project.org/package=spEDM" class="external-link">CRAN</a> with:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"spEDM"</span>, dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Install binary version from <a href="https://stscl.r-universe.dev/spEDM" class="external-link">R-universe</a> with:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"spEDM"</span>,</span>
+<span>                 repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://stscl.r-universe.dev"</span>,</span>
+<span>                           <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span>,</span>
+<span>                 dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Install from source code on <a href="https://github.com/stscl/spEDM" class="external-link">GitHub</a> with:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stscl/spEDM"</span>,</span>
+<span>                         build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                         dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -102,7 +129,16 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-cyan.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://CRAN.R-project.org/package=spEDM" class="external-link"><img src="https://www.r-pkg.org/badges/version/spEDM" alt="CRAN"></a></li>
+<li><a href="https://CRAN.R-project.org/package=spEDM" class="external-link"><img src="https://badgen.net/cran/dt/spEDM?color=orange" alt="DownloadsAll"></a></li>
+<li><a href="https://CRAN.R-project.org/package=spEDM" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/spEDM" alt="DownloadsMonth"></a></li>
+<li><a href="https://stscl.r-universe.dev/spEDM" class="external-link"><img src="https://stscl.r-universe.dev/badges/spEDM?color=cyan" alt="R-universe"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
