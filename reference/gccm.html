@@ -50,7 +50,7 @@
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  libsizes <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  trend_rm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"effect"</span>, <span class="st">"cause"</span>, <span class="st">"none"</span>, <span class="st">"all"</span><span class="op">)</span>,</span>
+<span>  trend_rm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cause"</span>, <span class="st">"effect"</span>, <span class="st">"none"</span>, <span class="st">"all"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -104,7 +104,9 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                       quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">gccm</span><span class="op">(</span><span class="st">"CRIME"</span>,<span class="st">"HOVAL"</span>, data <span class="op">=</span> <span class="va">columbus</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gccm</span><span class="op">(</span><span class="st">"HOVAL"</span>, <span class="st">"CRIME"</span>, data <span class="op">=</span> <span class="va">columbus</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    lib_sizes x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
