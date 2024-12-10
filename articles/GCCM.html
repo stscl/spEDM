@@ -65,7 +65,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2024-12-09</h4>
+            <h4 data-toc-skip class="date">2024-12-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -173,6 +173,122 @@ observations to be predicted, and</p>
 <p><span class="math display">\[
 z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right)
 \]</span></p>
+</div>
+<div class="section level2">
+<h2 id="an-example-of-county-level-population-density">2. An example of county-level population density<a class="anchor" aria-label="anchor" href="#an-example-of-county-level-population-density"></a>
+</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"spEDM"</span>, dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>Load data and package:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
+<span>                                   package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Rows: 2806 Columns: 7</span></span>
+<span><span class="co">## ── Column specification ───────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## Delimiter: ","</span></span>
+<span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="va">popdensity</span></span>
+<span><span class="co">## # A tibble: 2,806 × 7</span></span>
+<span><span class="co">##        x     y popDensity   DEM   Tem   Pre  slop</span></span>
+<span><span class="co">##    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">##  1  117.  30.5       780.     8  17.4 1528. 0.452</span></span>
+<span><span class="co">##  2  117.  30.6       395.    48  17.2 1487. 0.842</span></span>
+<span><span class="co">##  3  117.  30.8       261.    49  16.0 1456. 3.56 </span></span>
+<span><span class="co">##  4  116.  30.1       258.    23  17.4 1555. 0.932</span></span>
+<span><span class="co">##  5  116.  30.5       211.   101  16.3 1494. 3.34 </span></span>
+<span><span class="co">##  6  117.  31.0       386.    10  16.6 1382. 1.65 </span></span>
+<span><span class="co">##  7  117.  30.2       350.    23  17.5 1569. 0.346</span></span>
+<span><span class="co">##  8  117.  30.7       470.    22  17.1 1493. 1.88 </span></span>
+<span><span class="co">##  9  117.  30.6      1226.    11  17.4 1526. 0.208</span></span>
+<span><span class="co">## 10  116.  30.9       137.   598  13.9 1458. 5.92 </span></span>
+<span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
+<p>Construct the neighbours matrix and coordinates matrix.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">popd_sf</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">popdensity</span>,</span>
+<span>                       coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span>,</span>
+<span>                       crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="va">nb</span> <span class="op">=</span> <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/spdep_nb.html" class="external-link">spdep_nb</a></span><span class="op">(</span><span class="va">popd_sf</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="va">nbmat</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html" class="external-link">nb2mat</a></span><span class="op">(</span><span class="va">nb</span>, style <span class="op">=</span> <span class="st">"B"</span>, zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">nbmat</span><span class="op">)</span> <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="va">nbmat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="co">##   [,1] [,2] [,3] [,4] [,5]</span></span>
+<span><span class="co">## 1    0    1    1    0    0</span></span>
+<span><span class="co">## 2    1    0    1    0    1</span></span>
+<span><span class="co">## 3    1    1    0    0    1</span></span>
+<span><span class="co">## 4    0    0    0    0    1</span></span>
+<span><span class="co">## 5    0    1    1    1    0</span></span>
+<span><span class="va">coords</span> <span class="op">=</span> <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/sf_coordinates.html" class="external-link">sf_coordinates</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span></span>
+<span><span class="va">coords</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span>
+<span><span class="co">##            X       Y</span></span>
+<span><span class="co">## [1,] 116.912 30.4879</span></span>
+<span><span class="co">## [2,] 116.755 30.5877</span></span>
+<span><span class="co">## [3,] 116.541 30.7548</span></span>
+<span><span class="co">## [4,] 116.241 30.1040</span></span>
+<span><span class="co">## [5,] 116.173 30.4950</span></span></code></pre></div>
+<p>Run GCCM:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>cause <span class="op">=</span> <span class="st">"popDensity"</span>,</span>
+<span>           effect <span class="op">=</span> <span class="st">"Pre"</span>,</span>
+<span>           nbmat <span class="op">=</span> <span class="va">nbmat</span>,</span>
+<span>           coords <span class="op">=</span> <span class="va">coords</span>,</span>
+<span>           data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
+<span>           libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
+<span>           E <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">res</span></span>
+<span><span class="co">## # A tibble: 28 × 9</span></span>
+<span><span class="co">##    lib_sizes x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower y_xmap_x_mean</span></span>
+<span><span class="co">##        &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">##  1       100        0.0364     5.37e- 2         0.0733      -0.000584        0.0603</span></span>
+<span><span class="co">##  2       200        0.0628     8.77e- 4         0.0996       0.0258          0.0817</span></span>
+<span><span class="co">##  3       300        0.0874     3.57e- 6         0.124        0.0505          0.0980</span></span>
+<span><span class="co">##  4       400        0.110      4.83e- 9         0.147        0.0735          0.119 </span></span>
+<span><span class="co">##  5       500        0.133      1.42e-12         0.169        0.0966          0.139 </span></span>
+<span><span class="co">##  6       600        0.157      0                0.193        0.121           0.160 </span></span>
+<span><span class="co">##  7       700        0.180      0                0.216        0.144           0.178 </span></span>
+<span><span class="co">##  8       800        0.201      0                0.236        0.165           0.196 </span></span>
+<span><span class="co">##  9       900        0.221      0                0.256        0.185           0.214 </span></span>
+<span><span class="co">## 10      1000        0.240      0                0.275        0.205           0.231 </span></span>
+<span><span class="co">## # ℹ 18 more rows</span></span>
+<span><span class="co">## # ℹ 3 more variables: y_xmap_x_sig &lt;dbl&gt;, y_xmap_x_upper &lt;dbl&gt;, y_xmap_x_lower &lt;dbl&gt;</span></span></code></pre></div>
+<p>Visualize the result:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">windowsFonts</span><span class="op">(</span>TNR <span class="op">=</span> <span class="fu">windowsFont</span><span class="op">(</span><span class="st">"Times New Roman"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fig_gccm</span> <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">res</span>,</span>
+<span>                           <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">lib_sizes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_line</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">x_xmap_y_mean</span>,</span>
+<span>                                  color <span class="op">=</span> <span class="st">"x xmap y"</span><span class="op">)</span>,</span>
+<span>                      lwd <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">geom_line</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">y_xmap_x_mean</span>,</span>
+<span>                                  color <span class="op">=</span> <span class="st">"y xmap x"</span><span class="op">)</span>,</span>
+<span>                     lwd <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">scale_y_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,</span>
+<span>                              limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>, <span class="fl">1</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>                              name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">rho</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Lib of Sizes"</span>,</span>
+<span>                              breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
+<span>                              limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x xmap y"</span> <span class="op">=</span> <span class="st">"royalblue"</span>,</span>
+<span>                                         <span class="st">"y xmap x"</span> <span class="op">=</span> <span class="st">"red3"</span><span class="op">)</span>,</span>
+<span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Pre xmap popDensity"</span>,</span>
+<span>                                         <span class="st">"popDensity xmap Pre"</span><span class="op">)</span>,</span>
+<span>                              name <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">theme</span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"TNR"</span><span class="op">)</span>,</span>
+<span>                 axis.text.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span><span class="op">)</span>,</span>
+<span>                 axis.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"TNR"</span><span class="op">)</span>,</span>
+<span>                 panel.grid <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                 legend.position <span class="op">=</span> <span class="st">"inside"</span>,</span>
+<span>                 legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'right'</span>,<span class="st">'top'</span><span class="op">)</span>,</span>
+<span>                 legend.background <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'transparent'</span><span class="op">)</span>,</span>
+<span>                 legend.text <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"TNR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fig_gccm</span></span></code></pre></div>
+<p><img src="../reference/figures/gccm/gccm_plot-1.png"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
