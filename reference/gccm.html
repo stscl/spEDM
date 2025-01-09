@@ -92,8 +92,14 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>data.frame</code>.</p>
-    </div>
+    <p>A list.</p><dl><dt><code>xmap</code></dt>
+<dd><p>cross-mapping prediction outputs</p></dd>
+
+<dt><code>varname</code></dt>
+<dd><p>names of causal and effect variable</p></dd>
+
+
+</dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -103,26 +109,16 @@
 <span class="r-in"><span><span class="fu">gccm</span><span class="op">(</span><span class="st">"HOVAL"</span>, <span class="st">"CRIME"</span>, data <span class="op">=</span> <span class="va">columbus</span>, libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   lib_sizes x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         5    0.08036917    0.5830396      0.3535751     -0.2054710</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        10    0.11368175    0.4367132      0.3826463     -0.1730466</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        15    0.08758561    0.5495572      0.3599179     -0.1984998</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        20    0.10310575    0.4808160      0.3734742     -0.1834084</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        25    0.11585893    0.4279229      0.3845279     -0.1709056</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        30    0.12976658    0.3741739      0.3964951     -0.1571649</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        35    0.14387488    0.3240014      0.4085430     -0.1431116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        40    0.15749070    0.2798141      0.4200835     -0.1294382</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        45    0.19913895    0.1701347      0.4548644     -0.0869252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   y_xmap_x_mean y_xmap_x_sig y_xmap_x_upper y_xmap_x_lower</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0.2360232 0.1025384593      0.4850289    -0.04838467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     0.3207803 0.0246241859      0.5521699     0.04350830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     0.3509119 0.0134305363      0.5753370     0.07734760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     0.3638976 0.0101606494      0.5852114     0.09212820</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     0.3814201 0.0068494208      0.5984324     0.11226434</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     0.4063601 0.0037645270      0.6170483     0.14131062</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     0.4355102 0.0017623390      0.6385121     0.17584874</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     0.4612822 0.0008502925      0.6572289     0.20692617</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     0.4838568 0.0004278528      0.6734276     0.23457638</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   libsizes CRIME==&gt;HOVAL HOVAL==&gt;CRIME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        5    0.08036917     0.2360232</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       10    0.11368175     0.3207803</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       15    0.08758561     0.3509119</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       20    0.10310575     0.3638976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       25    0.11585893     0.3814201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       30    0.12976658     0.4063601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       35    0.14387488     0.4355102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       40    0.15749070     0.4612822</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       45    0.19913895     0.4838568</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
