@@ -106,9 +106,10 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                       quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="fu">gccm</span><span class="op">(</span><span class="st">"HOVAL"</span>, <span class="st">"CRIME"</span>, data <span class="op">=</span> <span class="va">columbus</span>, libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">gccm</span><span class="op">(</span><span class="st">"HOVAL"</span>, <span class="st">"CRIME"</span>, data <span class="op">=</span> <span class="va">columbus</span>, libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
+<span class="r-in"><span><span class="va">g</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   libsizes CRIME-&gt;HOVAL HOVAL-&gt;CRIME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        5   0.08036917    0.2360232</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       10   0.11368175    0.3207803</span>
@@ -119,6 +120,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7       35   0.14387488    0.4355102</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8       40   0.15749070    0.4612822</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9       45   0.19913895    0.4838568</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.65</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="gccm-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
