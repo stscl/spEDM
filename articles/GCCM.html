@@ -263,7 +263,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 19.90492 mins</span></span>
+<span><span class="co">## Time difference of 20.3045 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes popDensity-&gt;Pre Pre-&gt;popDensity</span></span>
 <span><span class="co">## 1        10      0.01130395      0.06607465</span></span>
@@ -366,7 +366,7 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 24.91822 mins</span></span>
+<span><span class="co">## Time difference of 26.41701 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes     npp-&gt;pre   pre-&gt;npp</span></span>
 <span><span class="co">## 1        10  0.049237491 0.07312462</span></span>
@@ -392,10 +392,8 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,family <span class="op">=</span> <span class="st">"TNR"</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning: Removed 5 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">## (`geom_line()`).</span></span>
-<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range</span></span>
-<span><span class="co">## (`geom_line()`).</span></span></code></pre></div>
+<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span>
+<span><span class="co">## Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig3-1.png" alt="Figure 3. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 3</strong>. The cross-mapping
