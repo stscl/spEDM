@@ -207,7 +207,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
 <span>                                         package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ───────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
 <span><span class="co">## </span></span>
@@ -253,9 +253,9 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>cause <span class="op">=</span> <span class="st">"Pre"</span>,</span>
+<span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
+<span>              cause <span class="op">=</span> <span class="st">"Pre"</span>,</span>
 <span>              effect <span class="op">=</span> <span class="st">"popDensity"</span>,</span>
-<span>              data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
 <span>              libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
 <span>              E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>              k <span class="op">=</span> <span class="fl">4</span>,</span>
@@ -263,7 +263,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 20.3045 mins</span></span>
+<span><span class="co">## Time difference of 19.89557 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes popDensity-&gt;Pre Pre-&gt;popDensity</span></span>
 <span><span class="co">## 1        10      0.01130395      0.06607465</span></span>
@@ -323,7 +323,7 @@ Precipitation.</div>
 <span><span class="co">## min values  :   164.00,   384.3409, -47.8194 </span></span>
 <span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938</span></span>
 <span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp</span>,nc <span class="op">=</span> <span class="fl">3</span>,</span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
 <span>            oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
 <span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -356,9 +356,9 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
+<span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>,</span>
+<span>               cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
 <span>               effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
-<span>               data <span class="op">=</span> <span class="va">npp</span>,</span>
 <span>               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">5</span><span class="op">)</span>,</span>
 <span>               E <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>               k <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -366,7 +366,7 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 26.41701 mins</span></span>
+<span><span class="co">## Time difference of 26.47164 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes     npp-&gt;pre   pre-&gt;npp</span></span>
 <span><span class="co">## 1        10  0.049237491 0.07312462</span></span>

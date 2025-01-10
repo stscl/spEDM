@@ -42,7 +42,8 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gccm</span><span class="op">(</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S4 method for class 'sf'</span></span>
+<span><span class="fu">gccm</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
@@ -50,21 +51,6 @@
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">1</span>,</span>
-<span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  RowCol <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  trendRM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># S4 method for class 'sf'</span></span>
-<span><span class="fu">gccm</span><span class="op">(</span></span>
-<span>  <span class="va">data</span>,</span>
-<span>  <span class="va">cause</span>,</span>
-<span>  <span class="va">effect</span>,</span>
-<span>  <span class="va">libsizes</span>,</span>
-<span>  <span class="va">E</span>,</span>
-<span>  <span class="va">tau</span>,</span>
-<span>  <span class="va">k</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  trendRM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -76,9 +62,9 @@
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
 <span>  <span class="va">libsizes</span>,</span>
-<span>  <span class="va">E</span>,</span>
-<span>  <span class="va">tau</span>,</span>
-<span>  <span class="va">k</span>,</span>
+<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">3</span>,</span>
 <span>  RowCol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  trendRM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -90,7 +76,7 @@
 
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>The observation data, must be <code>sf</code> or <code>SpatRaster</code> object.</p></dd>
+<dd><p>The observation data.</p></dd>
 
 
 <dt id="arg-cause">cause<a class="anchor" aria-label="anchor" href="#arg-cause"></a></dt>
@@ -121,16 +107,16 @@
 <dd><p>(optional) The neighbours list.</p></dd>
 
 
-<dt id="arg-rowcol">RowCol<a class="anchor" aria-label="anchor" href="#arg-rowcol"></a></dt>
-<dd><p>(optional) Matrix of selected row and cols numbers.</p></dd>
-
-
 <dt id="arg-trendrm">trendRM<a class="anchor" aria-label="anchor" href="#arg-trendrm"></a></dt>
 <dd><p>(optional) Whether to remove the linear trend.</p></dd>
 
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
 <dd><p>(optional) whether to print the progress bar.</p></dd>
+
+
+<dt id="arg-rowcol">RowCol<a class="anchor" aria-label="anchor" href="#arg-rowcol"></a></dt>
+<dd><p>(optional) Matrix of selected row and cols numbers.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -143,12 +129,6 @@
 
 
 </dl></div>
-    <div class="section level2">
-    <h2 id="methods-by-class-">Methods (by class)<a class="anchor" aria-label="anchor" href="#methods-by-class-"></a></h2>
-
-<ul><li><p><code>gccm(sf)</code>: <code>sf</code></p></li>
-<li><p><code>gccm(SpatRaster)</code>: <code>SpatRaster</code></p></li>
-</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
