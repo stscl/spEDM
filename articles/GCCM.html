@@ -65,7 +65,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-01-11</h4>
+            <h4 data-toc-skip class="date">2025-01-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -194,8 +194,8 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity_nb.gal"</span>,</span>
 <span>                                      package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")):</span></span>
-<span><span class="co">## neighbour object has 4 sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package</span></span>
+<span><span class="co">## = "spEDM")): neighbour object has 4 sub-graphs</span></span>
 <span><span class="va">popd_nb</span></span>
 <span><span class="co">## Neighbour list object:</span></span>
 <span><span class="co">## Number of regions: 2806 </span></span>
@@ -207,7 +207,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
 <span>                                         package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ───────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ─────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
 <span><span class="co">## </span></span>
@@ -263,7 +263,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 19.59433 mins</span></span>
+<span><span class="co">## Time difference of 33.34293 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes popDensity-&gt;Pre Pre-&gt;popDensity</span></span>
 <span><span class="co">## 1        10      0.01130395      0.06607465</span></span>
@@ -364,34 +364,36 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 24.49013 mins</span></span>
+<span><span class="co">## Time difference of 41.5022 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes     npp-&gt;pre   pre-&gt;npp</span></span>
-<span><span class="co">## 1        10  0.049237491 0.07312462</span></span>
-<span><span class="co">## 2        15  0.063939456 0.10307461</span></span>
-<span><span class="co">## 3        20  0.080009483 0.12935898</span></span>
-<span><span class="co">## 4        25  0.097903289 0.14718470</span></span>
-<span><span class="co">## 5        30  0.104758061 0.15943448</span></span>
-<span><span class="co">## 6        35  0.111686523 0.17026742</span></span>
-<span><span class="co">## 7        40  0.119169359 0.18985868</span></span>
-<span><span class="co">## 8        45  0.132677547 0.21607528</span></span>
-<span><span class="co">## 9        50  0.148968939 0.24764600</span></span>
-<span><span class="co">## 10       55  0.165193950 0.28759045</span></span>
-<span><span class="co">## 11       60  0.173868473 0.30697776</span></span>
-<span><span class="co">## 12       65  0.179777011 0.31209341</span></span>
-<span><span class="co">## 13       70  0.157231842 0.28574340</span></span>
-<span><span class="co">## 14       75  0.108711472 0.24817243</span></span>
-<span><span class="co">## 15       80  0.058977718 0.22701677</span></span>
-<span><span class="co">## 16       85 -0.003501071 0.23364337</span></span>
-<span><span class="co">## 17       90 -0.022853416 0.23577169</span></span>
-<span><span class="co">## 18       95 -0.042780283 0.34364441</span></span>
-<span><span class="co">## 19      100 -0.034298266 0.72561637</span></span>
-<span><span class="co">## 20      105 -0.070605553 0.77999128</span></span></code></pre></div>
+<span><span class="co">## 1        10  0.050262114 0.07242779</span></span>
+<span><span class="co">## 2        15  0.065181707 0.10266083</span></span>
+<span><span class="co">## 3        20  0.082563327 0.13095972</span></span>
+<span><span class="co">## 4        25  0.101798849 0.15087739</span></span>
+<span><span class="co">## 5        30  0.109432567 0.16476945</span></span>
+<span><span class="co">## 6        35  0.116999013 0.17751038</span></span>
+<span><span class="co">## 7        40  0.124597212 0.19939830</span></span>
+<span><span class="co">## 8        45  0.136665655 0.22822918</span></span>
+<span><span class="co">## 9        50  0.153091450 0.26365069</span></span>
+<span><span class="co">## 10       55  0.173191560 0.30945352</span></span>
+<span><span class="co">## 11       60  0.187344431 0.33153642</span></span>
+<span><span class="co">## 12       65  0.199217458 0.33890945</span></span>
+<span><span class="co">## 13       70  0.177644941 0.31063817</span></span>
+<span><span class="co">## 14       75  0.124683030 0.26886033</span></span>
+<span><span class="co">## 15       80  0.072827616 0.24447842</span></span>
+<span><span class="co">## 16       85 -0.005050523 0.24551575</span></span>
+<span><span class="co">## 17       90 -0.036492523 0.23655060</span></span>
+<span><span class="co">## 18       95 -0.068835748 0.33665038</span></span>
+<span><span class="co">## 19      100 -0.067770047 0.69555384</span></span>
+<span><span class="co">## 20      105 -0.165445351 0.94248996</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span>
-<span><span class="co">## Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span></code></pre></div>
+<span><span class="co">## Warning: Removed 3 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">## (`geom_line()`).</span></span>
+<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range</span></span>
+<span><span class="co">## (`geom_line()`).</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig3-1.png" alt="Figure 3. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 3</strong>. The cross-mapping
