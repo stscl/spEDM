@@ -65,7 +65,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-01-24</h4>
+            <h4 data-toc-skip class="date">2025-01-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -194,8 +194,8 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity_nb.gal"</span>,</span>
 <span>                                      package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package</span></span>
-<span><span class="co">## = "spEDM")): neighbour object has 4 sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")): neighbour</span></span>
+<span><span class="co">## object has 4 sub-graphs</span></span>
 <span><span class="va">popd_nb</span></span>
 <span><span class="co">## Neighbour list object:</span></span>
 <span><span class="co">## Number of regions: 2806 </span></span>
@@ -207,7 +207,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
 <span>                                         package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ─────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ────────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
 <span><span class="co">## </span></span>
@@ -250,52 +250,83 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="co">##  9      1226.    11  17.4 1526. 0.208 (117.171 30.5558)</span></span>
 <span><span class="co">## 10       137.   598  13.9 1458. 5.92  (116.208 30.8983)</span></span>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
-<p>Run GCCM:</p>
+<p>Select the appropriate embedding dimension E:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"Pre"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
+<span><span class="co">##        E       rho      mae     rmse</span></span>
+<span><span class="co">##  [1,]  1 0.9944769 29.19078 44.20362</span></span>
+<span><span class="co">##  [2,]  2 0.9938551 29.75890 46.68020</span></span>
+<span><span class="co">##  [3,]  3 0.9923781 33.38572 52.24799</span></span>
+<span><span class="co">##  [4,]  4 0.9906213 36.93827 57.98292</span></span>
+<span><span class="co">##  [5,]  5 0.9879685 41.90347 66.04074</span></span>
+<span><span class="co">##  [6,]  6 0.9855116 46.67320 72.81851</span></span>
+<span><span class="co">##  [7,]  7 0.9831397 51.34790 79.25593</span></span>
+<span><span class="co">##  [8,]  8 0.9815603 55.13373 83.48991</span></span>
+<span><span class="co">##  [9,]  9 0.9801222 58.14001 87.12388</span></span>
+<span><span class="co">## [10,] 10 0.9779157 62.46149 92.64490</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popDensity"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
+<span><span class="co">##        E       rho      mae     rmse</span></span>
+<span><span class="co">##  [1,]  1 0.8033220 717.2946 2390.767</span></span>
+<span><span class="co">##  [2,]  2 0.8964891 599.2670 1826.370</span></span>
+<span><span class="co">##  [3,]  3 0.8947098 578.9176 1820.573</span></span>
+<span><span class="co">##  [4,]  4 0.8945790 576.8006 1807.979</span></span>
+<span><span class="co">##  [5,]  5 0.8962965 570.3921 1807.007</span></span>
+<span><span class="co">##  [6,]  6 0.9054365 550.2581 1746.493</span></span>
+<span><span class="co">##  [7,]  7 0.8990063 575.2825 1797.437</span></span>
+<span><span class="co">##  [8,]  8 0.8976972 555.6466 1812.048</span></span>
+<span><span class="co">##  [9,]  9 0.8896512 558.8580 1861.250</span></span>
+<span><span class="co">## [10,] 10 0.8948435 561.8943 1825.444</span></span></code></pre></div>
+<p>We choose the E with the highest rho and the lowest MAE and RMSE as
+the most suitable one. Under the selected lib and pred, the optimal
+embedding dimension E for the variable <code>Pre</code> is 1, and for
+the variable <code>popDensity</code>, it is 6.</p>
+<p>Run GCCM:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
 <span>              cause <span class="op">=</span> <span class="st">"Pre"</span>,</span>
 <span>              effect <span class="op">=</span> <span class="st">"popDensity"</span>,</span>
 <span>              libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
-<span>              E <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>              k <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>              E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">6</span><span class="op">)</span>,</span>
+<span>              k <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>              nb <span class="op">=</span> <span class="va">popd_nb</span>,</span>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 33.34293 mins</span></span>
+<span><span class="co">## Time difference of 22.83172 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes popDensity-&gt;Pre Pre-&gt;popDensity</span></span>
-<span><span class="co">## 1        10      0.01130395      0.06607465</span></span>
-<span><span class="co">## 2       110      0.03306905      0.22689926</span></span>
-<span><span class="co">## 3       210      0.04821180      0.28196395</span></span>
-<span><span class="co">## 4       310      0.06475999      0.30785228</span></span>
-<span><span class="co">## 5       410      0.07922017      0.33124862</span></span>
-<span><span class="co">## 6       510      0.09428975      0.36226576</span></span>
-<span><span class="co">## 7       610      0.10951603      0.39693375</span></span>
-<span><span class="co">## 8       710      0.12249230      0.42302102</span></span>
-<span><span class="co">## 9       810      0.13594244      0.44164444</span></span>
-<span><span class="co">## 10      910      0.14767067      0.45689198</span></span>
-<span><span class="co">## 11     1010      0.15863133      0.46853529</span></span>
-<span><span class="co">## 12     1110      0.16852300      0.47657811</span></span>
-<span><span class="co">## 13     1210      0.17808456      0.48683486</span></span>
-<span><span class="co">## 14     1310      0.18761109      0.49750321</span></span>
-<span><span class="co">## 15     1410      0.19697038      0.50708625</span></span>
-<span><span class="co">## 16     1510      0.20507772      0.51660029</span></span>
-<span><span class="co">## 17     1610      0.21264081      0.52744922</span></span>
-<span><span class="co">## 18     1710      0.21969130      0.53845530</span></span>
-<span><span class="co">## 19     1810      0.22618694      0.54912681</span></span>
-<span><span class="co">## 20     1910      0.23207300      0.55982092</span></span>
-<span><span class="co">## 21     2010      0.23780738      0.57043510</span></span>
-<span><span class="co">## 22     2110      0.24300452      0.58089481</span></span>
-<span><span class="co">## 23     2210      0.24773394      0.59104138</span></span>
-<span><span class="co">## 24     2310      0.25208726      0.60092354</span></span>
-<span><span class="co">## 25     2410      0.25628422      0.61050007</span></span>
-<span><span class="co">## 26     2510      0.26039117      0.62015838</span></span>
-<span><span class="co">## 27     2610      0.26436854      0.62986485</span></span>
-<span><span class="co">## 28     2710      0.26826114      0.63868014</span></span></code></pre></div>
+<span><span class="co">## 1        10      0.00805187      0.04643586</span></span>
+<span><span class="co">## 2       110      0.01727373      0.16230318</span></span>
+<span><span class="co">## 3       210      0.02272118      0.22321616</span></span>
+<span><span class="co">## 4       310      0.02745849      0.25955866</span></span>
+<span><span class="co">## 5       410      0.03216842      0.29002613</span></span>
+<span><span class="co">## 6       510      0.03557478      0.32183303</span></span>
+<span><span class="co">## 7       610      0.03730005      0.35674206</span></span>
+<span><span class="co">## 8       710      0.03927667      0.38984504</span></span>
+<span><span class="co">## 9       810      0.04094269      0.41684610</span></span>
+<span><span class="co">## 10      910      0.04264743      0.44089219</span></span>
+<span><span class="co">## 11     1010      0.04479801      0.46370618</span></span>
+<span><span class="co">## 12     1110      0.04701311      0.48324529</span></span>
+<span><span class="co">## 13     1210      0.04944336      0.50262194</span></span>
+<span><span class="co">## 14     1310      0.05168131      0.51980920</span></span>
+<span><span class="co">## 15     1410      0.05351410      0.53596115</span></span>
+<span><span class="co">## 16     1510      0.05396816      0.55319643</span></span>
+<span><span class="co">## 17     1610      0.05414800      0.57263461</span></span>
+<span><span class="co">## 18     1710      0.05411687      0.59201939</span></span>
+<span><span class="co">## 19     1810      0.05444611      0.61040905</span></span>
+<span><span class="co">## 20     1910      0.05486435      0.62862826</span></span>
+<span><span class="co">## 21     2010      0.05546377      0.64642484</span></span>
+<span><span class="co">## 22     2110      0.05608152      0.66340019</span></span>
+<span><span class="co">## 23     2210      0.05642595      0.67993361</span></span>
+<span><span class="co">## 24     2310      0.05654404      0.69595321</span></span>
+<span><span class="co">## 25     2410      0.05699853      0.71162110</span></span>
+<span><span class="co">## 26     2510      0.05750456      0.72716922</span></span>
+<span><span class="co">## 27     2610      0.05813422      0.74251105</span></span>
+<span><span class="co">## 28     2710      0.05893608      0.75498105</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level Precipitation."><div class="figcaption">
@@ -308,7 +339,7 @@ Precipitation.</div>
 <h3 id="an-example-of-grid-data-about-farmland-npp">2.3 An example of grid data about farmland NPP<a class="anchor" aria-label="anchor" href="#an-example-of-grid-data-about-farmland-npp"></a>
 </h3>
 <p>Load data and package:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
@@ -333,7 +364,7 @@ and climate factors.</div>
 </div>
 <p><em>To save the computation time, we will aggregate the data by 3
 times and select 3000 non-NA pixels to predict:</em></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/global.html" class="external-link">global</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"isNA"</span><span class="op">)</span></span>
 <span><span class="co">##      isNA</span></span>
@@ -343,57 +374,86 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">ncell</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span></span>
 <span><span class="co">## [1] 21735</span></span>
 <span></span>
-<span><span class="va">namat</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/coerce.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, wide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">pred</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/xyCellFrom.html" class="external-link">rowColFromCell</a></span><span class="op">(</span><span class="va">npp</span>,<span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">namat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span></span>
+<span><span class="va">nnamat</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/coerce.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, wide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">nnaindice</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/xyCellFrom.html" class="external-link">rowColFromCell</a></span><span class="op">(</span><span class="va">npp</span>,<span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">nnamat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span></span>
 <span><span class="co">## [1] 6920    2</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
-<span><span class="va">indices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3000</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">pred</span> <span class="op">=</span> <span class="va">pred</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
+<span><span class="va">indices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3000</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">lib</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="op">-</span><span class="va">indices</span>,<span class="op">]</span></span>
+<span><span class="va">pred</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
+<p>Select the appropriate embedding dimension E:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="va">lib</span>,<span class="va">pred</span>,k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="co">##        E       rho      mae     rmse</span></span>
+<span><span class="co">##  [1,]  1 0.9986893 183.9074 251.8857</span></span>
+<span><span class="co">##  [2,]  2 0.9989867 153.1760 220.8124</span></span>
+<span><span class="co">##  [3,]  3 0.9987665 165.4989 243.9867</span></span>
+<span><span class="co">##  [4,]  4 0.9984710 183.8567 271.5982</span></span>
+<span><span class="co">##  [5,]  5 0.9982236 196.5187 292.6010</span></span>
+<span><span class="co">##  [6,]  6 0.9980173 209.4455 309.4099</span></span>
+<span><span class="co">##  [7,]  7 0.9978050 217.2941 325.3601</span></span>
+<span><span class="co">##  [8,]  8 0.9976748 227.3263 334.7036</span></span>
+<span><span class="co">##  [9,]  9 0.9975697 232.7360 342.2481</span></span>
+<span><span class="co">## [10,] 10 0.9973707 240.3327 356.1283</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">lib</span>,<span class="va">pred</span>,k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="co">##        E       rho      mae     rmse</span></span>
+<span><span class="co">##  [1,]  1 0.9633140 425.8325 641.7362</span></span>
+<span><span class="co">##  [2,]  2 0.9678922 378.9006 598.8432</span></span>
+<span><span class="co">##  [3,]  3 0.9708172 361.3486 572.7524</span></span>
+<span><span class="co">##  [4,]  4 0.9710194 357.5127 568.4213</span></span>
+<span><span class="co">##  [5,]  5 0.9713380 361.2625 564.8431</span></span>
+<span><span class="co">##  [6,]  6 0.9706332 362.0352 572.1780</span></span>
+<span><span class="co">##  [7,]  7 0.9717924 364.5031 560.9212</span></span>
+<span><span class="co">##  [8,]  8 0.9716443 369.5046 562.6092</span></span>
+<span><span class="co">##  [9,]  9 0.9710155 374.0819 568.8065</span></span>
+<span><span class="co">## [10,] 10 0.9707681 376.5773 571.4094</span></span></code></pre></div>
+<p>Under the selected lib and pred, the optimal embedding dimension E
+for the variable <code>pre</code> is 2, and for the variable
+<code>npp</code>, it is 5.</p>
 <p>Run GCCM:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>,</span>
 <span>               cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
 <span>               effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
 <span>               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">5</span><span class="op">)</span>,</span>
-<span>               E <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>               k <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>               E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>,</span>
+<span>               k <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>               RowCol <span class="op">=</span> <span class="va">pred</span>,</span>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 41.5022 mins</span></span>
+<span><span class="co">## Time difference of 27.56889 mins</span></span>
 <span><span class="va">npp_res</span></span>
-<span><span class="co">##    libsizes     npp-&gt;pre   pre-&gt;npp</span></span>
-<span><span class="co">## 1        10  0.050262114 0.07242779</span></span>
-<span><span class="co">## 2        15  0.065181707 0.10266083</span></span>
-<span><span class="co">## 3        20  0.082563327 0.13095972</span></span>
-<span><span class="co">## 4        25  0.101798849 0.15087739</span></span>
-<span><span class="co">## 5        30  0.109432567 0.16476945</span></span>
-<span><span class="co">## 6        35  0.116999013 0.17751038</span></span>
-<span><span class="co">## 7        40  0.124597212 0.19939830</span></span>
-<span><span class="co">## 8        45  0.136665655 0.22822918</span></span>
-<span><span class="co">## 9        50  0.153091450 0.26365069</span></span>
-<span><span class="co">## 10       55  0.173191560 0.30945352</span></span>
-<span><span class="co">## 11       60  0.187344431 0.33153642</span></span>
-<span><span class="co">## 12       65  0.199217458 0.33890945</span></span>
-<span><span class="co">## 13       70  0.177644941 0.31063817</span></span>
-<span><span class="co">## 14       75  0.124683030 0.26886033</span></span>
-<span><span class="co">## 15       80  0.072827616 0.24447842</span></span>
-<span><span class="co">## 16       85 -0.005050523 0.24551575</span></span>
-<span><span class="co">## 17       90 -0.036492523 0.23655060</span></span>
-<span><span class="co">## 18       95 -0.068835748 0.33665038</span></span>
-<span><span class="co">## 19      100 -0.067770047 0.69555384</span></span>
-<span><span class="co">## 20      105 -0.165445351 0.94248996</span></span></code></pre></div>
+<span><span class="co">##    libsizes   npp-&gt;pre      pre-&gt;npp</span></span>
+<span><span class="co">## 1        10 0.05602934  9.237244e-02</span></span>
+<span><span class="co">## 2        15 0.06786025  1.240014e-01</span></span>
+<span><span class="co">## 3        20 0.08259646  1.646889e-01</span></span>
+<span><span class="co">## 4        25 0.09128324  1.940012e-01</span></span>
+<span><span class="co">## 5        30 0.09532410  2.176854e-01</span></span>
+<span><span class="co">## 6        35 0.10010089  2.452578e-01</span></span>
+<span><span class="co">## 7        40 0.11163623  2.869899e-01</span></span>
+<span><span class="co">## 8        45 0.12505785  3.418223e-01</span></span>
+<span><span class="co">## 9        50 0.14089487  4.032237e-01</span></span>
+<span><span class="co">## 10       55 0.15785006  3.717033e-01</span></span>
+<span><span class="co">## 11       60 0.16062004  3.683831e-01</span></span>
+<span><span class="co">## 12       65 0.16752445  4.314260e-01</span></span>
+<span><span class="co">## 13       70 0.15777208  3.823002e-01</span></span>
+<span><span class="co">## 14       75 0.11302017  2.509687e-01</span></span>
+<span><span class="co">## 15       80 0.08826400  1.778142e-01</span></span>
+<span><span class="co">## 16       85 0.09894714  2.641794e-01</span></span>
+<span><span class="co">## 17       90 0.09315394  1.792904e-01</span></span>
+<span><span class="co">## 18       95 0.11223353  9.504669e-02</span></span>
+<span><span class="co">## 19      100 0.17382496  5.894054e-05</span></span>
+<span><span class="co">## 20      105 0.28881643 -6.427532e-02</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning: Removed 3 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">## (`geom_line()`).</span></span>
-<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range</span></span>
-<span><span class="co">## (`geom_line()`).</span></span></code></pre></div>
+<span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span>
+<span><span class="co">## Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig3-1.png" alt="Figure 3. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 3</strong>. The cross-mapping
