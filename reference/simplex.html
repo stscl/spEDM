@@ -51,11 +51,21 @@
 <span>  E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  include.self <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SpatRaster'</span></span>
-<span><span class="fu">simplex</span><span class="op">(</span><span class="va">data</span>, <span class="va">target</span>, <span class="va">lib</span>, <span class="va">pred</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">4</span>, threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">simplex</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">target</span>,</span>
+<span>  <span class="va">lib</span>,</span>
+<span>  <span class="va">pred</span>,</span>
+<span>  E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
+<span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  include.self <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -93,6 +103,10 @@
 <dt id="arg-threads">threads<a class="anchor" aria-label="anchor" href="#arg-threads"></a></dt>
 <dd><p>(optional) Number of threads.</p></dd>
 
+
+<dt id="arg-include-self">include.self<a class="anchor" aria-label="anchor" href="#arg-include-self"></a></dt>
+<dd><p>(optional) Whether to include the current state when constructing the embedding vector.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -105,6 +119,7 @@
 <span class="r-in"><span>                       quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">simplex</span><span class="op">(</span><span class="va">columbus</span>,target <span class="op">=</span> <span class="st">"CRIME"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">29</span>,pred <span class="op">=</span> <span class="fl">30</span><span class="op">:</span><span class="fl">49</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The optimal embedding dimension E for variable CRIME is 5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        E       rho      mae      rmse</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  1 0.6194943 8.798590 11.090823</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  2 0.7250648 8.240041 10.468962</span>
