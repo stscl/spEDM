@@ -296,7 +296,7 @@ the variable <code>popDensity</code>, it is 6.</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 22.22306 mins</span></span>
+<span><span class="co">## Time difference of 23.14092 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes popDensity-&gt;Pre Pre-&gt;popDensity</span></span>
 <span><span class="co">## 1        10      0.00805187      0.04643586</span></span>
@@ -389,33 +389,33 @@ times and select 3000 non-NA pixels to predict:</em></p>
 all non-NA cell indices when testing for the most suitable embedding
 dimension.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable pre is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.9986822 177.2353 247.7597</span></span>
-<span><span class="co">##  [2,]  2 0.9990542 142.9373 209.8525</span></span>
-<span><span class="co">##  [3,]  3 0.9989947 146.8244 216.7058</span></span>
-<span><span class="co">##  [4,]  4 0.9988843 155.5419 228.4578</span></span>
-<span><span class="co">##  [5,]  5 0.9987501 166.1402 241.7503</span></span>
-<span><span class="co">##  [6,]  6 0.9986065 177.5328 255.3343</span></span>
-<span><span class="co">##  [7,]  7 0.9985375 181.9100 261.4156</span></span>
-<span><span class="co">##  [8,]  8 0.9984485 189.0341 269.3130</span></span>
-<span><span class="co">##  [9,]  9 0.9983863 192.9706 274.6716</span></span>
-<span><span class="co">## [10,] 10 0.9982880 198.7309 283.0404</span></span></code></pre></div>
+<span><span class="co">##  [1,]  1 0.9986687 178.4244 249.0336</span></span>
+<span><span class="co">##  [2,]  2 0.9990565 144.0794 209.5812</span></span>
+<span><span class="co">##  [3,]  3 0.9989996 148.3566 216.1486</span></span>
+<span><span class="co">##  [4,]  4 0.9989168 156.0074 225.1383</span></span>
+<span><span class="co">##  [5,]  5 0.9988119 165.5576 235.6243</span></span>
+<span><span class="co">##  [6,]  6 0.9986605 176.7865 250.1238</span></span>
+<span><span class="co">##  [7,]  7 0.9986104 179.9232 254.6314</span></span>
+<span><span class="co">##  [8,]  8 0.9985710 183.4329 258.2804</span></span>
+<span><span class="co">##  [9,]  9 0.9985349 186.6469 261.5637</span></span>
+<span><span class="co">## [10,] 10 0.9984171 193.6204 272.0611</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable npp is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.9646361 421.1264 631.9305</span></span>
-<span><span class="co">##  [2,]  2 0.9697691 377.6247 582.8577</span></span>
-<span><span class="co">##  [3,]  3 0.9669591 364.4588 610.7955</span></span>
-<span><span class="co">##  [4,]  4 0.9676491 354.1172 603.7429</span></span>
-<span><span class="co">##  [5,]  5 0.9677260 357.5205 602.7438</span></span>
-<span><span class="co">##  [6,]  6 0.9651462 359.9642 626.4934</span></span>
-<span><span class="co">##  [7,]  7 0.9681853 356.1901 597.2504</span></span>
-<span><span class="co">##  [8,]  8 0.9671941 361.1308 606.3268</span></span>
-<span><span class="co">##  [9,]  9 0.9665862 366.8357 611.8506</span></span>
-<span><span class="co">## [10,] 10 0.9667007 367.2202 610.7939</span></span></code></pre></div>
+<span><span class="co">##  [1,]  1 0.9642440 424.0534 635.5334</span></span>
+<span><span class="co">##  [2,]  2 0.9684523 388.4106 595.6706</span></span>
+<span><span class="co">##  [3,]  3 0.9655137 377.1112 624.6225</span></span>
+<span><span class="co">##  [4,]  4 0.9671040 360.4011 609.6115</span></span>
+<span><span class="co">##  [5,]  5 0.9666078 366.4018 613.7714</span></span>
+<span><span class="co">##  [6,]  6 0.9638873 369.2677 639.2369</span></span>
+<span><span class="co">##  [7,]  7 0.9668067 367.8782 610.0439</span></span>
+<span><span class="co">##  [8,]  8 0.9664286 366.7623 613.4352</span></span>
+<span><span class="co">##  [9,]  9 0.9660476 370.2265 616.7720</span></span>
+<span><span class="co">## [10,] 10 0.9650804 374.4953 625.3163</span></span></code></pre></div>
 <p>Under the selected lib and pred, the optimal embedding dimension E
 for the variable <code>pre</code> is 2, and for the variable
 <code>npp</code>, it is also 2.</p>
@@ -427,34 +427,34 @@ for the variable <code>pre</code> is 2, and for the variable
 <span>               effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
 <span>               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">5</span><span class="op">)</span>,</span>
 <span>               E <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>               k <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>               k <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>               RowCol <span class="op">=</span> <span class="va">pred</span>,</span>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 25.28639 mins</span></span>
+<span><span class="co">## Time difference of 26.32721 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes   npp-&gt;pre   pre-&gt;npp</span></span>
-<span><span class="co">## 1        10 0.05740000 0.06653809</span></span>
-<span><span class="co">## 2        15 0.06593626 0.08012391</span></span>
-<span><span class="co">## 3        20 0.08400060 0.11441672</span></span>
-<span><span class="co">## 4        25 0.10460948 0.13401015</span></span>
-<span><span class="co">## 5        30 0.11916766 0.15201758</span></span>
-<span><span class="co">## 6        35 0.12875745 0.16187685</span></span>
-<span><span class="co">## 7        40 0.13431273 0.17497419</span></span>
-<span><span class="co">## 8        45 0.14618055 0.20029010</span></span>
-<span><span class="co">## 9        50 0.16535551 0.23093965</span></span>
-<span><span class="co">## 10       55 0.19262572 0.25101785</span></span>
-<span><span class="co">## 11       60 0.21566290 0.25707437</span></span>
-<span><span class="co">## 12       65 0.23555554 0.24606888</span></span>
-<span><span class="co">## 13       70 0.23571425 0.23038831</span></span>
-<span><span class="co">## 14       75 0.21680170 0.20847992</span></span>
-<span><span class="co">## 15       80 0.20202568 0.21112107</span></span>
-<span><span class="co">## 16       85 0.14080027 0.22734529</span></span>
-<span><span class="co">## 17       90 0.13585590 0.25920863</span></span>
-<span><span class="co">## 18       95 0.10754714 0.28377246</span></span>
-<span><span class="co">## 19      100 0.10447653 0.26996791</span></span>
-<span><span class="co">## 20      105 0.08238034 0.32737051</span></span></code></pre></div>
+<span><span class="co">## 1        10 0.06192514 0.06990912</span></span>
+<span><span class="co">## 2        15 0.07275609 0.08711065</span></span>
+<span><span class="co">## 3        20 0.08954475 0.11581999</span></span>
+<span><span class="co">## 4        25 0.11312545 0.13388646</span></span>
+<span><span class="co">## 5        30 0.12053396 0.15133527</span></span>
+<span><span class="co">## 6        35 0.12834855 0.16465535</span></span>
+<span><span class="co">## 7        40 0.13740629 0.18151920</span></span>
+<span><span class="co">## 8        45 0.15100178 0.20732869</span></span>
+<span><span class="co">## 9        50 0.17119613 0.23477955</span></span>
+<span><span class="co">## 10       55 0.20008374 0.25759086</span></span>
+<span><span class="co">## 11       60 0.22521937 0.26634194</span></span>
+<span><span class="co">## 12       65 0.24842751 0.25765429</span></span>
+<span><span class="co">## 13       70 0.25299784 0.24071790</span></span>
+<span><span class="co">## 14       75 0.23493541 0.22828746</span></span>
+<span><span class="co">## 15       80 0.21775972 0.22148585</span></span>
+<span><span class="co">## 16       85 0.17916316 0.22555346</span></span>
+<span><span class="co">## 17       90 0.17657659 0.23947560</span></span>
+<span><span class="co">## 18       95 0.18059851 0.25040161</span></span>
+<span><span class="co">## 19      100 0.15892383 0.28862493</span></span>
+<span><span class="co">## 20      105 0.14364838 0.32793539</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
