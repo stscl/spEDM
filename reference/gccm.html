@@ -53,11 +53,11 @@
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  theta <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  algorithm <span class="op">=</span> <span class="st">"simplex"</span>,</span>
+<span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include.self <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  trendRM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  trend.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -72,11 +72,10 @@
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  theta <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  algorithm <span class="op">=</span> <span class="st">"simplex"</span>,</span>
-<span>  RowCol <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  include.self <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  trendRM <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  trend.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -121,6 +120,10 @@
 <dd><p>(optional) Algorithm used for prediction.</p></dd>
 
 
+<dt id="arg-pred">pred<a class="anchor" aria-label="anchor" href="#arg-pred"></a></dt>
+<dd><p>pred (optional) The row numbers(<code>vector</code>) of lattice data or the row-column numbers(<code>matrix</code>) of grid data used for predictions.</p></dd>
+
+
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
 <dd><p>(optional) The neighbours list.</p></dd>
 
@@ -133,20 +136,12 @@
 <dd><p>(optional) whether to identify bidirectional causal associations.</p></dd>
 
 
-<dt id="arg-include-self">include.self<a class="anchor" aria-label="anchor" href="#arg-include-self"></a></dt>
-<dd><p>(optional) Whether to include the current state when constructing the embedding vector.</p></dd>
-
-
-<dt id="arg-trendrm">trendRM<a class="anchor" aria-label="anchor" href="#arg-trendrm"></a></dt>
+<dt id="arg-trend-rm">trend.rm<a class="anchor" aria-label="anchor" href="#arg-trend-rm"></a></dt>
 <dd><p>(optional) Whether to remove the linear trend.</p></dd>
 
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
 <dd><p>(optional) whether to print the progress bar.</p></dd>
-
-
-<dt id="arg-rowcol">RowCol<a class="anchor" aria-label="anchor" href="#arg-rowcol"></a></dt>
-<dd><p>(optional) Matrix of selected row and cols numbers.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -172,14 +167,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-in"><span><span class="va">g</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   libsizes HOVAL-&gt;CRIME CRIME-&gt;HOVAL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        5    0.1364390    0.2626414</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       10    0.2527837    0.3845083</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       15    0.2842085    0.4507571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       20    0.2815063    0.4832821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       25    0.2885067    0.5150388</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       30    0.3094733    0.5292745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       35    0.3350115    0.5334427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       40    0.3539860    0.5272057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        5    0.1405456    0.2804058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       10    0.2413240    0.4006664</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       15    0.2554682    0.4609814</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       20    0.2482281    0.5019578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       25    0.2541110    0.5452084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       30    0.2671786    0.5847262</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       35    0.2783446    0.6019328</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       40    0.2876909    0.6217028</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gccm-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
