@@ -194,8 +194,8 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity_nb.gal"</span>,</span>
 <span>                                      package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")): neighbour</span></span>
-<span><span class="co">## object has 4 sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")): neighbour object has 4</span></span>
+<span><span class="co">## sub-graphs</span></span>
 <span><span class="va">popd_nb</span></span>
 <span><span class="co">## Neighbour list object:</span></span>
 <span><span class="co">## Number of regions: 2806 </span></span>
@@ -207,7 +207,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
 <span>                                         package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ───────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
 <span><span class="co">## </span></span>
@@ -296,7 +296,7 @@ the variable <code>popDensity</code>, it is 6.</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 22.68645 mins</span></span>
+<span><span class="co">## Time difference of 26.05291 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes Pre-&gt;popDensity popDensity-&gt;Pre</span></span>
 <span><span class="co">## 1        10      0.04677107     0.008049854</span></span>
@@ -432,7 +432,7 @@ for the variable <code>pre</code> is 2, and for the variable
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 22.92535 mins</span></span>
+<span><span class="co">## Time difference of 18.06673 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes   pre-&gt;npp   npp-&gt;pre</span></span>
 <span><span class="co">## 1        10 0.06990759 0.06192514</span></span>
