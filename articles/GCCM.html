@@ -74,128 +74,31 @@
     
     
 <div class="section level2">
-<h2 id="the-principle-of-geographical-convergent-cross-mapping-gccm">1. The principle of geographical convergent cross mapping
-(GCCM)<a class="anchor" aria-label="anchor" href="#the-principle-of-geographical-convergent-cross-mapping-gccm"></a>
+<h2 id="install-the-spedm-package">1.1 Install the <code>spEDM</code> package<a class="anchor" aria-label="anchor" href="#install-the-spedm-package"></a>
 </h2>
-<p>Takens’ theory proves that, for a dynamic system <span class="math inline">\(\phi\)</span>, if its trajectory converges to an
-attractor manifold <span class="math inline">\(M\)</span>, which are
-consisted by a bounded and invariant set of states, then the mapping
-between <span class="math inline">\(\phi\)</span> and M can be built and
-time series observations of <span class="math inline">\(\phi\)</span>
-can be used to construct <span class="math inline">\(M\)</span>.</p>
-<p>According to the generalized embedding theorem, for a compact <span class="math inline">\(d\)</span>-dimensional manifold <span class="math inline">\(M\)</span> and a set of observation functions
-<span class="math inline">\(\left&lt;h_1,h_2,\ldots,h_L\right&gt;\)</span>,
-the map <span class="math inline">\(\psi_{\phi,h} =
-\left&lt;h_1\left(x\right),h_2\left(x\right),\ldots,h_L\left(x\right)\right&gt;\)</span>
-is an embedding of <span class="math inline">\(M\)</span> with <span class="math inline">\(L = 2d + 1\)</span>. Here embedding means a
-one-to-one map resolving all singularities of the original manifold. The
-elements <span class="math inline">\(h_i\)</span> can be lags of
-observations from single time series observations, lags of observations
-from multiple time series, or multiple observation functions. The first
-two constructions are only special cases of the third one.</p>
-<p>By taking the measured values at one specific unit and its neighbors
-(named as spatial lags in spatial statistics) as a set of observation
-functions, <span class="math inline">\(\psi_{\phi,h} \left(x,s\right) =
-\left&lt;h_s\left(x\right),h_{s\left(1\right)}\left(x\right),\ldots,h_{s\left(L-1\right)}\left(x\right)\right&gt;\)</span>
-is a embedding, where <span class="math inline">\(s\)</span> is the
-focal unit currently under investigation and <span class="math inline">\(s\left(i\right)\)</span> is its <span class="math inline">\(i\)</span>-th order of spatial lags. <span class="math inline">\(h_s\left(x\right)\)</span> and <span class="math inline">\(h_{s\left(i\right)}\left(x\right)\)</span> are
-their observation functions respectively. (Hereinafter, we will use
-<span class="math inline">\(\psi \left(x,s\right)\)</span> to present
-<span class="math inline">\(\psi_{\phi,h} \left(x,s\right)\)</span> for
-short). For two spatial variables <span class="math inline">\(X\)</span>
-and <span class="math inline">\(Y\)</span> on the same set of spatial
-units, their values and spatial lags can be regarded as observation
-functions reading values from each spatial unit. As the spatial lags in
-each order contain more than one spatial units, the observation function
-can be set as the mean of the spatial units or other summary functions
-considering the spatial direction, to assure the one-to-one mapping of
-the original manifold <span class="math inline">\(M\)</span>.</p>
-<p>The cross-mapping prediction is defined as:</p>
-<p><span class="math display">\[
-\hat{Y}_s \mid M_x = \sum\limits_{i=1}^{L+1} \left(\omega_{si}Y_{si}
-\mid M_x \right)
-\]</span></p>
-<p>where <span class="math inline">\(s\)</span> represents a spatial
-unit at which the value of <span class="math inline">\(Y\)</span> needs
-to be predicted, <span class="math inline">\(\hat{Y}_s\)</span> is the
-prediction result, <span class="math inline">\(L\)</span> is the number
-of dimensions of the embedding, <span class="math inline">\(si\)</span>
-is the spatial unit used in the prediction, <span class="math inline">\(Y_{si}\)</span> is the observation value at <span class="math inline">\(si\)</span> and simultaneously the first component
-of a state in <span class="math inline">\(M_y\)</span>, noted as <span class="math inline">\(\psi\left(y,s_i\right)\)</span>. In further, <span class="math inline">\(\psi\left(y,s_i\right)\)</span> is determined by
-its one-to-one mapping point <span class="math inline">\(\psi\left(x,s_i\right)\)</span>, which is in turn
-one of the <span class="math inline">\(L+1\)</span> nearest neighbors of
-the focal state in <span class="math inline">\(M_x\)</span>. <span class="math inline">\(\omega_{si}\)</span> is the corresponding weight
-defined as:</p>
-<p><span class="math display">\[
-\omega_{si} \mid M_x = \frac{weight
-\left(\psi\left(x,s_i\right),\psi\left(x,s\right)\right)}{\sum_{i=1}^{L+1}weight
-\left(\psi\left(x,s_i\right),\psi\left(x,s\right)\right)}
-\]</span> where <span class="math inline">\(weight
-\left(\ast,\ast\right)\)</span> is the weight function between two
-states in the shadow manifold, defined as:</p>
-<p><span class="math display">\[
-weight \left(\psi\left(x,s_i\right),\psi\left(x,s\right)\right) =
-\exp \left(- \frac{dis
-\left(\psi\left(x,s_i\right),\psi\left(x,s\right)\right)}{dis
-\left(\psi\left(x,s_1\right),\psi\left(x,s\right)\right)} \right)
-\]</span></p>
-<p>where <span class="math inline">\(\exp\)</span> is the exponential
-function and <span class="math inline">\(dis
-\left(\ast,\ast\right)\)</span> represents the distance function between
-two states in the shadow manifold defined as:</p>
-<p><span class="math display">\[
-dis \left(\psi\left(x,s_i\right),\psi\left(x,s\right)\right) =
-\frac{1}{L}
-\left(\left|h_{si}\left(x\right)-h_{s}\left(x\right)\right| +
-\sum_{k=1}^{L-1}abs
-\left[h_{si\left(k\right)}\left(x\right),h_{s\left(k\right)}\left(x\right)\right]\right)
-\]</span> Note that the absolute value distance is used here.</p>
-<p>The skill of cross-mapping prediction is measured by the Pearson
-correlation coefficient between the true observations and corresponding
-predictions:</p>
-<p><span class="math display">\[
-\rho = \frac{Cov\left(Y,\hat{Y}\right)}{\sqrt{Var\left(Y\right)
-Var\left(\hat{Y}\right)}}
-\]</span></p>
-<p>The prediction skill <span class="math inline">\(\rho\)</span> varies
-by setting different sizes of libraries, which means the quantity of
-observations used in reconstruction of the shadow manifold. We can use
-the convergence of <span class="math inline">\(\rho\)</span> to infer
-the causal associations. For GCCM, the convergence means that <span class="math inline">\(\rho\)</span> increases with the size of libraries
-and is statistically significant when the library becomes largest. And
-the confidence interval of <span class="math inline">\(\rho\)</span> can
-be estimated based the <span class="math inline">\(z\)</span>-statistics
-with the normal distribution:</p>
-<p><span class="math display">\[
-t = \rho \sqrt{\frac{n-2}{1-\rho^2}}
-\]</span> where <span class="math inline">\(n\)</span> is the number of
-observations to be predicted, and</p>
-<p><span class="math display">\[
-z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right)
-\]</span></p>
-</div>
-<div class="section level2">
-<h2 id="examples">2. Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
-</h2>
-<div class="section level3">
-<h3 id="install-the-spedm-package">2.1 Install the <code>spEDM</code> package<a class="anchor" aria-label="anchor" href="#install-the-spedm-package"></a>
-</h3>
+<p>Install the stable version from <a href="https://CRAN.R-project.org/package=spEDM" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"spEDM"</span>, dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Load the <code>spEDM</code> package:</p>
+<p>Alternatively, you can install the development version from <a href="https://stscl.r-universe.dev/spEDM" class="external-link">R-universe</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"spEDM"</span>,</span>
+<span>                 repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://stscl.r-universe.dev"</span>,</span>
+<span>                           <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span>,</span>
+<span>                 dep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>Load the <code>spEDM</code> package:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="an-example-of-lattice-data-about-county-level-population-density">2.2 An example of lattice data about county-level population
+<div class="section level2">
+<h2 id="an-example-of-lattice-data-about-county-level-population-density">1.2 An example of lattice data about county-level population
 density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-about-county-level-population-density"></a>
-</h3>
+</h2>
 <p>Load data and package:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity_nb.gal"</span>,</span>
 <span>                                      package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")): neighbour object has 4</span></span>
-<span><span class="co">## sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("extdata/popdensity_nb.gal", package = "spEDM")): neighbour</span></span>
+<span><span class="co">## object has 4 sub-graphs</span></span>
 <span><span class="va">popd_nb</span></span>
 <span><span class="co">## Neighbour list object:</span></span>
 <span><span class="co">## Number of regions: 2806 </span></span>
@@ -207,7 +110,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="va">popdensity</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_csv</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/popdensity.csv"</span>,</span>
 <span>                                         package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ───────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popDensity, DEM, Tem, Pre, slop</span></span>
 <span><span class="co">## </span></span>
@@ -251,7 +154,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="co">## 10       137.   598  13.9 1458. 5.92  (116.208 30.8983)</span></span>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
 <p>Select the appropriate embedding dimension E:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"Pre"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable Pre is 1</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
@@ -265,7 +168,7 @@ density<a class="anchor" aria-label="anchor" href="#an-example-of-lattice-data-a
 <span><span class="co">##  [8,]  8 0.9815603 55.13373 83.48991</span></span>
 <span><span class="co">##  [9,]  9 0.9801222 58.14001 87.12388</span></span>
 <span><span class="co">## [10,] 10 0.9779157 62.46149 92.64490</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popDensity"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable popDensity is 6</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
@@ -284,7 +187,7 @@ the most suitable one. Under the selected lib and pred, the optimal
 embedding dimension E for the variable <code>Pre</code> is 1, and for
 the variable <code>popDensity</code>, it is 6.</p>
 <p>Run GCCM:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
 <span>              cause <span class="op">=</span> <span class="st">"Pre"</span>,</span>
@@ -296,7 +199,7 @@ the variable <code>popDensity</code>, it is 6.</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 26.05291 mins</span></span>
+<span><span class="co">## Time difference of 19.17285 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes Pre-&gt;popDensity popDensity-&gt;Pre</span></span>
 <span><span class="co">## 1        10      0.04677107     0.008049854</span></span>
@@ -328,7 +231,7 @@ the variable <code>popDensity</code>, it is 6.</p>
 <span><span class="co">## 27     2610      0.74108789     0.058239969</span></span>
 <span><span class="co">## 28     2710      0.75393770     0.059041395</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level Precipitation."><div class="figcaption">
@@ -337,11 +240,11 @@ prediction outputs between population density and county-level
 Precipitation.</div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="an-example-of-grid-data-about-farmland-npp">2.3 An example of grid data about farmland NPP<a class="anchor" aria-label="anchor" href="#an-example-of-grid-data-about-farmland-npp"></a>
-</h3>
+<div class="section level2">
+<h2 id="an-example-of-grid-data-about-farmland-npp">1.3 An example of grid data about farmland NPP<a class="anchor" aria-label="anchor" href="#an-example-of-grid-data-about-farmland-npp"></a>
+</h2>
 <p>Load data and package:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
@@ -366,7 +269,7 @@ and climate factors.</div>
 </div>
 <p><em>To save the computation time, we will aggregate the data by 3
 times and select 3000 non-NA pixels to predict:</em></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/global.html" class="external-link">global</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"isNA"</span><span class="op">)</span></span>
 <span><span class="co">##      isNA</span></span>
@@ -388,7 +291,7 @@ times and select 3000 non-NA pixels to predict:</em></p>
 <p>Due to the high number of NA values in the npp raster data, we used
 all non-NA cell indices when testing for the most suitable embedding
 dimension.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable pre is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
@@ -402,7 +305,7 @@ dimension.</p>
 <span><span class="co">##  [8,]  8 0.9985710 183.4329 258.2804</span></span>
 <span><span class="co">##  [9,]  9 0.9985349 186.6469 261.5637</span></span>
 <span><span class="co">## [10,] 10 0.9984171 193.6204 272.0611</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable npp is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
@@ -420,7 +323,7 @@ dimension.</p>
 for the variable <code>pre</code> is 2, and for the variable
 <code>npp</code>, it is also 2.</p>
 <p>Run GCCM:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>,</span>
 <span>               cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
@@ -432,7 +335,7 @@ for the variable <code>pre</code> is 2, and for the variable
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 18.06673 mins</span></span>
+<span><span class="co">## Time difference of 20.43312 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes   pre-&gt;npp   npp-&gt;pre</span></span>
 <span><span class="co">## 1        10 0.06990759 0.06192514</span></span>
@@ -456,7 +359,7 @@ for the variable <code>pre</code> is 2, and for the variable
 <span><span class="co">## 19      100 0.28862493 0.15892383</span></span>
 <span><span class="co">## 20      105 0.32793539 0.14364838</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span>
 <span><span class="co">## Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</span></span></code></pre></div>
@@ -464,7 +367,6 @@ for the variable <code>pre</code> is 2, and for the variable
 <img src="../reference/figures/gccm/fig3-1.png" alt="Figure 3. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 3</strong>. The cross-mapping
 prediction outputs between farmland NPP and precipitation.</div>
-</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
