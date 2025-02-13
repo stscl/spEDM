@@ -65,7 +65,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-02-10</h4>
+            <h4 data-toc-skip class="date">2025-02-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -199,7 +199,7 @@ the variable <code>popDensity</code>, it is 6.</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 19.17285 mins</span></span>
+<span><span class="co">## Time difference of 17.47827 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes Pre-&gt;popDensity popDensity-&gt;Pre</span></span>
 <span><span class="co">## 1        10      0.04677107     0.008049854</span></span>
@@ -299,29 +299,29 @@ dimension.</p>
 <span><span class="co">## The suggested embedding dimension E for variable pre is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
 <span><span class="co">##  [1,]  1 0.9986687 178.4244 249.0336</span></span>
-<span><span class="co">##  [2,]  2 0.9990565 144.0794 209.5812</span></span>
-<span><span class="co">##  [3,]  3 0.9989996 148.3566 216.1486</span></span>
-<span><span class="co">##  [4,]  4 0.9989168 156.0074 225.1383</span></span>
-<span><span class="co">##  [5,]  5 0.9988119 165.5576 235.6243</span></span>
-<span><span class="co">##  [6,]  6 0.9986605 176.7865 250.1238</span></span>
-<span><span class="co">##  [7,]  7 0.9986104 179.9232 254.6314</span></span>
-<span><span class="co">##  [8,]  8 0.9985710 183.4329 258.2804</span></span>
-<span><span class="co">##  [9,]  9 0.9985349 186.6469 261.5637</span></span>
-<span><span class="co">## [10,] 10 0.9984171 193.6204 272.0611</span></span></code></pre></div>
+<span><span class="co">##  [2,]  2 0.9990454 143.8729 211.0650</span></span>
+<span><span class="co">##  [3,]  3 0.9989655 147.8098 219.8642</span></span>
+<span><span class="co">##  [4,]  4 0.9989633 149.6220 220.0648</span></span>
+<span><span class="co">##  [5,]  5 0.9988887 156.8683 228.0007</span></span>
+<span><span class="co">##  [6,]  6 0.9988100 163.2879 235.8832</span></span>
+<span><span class="co">##  [7,]  7 0.9987489 168.3787 241.7323</span></span>
+<span><span class="co">##  [8,]  8 0.9987067 170.0984 245.7405</span></span>
+<span><span class="co">##  [9,]  9 0.9987193 171.0634 244.5094</span></span>
+<span><span class="co">## [10,] 10 0.9987203 171.7493 244.4225</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">nnaindice</span>,<span class="va">nnaindice</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## The suggested embedding dimension E for variable npp is 2</span></span>
 <span><span class="co">##        E       rho      mae     rmse</span></span>
 <span><span class="co">##  [1,]  1 0.9642440 424.0534 635.5334</span></span>
-<span><span class="co">##  [2,]  2 0.9684523 388.4106 595.6706</span></span>
-<span><span class="co">##  [3,]  3 0.9655137 377.1112 624.6225</span></span>
-<span><span class="co">##  [4,]  4 0.9671040 360.4011 609.6115</span></span>
-<span><span class="co">##  [5,]  5 0.9666078 366.4018 613.7714</span></span>
-<span><span class="co">##  [6,]  6 0.9638873 369.2677 639.2369</span></span>
-<span><span class="co">##  [7,]  7 0.9668067 367.8782 610.0439</span></span>
-<span><span class="co">##  [8,]  8 0.9664286 366.7623 613.4352</span></span>
-<span><span class="co">##  [9,]  9 0.9660476 370.2265 616.7720</span></span>
-<span><span class="co">## [10,] 10 0.9650804 374.4953 625.3163</span></span></code></pre></div>
+<span><span class="co">##  [2,]  2 0.9730095 368.1354 551.5601</span></span>
+<span><span class="co">##  [3,]  3 0.9704364 363.8802 577.8385</span></span>
+<span><span class="co">##  [4,]  4 0.9700442 363.5774 581.6159</span></span>
+<span><span class="co">##  [5,]  5 0.9704260 356.6313 577.1581</span></span>
+<span><span class="co">##  [6,]  6 0.9705718 355.6638 575.4921</span></span>
+<span><span class="co">##  [7,]  7 0.9701489 357.7271 579.5552</span></span>
+<span><span class="co">##  [8,]  8 0.9705046 353.4836 575.9769</span></span>
+<span><span class="co">##  [9,]  9 0.9700359 351.7488 580.4887</span></span>
+<span><span class="co">## [10,] 10 0.9704014 348.8651 576.9918</span></span></code></pre></div>
 <p>Under the selected lib and pred, the optimal embedding dimension E
 for the variable <code>pre</code> is 2, and for the variable
 <code>npp</code>, it is also 2.</p>
@@ -338,29 +338,29 @@ for the variable <code>pre</code> is 2, and for the variable
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 20.43312 mins</span></span>
+<span><span class="co">## Time difference of 35.96636 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##    libsizes   pre-&gt;npp   npp-&gt;pre</span></span>
-<span><span class="co">## 1        10 0.06990759 0.06192514</span></span>
-<span><span class="co">## 2        15 0.08710917 0.07278791</span></span>
-<span><span class="co">## 3        20 0.11579376 0.08954193</span></span>
-<span><span class="co">## 4        25 0.13387798 0.11312547</span></span>
-<span><span class="co">## 5        30 0.15133351 0.12053375</span></span>
-<span><span class="co">## 6        35 0.16465534 0.12834833</span></span>
-<span><span class="co">## 7        40 0.18151411 0.13740629</span></span>
-<span><span class="co">## 8        45 0.20732921 0.15100178</span></span>
-<span><span class="co">## 9        50 0.23477955 0.17119613</span></span>
-<span><span class="co">## 10       55 0.25759086 0.20008374</span></span>
-<span><span class="co">## 11       60 0.26634144 0.22521937</span></span>
-<span><span class="co">## 12       65 0.25764750 0.24842751</span></span>
-<span><span class="co">## 13       70 0.24068666 0.25299784</span></span>
-<span><span class="co">## 14       75 0.22823792 0.23493541</span></span>
-<span><span class="co">## 15       80 0.22143775 0.21775972</span></span>
-<span><span class="co">## 16       85 0.22551936 0.17916316</span></span>
-<span><span class="co">## 17       90 0.23926443 0.17657659</span></span>
-<span><span class="co">## 18       95 0.25019360 0.18059851</span></span>
-<span><span class="co">## 19      100 0.28862493 0.15892383</span></span>
-<span><span class="co">## 20      105 0.32793539 0.14364838</span></span></code></pre></div>
+<span><span class="co">## 1        10 0.06372496 0.06203369</span></span>
+<span><span class="co">## 2        15 0.08834633 0.07153538</span></span>
+<span><span class="co">## 3        20 0.11227040 0.08592575</span></span>
+<span><span class="co">## 4        25 0.13802303 0.10135778</span></span>
+<span><span class="co">## 5        30 0.15715669 0.10412317</span></span>
+<span><span class="co">## 6        35 0.17383171 0.11082174</span></span>
+<span><span class="co">## 7        40 0.19458787 0.11619719</span></span>
+<span><span class="co">## 8        45 0.21683231 0.12748710</span></span>
+<span><span class="co">## 9        50 0.24306605 0.14341687</span></span>
+<span><span class="co">## 10       55 0.25837687 0.16762024</span></span>
+<span><span class="co">## 11       60 0.25799815 0.18573522</span></span>
+<span><span class="co">## 12       65 0.24920319 0.19850476</span></span>
+<span><span class="co">## 13       70 0.24053766 0.19747705</span></span>
+<span><span class="co">## 14       75 0.24687505 0.18426356</span></span>
+<span><span class="co">## 15       80 0.24670675 0.15772132</span></span>
+<span><span class="co">## 16       85 0.24365968 0.12437267</span></span>
+<span><span class="co">## 17       90 0.24655991 0.09931105</span></span>
+<span><span class="co">## 18       95 0.25216934 0.08129846</span></span>
+<span><span class="co">## 19      100 0.22270491 0.05082777</span></span>
+<span><span class="co">## 20      105 0.14153565 0.02867888</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">101</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
