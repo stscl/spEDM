@@ -52,7 +52,8 @@
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  trend.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SpatRaster'</span></span>
@@ -64,7 +65,8 @@
 <span>  E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  trend.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -107,6 +109,10 @@
 <dt id="arg-threads">threads<a class="anchor" aria-label="anchor" href="#arg-threads"></a></dt>
 <dd><p>(optional) Number of threads.</p></dd>
 
+
+<dt id="arg-trend-rm">trend.rm<a class="anchor" aria-label="anchor" href="#arg-trend-rm"></a></dt>
+<dd><p>(optional) Whether to remove the linear trend.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -118,18 +124,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spData"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">simplex</span><span class="op">(</span><span class="va">columbus</span>,target <span class="op">=</span> <span class="st">"CRIME"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The suggested embedding dimension E for variable CRIME is 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The suggested embedding dimension E for variable CRIME is 6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        E       rho       mae     rmse</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  1 0.5064332 10.752317 15.45595</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  2 0.5832484  9.753875 14.06003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  3 0.6026672 10.093884 13.82248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  4 0.6174598 10.269995 13.71842</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  5 0.6313140  9.808677 13.45584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  6 0.6285516  9.832107 13.58268</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  7 0.6299036  9.787748 13.55552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  8 0.6304351  9.769181 13.54919</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  9 0.6303645  9.770848 13.55023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 10 0.6303645  9.770848 13.55023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  1 0.5582378 10.187568 14.18034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  2 0.5973572  9.330923 13.76604</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  3 0.6012386  9.947011 13.73818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  4 0.5949300 10.559699 14.05813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  5 0.6392106  9.460928 13.08035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  6 0.6442922  9.438912 12.99714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  7 0.6356835  9.578565 13.14957</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  8 0.6371715  9.541046 13.13519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  9 0.6370924  9.542534 13.13622</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 10 0.6370924  9.542534 13.13622</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
