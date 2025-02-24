@@ -85,7 +85,7 @@
 
 
 <dt id="arg-columns">columns<a class="anchor" aria-label="anchor" href="#arg-columns"></a></dt>
-<dd><p>Individual variable names.</p></dd>
+<dd><p>Names of individual variables.</p></dd>
 
 
 <dt id="arg-target">target<a class="anchor" aria-label="anchor" href="#arg-target"></a></dt>
@@ -97,11 +97,11 @@
 
 
 <dt id="arg-lib">lib<a class="anchor" aria-label="anchor" href="#arg-lib"></a></dt>
-<dd><p>Row numbers(<code>vector</code>) of lattice data or row-column numbers(<code>matrix</code>) of grid data for creating the library from observations.</p></dd>
+<dd><p>Row numbers(<code>vector</code> for lattice data) or row-column numbers(<code>matrix</code> for grid data) to create the library from observations.</p></dd>
 
 
 <dt id="arg-pred">pred<a class="anchor" aria-label="anchor" href="#arg-pred"></a></dt>
-<dd><p>(optional) Row numbers(<code>vector</code>) of lattice data or row-column numbers(<code>matrix</code>) of grid data used for predictions.</p></dd>
+<dd><p>(optional) Row numbers(<code>vector</code> for lattice data) or row-column numbers(<code>matrix</code> for grid data) used for predictions.</p></dd>
 
 
 <dt id="arg-e">E<a class="anchor" aria-label="anchor" href="#arg-e"></a></dt>
@@ -113,7 +113,7 @@
 
 
 <dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
-<dd><p>(optional) Number of nearest neighbors to use for prediction.</p></dd>
+<dd><p>(optional) Number of nearest neighbors used for prediction.</p></dd>
 
 
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
@@ -143,7 +143,7 @@
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">multiview</span><span class="op">(</span><span class="va">columbus</span>,</span></span>
 <span class="r-in"><span>          columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"INC"</span>,<span class="st">"CRIME"</span>,<span class="st">"OPEN"</span>,<span class="st">"PLUMB"</span>,<span class="st">"DISCBD"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>          target <span class="op">=</span> <span class="st">"HOVAL"</span>, nvar <span class="op">=</span> <span class="fl">3</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span>, pred <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          target <span class="op">=</span> <span class="st">"HOVAL"</span>, nvar <span class="op">=</span> <span class="fl">3</span>, lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span>, pred <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  21.9371364  24.7205306  17.3292283   2.4772224  -7.9163731  -2.3622087</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  -4.9474694  -8.8297425  -9.8552390  13.6374047 -12.5788898   4.4593010</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13]  -5.5392985 -10.9111755 -10.6083152  -7.7215211  11.2850713  -0.1720298</span>
