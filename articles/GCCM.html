@@ -65,7 +65,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-02-20</h4>
+            <h4 data-toc-skip class="date">2025-03-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -156,32 +156,10 @@
 <p>Select the appropriate embedding dimension E:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"Pre"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
-<span><span class="co">## The suggested embedding dimension E for variable Pre is 2</span></span>
-<span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.9782781 34.80551 54.00773</span></span>
-<span><span class="co">##  [2,]  2 0.9802540 32.18977 53.33620</span></span>
-<span><span class="co">##  [3,]  3 0.9775425 34.25069 58.26795</span></span>
-<span><span class="co">##  [4,]  4 0.9749178 36.43196 61.47662</span></span>
-<span><span class="co">##  [5,]  5 0.9732294 38.25935 63.20869</span></span>
-<span><span class="co">##  [6,]  6 0.9723361 40.15206 65.04856</span></span>
-<span><span class="co">##  [7,]  7 0.9697997 43.27062 69.01631</span></span>
-<span><span class="co">##  [8,]  8 0.9658433 46.51147 73.37128</span></span>
-<span><span class="co">##  [9,]  9 0.9629774 49.73771 76.06562</span></span>
-<span><span class="co">## [10,] 10 0.9615392 51.52285 77.57833</span></span></code></pre></div>
+<span><span class="co">## The suggested E and k for variable Pre is 2 and 6 </span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popDensity"</span>,lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2000</span>,pred <span class="op">=</span> <span class="fl">2001</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span>,k <span class="op">=</span> <span class="fl">6</span>,nb <span class="op">=</span> <span class="va">popd_nb</span><span class="op">)</span></span>
-<span><span class="co">## The suggested embedding dimension E for variable popDensity is 5</span></span>
-<span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.8142262 821.6575 2283.544</span></span>
-<span><span class="co">##  [2,]  2 0.8799178 648.7316 1918.029</span></span>
-<span><span class="co">##  [3,]  3 0.8828657 636.7622 1881.740</span></span>
-<span><span class="co">##  [4,]  4 0.8868719 637.2017 1850.598</span></span>
-<span><span class="co">##  [5,]  5 0.8956243 610.3778 1805.386</span></span>
-<span><span class="co">##  [6,]  6 0.8939081 640.9628 1819.206</span></span>
-<span><span class="co">##  [7,]  7 0.8926276 626.0359 1831.724</span></span>
-<span><span class="co">##  [8,]  8 0.8894480 645.2201 1851.623</span></span>
-<span><span class="co">##  [9,]  9 0.8846390 660.4611 1880.918</span></span>
-<span><span class="co">## [10,] 10 0.8846890 659.1725 1876.446</span></span></code></pre></div>
+<span><span class="co">## The suggested E and k for variable popDensity is 5 and 6</span></span></code></pre></div>
 <p>We choose the E with the highest rho and the lowest MAE and RMSE as
 the most suitable one. Under the selected lib and pred, the optimal
 embedding dimension E for the variable <code>Pre</code> is 2, and for
@@ -296,32 +274,10 @@ all non-NA cell as the libraries when testing for the most suitable
 embedding dimension.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="va">nnaindice</span>,<span class="va">pred</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## The suggested embedding dimension E for variable pre is 2</span></span>
-<span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.9935452 192.2437 257.0223</span></span>
-<span><span class="co">##  [2,]  2 0.9964007 138.1465 192.6528</span></span>
-<span><span class="co">##  [3,]  3 0.9933468 152.9612 261.6461</span></span>
-<span><span class="co">##  [4,]  4 0.9947055 152.8392 232.8033</span></span>
-<span><span class="co">##  [5,]  5 0.9946261 159.5439 234.5342</span></span>
-<span><span class="co">##  [6,]  6 0.9945737 161.3816 235.8791</span></span>
-<span><span class="co">##  [7,]  7 0.9944200 166.2916 239.2797</span></span>
-<span><span class="co">##  [8,]  8 0.9944050 169.3894 239.9678</span></span>
-<span><span class="co">##  [9,]  9 0.9941899 170.0724 244.2513</span></span>
-<span><span class="co">## [10,] 10 0.9947184 167.4744 233.1708</span></span></code></pre></div>
+<span><span class="co">## The suggested E and k for variable pre is 2 and 5</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,<span class="va">nnaindice</span>,<span class="va">pred</span>,k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="co">## The suggested embedding dimension E for variable npp is 6</span></span>
-<span><span class="co">##        E       rho      mae     rmse</span></span>
-<span><span class="co">##  [1,]  1 0.9309598 424.9317 608.9018</span></span>
-<span><span class="co">##  [2,]  2 0.9361632 382.7654 583.7951</span></span>
-<span><span class="co">##  [3,]  3 0.9376302 374.3546 575.0216</span></span>
-<span><span class="co">##  [4,]  4 0.9406945 370.6129 561.0225</span></span>
-<span><span class="co">##  [5,]  5 0.9466347 349.3912 532.1607</span></span>
-<span><span class="co">##  [6,]  6 0.9497837 340.4782 516.3542</span></span>
-<span><span class="co">##  [7,]  7 0.9488605 341.0529 520.8572</span></span>
-<span><span class="co">##  [8,]  8 0.9461863 346.1658 533.9391</span></span>
-<span><span class="co">##  [9,]  9 0.9448451 344.5612 540.3860</span></span>
-<span><span class="co">## [10,] 10 0.9458182 341.8827 535.7265</span></span></code></pre></div>
+<span><span class="co">## The suggested E and k for variable npp is 6 and 5</span></span></code></pre></div>
 <p>Under the selected lib and pred, the optimal embedding dimension E
 for the variable <code>pre</code> is 2, and for the variable
 <code>npp</code>, it is 6.</p>
