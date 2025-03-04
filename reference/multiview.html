@@ -52,7 +52,7 @@
 <span>  pred <span class="op">=</span> <span class="va">lib</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  top <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -69,7 +69,7 @@
 <span>  pred <span class="op">=</span> <span class="va">lib</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  top <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  trend.rm <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -144,15 +144,15 @@
 <span class="r-in"><span><span class="fu">multiview</span><span class="op">(</span><span class="va">columbus</span>,</span></span>
 <span class="r-in"><span>          columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"INC"</span>,<span class="st">"CRIME"</span>,<span class="st">"OPEN"</span>,<span class="st">"PLUMB"</span>,<span class="st">"DISCBD"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>          target <span class="op">=</span> <span class="st">"HOVAL"</span>, nvar <span class="op">=</span> <span class="fl">3</span>, lib <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span>, pred <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">49</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  21.9371364  24.7205306  17.3292283   2.4772224  -7.9163731  -2.3622087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  -4.9474694  -8.8297425  -9.8552390  13.6374047 -12.5788898   4.4593010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  -5.5392985 -10.9111755 -10.6083152  -7.7215211  11.2850713  -0.1720298</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  -2.6332623  -5.5433142  -9.8616409   5.0942144  11.5942344 -15.2842675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] -15.3471330  -4.0005733   4.9865743 -18.4357432 -11.0231879 -15.7675711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31]  10.9314878  14.7621438  -7.0626868  19.7233504   2.7864510  12.5600871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] -14.9154147 -19.0277550  25.1124632  29.9314785  19.0926263  -2.9976574</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43]  -1.7517947  -8.3645833   0.8202632   5.9289911  15.6998850   6.9534041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49]   1.8208985</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  18.8646054  22.4869617  21.1550738  -1.1253460  -9.1007114  -2.7903615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  -7.6201012  -6.6613986  -8.7202885  16.2907046 -13.4100870   5.5617166</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  -4.6242104  -6.0215133 -12.1983725  -9.3303243  14.4441917   2.2055448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  -4.3641292  -6.0871013 -11.5193470   2.6235111  13.7585733  -8.7467063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25]  -9.7543853  -4.1516025   3.8137697 -18.6397054 -12.1462767 -12.0658493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31]  10.9218398  19.4799373  -8.1531852  16.5727910   0.7379578   8.5333685</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] -15.5058094 -17.8177107  23.9793164  27.1593848  18.1874514  -2.9723211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43]  -2.8697946  -8.5016198   1.2200571   5.7208429  15.1875343   6.5063233</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49]   0.2310141</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
