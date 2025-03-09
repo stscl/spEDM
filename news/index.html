@@ -39,12 +39,12 @@
 <h2 class="pkg-version" data-toc-text="1.5" id="spedm-15">spEDM 1.5<a class="anchor" aria-label="anchor" href="#spedm-15"></a></h2>
 <div class="section level4">
 <h4 id="new-1-5">new<a class="anchor" aria-label="anchor" href="#new-1-5"></a></h4>
-<ul><li>Implement the <code>multiview</code> function for multiview embedding forecasting (MVE) method (<a href="https://github.com/stscl/spEDM/issues/221" class="external-link">#221</a>).</li>
+<ul><li><p>Enable <code>parallel.option</code> parameter to specify parallel granularity.</p></li>
+<li><p>Implement the <code>multiview</code> function for multiview embedding forecasting (MVE) method (<a href="https://github.com/stscl/spEDM/issues/221" class="external-link">#221</a>).</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="enhancements-1-5">enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-5"></a></h4>
-<ul><li><p>Parallelize within each <code>libsize</code> operation for spatial lattice (<a href="https://github.com/stscl/spEDM/pull/301" class="external-link">#301</a>) and grid data (<a href="https://github.com/stscl/spEDM/pull/303" class="external-link">#303</a>).</p></li>
-<li><p>Integrate <code>lib</code> parameter in <code>gccm</code> R side API for library units selection (<a href="https://github.com/stscl/spEDM/issues/278" class="external-link">#278</a>).</p></li>
+<ul><li><p>Integrate <code>lib</code> parameter in <code>gccm</code> R side API for library units selection (<a href="https://github.com/stscl/spEDM/issues/278" class="external-link">#278</a>).</p></li>
 <li><p>Set the default <code>k</code> to <code>E+2</code> in the <code>gccm</code> R API (<a href="https://github.com/stscl/spEDM/issues/261" class="external-link">#261</a>).</p></li>
 <li><p>Eliminate redundant computations at the source C++ code level (<a href="https://github.com/stscl/spEDM/issues/233" class="external-link">#233</a>).</p></li>
 <li><p>Add <code>trend.rm</code> option in the R API for <code>embedded</code>, <code>simplex</code>, and <code>smap</code> methods to align with <code>gccm</code> behavior (<a href="https://github.com/stscl/spEDM/issues/191" class="external-link">#191</a>).</p></li>
