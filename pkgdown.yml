@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   GCCM: GCCM.html
-last_built: 2025-03-14T03:46Z
+last_built: 2025-03-14T05:06Z
 urls:
   reference: https://stscl.github.io/spEDM/reference
   article: https://stscl.github.io/spEDM/articles
