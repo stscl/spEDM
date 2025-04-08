@@ -82,7 +82,7 @@
 efficient toolkit designed to provide a unified API for <strong>Spatial
 Empirical Dynamic Modeling</strong>. It supports a suite of
 prediction-based causal inference algorithms, including <em>spatial
-granger causality tests</em>, <em>spatial state-space
+granger causality test</em>, <em>spatial state-space
 reconstruction</em>, and <em>geographically convergent cross
 mapping</em>.</p>
 <p>To facilitate learning and application, <em>spEDM</em> includes four
@@ -110,20 +110,168 @@ well-known causation to demonstrate its functionality:</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>Columbus OH</strong> dataset: a classic spatial analysis
 dataset frequently used in spatial econometrics (store relevant
-information in the <code>columbus.gpkg</code> file).<br>
-</li>
-<li>A <strong>county-level dataset of population density and its
+information in the <code>columbus.gpkg</code> file).</li>
+<li>A county-level dataset of <strong>population density and its
 potential drivers</strong> in mainland China (store relevant information
-in the <code>popd.csv</code> and <code>popd_nb.gal</code> files).<br>
-</li>
-<li>A soil Cu heavy metal contamination dataset: Cu content in the soil
-and variables of nighttime lights and industrial density (store relevant
-information in the <code>cu.tif</code> files).</li>
-<li>A <strong>farmland NPP and climate dataset</strong> for mainland
+in the <code>popd.csv</code> and <code>popd_nb.gal</code> files).</li>
+<li>A <strong>soil Cu heavy metal contamination</strong> dataset: Cu
+content in the soil and variables of nighttime lights and industrial
+density (store relevant information in the <code>cu.tif</code>
+files).</li>
+<li>A <strong>farmland NPP and climate</strong> dataset for mainland
 China, capturing spatial dynamics between agricultural productivity and
 climatic variables (store relevant information in the
 <code>npp.tif</code> files).</li>
 </ol>
+<div class="section level3">
+<h3 id="columbus-oh-spatial-analysis-dataset">Columbus OH spatial analysis dataset<a class="anchor" aria-label="anchor" href="#columbus-oh-spatial-analysis-dataset"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">columbus</span></span>
+<span><span class="co">## Simple feature collection with 49 features and 6 fields</span></span>
+<span><span class="co">## Geometry type: POLYGON</span></span>
+<span><span class="co">## Dimension:     XY</span></span>
+<span><span class="co">## Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245</span></span>
+<span><span class="co">## Projected CRS: Undefined Cartesian SRS with unknown unit</span></span>
+<span><span class="co">## # A tibble: 49 × 7</span></span>
+<span><span class="co">##    hoval   inc  crime  open plumb discbd                                 geom</span></span>
+<span><span class="co">##    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;                            &lt;POLYGON&gt;</span></span>
+<span><span class="co">##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.7424…</span></span>
+<span><span class="co">##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.229…</span></span>
+<span><span class="co">##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.002…</span></span>
+<span><span class="co">##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83…</span></span>
+<span><span class="co">##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72…</span></span>
+<span><span class="co">##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.694…</span></span>
+<span><span class="co">##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60…</span></span>
+<span><span class="co">##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965…</span></span>
+<span><span class="co">##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27…</span></span>
+<span><span class="co">## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.052…</span></span>
+<span><span class="co">## # ℹ 39 more rows</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="county-level-population-density-in-mainland-china">County-level population density in mainland China<a class="anchor" aria-label="anchor" href="#county-level-population-density-in-mainland-china"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd_nb.gal"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package =</span></span>
+<span><span class="co">## "spEDM")): neighbour object has 4 sub-graphs</span></span>
+<span><span class="va">popd_nb</span></span>
+<span><span class="co">## Neighbour list object:</span></span>
+<span><span class="co">## Number of regions: 2806 </span></span>
+<span><span class="co">## Number of nonzero links: 15942 </span></span>
+<span><span class="co">## Percentage nonzero weights: 0.2024732 </span></span>
+<span><span class="co">## Average number of links: 5.681397 </span></span>
+<span><span class="co">## 4 disjoint connected subgraphs</span></span>
+<span></span>
+<span><span class="va">popd</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd.csv"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## Rows: 2806 Columns: 7</span></span>
+<span><span class="co">## ── Column specification ─────────────────────────────────────────────────────</span></span>
+<span><span class="co">## Delimiter: ","</span></span>
+<span><span class="co">## dbl (7): x, y, popd, elev, tem, pre, slope</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="va">popd</span></span>
+<span><span class="co">## # A tibble: 2,806 × 7</span></span>
+<span><span class="co">##        x     y  popd  elev   tem   pre slope</span></span>
+<span><span class="co">##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">##  1  117.  30.5  780.     8  17.4 1528. 0.452</span></span>
+<span><span class="co">##  2  117.  30.6  395.    48  17.2 1487. 0.842</span></span>
+<span><span class="co">##  3  117.  30.8  261.    49  16.0 1456. 3.56 </span></span>
+<span><span class="co">##  4  116.  30.1  258.    23  17.4 1555. 0.932</span></span>
+<span><span class="co">##  5  116.  30.5  211.   101  16.3 1494. 3.34 </span></span>
+<span><span class="co">##  6  117.  31.0  386.    10  16.6 1382. 1.65 </span></span>
+<span><span class="co">##  7  117.  30.2  350.    23  17.5 1569. 0.346</span></span>
+<span><span class="co">##  8  117.  30.7  470.    22  17.1 1493. 1.88 </span></span>
+<span><span class="co">##  9  117.  30.6 1226.    11  17.4 1526. 0.208</span></span>
+<span><span class="co">## 10  116.  30.9  137.   598  13.9 1458. 5.92 </span></span>
+<span><span class="co">## # ℹ 2,796 more rows</span></span>
+<span></span>
+<span><span class="va">popd_sf</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">popd</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="va">popd_sf</span></span>
+<span><span class="co">## Simple feature collection with 2806 features and 5 fields</span></span>
+<span><span class="co">## Geometry type: POINT</span></span>
+<span><span class="co">## Dimension:     XY</span></span>
+<span><span class="co">## Bounding box:  xmin: 74.9055 ymin: 18.2698 xmax: 134.269 ymax: 52.9346</span></span>
+<span><span class="co">## Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">## # A tibble: 2,806 × 6</span></span>
+<span><span class="co">##     popd  elev   tem   pre slope          geometry</span></span>
+<span><span class="co">##  * &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;POINT [°]&gt;</span></span>
+<span><span class="co">##  1  780.     8  17.4 1528. 0.452 (116.912 30.4879)</span></span>
+<span><span class="co">##  2  395.    48  17.2 1487. 0.842 (116.755 30.5877)</span></span>
+<span><span class="co">##  3  261.    49  16.0 1456. 3.56  (116.541 30.7548)</span></span>
+<span><span class="co">##  4  258.    23  17.4 1555. 0.932  (116.241 30.104)</span></span>
+<span><span class="co">##  5  211.   101  16.3 1494. 3.34   (116.173 30.495)</span></span>
+<span><span class="co">##  6  386.    10  16.6 1382. 1.65  (116.935 30.9839)</span></span>
+<span><span class="co">##  7  350.    23  17.5 1569. 0.346 (116.677 30.2412)</span></span>
+<span><span class="co">##  8  470.    22  17.1 1493. 1.88  (117.066 30.6514)</span></span>
+<span><span class="co">##  9 1226.    11  17.4 1526. 0.208 (117.171 30.5558)</span></span>
+<span><span class="co">## 10  137.   598  13.9 1458. 5.92  (116.208 30.8983)</span></span>
+<span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="soil-cu-heavy-metal-contamination">Soil Cu heavy metal contamination<a class="anchor" aria-label="anchor" href="#soil-cu-heavy-metal-contamination"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cu</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/cu.tif"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cu</span></span>
+<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## dimensions  : 131, 125, 3  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## resolution  : 5000, 5000  (x, y)</span></span>
+<span><span class="co">## extent      : 360000, 985000, 1555000, 2210000  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## coord. ref. : North_American_1983_Albers </span></span>
+<span><span class="co">## source      : cu.tif </span></span>
+<span><span class="co">## names       :         cu, industry, ntl </span></span>
+<span><span class="co">## min values  :   1.201607,    0.000,   0 </span></span>
+<span><span class="co">## max values  : 319.599274,    0.615,  63</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cu</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>            oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="../reference/figures/pkgintro/cu-1.png" alt="Figure 1. Maps of soil Cu contamination, the density of industrial pollutants and nightlight."><div class="figcaption">
+<strong>Figure 1</strong>. Maps of soil Cu
+contamination, the density of industrial pollutants and
+nightlight.</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="farmland-npp-and-climatic-variables-in-mainland-china">Farmland NPP and climatic variables in mainland China<a class="anchor" aria-label="anchor" href="#farmland-npp-and-climatic-variables-in-mainland-china"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
+<span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">npp</span></span>
+<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## dimensions  : 404, 483, 4  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## resolution  : 10000, 10000  (x, y)</span></span>
+<span><span class="co">## extent      : -2625763, 2204237, 1877078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
+<span><span class="co">## source      : npp.tif </span></span>
+<span><span class="co">## names       :      npp,        pre,      tem,      elev </span></span>
+<span><span class="co">## min values  :   164.00,   384.3409, -47.8194, -122.2004 </span></span>
+<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp</span>, nc <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="../reference/figures/pkgintro/npp-1.png" alt="Figure 2. Maps of farmland NPP and climate factors."><div class="figcaption">
+<strong>Figure 2</strong>. Maps of farmland NPP
+and climate factors.</div>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>

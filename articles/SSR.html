@@ -127,14 +127,6 @@ density data:</p>
 <span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd_nb.gal"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package =</span></span>
 <span><span class="co">## "spEDM")): neighbour object has 4 sub-graphs</span></span>
-<span><span class="va">popd_nb</span></span>
-<span><span class="co">## Neighbour list object:</span></span>
-<span><span class="co">## Number of regions: 2806 </span></span>
-<span><span class="co">## Number of nonzero links: 15942 </span></span>
-<span><span class="co">## Percentage nonzero weights: 0.2024732 </span></span>
-<span><span class="co">## Average number of links: 5.681397 </span></span>
-<span><span class="co">## 4 disjoint connected subgraphs</span></span>
-<span></span>
 <span><span class="va">popd</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd.csv"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
 <span><span class="co">## ── Column specification ─────────────────────────────────────────────────────</span></span>
@@ -143,22 +135,6 @@ density data:</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="va">popd</span></span>
-<span><span class="co">## # A tibble: 2,806 × 7</span></span>
-<span><span class="co">##        x     y  popd  elev   tem   pre slope</span></span>
-<span><span class="co">##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span><span class="co">##  1  117.  30.5  780.     8  17.4 1528. 0.452</span></span>
-<span><span class="co">##  2  117.  30.6  395.    48  17.2 1487. 0.842</span></span>
-<span><span class="co">##  3  117.  30.8  261.    49  16.0 1456. 3.56 </span></span>
-<span><span class="co">##  4  116.  30.1  258.    23  17.4 1555. 0.932</span></span>
-<span><span class="co">##  5  116.  30.5  211.   101  16.3 1494. 3.34 </span></span>
-<span><span class="co">##  6  117.  31.0  386.    10  16.6 1382. 1.65 </span></span>
-<span><span class="co">##  7  117.  30.2  350.    23  17.5 1569. 0.346</span></span>
-<span><span class="co">##  8  117.  30.7  470.    22  17.1 1493. 1.88 </span></span>
-<span><span class="co">##  9  117.  30.6 1226.    11  17.4 1526. 0.208</span></span>
-<span><span class="co">## 10  116.  30.9  137.   598  13.9 1458. 5.92 </span></span>
-<span><span class="co">## # ℹ 2,796 more rows</span></span>
-<span></span>
 <span><span class="va">popd_sf</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">popd</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
 <span><span class="va">popd_sf</span></span>
 <span><span class="co">## Simple feature collection with 2806 features and 5 fields</span></span>
