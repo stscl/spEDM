@@ -288,27 +288,27 @@ density.</strong>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## dimensions  : 404, 483, 4  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## dimensions  : 404, 483, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 10000, 10000  (x, y)</span></span>
 <span><span class="co">## extent      : -2625763, 2204237, 1877078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
 <span><span class="co">## source      : npp.tif </span></span>
-<span><span class="co">## names       :      npp,        pre,      tem,      elev </span></span>
-<span><span class="co">## min values  :   164.00,   384.3409, -47.8194, -122.2004 </span></span>
-<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902</span></span>
+<span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
+<span><span class="co">## min values  :   164.00,   384.3409, -47.8194, -122.2004,  0.03390418 </span></span>
+<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195</span></span>
 <span></span>
 <span><span class="co"># To save the computation time, we will aggregate the data by 3 times</span></span>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## dimensions  : 135, 161, 4  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## dimensions  : 135, 161, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 30000, 30000  (x, y)</span></span>
 <span><span class="co">## extent      : -2625763, 2204237, 1867078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       :      npp,        pre,      tem,      elev </span></span>
-<span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494 </span></span>
-<span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431</span></span>
+<span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
+<span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494,  0.04434316 </span></span>
+<span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431, 42.68803711</span></span>
 <span></span>
 <span><span class="co"># Inspect NA values</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/global.html" class="external-link">global</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"isNA"</span><span class="op">)</span></span>
@@ -317,6 +317,7 @@ density.</strong>
 <span><span class="co">## pre  14766</span></span>
 <span><span class="co">## tem  14766</span></span>
 <span><span class="co">## elev 14760</span></span>
+<span><span class="co">## hfp  14972</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">ncell</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span></span>
 <span><span class="co">## [1] 21735</span></span>
 <span><span class="va">nnamat</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/coerce.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, wide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
