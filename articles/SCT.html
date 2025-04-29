@@ -126,13 +126,6 @@ should be a significant decrease in the entropy, and the statistic <span class="
 only a spatial correlation, but not causation, the difference between
 both entropies will be small. The statistical significance of <span class="math inline">\(\hat{\delta}(\mathcal{Y}_W,
 \mathcal{X}_W)\)</span> is assessed using spatial block bootstrap.</p>
-<p>The Spatial (Granger) Causality Test (SCT) is not well-suited for
-spatial field data; instead, it is more appropriate for spatial areal
-data, where observations are aggregated over distinct spatial units. As
-illustrated in the following example, spatial areal data yielded a
-reasonable spatial causality statistic, whereas raster-based data
-produced a negative value—indicating no causality—despite the fact that
-a causal association should exist.</p>
 </div>
 <div class="section level2">
 <h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
@@ -198,34 +191,34 @@ a causal association should exist.</p>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## dimensions  : 135, 161, 4  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## dimensions  : 135, 161, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 30000, 30000  (x, y)</span></span>
 <span><span class="co">## extent      : -2625763, 2204237, 1867078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       :      npp,        pre,      tem,      elev </span></span>
-<span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494 </span></span>
-<span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431</span></span></code></pre></div>
+<span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
+<span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494,  0.04434316 </span></span>
+<span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431, 42.68803711</span></span></code></pre></div>
 <p>Use SCT to detect spatial causality among the variables <em>pre</em>,
 <em>tem</em>, and <em>npp</em> :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">270</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## pre -&gt; npp: statistic = -3.625, p value = 0</span></span>
-<span><span class="co">## npp -&gt; pre: statistic = -3.226, p value = 0</span></span>
+<span><span class="co">## pre -&gt; npp: statistic = 0.27, p value = 0</span></span>
+<span><span class="co">## npp -&gt; pre: statistic = 0.168, p value = 0</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">270</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## tem -&gt; npp: statistic = -3.625, p value = 0</span></span>
-<span><span class="co">## npp -&gt; tem: statistic = -3.752, p value = 0</span></span>
+<span><span class="co">## tem -&gt; npp: statistic = 0.064, p value = 0</span></span>
+<span><span class="co">## npp -&gt; tem: statistic = 0.099, p value = 0</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">270</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## pre -&gt; tem: statistic = -3.753, p value = 0</span></span>
-<span><span class="co">## tem -&gt; pre: statistic = -3.227, p value = 0</span></span></code></pre></div>
+<span><span class="co">## pre -&gt; tem: statistic = 0.093, p value = 0</span></span>
+<span><span class="co">## tem -&gt; pre: statistic = 0.082, p value = 0</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
