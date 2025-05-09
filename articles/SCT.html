@@ -74,7 +74,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Spatial (Granger) Causality Test (SCT)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-05-04</h4>
+            <h4 data-toc-skip class="date">2025-05-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SCT.Rmd" class="external-link"><code>vignettes/SCT.Rmd</code></a></small>
       <div class="d-none name"><code>SCT.Rmd</code></div>
@@ -210,20 +210,20 @@ both entropies will be small. The statistical significance of <span class="math 
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## pre -&gt; npp: statistic = 0.27, p value = 0</span></span>
-<span><span class="co">## npp -&gt; pre: statistic = 0.168, p value = 0</span></span>
+<span><span class="co">## pre -&gt; npp: statistic = 0.189, p value = 0</span></span>
+<span><span class="co">## npp -&gt; pre: statistic = 0.111, p value = 0</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## tem -&gt; npp: statistic = 0.064, p value = 0</span></span>
-<span><span class="co">## npp -&gt; tem: statistic = 0.099, p value = 0</span></span>
+<span><span class="co">## tem -&gt; npp: statistic = 0.063, p value = 0</span></span>
+<span><span class="co">## npp -&gt; tem: statistic = 0.057, p value = 0</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial (granger) causality test</span></span>
-<span><span class="co">## pre -&gt; tem: statistic = 0.093, p value = 0</span></span>
-<span><span class="co">## tem -&gt; pre: statistic = 0.082, p value = 0</span></span></code></pre></div>
+<span><span class="co">## pre -&gt; tem: statistic = 0.077, p value = 0</span></span>
+<span><span class="co">## tem -&gt; pre: statistic = 0.052, p value = 0</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
