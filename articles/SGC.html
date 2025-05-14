@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Spatial (Granger) Causality Test (SCT) • spEDM</title>
+<title>Spatial Granger Causality Test (SGC) • spEDM</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -22,7 +22,7 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Spatial (Granger) Causality Test (SCT)">
+<meta property="og:title" content="Spatial Granger Causality Test (SGC)">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -71,10 +71,10 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Spatial (Granger) Causality Test (SCT)</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Spatial Granger Causality Test (SGC)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-05-12</h4>
+            <h4 data-toc-skip class="date">2025-05-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SGC.Rmd" class="external-link"><code>vignettes/SGC.Rmd</code></a></small>
       <div class="d-none name"><code>SGC.Rmd</code></div>
@@ -163,24 +163,24 @@ both entropies will be small. The statistical significance of <span class="math 
 <span><span class="co">##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361…</span></span>
 <span><span class="co">## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275,…</span></span>
 <span><span class="co">## # ℹ 39 more rows</span></span></code></pre></div>
-<p>Use SCT to detect spatial causality among the variables <em>inc</em>,
-<em>crime</em>, and <em>hoval</em> :</p>
+<p>Use spatial granger causality test to detect spatial causality among
+the variables <em>inc</em>, <em>crime</em>, and <em>hoval</em> :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># house value and crime</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## hoval -&gt; crime: statistic = 1.101, p value = 0.526</span></span>
 <span><span class="co">## crime -&gt; hoval: statistic = 1.484, p value = 0.023</span></span>
 <span></span>
 <span><span class="co"># household income and crime</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## inc -&gt; crime: statistic = 1.116, p value = 0.449</span></span>
 <span><span class="co">## crime -&gt; inc: statistic = 0.848, p value = 0.845</span></span>
 <span></span>
 <span><span class="co"># household income and house value</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"hoval"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"hoval"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## inc -&gt; hoval: statistic = 1.517, p value = 0.035</span></span>
 <span><span class="co">## hoval -&gt; inc: statistic = 0.851, p value = 0.922</span></span></code></pre></div>
 </div>
@@ -204,24 +204,24 @@ both entropies will be small. The statistical significance of <span class="math 
 <span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
 <span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494,  0.04434316 </span></span>
 <span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431, 42.68803711</span></span></code></pre></div>
-<p>Use SCT to detect spatial causality among the variables <em>pre</em>,
-<em>tem</em>, and <em>npp</em> :</p>
+<p>Use spatial granger causality test to detect spatial causality among
+the variables <em>pre</em>, <em>tem</em>, and <em>npp</em> :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## pre -&gt; npp: statistic = 0.189, p value = 0</span></span>
 <span><span class="co">## npp -&gt; pre: statistic = 0.111, p value = 0</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## tem -&gt; npp: statistic = 0.063, p value = 0</span></span>
 <span><span class="co">## npp -&gt; tem: statistic = 0.057, p value = 0</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="fu">sc.test</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="co">## spatial (granger) causality test</span></span>
+<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## pre -&gt; tem: statistic = 0.077, p value = 0</span></span>
 <span><span class="co">## tem -&gt; pre: statistic = 0.052, p value = 0</span></span></code></pre></div>
 </div>
