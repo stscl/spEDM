@@ -49,7 +49,7 @@
     <li><a class="dropdown-item" href="../articles/SSR.html">State Space Reconstruction (SSR)</a></li>
     <li><a class="dropdown-item" href="../articles/GCCM.html">Geographical Convergent Cross Mapping (GCCM)</a></li>
     <li><a class="dropdown-item" href="../articles/GCMC.html">Geographical Cross Mapping Cardinality (GCMC)</a></li>
-    <li><a class="dropdown-item" href="../articles/SGC.html">Spatial Granger Causality Test (SGC)</a></li>
+    <li><a class="dropdown-item" href="../articles/SGC.html">Spatial Causality Test (SCT)</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -167,19 +167,19 @@ both entropies will be small. The statistical significance of <span class="math 
 the variables <em>inc</em>, <em>crime</em>, and <em>hoval</em> :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># house value and crime</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## hoval -&gt; crime: statistic = 1.114, p value = 0.539</span></span>
 <span><span class="co">## crime -&gt; hoval: statistic = 1.555, p value = 0.005</span></span>
 <span></span>
 <span><span class="co"># household income and crime</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## inc -&gt; crime: statistic = 0.739, p value = 0.965</span></span>
 <span><span class="co">## crime -&gt; inc: statistic = 0.946, p value = 0.784</span></span>
 <span></span>
 <span><span class="co"># household income and house value</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"hoval"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"hoval"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## inc -&gt; hoval: statistic = 1.211, p value = 0.301</span></span>
 <span><span class="co">## hoval -&gt; inc: statistic = 0.992, p value = 0.674</span></span></code></pre></div>
@@ -208,19 +208,19 @@ the variables <em>inc</em>, <em>crime</em>, and <em>hoval</em> :</p>
 the variables <em>pre</em>, <em>tem</em>, and <em>npp</em> :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## pre -&gt; npp: statistic = 0.224, p value = 0</span></span>
 <span><span class="co">## npp -&gt; pre: statistic = 0.15, p value = 0</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## tem -&gt; npp: statistic = 0.172, p value = 0</span></span>
 <span><span class="co">## npp -&gt; tem: statistic = 0.168, p value = 0</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="fu"><a href="../reference/sgc.html">sgc</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="fu">sgc</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial granger causality test</span></span>
 <span><span class="co">## pre -&gt; tem: statistic = 0.19, p value = 0</span></span>
 <span><span class="co">## tem -&gt; pre: statistic = 0.145, p value = 0</span></span></code></pre></div>
