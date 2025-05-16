@@ -177,7 +177,8 @@ density:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot3D</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plot3D/man/scatter.html" class="external-link">scatter3D</a></span><span class="op">(</span><span class="va">v</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="va">v</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span>, <span class="va">v</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span>, colvar <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">19</span>,</span>
 <span>                  col <span class="op">=</span> <span class="st">"red"</span>, theta <span class="op">=</span> <span class="fl">45</span>, phi <span class="op">=</span> <span class="fl">10</span>, cex <span class="op">=</span> <span class="fl">0.45</span>,</span>
-<span>                  bty <span class="op">=</span> <span class="st">"f"</span>, clab <span class="op">=</span> <span class="cn">NA</span>, tickmarks <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span>                  bty <span class="op">=</span> <span class="st">"f"</span>, clab <span class="op">=</span> <span class="cn">NA</span>, tickmarks <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">## Warning: no DISPLAY variable so Tk is not available</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/ssr/fig1-1.png" alt="Figure 1. The reconstructed shadow manifolds for popd."><div class="figcaption">
 <strong>Figure 1</strong>. The reconstructed
@@ -222,14 +223,18 @@ shadow manifolds for <code>popd</code>.</div>
 shadow manifolds for <code>cu</code>.</div>
 </div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="determination-of-embedding-dimension-e-and-spatial-lag-step-tau">Determination of Embedding Dimension <span class="math inline">\(E\)</span> and Spatial Lag Step <span class="math inline">\(\tau\)</span><a class="anchor" aria-label="anchor" href="#determination-of-embedding-dimension-e-and-spatial-lag-step-tau"></a>
-</h2>
 <div class="section level3">
-<h3 id="method-of-false-nearest-neghbours-to-help-deciding-the-optimal-embedding-dimension">Method of false nearest neghbours to help deciding the optimal
-embedding dimension<a class="anchor" aria-label="anchor" href="#method-of-false-nearest-neghbours-to-help-deciding-the-optimal-embedding-dimension"></a>
+<h3 id="determining-optimal-embedding-dimension-using-false-nearest-neighbours">Determining Optimal Embedding Dimension Using False Nearest
+Neighbours<a class="anchor" aria-label="anchor" href="#determining-optimal-embedding-dimension-using-false-nearest-neighbours"></a>
 </h3>
+<p>The false nearest neighbours (FNN) method helps identify the
+appropriate embedding dimension for reconstructing the state space of a
+time series or spatial cross-sectional. A low embedding dimension that
+minimizes false neighbours is considered optimal.</p>
+<p>Below are two examples applying the <code><a href="../reference/fnn.html">fnn()</a></code> function. In
+both cases, <code>eps</code> is set to one-tenth of the standard
+deviation of the variable of interest, providing a relative threshold
+for identifying false neighbours.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popd"</span>,</span>
 <span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
