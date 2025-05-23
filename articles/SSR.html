@@ -166,7 +166,7 @@ density data:</p>
 <p>Embedding the variable <code>popd</code> from county-level population
 density:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">v</span> <span class="op">=</span> <span class="fu"><a href="../reference/embedded.html">embedded</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popd"</span>,E <span class="op">=</span> <span class="fl">9</span>,tau <span class="op">=</span> <span class="fl">0</span>,trend.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">v</span> <span class="op">=</span> <span class="fu"><a href="../reference/embedded.html">embedded</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popd"</span>,E <span class="op">=</span> <span class="fl">9</span>,tau <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">v</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">##           [,1]      [,2]     [,3]</span></span>
 <span><span class="co">## [1,]  440.7237  962.7204 1664.756</span></span>
@@ -205,7 +205,7 @@ shadow manifolds for <code>popd</code>.</div>
 <span><span class="co">## max values  : 319.599274,    0.615,  63</span></span></code></pre></div>
 <p>Embedding the variable <code>cu</code> from soil pollution data:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">r</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/embedded.html">embedded</a></span><span class="op">(</span><span class="va">cu</span>,<span class="st">"cu"</span>,E <span class="op">=</span> <span class="fl">9</span>,tau <span class="op">=</span> <span class="fl">0</span>,trend.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">r</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/embedded.html">embedded</a></span><span class="op">(</span><span class="va">cu</span>,<span class="st">"cu"</span>,E <span class="op">=</span> <span class="fl">9</span>,tau <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">r</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">9</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">##          [,1]     [,2]     [,3]</span></span>
 <span><span class="co">## [1,] 14.80663 13.84810 15.40681</span></span>

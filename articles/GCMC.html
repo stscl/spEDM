@@ -175,21 +175,21 @@ density data:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># temperature and population density</span></span>
 <span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>, cause <span class="op">=</span> <span class="st">"tem"</span>, effect <span class="op">=</span> <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>,</span>
-<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors tem-&gt;popd popd-&gt;tem</span></span>
 <span><span class="co">## 1       210 0.7538776  0.197619</span></span>
 <span></span>
 <span><span class="co"># elevation and population density</span></span>
 <span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>, cause <span class="op">=</span> <span class="st">"elev"</span>, effect <span class="op">=</span> <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span>,</span>
-<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors elev-&gt;popd popd-&gt;elev</span></span>
 <span><span class="co">## 1       210  0.8355329  0.2065986</span></span>
 <span></span>
 <span><span class="co"># elevation and temperature</span></span>
 <span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>, cause <span class="op">=</span> <span class="st">"elev"</span>, effect <span class="op">=</span> <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>,</span>
-<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          k <span class="op">=</span> <span class="fl">210</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span> <span class="co"># When there are insignificant results, we set spEDM to suppress output. This is not a bug.</span></span>
 <span><span class="co">## [1] neighbors elev-&gt;tem tem-&gt;elev</span></span>
 <span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
@@ -339,7 +339,7 @@ density.</strong>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
 <span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">## [1] neighbors pre-&gt;npp  npp-&gt;pre </span></span>
 <span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
@@ -351,14 +351,14 @@ density.</strong>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
 <span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"tem"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors  tem-&gt;npp  npp-&gt;tem</span></span>
 <span><span class="co">## 1       270 0.6401509 0.6113992</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
 <span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, trend.rm <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors  pre-&gt;tem  tem-&gt;pre</span></span>
 <span><span class="co">## 1       270 0.6800274 0.6381344</span></span></code></pre></div>
