@@ -74,7 +74,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-05-27</h4>
+            <h4 data-toc-skip class="date">2025-05-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -193,11 +193,10 @@ density data:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd_nb.gal"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")):</span></span>
-<span><span class="co">## neighbour object has 4 sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")): neighbour object has 4 sub-graphs</span></span>
 <span><span class="va">popd</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd.csv"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ────────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popd, elev, tem, pre, slope</span></span>
 <span><span class="co">## </span></span>
@@ -224,39 +223,45 @@ density data:</p>
 <span><span class="co">##  9 1226.    11  17.4 1526. 0.208 (117.171 30.5558)</span></span>
 <span><span class="co">## 10  137.   598  13.9 1458. 5.92  (116.208 30.8983)</span></span>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
-<p>Run GCCM:</p>
+<p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E and k for variable pre is 3 and 6</span></span>
+<span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E and k for variable popd is 9 and 6</span></span></code></pre></div>
+<p>Run GCCM:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
 <span>              cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
 <span>              effect <span class="op">=</span> <span class="st">"popd"</span>,</span>
 <span>              libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
-<span>              E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>,</span>
+<span>              E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>,</span>
 <span>              k <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>              nb <span class="op">=</span> <span class="va">popd_nb</span>,</span>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 3.008414 mins</span></span>
+<span><span class="co">## Time difference of 11.7006 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
-<span><span class="co">## 1       100 0.1712430 0.03310752</span></span>
-<span><span class="co">## 2       300 0.2734076 0.06281068</span></span>
-<span><span class="co">## 3       500 0.3373114 0.08695222</span></span>
-<span><span class="co">## 4       700 0.4129516 0.10770835</span></span>
-<span><span class="co">## 5       900 0.4659603 0.12410538</span></span>
-<span><span class="co">## 6      1100 0.5035359 0.13743351</span></span>
-<span><span class="co">## 7      1300 0.5375355 0.14767426</span></span>
-<span><span class="co">## 8      1500 0.5659653 0.15726216</span></span>
-<span><span class="co">## 9      1700 0.5986755 0.16723965</span></span>
-<span><span class="co">## 10     1900 0.6305533 0.17562842</span></span>
-<span><span class="co">## 11     2100 0.6614280 0.18275701</span></span>
-<span><span class="co">## 12     2300 0.6901668 0.18874968</span></span>
-<span><span class="co">## 13     2500 0.7178725 0.19471162</span></span>
-<span><span class="co">## 14     2700 0.7433577 0.20087427</span></span></code></pre></div>
+<span><span class="co">## 1       100 0.1140592 0.03269659</span></span>
+<span><span class="co">## 2       300 0.2324104 0.06451333</span></span>
+<span><span class="co">## 3       500 0.3000403 0.09424558</span></span>
+<span><span class="co">## 4       700 0.3576318 0.12213856</span></span>
+<span><span class="co">## 5       900 0.4023234 0.14794178</span></span>
+<span><span class="co">## 6      1100 0.4449998 0.17006265</span></span>
+<span><span class="co">## 7      1300 0.4888766 0.19055016</span></span>
+<span><span class="co">## 8      1500 0.5289804 0.21034768</span></span>
+<span><span class="co">## 9      1700 0.5720495 0.22720335</span></span>
+<span><span class="co">## 10     1900 0.6122726 0.24169609</span></span>
+<span><span class="co">## 11     2100 0.6506091 0.25473781</span></span>
+<span><span class="co">## 12     2300 0.6863609 0.26493519</span></span>
+<span><span class="co">## 13     2500 0.7203389 0.27377272</span></span>
+<span><span class="co">## 14     2700 0.7519251 0.28118969</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>, xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.85</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level precipitation."><div class="figcaption">
@@ -269,21 +274,10 @@ precipitation.</div>
 <h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>
 </h3>
 <p>Load the <code>spEDM</code> package and its farmland NPP data:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">npp</span></span>
-<span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## dimensions  : 404, 483, 5  (nrow, ncol, nlyr)</span></span>
-<span><span class="co">## resolution  : 10000, 10000  (x, y)</span></span>
-<span><span class="co">## extent      : -2625763, 2204237, 1877078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
-<span><span class="co">## source      : npp.tif </span></span>
-<span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
-<span><span class="co">## min values  :   164.00,   384.3409, -47.8194, -122.2004,  0.03390418 </span></span>
-<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195</span></span>
-<span></span>
 <span><span class="co"># To save the computation time, we will aggregate the data by 3 times</span></span>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
@@ -317,8 +311,14 @@ precipitation.</div>
 <span><span class="va">indices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1500</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">libindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="op">-</span><span class="va">indices</span>,<span class="op">]</span></span>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
+<p>Determining optimal embedding dimension:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E and k for variable pre is 2 and 8</span></span>
+<span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E and k for variable npp is 10 and 8</span></span></code></pre></div>
 <p>Run GCCM:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>,</span>
 <span>               cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
@@ -331,19 +331,19 @@ precipitation.</div>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 5.025626 mins</span></span>
+<span><span class="co">## Time difference of 7.872337 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       10 0.1295281 0.1013898</span></span>
-<span><span class="co">## 2       30 0.2607783 0.2286559</span></span>
+<span><span class="co">## 1       10 0.1272635 0.1044391</span></span>
+<span><span class="co">## 2       30 0.2598481 0.2299193</span></span>
 <span><span class="co">## 3       50 0.3788341 0.2956426</span></span>
 <span><span class="co">## 4       70 0.4961658 0.3394660</span></span>
 <span><span class="co">## 5       90 0.5972341 0.3376894</span></span>
 <span><span class="co">## 6      110 0.7358447 0.3412305</span></span>
 <span><span class="co">## 7      130 0.8386849 0.3663077</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gccm/fig2-1.png" alt="Figure 2. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
