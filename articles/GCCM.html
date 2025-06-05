@@ -243,7 +243,7 @@ density data:</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 3.580392 mins</span></span>
+<span><span class="co">## Time difference of 4.954054 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
 <span><span class="co">## 1       100 0.1140592 0.03269659</span></span>
@@ -265,7 +265,7 @@ density data:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>, xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.85</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level precipitation."><div class="figcaption">
+<img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level precipitation."><div class="figcaption">
 <strong>Figure 1</strong>. The cross-mapping
 prediction outputs between population density and county-level
 precipitation.</div>
@@ -283,7 +283,7 @@ precipitation.</div>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## dimensions  : 135, 161, 5  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## size        : 135, 161, 5  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 30000, 30000  (x, y)</span></span>
 <span><span class="co">## extent      : -2625763, 2204237, 1867078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
@@ -332,7 +332,7 @@ precipitation.</div>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 6.004699 mins</span></span>
+<span><span class="co">## Time difference of 5.87766 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
 <span><span class="co">## 1       10 0.1295281 0.1013898</span></span>
@@ -347,7 +347,7 @@ precipitation.</div>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="reference/figures/gccm/fig2-1.png" alt="Figure 2. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
+<img src="../reference/figures/gccm/fig2-1.png" alt="Figure 2. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 2</strong>. The cross-mapping
 prediction outputs between farmland NPP and precipitation.</div>
 </div>
