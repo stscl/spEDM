@@ -74,7 +74,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Cross Mapping Cardinality (GCMC)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-05-28</h4>
+            <h4 data-toc-skip class="date">2025-06-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCMC.Rmd" class="external-link"><code>vignettes/GCMC.Rmd</code></a></small>
       <div class="d-none name"><code>GCMC.Rmd</code></div>
@@ -94,7 +94,7 @@ and a detailed vignette for reproducibility. Users should note that
 publication.</p>
 </div>
 <div class="section level2">
-<h2 id="model-principles">Model principles<a class="anchor" aria-label="anchor" href="#model-principles"></a>
+<h2 id="methodological-background">Methodological Background<a class="anchor" aria-label="anchor" href="#methodological-background"></a>
 </h2>
 <p>To measure causal associations in spatial cross-sectional data, GCMC
 (Geographical Convergent Cross Mapping) employs a three-stage
@@ -140,10 +140,11 @@ density data:</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">popd_nb</span> <span class="op">=</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/read.gal.html" class="external-link">read.gal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd_nb.gal"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")): neighbour object has 4 sub-graphs</span></span>
+<span><span class="co">## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")):</span></span>
+<span><span class="co">## neighbour object has 4 sub-graphs</span></span>
 <span><span class="va">popd</span> <span class="op">=</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/popd.csv"</span>,package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
-<span><span class="co">## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## ── Column specification ────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
 <span><span class="co">## dbl (7): x, y, popd, elev, tem, pre, slope</span></span>
 <span><span class="co">## </span></span>
@@ -193,8 +194,10 @@ density data:</p>
 <span><span class="co">## [1] neighbors elev-&gt;tem tem-&gt;elev</span></span>
 <span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="va">g3</span><span class="op">$</span><span class="va">xmap</span></span>
-<span><span class="co">##   neighbors x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower y_xmap_x_mean y_xmap_x_sig y_xmap_x_upper y_xmap_x_lower</span></span>
-<span><span class="co">## 1       210     0.5094785    0.7677155      0.5723751      0.4465818     0.6279365 4.342088e-05      0.6892676      0.5666054</span></span></code></pre></div>
+<span><span class="co">##   neighbors x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower</span></span>
+<span><span class="co">## 1       210     0.5094785    0.7677155      0.5723751      0.4465818</span></span>
+<span><span class="co">##   y_xmap_x_mean y_xmap_x_sig y_xmap_x_upper y_xmap_x_lower</span></span>
+<span><span class="co">## 1     0.6279365 4.342088e-05      0.6892676      0.5666054</span></span></code></pre></div>
 <p>Here we define two functions to process the results and plot the
 causal association matrix.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -330,8 +333,10 @@ density.</strong>
 <span><span class="co">## [1] neighbors pre-&gt;npp  npp-&gt;pre </span></span>
 <span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="va">g1</span><span class="op">$</span><span class="va">xmap</span></span>
-<span><span class="co">##   neighbors x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower y_xmap_x_mean y_xmap_x_sig y_xmap_x_upper y_xmap_x_lower</span></span>
-<span><span class="co">## 1       270     0.5383539    0.1686404      0.5929617      0.4837461     0.6088477 8.929335e-05      0.6632986      0.5543968</span></span>
+<span><span class="co">##   neighbors x_xmap_y_mean x_xmap_y_sig x_xmap_y_upper x_xmap_y_lower</span></span>
+<span><span class="co">## 1       270     0.5383539    0.1686404      0.5929617      0.4837461</span></span>
+<span><span class="co">##   y_xmap_x_mean y_xmap_x_sig y_xmap_x_upper y_xmap_x_lower</span></span>
+<span><span class="co">## 1     0.6088477 8.929335e-05      0.6632986      0.5543968</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
 <span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"tem"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>

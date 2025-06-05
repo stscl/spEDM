@@ -74,7 +74,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Spatial Causality Test (SCT)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-05-28</h4>
+            <h4 data-toc-skip class="date">2025-06-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SCT.Rmd" class="external-link"><code>vignettes/SCT.Rmd</code></a></small>
       <div class="d-none name"><code>SCT.Rmd</code></div>
@@ -83,7 +83,7 @@
     
     
 <div class="section level2">
-<h2 id="model-principles">Model principles<a class="anchor" aria-label="anchor" href="#model-principles"></a>
+<h2 id="methodological-background">Methodological Background<a class="anchor" aria-label="anchor" href="#methodological-background"></a>
 </h2>
 <p>Let us begin by defining two spatial cross-sectional series <span class="math inline">\(\{x_s\}_{s \in S}\)</span> and <span class="math inline">\(\{y_s\}_{s \in S}\)</span>, where <span class="math inline">\(S\)</span> represents the study area.</p>
 <p>We use:</p>
@@ -210,20 +210,20 @@ both entropies will be small. The statistical significance of <span class="math 
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
-<span><span class="co">## pre -&gt; npp: statistic = 0.224, p value = 0</span></span>
-<span><span class="co">## npp -&gt; pre: statistic = 0.15, p value = 0</span></span>
+<span><span class="co">## pre -&gt; npp: statistic = 0.227, p value = 0</span></span>
+<span><span class="co">## npp -&gt; pre: statistic = 0.16, p value = 0</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"tem"</span>,<span class="st">"npp"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
-<span><span class="co">## tem -&gt; npp: statistic = 0.172, p value = 0</span></span>
-<span><span class="co">## npp -&gt; tem: statistic = 0.168, p value = 0</span></span>
+<span><span class="co">## tem -&gt; npp: statistic = 0.168, p value = 0</span></span>
+<span><span class="co">## npp -&gt; tem: statistic = 0.169, p value = 0</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"pre"</span>,<span class="st">"tem"</span>,k <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
 <span><span class="co">## pre -&gt; tem: statistic = 0.19, p value = 0</span></span>
-<span><span class="co">## tem -&gt; pre: statistic = 0.145, p value = 0</span></span></code></pre></div>
+<span><span class="co">## tem -&gt; pre: statistic = 0.147, p value = 0</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
