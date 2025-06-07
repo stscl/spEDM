@@ -26,6 +26,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignettes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignettes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes"><li><a class="dropdown-item" href="articles/PkgIntro.html">Introduction to the spEDM package (PkgIntro)</a></li>
     <li><a class="dropdown-item" href="articles/SSR.html">State Space Reconstruction (SSR)</a></li>
+    <li><a class="dropdown-item" href="articles/SLM.html">Spatial Logistic Map (SLM)</a></li>
     <li><a class="dropdown-item" href="articles/GCCM.html">Geographical Convergent Cross Mapping (GCCM)</a></li>
     <li><a class="dropdown-item" href="articles/GCMC.html">Geographical Cross Mapping Cardinality (GCMC)</a></li>
     <li><a class="dropdown-item" href="articles/SCT.html">Spatial Causality Test (SCT)</a></li>
@@ -55,13 +56,14 @@
 <span><span class="op">}</span></span></code></pre></div>
 <ul><li>Compile all vignettes at once</li>
 </ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PkgIntro"</span>, <span class="st">"SSR"</span>, <span class="st">"SCT"</span>, <span class="st">"GCCM"</span>, <span class="st">"GCMC"</span>, <span class="st">"SCPCM"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PkgIntro"</span>, <span class="st">"SSR"</span>, <span class="st">"SLM"</span>, <span class="st">"SCT"</span>, <span class="st">"GCCM"</span>, <span class="st">"GCMC"</span>, <span class="st">"SCPCM"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <ul><li>Build vignettes separately</li>
 </ul><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"PkgIntro"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"SSR"</span><span class="op">)</span></span>
+<span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"SLM"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"SCT"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"GCCM"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"GCMC"</span><span class="op">)</span></span>
