@@ -71,6 +71,7 @@
 <span>  beta_zx <span class="op">=</span> <span class="fl">0.65</span>,</span>
 <span>  beta_zy <span class="op">=</span> <span class="fl">0.65</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="fl">1e+10</span>,</span>
+<span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -91,7 +92,8 @@
 <span>  beta_yz <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  beta_zx <span class="op">=</span> <span class="fl">0.65</span>,</span>
 <span>  beta_zy <span class="op">=</span> <span class="fl">0.65</span>,</span>
-<span>  threshold <span class="op">=</span> <span class="fl">1e+10</span></span>
+<span>  threshold <span class="op">=</span> <span class="fl">1e+10</span>,</span>
+<span>  transient <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -163,6 +165,10 @@
 <dd><p>(optional) set to <code>NaN</code> if the absolute value exceeds this threshold.</p></dd>
 
 
+<dt id="arg-transient">transient<a class="anchor" aria-label="anchor" href="#arg-transient"></a></dt>
+<dd><p>(optional) transients to be excluded from the results.</p></dd>
+
+
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
 <dd><p>(optional) neighbours list.</p></dd>
 
@@ -182,13 +188,13 @@
 <span class="r-in"><span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span> <span class="op">=</span> <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">slm</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"inc"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $x</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9359961 0.9381776 0.9318960 0.9167621 0.9264342 0.9316217 0.9218783</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9263860 0.9342999 0.9285665 0.9204183 0.9243912 0.9236050 0.9242617</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9242590 0.9206688 0.9233470 0.9290393 0.9265536 0.9433793 0.9253383</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9264466 0.9344554 0.9301023 0.9220555 0.9214062 0.9254505 0.9206858</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9223061 0.9296161 0.9315532 0.9304259 0.9243044 0.9295402 0.9274787</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.9337240 0.9335903 0.9258377 0.9330425 0.9409895 0.9356034 0.9407316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9286240 0.9330746 0.9290264 0.9328690 0.9335784 0.9259826 0.9347650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9544915 0.9535838 0.9569081 0.9626002 0.9600176 0.9564827 0.9605248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9598071 0.9563674 0.9578456 0.9608175 0.9601362 0.9602489 0.9601601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9603265 0.9607834 0.9595098 0.9591186 0.9594548 0.9405483 0.9599894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9591714 0.9498203 0.9582586 0.9606676 0.9606928 0.9597932 0.9603669</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9605170 0.9583686 0.9546980 0.9497501 0.9602895 0.9563297 0.9581774</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.9535948 0.9566921 0.9596639 0.9533719 0.9403648 0.9490477 0.9475395</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9583158 0.9562560 0.9573188 0.9534774 0.9530453 0.9584887 0.9545808</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
