@@ -165,7 +165,7 @@ distribution.</p>
 <span>  <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">3</span>, <span class="op">{</span></span>
 <span>    <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span><span class="op">)</span>, <span class="va">cov.mat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>      <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="va">nx</span>, ncol <span class="op">=</span> <span class="va">ny</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">}</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -181,9 +181,9 @@ distribution.</p>
 <span><span class="co">## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. :  </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       : a, b, c </span></span>
-<span><span class="co">## min values  : 0, 0, 0 </span></span>
-<span><span class="co">## max values  : 1, 1, 1</span></span>
+<span><span class="co">## names       :   a,   b,   c </span></span>
+<span><span class="co">## min values  : 0.0, 0.0, 0.0 </span></span>
+<span><span class="co">## max values  : 0.5, 0.5, 0.5</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -207,7 +207,7 @@ influence parameters are set to zero. This setup provides a controlled
 environment to test spatial causality detection methods under known
 dynamic interactions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>,x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">20</span>,</span>
+<code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>,x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">20</span>, transient <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>                  alpha_x <span class="op">=</span> <span class="fl">0.55</span>, alpha_y <span class="op">=</span> <span class="fl">0.35</span>, alpha_z <span class="op">=</span> <span class="fl">0.15</span>,</span>
 <span>                  beta_xy <span class="op">=</span> <span class="fl">0.625</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">0.77</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
@@ -223,9 +223,8 @@ dynamic interactions.</p>
 <span><span class="co">## coord. ref. :  </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
 <span><span class="co">## names       :         a,         b,         c </span></span>
-<span><span class="co">## min values  : 0.6870051, 0.8329857, 0.9143493 </span></span>
-<span><span class="co">## max values  : 0.7284757, 0.8752814, 0.9601666</span></span>
-<span></span>
+<span><span class="co">## min values  : 0.7204142, 0.8690008, 0.9583186 </span></span>
+<span><span class="co">## max values  : 0.7209665, 0.8700491, 0.9584180</span></span>
 <span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species_evolution</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
