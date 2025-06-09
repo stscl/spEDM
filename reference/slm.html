@@ -60,17 +60,17 @@
 <span>  y <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  z <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  step <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>  alpha_x <span class="op">=</span> <span class="fl">0.625</span>,</span>
-<span>  alpha_y <span class="op">=</span> <span class="fl">0.77</span>,</span>
-<span>  alpha_z <span class="op">=</span> <span class="fl">0.55</span>,</span>
+<span>  step <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  alpha_x <span class="op">=</span> <span class="fl">0.28</span>,</span>
+<span>  alpha_y <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span>  alpha_z <span class="op">=</span> <span class="fl">0.22</span>,</span>
 <span>  beta_xy <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  beta_xz <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span>  beta_yx <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>  beta_yz <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>  beta_zx <span class="op">=</span> <span class="fl">0.65</span>,</span>
-<span>  beta_zy <span class="op">=</span> <span class="fl">0.65</span>,</span>
-<span>  threshold <span class="op">=</span> <span class="fl">1e+10</span>,</span>
+<span>  beta_yx <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  beta_yz <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  beta_zx <span class="op">=</span> <span class="fl">0.35</span>,</span>
+<span>  beta_zy <span class="op">=</span> <span class="fl">0.35</span>,</span>
+<span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
@@ -82,17 +82,17 @@
 <span>  y <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  z <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  step <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>  alpha_x <span class="op">=</span> <span class="fl">0.625</span>,</span>
-<span>  alpha_y <span class="op">=</span> <span class="fl">0.77</span>,</span>
-<span>  alpha_z <span class="op">=</span> <span class="fl">0.55</span>,</span>
+<span>  step <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  alpha_x <span class="op">=</span> <span class="fl">0.28</span>,</span>
+<span>  alpha_y <span class="op">=</span> <span class="fl">0.25</span>,</span>
+<span>  alpha_z <span class="op">=</span> <span class="fl">0.22</span>,</span>
 <span>  beta_xy <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  beta_xz <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span>  beta_yx <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>  beta_yz <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>  beta_zx <span class="op">=</span> <span class="fl">0.65</span>,</span>
-<span>  beta_zy <span class="op">=</span> <span class="fl">0.65</span>,</span>
-<span>  threshold <span class="op">=</span> <span class="fl">1e+10</span>,</span>
+<span>  beta_yx <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  beta_yz <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  beta_zx <span class="op">=</span> <span class="fl">0.35</span>,</span>
+<span>  beta_zy <span class="op">=</span> <span class="fl">0.35</span>,</span>
+<span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -188,13 +188,13 @@
 <span class="r-in"><span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span> <span class="op">=</span> <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">slm</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"inc"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $x</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9544915 0.9535838 0.9569081 0.9626002 0.9600176 0.9564827 0.9605248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9598071 0.9563674 0.9578456 0.9608175 0.9601362 0.9602489 0.9601601</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9603265 0.9607834 0.9595098 0.9591186 0.9594548 0.9405483 0.9599894</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9591714 0.9498203 0.9582586 0.9606676 0.9606928 0.9597932 0.9603669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9605170 0.9583686 0.9546980 0.9497501 0.9602895 0.9563297 0.9581774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.9535948 0.9566921 0.9596639 0.9533719 0.9403648 0.9490477 0.9475395</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9583158 0.9562560 0.9573188 0.9534774 0.9530453 0.9584887 0.9545808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9037104 0.9032733 0.9048553 0.9074780 0.9063829 0.9045626 0.9066237</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9062798 0.9047000 0.9050370 0.9067613 0.9064478 0.9064988 0.9064605</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9065417 0.9067752 0.9062915 0.9059093 0.9060800 0.8972853 0.9063665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9062767 0.9017255 0.9054698 0.9067412 0.9067313 0.9061364 0.9067689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9066720 0.9054963 0.9040259 0.9013191 0.9063502 0.9044973 0.9057003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.9035188 0.9048052 0.9062483 0.9033380 0.8973235 0.9015377 0.9005036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9056818 0.9046099 0.9050752 0.9033879 0.9032858 0.9056155 0.9037352</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
