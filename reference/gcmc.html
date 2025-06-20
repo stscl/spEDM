@@ -58,14 +58,15 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
+<span>  <span class="va">libsizes</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  r <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="va">E</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  parallel.level <span class="op">=</span> <span class="st">"low"</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  detrend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -76,13 +77,14 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
+<span>  <span class="va">libsizes</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  r <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="va">E</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  parallel.level <span class="op">=</span> <span class="st">"low"</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  detrend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -105,6 +107,10 @@
 <dd><p>name of effect variable.</p></dd>
 
 
+<dt id="arg-libsizes">libsizes<a class="anchor" aria-label="anchor" href="#arg-libsizes"></a></dt>
+<dd><p>number of spatial units used.</p></dd>
+
+
 <dt id="arg-e">E<a class="anchor" aria-label="anchor" href="#arg-e"></a></dt>
 <dd><p>(optional) embedding dimensions.</p></dd>
 
@@ -114,11 +120,7 @@
 
 
 <dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
-<dd><p>(optional) number of nearest neighbors used in intersection.</p></dd>
-
-
-<dt id="arg-r">r<a class="anchor" aria-label="anchor" href="#arg-r"></a></dt>
-<dd><p>(optional) number of excluded neighbors in intersection.</p></dd>
+<dd><p>(optional) number of nearest neighbors.</p></dd>
 
 
 <dt id="arg-lib">lib<a class="anchor" aria-label="anchor" href="#arg-lib"></a></dt>
@@ -137,12 +139,16 @@
 <dd><p>(optional) number of threads to use.</p></dd>
 
 
+<dt id="arg-parallel-level">parallel.level<a class="anchor" aria-label="anchor" href="#arg-parallel-level"></a></dt>
+<dd><p>(optional) level of parallelism, <code>low</code> or <code>high</code>.</p></dd>
+
+
 <dt id="arg-bidirectional">bidirectional<a class="anchor" aria-label="anchor" href="#arg-bidirectional"></a></dt>
 <dd><p>(optional) whether to examine bidirectional causality.</p></dd>
 
 
 <dt id="arg-detrend">detrend<a class="anchor" aria-label="anchor" href="#arg-detrend"></a></dt>
-<dd><p>(optional) Whether to remove the linear trend.</p></dd>
+<dd><p>(optional) whether to remove the linear trend.</p></dd>
 
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
@@ -153,6 +159,9 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list</p><dl><dt><code>xmap</code></dt>
 <dd><p>cross mapping results</p></dd>
+
+<dt><code>cs</code></dt>
+<dd><p>causal strength</p></dd>
 
 <dt><code>varname</code></dt>
 <dd><p>names of causal and effect variable</p></dd>
@@ -167,12 +176,12 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">gcmc</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"hoval"</span>,<span class="st">"crime"</span>,E <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">gcmc</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"hoval"</span>,<span class="st">"crime"</span>,libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span>,E <span class="op">=</span> <span class="fl">5</span>,k <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-in"><span><span class="va">g</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   neighbors hoval-&gt;crime crime-&gt;hoval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        17      0.16609    0.2041522</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        12    0.2638889    0.2708333</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
