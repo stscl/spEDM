@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Convergent Cross Mapping (GCCM)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-06-20</h4>
+            <h4 data-toc-skip class="date">2025-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -244,7 +244,7 @@ density data:</p>
 <span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 2.881829 mins</span></span>
+<span><span class="co">## Time difference of 2.903488 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
 <span><span class="co">## 1       100 0.1140592 0.03269659</span></span>
@@ -333,16 +333,16 @@ precipitation.</div>
 <span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.497378 mins</span></span>
+<span><span class="co">## Time difference of 1.499145 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       10 0.1282926 0.1025621</span></span>
-<span><span class="co">## 2       30 0.2600400 0.2288003</span></span>
-<span><span class="co">## 3       50 0.3773544 0.2956426</span></span>
-<span><span class="co">## 4       70 0.4968743 0.3394660</span></span>
-<span><span class="co">## 5       90 0.5976269 0.3376894</span></span>
-<span><span class="co">## 6      110 0.7363194 0.3412305</span></span>
-<span><span class="co">## 7      130 0.8387112 0.3663077</span></span></code></pre></div>
+<span><span class="co">## 1       10 0.1282926 0.1095679</span></span>
+<span><span class="co">## 2       30 0.2600400 0.2314889</span></span>
+<span><span class="co">## 3       50 0.3773544 0.2953962</span></span>
+<span><span class="co">## 4       70 0.4968743 0.3400436</span></span>
+<span><span class="co">## 5       90 0.5976269 0.3387017</span></span>
+<span><span class="co">## 6      110 0.7363194 0.3422293</span></span>
+<span><span class="co">## 7      130 0.8387112 0.3656638</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>

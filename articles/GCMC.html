@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Cross Mapping Cardinality (GCMC)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-06-23</h4>
+            <h4 data-toc-skip class="date">2025-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCMC.Rmd" class="external-link"><code>vignettes/GCMC.Rmd</code></a></small>
       <div class="d-none name"><code>GCMC.Rmd</code></div>
@@ -172,31 +172,43 @@ density data:</p>
 <span><span class="co">##  9 1226.    11  17.4 1526. 0.208 (117.171 30.5558)</span></span>
 <span><span class="co">## 10  137.   598  13.9 1458. 5.92  (116.208 30.8983)</span></span>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
-<p>Run GCMC:</p>
+<p>The false nearest neighbours (FNN) method helps identify the
+appropriate embedding dimension for reconstructing the state space of a
+time series or spatial cross-sectional data. A low embedding dimension
+that minimizes false neighbours is considered optimal.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span>
+<span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
+<span><span class="co">## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 </span></span>
+<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14 </span></span>
+<span><span class="co">## 0.3150392 0.2957947 0.2875980 0.2915182 0.2701354 0.2494654</span></span></code></pre></div>
+<p>The false nearest neighbours (FNN) ratio decreased to approximately
+0.3 when the embedding dimension E reached 10, and remained relatively
+stable thereafter. Therefore, we adopted <span class="math inline">\(E =
+10\)</span> as the embedding dimension for subsequent GCMC analysis.</p>
+<p>Then, run GCMC:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># temperature and population density</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">210</span>,</span>
-<span>          nb <span class="op">=</span> <span class="va">popd_nb</span>, detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors tem-&gt;popd popd-&gt;tem</span></span>
-<span><span class="co">## 1       210 0.7536054 0.1971655</span></span>
+<span><span class="co">## 1       200  0.574825    0.0892</span></span>
 <span></span>
 <span><span class="co"># elevation and population density</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">210</span>,</span>
-<span>          nb <span class="op">=</span> <span class="va">popd_nb</span>, detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors elev-&gt;popd popd-&gt;elev</span></span>
-<span><span class="co">## 1       210  0.8352381  0.2061451</span></span>
+<span><span class="co">## 1       200   0.267125    0.07675</span></span>
 <span></span>
 <span><span class="co"># elevation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">210</span>,</span>
-<span>          nb <span class="op">=</span> <span class="va">popd_nb</span>, detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors elev-&gt;tem tem-&gt;elev</span></span>
-<span><span class="co">## 1       210 0.6272562 0.5090023</span></span></code></pre></div>
+<span><span class="co">## 1       200  0.224575   0.47705</span></span></code></pre></div>
 <p>Here we define two functions to process the results and plot the
 causal association matrix.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">.process_xmap_result</span> <span class="op">=</span> \<span class="op">(</span><span class="va">g</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">tempdf</span> <span class="op">=</span> <span class="va">g</span><span class="op">$</span><span class="va">xmap</span></span>
 <span>  <span class="va">tempdf</span><span class="op">$</span><span class="va">x</span> <span class="op">=</span> <span class="va">g</span><span class="op">$</span><span class="va">varname</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -256,20 +268,20 @@ causal association matrix.</p>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">fig</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Organize the results into a long table:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span>,<span class="va">g3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">.process_xmap_result</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">res1</span></span>
-<span><span class="co">##   cause effect        ca          sig</span></span>
-<span><span class="co">## 1   tem   popd 0.7536054 1.253182e-19</span></span>
-<span><span class="co">## 2  popd    tem 0.1971655 3.035074e-35</span></span>
-<span><span class="co">## 3  elev   popd 0.8352381 1.374037e-43</span></span>
-<span><span class="co">## 4  popd   elev 0.2061451 4.111211e-32</span></span>
-<span><span class="co">## 5  elev    tem 0.6272562 4.805542e-05</span></span>
-<span><span class="co">## 6   tem   elev 0.5090023 7.790993e-01</span></span></code></pre></div>
+<span><span class="co">##   cause effect       ca           sig</span></span>
+<span><span class="co">## 1   tem   popd 0.574825  1.953434e-02</span></span>
+<span><span class="co">## 2  popd    tem 0.089200 3.830104e-116</span></span>
+<span><span class="co">## 3  elev   popd 0.267125  8.221767e-16</span></span>
+<span><span class="co">## 4  popd   elev 0.076750 6.249810e-148</span></span>
+<span><span class="co">## 5  elev    tem 0.224575  1.628641e-23</span></span>
+<span><span class="co">## 6   tem   elev 0.477050  4.880176e-01</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_ca_matrix</span><span class="op">(</span><span class="va">res1</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gcmc/fig1-1.png" alt="Figure 1. Causal associations among elevation, temperature, and population density."><div class="figcaption">
@@ -283,7 +295,7 @@ density.</strong>
 <h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>
 </h3>
 <p>Load the <code>spEDM</code> package and its farmland NPP data:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
@@ -320,46 +332,50 @@ density.</strong>
 <span><span class="va">indices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1500</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">libindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="op">-</span><span class="va">indices</span>,<span class="op">]</span></span>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
-<p>Run GCMC:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Determining optimal embedding dimension:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
+<span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
+<span><span class="co">## 0.4666667 0.4000000 0.1333333 0.5333333 0.4000000 0.4000000 0.4666667 0.4000000 </span></span>
+<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14 </span></span>
+<span><span class="co">## 0.4666667 0.4000000 0.4666667 0.4000000 0.4000000 0.2666667</span></span></code></pre></div>
+<p>At E = 3, the false nearest neighbor ratio decreases to approximately
+0.13, whereas it remains above 0.25 for all other embedding dimensions.
+Hence, E = 3 is chosen for the subsequent GCMC analysis.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>          detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">350</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       270 0.6074486 0.5375995</span></span>
+<span><span class="co">## 1       350 0.2181796 0.1876816</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>          detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">350</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
-<span><span class="co">##   neighbors  tem-&gt;npp npp-&gt;tem</span></span>
-<span><span class="co">## 1       270 0.6398354 0.610631</span></span>
+<span><span class="co">##   neighbors  tem-&gt;npp  npp-&gt;tem</span></span>
+<span><span class="co">## 1       350 0.3869143 0.3799673</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">270</span>,</span>
-<span>          lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>          detrend <span class="op">=</span> <span class="cn">TRUE</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">350</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors  pre-&gt;tem  tem-&gt;pre</span></span>
-<span><span class="co">## 1       270 0.6789575 0.6376543</span></span></code></pre></div>
+<span><span class="co">## 1       350 0.3206776 0.2926694</span></span></code></pre></div>
 <p>Organize the results into a long table:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span>,<span class="va">g3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">.process_xmap_result</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">res2</span></span>
 <span><span class="co">##   cause effect        ca          sig</span></span>
-<span><span class="co">## 1   pre    npp 0.6074486 1.108801e-04</span></span>
-<span><span class="co">## 2   npp    pre 0.5375995 1.772553e-01</span></span>
-<span><span class="co">## 3   tem    npp 0.6398354 2.731791e-07</span></span>
-<span><span class="co">## 4   npp    tem 0.6106310 5.454179e-05</span></span>
-<span><span class="co">## 5   pre    tem 0.6789575 1.796755e-11</span></span>
-<span><span class="co">## 6   tem    pre 0.6376543 4.110065e-07</span></span></code></pre></div>
+<span><span class="co">## 1   pre    npp 0.2181796 4.990672e-48</span></span>
+<span><span class="co">## 2   npp    pre 0.1876816 7.390331e-67</span></span>
+<span><span class="co">## 3   tem    npp 0.3869143 1.716558e-06</span></span>
+<span><span class="co">## 4   npp    tem 0.3799673 3.234268e-07</span></span>
+<span><span class="co">## 5   pre    tem 0.3206776 1.429895e-15</span></span>
+<span><span class="co">## 6   tem    pre 0.2926694 2.796329e-21</span></span></code></pre></div>
 <p>Visualize the result:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_ca_matrix</span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gcmc/fig2-1.png" alt="Figure 2. Causal associations among precipitation, temperature, and NPP."><div class="figcaption">

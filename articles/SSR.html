@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>State Space Reconstruction (SSR)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-06-20</h4>
+            <h4 data-toc-skip class="date">2025-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SSR.Rmd" class="external-link"><code>vignettes/SSR.Rmd</code></a></small>
       <div class="d-none name"><code>SSR.Rmd</code></div>
@@ -223,33 +223,6 @@ shadow manifolds for <code>popd</code>.</div>
 <strong>Figure 2</strong>. The reconstructed
 shadow manifolds for <code>cu</code>.</div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="determining-optimal-embedding-dimension-using-false-nearest-neighbours">Determining Optimal Embedding Dimension Using False Nearest
-Neighbours<a class="anchor" aria-label="anchor" href="#determining-optimal-embedding-dimension-using-false-nearest-neighbours"></a>
-</h3>
-<p>The false nearest neighbours (FNN) method helps identify the
-appropriate embedding dimension for reconstructing the state space of a
-time series or spatial cross-sectional. A low embedding dimension that
-minimizes false neighbours is considered optimal.</p>
-<p>Below are two examples applying the <code><a href="../reference/fnn.html">fnn()</a></code> function. In
-both cases, <code>eps</code> is set to one-tenth of the standard
-deviation of the variable of interest, providing a relative threshold
-for identifying false neighbours.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>,<span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span>
-<span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
-<span><span class="co">## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 </span></span>
-<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14 </span></span>
-<span><span class="co">## 0.3150392 0.2957947 0.2875980 0.2915182 0.2701354 0.2494654</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">cu</span>,<span class="st">"cu"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span>
-<span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">cu</span><span class="op">[[</span><span class="st">"cu"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
-<span><span class="co">## 0.98577099 0.56042748 0.13215267 0.08103817 0.07731298 0.07517557 0.06998473 </span></span>
-<span><span class="co">##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 </span></span>
-<span><span class="co">## 0.06632061 0.05673282 0.05050382 0.04769466 0.04213740 0.03951145 0.03535878</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
