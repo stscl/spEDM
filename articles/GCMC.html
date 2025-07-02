@@ -335,33 +335,34 @@ density.</strong>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
 <span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
-<span><span class="co">## 0.46666667 0.40000000 0.13333333 0.53333333 0.40000000 0.40000000 0.46666667 </span></span>
-<span><span class="co">##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 </span></span>
-<span><span class="co">## 0.40000000 0.46666667 0.40000000 0.46666667 0.40000000 0.40000000 0.26666667 </span></span>
-<span><span class="co">##       E:15       E:16       E:17       E:18       E:19 </span></span>
-<span><span class="co">## 0.13333333 0.06666667 0.00000000 0.00000000 0.00000000</span></span></code></pre></div>
-<p>At <span class="math inline">\(E = 17\)</span>, the false nearest
-neighbor ratio drops to 0 and remains at 0 thereafter. Therefore, <span class="math inline">\(E = 17\)</span> is selected for the subsequent
-GCMC analysis.</p>
+<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
+<span><span class="co">## 0.9406271 0.4326667 0.2953333 0.2820000 0.2413333 0.2306667 0.2306667 0.1973333 </span></span>
+<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14      E:15      E:16 </span></span>
+<span><span class="co">## 0.1953333 0.1533333 0.1593333 0.1633333 0.1460000 0.1300000 0.1340000 0.1073333 </span></span>
+<span><span class="co">##      E:17      E:18      E:19 </span></span>
+<span><span class="co">## 0.1146667 0.1093333 0.0900000</span></span></code></pre></div>
+<p>At <span class="math inline">\(E = 18\)</span>, the false nearest
+neighbor ratio stabilizes at 0.10 and remains constant thereafter.
+Therefore, <span class="math inline">\(E = 18\)</span> is selected for
+the subsequent GCMC analysis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">17</span>, k <span class="op">=</span> <span class="fl">172</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       172 0.2443551 0.2075446</span></span>
+<span><span class="co">## 1       165 0.2397429 0.2060239</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">17</span>, k <span class="op">=</span> <span class="fl">172</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
-<span><span class="co">##   neighbors  tem-&gt;npp  npp-&gt;tem</span></span>
-<span><span class="co">## 1       172 0.4307396 0.4331057</span></span>
+<span><span class="co">##   neighbors  tem-&gt;npp npp-&gt;tem</span></span>
+<span><span class="co">## 1       165 0.4287971 0.432213</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">17</span>, k <span class="op">=</span> <span class="fl">172</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors  pre-&gt;tem  tem-&gt;pre</span></span>
-<span><span class="co">## 1       172 0.3267645 0.2765684</span></span></code></pre></div>
+<span><span class="co">## 1       165 0.3222039 0.2725069</span></span></code></pre></div>
 <p>Organize the results into a long table:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span>,<span class="va">g3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -369,12 +370,12 @@ GCMC analysis.</p>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">res2</span></span>
 <span><span class="co">##   cause effect        ca          sig</span></span>
-<span><span class="co">## 1   pre    npp 0.2443551 2.177402e-17</span></span>
-<span><span class="co">## 2   npp    pre 0.2075446 1.634524e-25</span></span>
-<span><span class="co">## 3   tem    npp 0.4307396 4.852701e-02</span></span>
-<span><span class="co">## 4   npp    tem 0.4331057 5.757934e-02</span></span>
-<span><span class="co">## 5   pre    tem 0.3267645 1.641604e-07</span></span>
-<span><span class="co">## 6   tem    pre 0.2765684 5.939523e-13</span></span></code></pre></div>
+<span><span class="co">## 1   pre    npp 0.2397429 1.571807e-17</span></span>
+<span><span class="co">## 2   npp    pre 0.2060239 6.525044e-25</span></span>
+<span><span class="co">## 3   tem    npp 0.4287971 4.706879e-02</span></span>
+<span><span class="co">## 4   npp    tem 0.4322130 5.956946e-02</span></span>
+<span><span class="co">## 5   pre    tem 0.3222039 1.261609e-07</span></span>
+<span><span class="co">## 6   tem    pre 0.2725069 5.041517e-13</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_ca_matrix</span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></span></code></pre></div>
