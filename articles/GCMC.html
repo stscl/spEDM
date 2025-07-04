@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Geographical Cross Mapping Cardinality (GCMC)</h1>
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
-            <h4 data-toc-skip class="date">2025-07-02</h4>
+            <h4 data-toc-skip class="date">2025-07-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCMC.Rmd" class="external-link"><code>vignettes/GCMC.Rmd</code></a></small>
       <div class="d-none name"><code>GCMC.Rmd</code></div>
@@ -333,14 +333,16 @@ density.</strong>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
 <span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
-<span><span class="co">## 0.9406271 0.4326667 0.2953333 0.2820000 0.2413333 0.2306667 0.2306667 0.1973333 </span></span>
-<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14      E:15      E:16 </span></span>
-<span><span class="co">## 0.1953333 0.1533333 0.1593333 0.1633333 0.1460000 0.1300000 0.1340000 0.1073333 </span></span>
-<span><span class="co">##      E:17      E:18      E:19 </span></span>
-<span><span class="co">## 0.1146667 0.1093333 0.0900000</span></span></code></pre></div>
+<span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
+<span><span class="co">## 0.94062708 0.43266667 0.29533333 0.28200000 0.24133333 0.23066667 0.23066667 </span></span>
+<span><span class="co">##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 </span></span>
+<span><span class="co">## 0.19733333 0.19533333 0.15333333 0.15933333 0.16333333 0.14600000 0.13000000 </span></span>
+<span><span class="co">##       E:15       E:16       E:17       E:18       E:19       E:20       E:21 </span></span>
+<span><span class="co">## 0.13400000 0.10733333 0.11466667 0.10933333 0.09000000 0.09933333 0.08600000 </span></span>
+<span><span class="co">##       E:22       E:23       E:24 </span></span>
+<span><span class="co">## 0.09866667 0.10466667 0.10866667</span></span></code></pre></div>
 <p>At <span class="math inline">\(E = 18\)</span>, the false nearest
 neighbor ratio stabilizes at 0.10 and remains constant thereafter.
 Therefore, <span class="math inline">\(E = 18\)</span> is selected for
