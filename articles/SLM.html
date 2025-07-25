@@ -77,8 +77,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-07-06<br>
-Last run: 2025-07-22</div></h4>
+update: 2025-07-25<br>
+Last run: 2025-07-25</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SLM.Rmd" class="external-link"><code>vignettes/SLM.Rmd</code></a></small>
       <div class="d-none name"><code>SLM.Rmd</code></div>
@@ -202,17 +202,16 @@ species density distributions for three species (a, b, and c).</div>
 <p>We assume an underlying causal interaction structure among species,
 where species <em>a</em> influences <em>b</em>, and <em>b</em> in turn
 influences <em>c</em> (i.e., <em>a</em> → <em>b</em> → <em>c</em>). The
-intrinsic growth rates for species <em>a</em>, <em>b</em>, and
-<em>c</em> are set to 0.28, 0.25, and 0.22 respectively. The effect of
-species <em>a</em> on <em>b</em> is set to 0.625, and the effect of
-species <em>b</em> on <em>c</em> is set to 0.77. All other interspecific
-influence parameters are set to zero. This setup provides a controlled
-environment to test spatial causality detection methods under known
-dynamic interactions.</p>
+intrinsic growth rates of species a, b, and c are uniformly assigned a
+value of 0.2. Species a exerts an effect of 1 on species b, and species
+b exerts an effect of 1 on species c. All other interspecific influence
+parameters are set to 0. This setup provides a controlled environment to
+test spatial causality detection methods under known dynamic
+interactions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>,x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>                  alpha_x <span class="op">=</span> <span class="fl">0.28</span>, alpha_y <span class="op">=</span> <span class="fl">0.25</span>, alpha_z <span class="op">=</span> <span class="fl">0.22</span>,</span>
-<span>                  beta_xy <span class="op">=</span> <span class="fl">0.625</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">0.77</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>                  beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">species_evolution</span> <span class="op">=</span> <span class="va">species</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"a"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">x</span></span>
@@ -226,8 +225,8 @@ dynamic interactions.</p>
 <span><span class="co">## coord. ref. :  </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
 <span><span class="co">## names       :         a,         b,         c </span></span>
-<span><span class="co">## min values  : 0.8149217, 0.9079235, 0.9432498 </span></span>
-<span><span class="co">## max values  : 0.8223571, 0.9157017, 0.9546753</span></span>
+<span><span class="co">## min values  : 0.8553408, 0.9733337, 0.9886246 </span></span>
+<span><span class="co">## max values  : 0.8611597, 0.9803933, 1.0008822</span></span>
 <span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species_evolution</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>

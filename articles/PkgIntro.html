@@ -77,8 +77,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-07-06<br>
-Last run: 2025-07-22</div></h4>
+update: 2025-07-25<br>
+Last run: 2025-07-25</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/PkgIntro.Rmd" class="external-link"><code>vignettes/PkgIntro.Rmd</code></a></small>
       <div class="d-none name"><code>PkgIntro.Rmd</code></div>
@@ -139,8 +139,7 @@ mainland China, suitable for analyzing the interactions between
 agricultural productivity, environmental conditions, and human
 activities. <em>Data files</em>: <code>npp.tif</code></p></li>
 </ol>
-<p>These datasets can be loaded as shown below, including basic
-visualization for raster data:</p>
+<p>These datasets can be loaded as shown below:</p>
 <div class="section level3">
 <h3 id="columbus-oh-spatial-analysis-dataset">Columbus OH spatial analysis dataset<a class="anchor" aria-label="anchor" href="#columbus-oh-spatial-analysis-dataset"></a>
 </h3>
@@ -190,13 +189,13 @@ visualization for raster data:</p>
 <span><span class="co">## Rows: 2806 Columns: 7</span></span>
 <span><span class="co">## ── Column specification ─────────────────────────────────────────────────────────</span></span>
 <span><span class="co">## Delimiter: ","</span></span>
-<span><span class="co">## dbl (7): x, y, popd, elev, tem, pre, slope</span></span>
+<span><span class="co">## dbl (7): lon, lat, popd, elev, tem, pre, slope</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
 <span><span class="co">## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
 <span><span class="va">popd</span></span>
 <span><span class="co">## # A tibble: 2,806 × 7</span></span>
-<span><span class="co">##        x     y  popd  elev   tem   pre slope</span></span>
+<span><span class="co">##      lon   lat  popd  elev   tem   pre slope</span></span>
 <span><span class="co">##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span><span class="co">##  1  117.  30.5  780.     8  17.4 1528. 0.452</span></span>
 <span><span class="co">##  2  117.  30.6  395.    48  17.2 1487. 0.842</span></span>
@@ -210,7 +209,7 @@ visualization for raster data:</p>
 <span><span class="co">## 10  116.  30.9  137.   598  13.9 1458. 5.92 </span></span>
 <span><span class="co">## # ℹ 2,796 more rows</span></span>
 <span></span>
-<span><span class="va">popd_sf</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">popd</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="va">popd_sf</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">popd</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lon"</span>,<span class="st">"lat"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
 <span><span class="va">popd_sf</span></span>
 <span><span class="co">## Simple feature collection with 2806 features and 5 fields</span></span>
 <span><span class="co">## Geometry type: POINT</span></span>
@@ -248,20 +247,7 @@ visualization for raster data:</p>
 <span><span class="co">## source      : cu.tif </span></span>
 <span><span class="co">## names       :         cu, industry, ntl </span></span>
 <span><span class="co">## min values  :   1.201607,    0.000,   0 </span></span>
-<span><span class="co">## max values  : 319.599274,    0.615,  63</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cu</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
-<span>            oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
-<span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
-<img src="../reference/figures/pkgintro/cu-1.png" alt="Figure 1. Maps of soil Cu contamination, the density of industrial pollutants and nightlight."><div class="figcaption">
-<strong>Figure 1</strong>. Maps of soil Cu
-contamination, the density of industrial pollutants and
-nightlight.</div>
-</div>
+<span><span class="co">## max values  : 319.599274,    0.615,  63</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="farmland-npp-and-related-variables-in-mainland-china">Farmland NPP and related variables in mainland China<a class="anchor" aria-label="anchor" href="#farmland-npp-and-related-variables-in-mainland-china"></a>
@@ -278,42 +264,7 @@ nightlight.</div>
 <span><span class="co">## source      : npp.tif </span></span>
 <span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
 <span><span class="co">## min values  :   164.00,   384.3409, -47.8194, -122.2004,  0.03390418 </span></span>
-<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195</span></span>
-<span></span>
-<span><span class="co"># directly visualize the raster layer</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp</span>, nc <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
-<img src="../reference/figures/pkgintro/npp-1.png" alt="Figure 2. Maps of farmland NPP and climate factors."><div class="figcaption">
-<strong>Figure 2</strong>. Maps of farmland NPP
-and climate factors.</div>
-</div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># add China's land borders and the ten-dash line in the South China Sea</span></span>
-<span></span>
-<span><span class="co"># install.packages("geocn",</span></span>
-<span><span class="co">#                  repos = c("https://stscl.r-universe.dev",</span></span>
-<span><span class="co">#                            "https://cloud.r-project.org"),</span></span>
-<span><span class="co">#                  dep = TRUE)</span></span>
-<span></span>
-<span><span class="va">cn_border</span> <span class="op">=</span> <span class="fu">geocn</span><span class="fu">::</span><span class="fu">load_cn_border</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/vect.html" class="external-link">vect</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/project.html" class="external-link">project</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crs.html" class="external-link">crs</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">nlyr</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cn_border</span>, lwd <span class="op">=</span> <span class="fl">1.5</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,</span>
-<span>              col <span class="op">=</span> <span class="st">"grey40"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>  <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>              legend <span class="op">=</span> <span class="cn">FALSE</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<div class="float">
-<img src="../reference/figures/pkgintro/npp2-1.png" alt="Figure 3. Maps of farmland NPP and climate factors."><div class="figcaption">
-<strong>Figure 3</strong>. Maps of farmland NPP
-and climate factors.</div>
-</div>
+<span><span class="co">## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
