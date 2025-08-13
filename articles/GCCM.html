@@ -77,8 +77,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-12<br>
-Last run: 2025-08-12</div></h4>
+update: 2025-08-13<br>
+Last run: 2025-08-13</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -97,21 +97,21 @@ constructed using the different spatial lag values of all spatial
 units:</p>
 <p><span class="math display">\[
 M_{x} = \begin{bmatrix}
-S_{(1)}(x_1) &amp; S_{(1 + \tau)}(x_1) &amp; \cdots &amp;
-S_{(1+(E-1)\tau)}(x_1) \\
-S_{(1)}(x_2) &amp; S_{(1 + \tau)}(x_2) &amp; \cdots &amp;
-S_{(1+(E-1)\tau)}(x_2) \\
+S_{(\tau)}(x_1) &amp; S_{(2\tau)}(x_1) &amp; \cdots &amp;
+S_{(E\tau)}(x_1) \\
+S_{(\tau)}(x_2) &amp; S_{(2\tau)}(x_2) &amp; \cdots &amp;
+S_{(E\tau)}(x_2) \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-S_{(1)}(x_n) &amp; S_{(1 + \tau)}(x_n) &amp; \cdots &amp;
-S_{(1+(E-1)\tau)}(x_n)
+S_{(\tau)}(x_n) &amp; S_{(2\tau)}(x_n) &amp; \cdots &amp;
+S_{(E\tau)}(x_n)
 \end{bmatrix}
 \]</span></p>
 <p>Here, <span class="math inline">\(S_{(j)}(x_i)\)</span> denotes the
 <span class="math inline">\(j\)</span> th-order spatial lag value of
-spatial unit <span class="math inline">\(i\)</span>, $$ is the step size
-for the spatial lag order, and <span class="math inline">\(E\)</span> is
-the embedding dimension and <span class="math inline">\(M_{x}\)</span>
-corresponds to the shadow manifolds of <span class="math inline">\(X\)</span>.</p>
+spatial unit <span class="math inline">\(i\)</span>, <span class="math inline">\(\tau\)</span> is the step size for the spatial lag
+order, and <span class="math inline">\(E\)</span> is the embedding
+dimension and <span class="math inline">\(M_{x}\)</span> corresponds to
+the shadow manifolds of <span class="math inline">\(X\)</span>.</p>
 <p>With the reconstructed shadow manifolds <span class="math inline">\(M_{x}\)</span>, the state of Y can be predicted
 with the state of X through</p>
 <p><span class="math display">\[

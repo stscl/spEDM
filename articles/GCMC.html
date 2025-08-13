@@ -77,8 +77,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-12<br>
-Last run: 2025-08-12</div></h4>
+update: 2025-08-13<br>
+Last run: 2025-08-13</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCMC.Rmd" class="external-link"><code>vignettes/GCMC.Rmd</code></a></small>
       <div class="d-none name"><code>GCMC.Rmd</code></div>
@@ -109,11 +109,11 @@ Given two spatial variables, <span class="math inline">\(x\)</span> and
 suitable embedding dimension <span class="math inline">\(E\)</span> and
 a spatial lag interval <span class="math inline">\(\tau\)</span>. For
 each spatial location (unit) <span class="math inline">\(i\)</span>, the
-attribute values from its spatial neighbors at lag orders <span class="math inline">\(1, 1+\tau, \dots, 1+(E-1)\tau\)</span> are
-collected. These values are then summarized—commonly using the mean—to
-construct an embedding vector for each unit. Aggregating these vectors
-across all spatial units results in the reconstructed state spaces,
-denoted as <span class="math inline">\(E_x\)</span> and <span class="math inline">\(E_y\)</span>.</p>
+attribute values from its spatial neighbors at lag orders <span class="math inline">\(\tau, 2\tau, \dots, E\tau\)</span> are collected.
+These values are then summarized—commonly using the mean—to construct an
+embedding vector for each unit. Aggregating these vectors across all
+spatial units results in the reconstructed state spaces, denoted as
+<span class="math inline">\(E_x\)</span> and <span class="math inline">\(E_y\)</span>.</p>
 <p><strong>Stage two</strong> constructs the Intersectional Cardinality
 (IC) curve, which serves to evaluate causal strength. To measure whether
 <span class="math inline">\(y\)</span> causally affects <span class="math inline">\(x\)</span>, one computes, for each <span class="math inline">\(k\)</span>, the overlap between the <span class="math inline">\(k\)</span> nearest neighbors of <span class="math inline">\(E_y\)</span> and the corresponding “projected”
