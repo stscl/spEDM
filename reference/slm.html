@@ -73,6 +73,7 @@
 <span>  beta_zy <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  interact <span class="op">=</span> <span class="st">"local"</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -94,7 +95,8 @@
 <span>  beta_zx <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  beta_zy <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
-<span>  transient <span class="op">=</span> <span class="fl">1</span></span>
+<span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  interact <span class="op">=</span> <span class="st">"local"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -170,6 +172,10 @@
 <dd><p>(optional) transients to be excluded from the results.</p></dd>
 
 
+<dt id="arg-interact">interact<a class="anchor" aria-label="anchor" href="#arg-interact"></a></dt>
+<dd><p>(optional) type of cross-variable interaction (<code>local</code> or <code>neighbors</code>).</p></dd>
+
+
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
 <dd><p>(optional) neighbours list.</p></dd>
 
@@ -189,13 +195,13 @@
 <span class="r-in"><span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span> <span class="op">=</span> <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="va">columbus</span><span class="op">$</span><span class="va">inc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">slm</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"inc"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $x</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9037104 0.9032733 0.9048553 0.9074780 0.9063829 0.9045626 0.9066237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9062798 0.9047000 0.9050370 0.9067613 0.9064478 0.9064988 0.9064605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9065417 0.9067752 0.9062915 0.9059093 0.9060800 0.8972853 0.9063665</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9062767 0.9017255 0.9054698 0.9067412 0.9067313 0.9061364 0.9067689</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9066720 0.9054963 0.9040259 0.9013191 0.9063502 0.9044973 0.9057003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.9035188 0.9048052 0.9062483 0.9033380 0.8973235 0.9015377 0.9005036</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9056818 0.9046099 0.9050752 0.9033879 0.9032858 0.9056155 0.9037352</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.8985452 0.8981079 0.8996913 0.9023158 0.9012219 0.8993983 0.9014626</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.9011186 0.8995365 0.8998710 0.9016004 0.9012866 0.9013377 0.9012993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 0.9013809 0.9016145 0.9011292 0.9007474 0.9009183 0.8921125 0.9012053</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 0.9011153 0.8965553 0.9003072 0.9015806 0.9015707 0.9009719 0.9016084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 0.9015113 0.9003335 0.8988599 0.8961461 0.9011855 0.8993310 0.9005378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 0.8983525 0.8996417 0.9010866 0.8981711 0.8921503 0.8963681 0.8953344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 0.9005191 0.8994458 0.8999111 0.8982211 0.8981183 0.9004515 0.8985699</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
