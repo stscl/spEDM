@@ -77,8 +77,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-25<br>
-Last run: 2025-08-25</div></h4>
+update: 2025-08-27<br>
+Last run: 2025-08-27</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SLM.Rmd" class="external-link"><code>vignettes/SLM.Rmd</code></a></small>
       <div class="d-none name"><code>SLM.Rmd</code></div>
@@ -134,19 +134,41 @@ value and the average state of its neighbors.</p>
 <p>Importantly, when extended to multivariate spatial settings, such as
 <strong>bivariate or trivariate spatial logistic maps</strong>, each
 spatial variable evolves not only through its own neighbors but also
-through inter-variable interactions at the same spatial location. For
-example, in a bivariate spatial logistic map:</p>
+through inter-variable interactions. For example, in a <strong>bivariate
+spatial logistic map</strong>, the update rules may be written as:</p>
+<ul>
+<li><strong>Local cross-variable interaction (default
+form):</strong></li>
+</ul>
 <p><span class="math display">\[
 x_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
 \mathcal{N}(i)} x_j^{(t)} - \beta_{21} y_i^{(t)} \right), \\
 y_{i}^{(t+1)} = 1 - \alpha_2 y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} y_j^{(t)} - \beta_{12} x_i^{(t)} \right),
+\mathcal{N}(i)} y_j^{(t)} - \beta_{12} x_i^{(t)} \right).
 \]</span></p>
-<p>with similar expressions for the trivariate case. These models
-capture <strong>local spatial coupling</strong> and <strong>in-place
-cross-variable inhibition</strong>, producing spatiotemporal patterns
-such as waves, kinks, frozen random states, and spatiotemporal
-chaos.</p>
+<p>Here, the inhibitory (or facilitative) influence between variables is
+restricted to the same spatial location.</p>
+<ul>
+<li><strong>Neighbor-averaged cross-variable interaction (extended
+form):</strong></li>
+</ul>
+<p><span class="math display">\[
+x_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} x_j^{(t)} - \beta_{21} \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} y_j^{(t)} \right), \\
+y_{i}^{(t+1)} = 1 - \alpha_2 y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} y_j^{(t)} - \beta_{12} \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} x_j^{(t)} \right).
+\]</span></p>
+<p>In this alternative form, the inter-variable interactions are
+mediated through the <strong>neighbor-averaged states</strong>, allowing
+each variable to be influenced by the spatial context of the other.</p>
+<p>Both formulations capture the combination of <strong>local spatial
+coupling</strong> and <strong>cross-variable inhibition</strong>, but
+they differ in whether the cross-variable effects are purely local or
+spatially contextualized. These distinctions lead to different
+spatiotemporal outcomes, including waves, kinks, frozen random states,
+and spatiotemporal chaos.</p>
 <p>By performing statistical aggregation over the long-run time series
 values at each spatial unit, one can generate spatial cross-sectional
 data that reflect different causal scenarios.</p>
@@ -209,7 +231,7 @@ parameters are set to 0. This setup provides a controlled environment to
 test spatial causality detection methods under known dynamic
 interactions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>,x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>,</span>
+<code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>, x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>, interact <span class="op">=</span> <span class="st">"local"</span>,</span>
 <span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>                  beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
@@ -234,10 +256,40 @@ interactions.</p>
 <span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="../reference/figures/slm/spatial_logistic_map-1.png" alt="Figure 2. Species distributions following spatiotemporal interaction and evolution after 20 simulation steps with 4-neighbor interactions."><div class="figcaption">
+<img src="../reference/figures/slm/slm1-1.png" alt="Figure 2. Species distributions following spatiotemporal interaction and evolution after 20 simulation steps with 4-neighbor interactions."><div class="figcaption">
 <strong>Figure 2</strong>. Species distributions
 following spatiotemporal interaction and evolution after 20 simulation
 steps with 4-neighbor interactions.</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>, x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>, interact <span class="op">=</span> <span class="st">"neighbors"</span>,</span>
+<span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>, beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">species_evolution</span> <span class="op">=</span> <span class="va">species</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"a"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">x</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"b"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">y</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"c"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">z</span></span>
+<span><span class="va">species_evolution</span></span>
+<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## size        : 20, 20, 3  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## resolution  : 1, 1  (x, y)</span></span>
+<span><span class="co">## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## coord. ref. :  </span></span>
+<span><span class="co">## source(s)   : memory</span></span>
+<span><span class="co">## names       :         a,         b,         c </span></span>
+<span><span class="co">## min values  : 0.8553408, 0.9718102, 0.9887262 </span></span>
+<span><span class="co">## max values  : 0.8611597, 0.9803232, 0.9986816</span></span>
+<span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species_evolution</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>            oma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="../reference/figures/slm/slm2-1.png" alt="Figure 3. Species distributions after 20 simulation steps with 4-neighbor interactions and neighbor-averaged cross-variable dynamics."><div class="figcaption">
+<strong>Figure 3</strong>. Species distributions
+after 20 simulation steps with 4-neighbor interactions and
+neighbor-averaged cross-variable dynamics.</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
