@@ -66,7 +66,7 @@
 <h4 id="enhancements-1-8">enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-8"></a></h4>
 <ul><li><p>Safeguard transient removal logic in spatial logistic map to prevent index errors (<a href="https://github.com/stscl/spEDM/issues/744" class="external-link">#744</a>).</p></li>
 <li><p>Adjust the default <code>E</code> range in the <code>simplex</code> generic to <code>2:10</code> to support more robust reconstruction of state spaces (<a href="https://github.com/stscl/spEDM/issues/739" class="external-link">#739</a>).</p></li>
-<li><p>Introduce multithreading in distance-related computations where applicable to improve runtime efficiency (<a href="https://github.com/stscl/spEDM/issues/718" class="external-link">#718</a>).</p></li>
+<li><p>Introduce multi-threading in distance-related computations where applicable to improve runtime efficiency (<a href="https://github.com/stscl/spEDM/issues/718" class="external-link">#718</a>).</p></li>
 <li><p>Display p-value annotation for maximum library size in cross mapping visualization legend (<a href="https://github.com/stscl/spEDM/issues/710" class="external-link">#710</a>).</p></li>
 </ul></div>
 <div class="section level4">
@@ -178,8 +178,8 @@
 <li><p>Relax <code>gccm</code> C++ source code <code>libsizes</code> minimum value constraint of <code>E+2</code> (<a href="https://github.com/stscl/spEDM/issues/109" class="external-link">#109</a>).</p></li>
 <li><p>Provide a complete <code>GCCM</code> workflow for spatial lattice and grid data in the <code>gccm</code> vignette (<a href="https://github.com/stscl/spEDM/issues/100" class="external-link">#100</a>).</p></li>
 <li><p>Support testing causal links in GCCM with different <code>E</code> and <code>k</code> for cause and effect variables (<a href="https://github.com/stscl/spEDM/issues/96" class="external-link">#96</a>).</p></li>
-<li><p>Add thread settings for <code>gccm</code> (<a href="https://github.com/stscl/spEDM/issues/94" class="external-link">#94</a>).</p></li>
-<li><p>Add <code>S-maps</code> cross-prediction support to <code>gccm</code> (<a href="https://github.com/stscl/spEDM/issues/81" class="external-link">#81</a>).</p></li>
+<li><p>Add thread settings for <code>gccm</code> generic (<a href="https://github.com/stscl/spEDM/issues/94" class="external-link">#94</a>).</p></li>
+<li><p>Add <code>S-maps</code> cross-prediction support to <code>gccm</code> generic (<a href="https://github.com/stscl/spEDM/issues/81" class="external-link">#81</a>).</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-3">bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-3"></a></h4>
@@ -191,13 +191,13 @@
 <h2 class="pkg-version" data-toc-text="1.2" id="spedm-12">spEDM 1.2<a class="anchor" aria-label="anchor" href="#spedm-12"></a></h2><p class="text-muted">CRAN release: 2025-01-14</p>
 <div class="section level4">
 <h4 id="enhancements-1-2">enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-2"></a></h4>
-<ul><li><p>Encapsulate the <code>gccm</code> function using the S4 class (<a href="https://github.com/stscl/spEDM/issues/72" class="external-link">#72</a>).</p></li>
+<ul><li><p>Encapsulate the <code>gccm</code> generic using the S4 class (<a href="https://github.com/stscl/spEDM/issues/72" class="external-link">#72</a>).</p></li>
 <li><p>Add options for <code>tau</code>, <code>k</code>, and <code>progressbar</code> in <code>gccm</code> (<a href="https://github.com/stscl/spEDM/issues/69" class="external-link">#69</a>).</p></li>
 <li><p>Add <code>print</code> and <code>plot</code> s3 methods for <code>gccm</code> result (<a href="https://github.com/stscl/spEDM/issues/64" class="external-link">#64</a>).</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-2">bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-2"></a></h4>
-<ul><li>Fix the bug where the <code>gccm</code> function returns empty results when input grid data contains NA values (<a href="https://github.com/stscl/spEDM/issues/61" class="external-link">#61</a>).</li>
+<ul><li>Fix the bug where the <code>gccm</code> generic returns empty result when input grid data contains <code>NA</code> values (<a href="https://github.com/stscl/spEDM/issues/61" class="external-link">#61</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -211,7 +211,7 @@
 <h2 class="pkg-version" data-toc-text="1.0" id="spedm-10">spEDM 1.0<a class="anchor" aria-label="anchor" href="#spedm-10"></a></h2><p class="text-muted">CRAN release: 2024-12-16</p>
 <div class="section level4">
 <h4 id="new-1-0">new<a class="anchor" aria-label="anchor" href="#new-1-0"></a></h4>
-<ul><li>Implementing the <code>GCCM</code> method for spatial lattice and grid data using modern C++.</li>
+<ul><li>Implement <code>gccm</code> generic for spatial lattice and grid data using modern C++.</li>
 </ul></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
