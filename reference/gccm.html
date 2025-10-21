@@ -209,19 +209,17 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">gccm</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"hoval"</span>,<span class="st">"crime"</span>,libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span>,E <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
 <span class="r-in"><span><span class="va">g</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   libsizes hoval-&gt;crime crime-&gt;hoval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        5    0.1253050    0.2568469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       10    0.1762769    0.3961522</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       15    0.2197481    0.4672470</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       20    0.2324435    0.5144297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       25    0.2354728    0.5713321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       30    0.2360934    0.6048914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       35    0.2412944    0.6253026</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       40    0.2383788    0.6364897</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       45    0.2339483    0.6484721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        5  0.008706599   0.09483407</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       10  0.050630212   0.23661534</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       15  0.063968439   0.31257162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       20  0.090559554   0.34399536</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       25  0.130099396   0.36386230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       30  0.151729425   0.37586128</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       35  0.150561603   0.38136294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       40  0.159533961   0.39362462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       45  0.175234789   0.40302512</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.85</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="gccm-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
