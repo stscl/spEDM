@@ -55,10 +55,19 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S4 method for class 'sf'</span></span>
-<span><span class="fu">embedded</span><span class="op">(</span><span class="va">data</span>, <span class="va">target</span>, E <span class="op">=</span> <span class="fl">3</span>, tau <span class="op">=</span> <span class="fl">1</span>, style <span class="op">=</span> <span class="fl">1</span>, nb <span class="op">=</span> <span class="cn">NULL</span>, detrend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">embedded</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">target</span>,</span>
+<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  stack <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  detrend <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SpatRaster'</span></span>
-<span><span class="fu">embedded</span><span class="op">(</span><span class="va">data</span>, <span class="va">target</span>, E <span class="op">=</span> <span class="fl">3</span>, tau <span class="op">=</span> <span class="fl">1</span>, style <span class="op">=</span> <span class="fl">1</span>, detrend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">embedded</span><span class="op">(</span><span class="va">data</span>, <span class="va">target</span>, E <span class="op">=</span> <span class="fl">3</span>, tau <span class="op">=</span> <span class="fl">1</span>, style <span class="op">=</span> <span class="fl">1</span>, stack <span class="op">=</span> <span class="fl">0</span>, detrend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -85,6 +94,10 @@
 <dd><p>(optional) embedding style (<code>0</code> includes current state, <code>1</code> excludes it).</p></dd>
 
 
+<dt id="arg-stack">stack<a class="anchor" aria-label="anchor" href="#arg-stack"></a></dt>
+<dd><p>(optional) embedding stack (<code>0</code> average lags, <code>1</code> stacks it).</p></dd>
+
+
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
 <dd><p>(optional) neighbours list.</p></dd>
 
@@ -95,7 +108,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A matrix</p>
+    <p>A matrix (<code>stack</code> = <code>0</code>) or list.</p>
     </div>
 
     <div class="section level2">

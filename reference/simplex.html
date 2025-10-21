@@ -65,6 +65,7 @@
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  stack <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -83,6 +84,7 @@
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  stack <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -128,6 +130,10 @@
 
 <dt id="arg-style">style<a class="anchor" aria-label="anchor" href="#arg-style"></a></dt>
 <dd><p>(optional) embedding style (<code>0</code> includes current state, <code>1</code> excludes it).</p></dd>
+
+
+<dt id="arg-stack">stack<a class="anchor" aria-label="anchor" href="#arg-stack"></a></dt>
+<dd><p>(optional) embedding stack (<code>0</code> average lags, <code>1</code> stacks it).</p></dd>
 
 
 <dt id="arg-dist-metric">dist.metric<a class="anchor" aria-label="anchor" href="#arg-dist-metric"></a></dt>
