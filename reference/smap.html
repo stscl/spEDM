@@ -91,6 +91,7 @@
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  theta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1e-04</span>, <span class="fl">3e-04</span>, <span class="fl">0.001</span>, <span class="fl">0.003</span>, <span class="fl">0.01</span>, <span class="fl">0.03</span>, <span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2</span>, <span class="fl">3</span>,</span>
 <span>    <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  embed.direction <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  detrend <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -162,6 +163,10 @@
 
 <dt id="arg-detrend">detrend<a class="anchor" aria-label="anchor" href="#arg-detrend"></a></dt>
 <dd><p>(optional) whether to remove the linear trend.</p></dd>
+
+
+<dt id="arg-embed-direction">embed.direction<a class="anchor" aria-label="anchor" href="#arg-embed-direction"></a></dt>
+<dd><p>(optional) direction selector for embeddings (<code>0</code> returns all directions, <code>1-8</code> correspond to NW, N, NE, W, E, SW, S, SE).</p></dd>
 
 </dl></div>
     <div class="section level2">
