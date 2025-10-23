@@ -68,7 +68,7 @@
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  stack <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  stack <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -93,9 +93,11 @@
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  stack <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  stack <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  embed.direction <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  window.ratio <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  parallel.level <span class="op">=</span> <span class="st">"low"</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -157,7 +159,7 @@
 
 
 <dt id="arg-stack">stack<a class="anchor" aria-label="anchor" href="#arg-stack"></a></dt>
-<dd><p>(optional) embedding stack (<code>0</code> average lags, <code>1</code> stacks it).</p></dd>
+<dd><p>(optional) whether to stack embeddings.</p></dd>
 
 
 <dt id="arg-dist-metric">dist.metric<a class="anchor" aria-label="anchor" href="#arg-dist-metric"></a></dt>
@@ -190,6 +192,14 @@
 
 <dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
 <dd><p>(optional) whether to show the progress bar.</p></dd>
+
+
+<dt id="arg-embed-direction">embed.direction<a class="anchor" aria-label="anchor" href="#arg-embed-direction"></a></dt>
+<dd><p>(optional) direction selector for embeddings (<code>0</code> returns all directions, <code>1-8</code> correspond to NW, N, NE, W, E, SW, S, SE).</p></dd>
+
+
+<dt id="arg-window-ratio">window.ratio<a class="anchor" aria-label="anchor" href="#arg-window-ratio"></a></dt>
+<dd><p>(optional) ratio of sliding window scale to speed up state-space predictions.</p></dd>
 
 </dl></div>
     <div class="section level2">
