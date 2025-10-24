@@ -62,8 +62,8 @@
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  stack <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  detrend <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  detrend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SpatRaster'</span></span>
@@ -74,8 +74,9 @@
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  stack <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  embed.direction <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  detrend <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  detrend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  grid.coord <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  embed.direction <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -107,12 +108,16 @@
 <dd><p>(optional) whether to stack embeddings.</p></dd>
 
 
+<dt id="arg-detrend">detrend<a class="anchor" aria-label="anchor" href="#arg-detrend"></a></dt>
+<dd><p>(optional) whether to remove the linear trend.</p></dd>
+
+
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
 <dd><p>(optional) neighbours list.</p></dd>
 
 
-<dt id="arg-detrend">detrend<a class="anchor" aria-label="anchor" href="#arg-detrend"></a></dt>
-<dd><p>(optional) whether to remove the linear trend.</p></dd>
+<dt id="arg-grid-coord">grid.coord<a class="anchor" aria-label="anchor" href="#arg-grid-coord"></a></dt>
+<dd><p>(optional) whether to detrend using cell center coordinates (<code>TRUE</code>) or row/column numbers (<code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-embed-direction">embed.direction<a class="anchor" aria-label="anchor" href="#arg-embed-direction"></a></dt>

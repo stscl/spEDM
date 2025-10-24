@@ -60,18 +60,18 @@
 <span>  <span class="va">column</span>,</span>
 <span>  <span class="va">target</span>,</span>
 <span>  <span class="va">nvar</span>,</span>
+<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
+<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
-<span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  nb <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  top <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  detrend <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  detrend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'SpatRaster'</span></span>
@@ -80,17 +80,18 @@
 <span>  <span class="va">column</span>,</span>
 <span>  <span class="va">target</span>,</span>
 <span>  <span class="va">nvar</span>,</span>
+<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
+<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
-<span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  dist.average <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  top <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  detrend <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  detrend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  grid.coord <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -114,6 +115,22 @@
 <dd><p>number of variable combinations.</p></dd>
 
 
+<dt id="arg-e">E<a class="anchor" aria-label="anchor" href="#arg-e"></a></dt>
+<dd><p>(optional) embedding dimensions.</p></dd>
+
+
+<dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
+<dd><p>(optional) number of nearest neighbors used.</p></dd>
+
+
+<dt id="arg-tau">tau<a class="anchor" aria-label="anchor" href="#arg-tau"></a></dt>
+<dd><p>(optional) step of spatial lags.</p></dd>
+
+
+<dt id="arg-style">style<a class="anchor" aria-label="anchor" href="#arg-style"></a></dt>
+<dd><p>(optional) embedding style (<code>0</code> includes current state, <code>1</code> excludes it).</p></dd>
+
+
 <dt id="arg-lib">lib<a class="anchor" aria-label="anchor" href="#arg-lib"></a></dt>
 <dd><p>(optional) libraries indices.</p></dd>
 
@@ -122,32 +139,12 @@
 <dd><p>(optional) predictions indices.</p></dd>
 
 
-<dt id="arg-e">E<a class="anchor" aria-label="anchor" href="#arg-e"></a></dt>
-<dd><p>(optional) embedding dimensions.</p></dd>
-
-
-<dt id="arg-tau">tau<a class="anchor" aria-label="anchor" href="#arg-tau"></a></dt>
-<dd><p>(optional) step of spatial lags.</p></dd>
-
-
-<dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
-<dd><p>(optional) number of nearest neighbors used.</p></dd>
-
-
-<dt id="arg-style">style<a class="anchor" aria-label="anchor" href="#arg-style"></a></dt>
-<dd><p>(optional) embedding style (<code>0</code> includes current state, <code>1</code> excludes it).</p></dd>
-
-
 <dt id="arg-dist-metric">dist.metric<a class="anchor" aria-label="anchor" href="#arg-dist-metric"></a></dt>
 <dd><p>(optional) distance metric (<code>L1</code>: Manhattan, <code>L2</code>: Euclidean).</p></dd>
 
 
 <dt id="arg-dist-average">dist.average<a class="anchor" aria-label="anchor" href="#arg-dist-average"></a></dt>
 <dd><p>(optional) whether to average distance.</p></dd>
-
-
-<dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
-<dd><p>(optional) neighbours list.</p></dd>
 
 
 <dt id="arg-top">top<a class="anchor" aria-label="anchor" href="#arg-top"></a></dt>
@@ -160,6 +157,14 @@
 
 <dt id="arg-detrend">detrend<a class="anchor" aria-label="anchor" href="#arg-detrend"></a></dt>
 <dd><p>(optional) whether to remove the linear trend.</p></dd>
+
+
+<dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
+<dd><p>(optional) neighbours list.</p></dd>
+
+
+<dt id="arg-grid-coord">grid.coord<a class="anchor" aria-label="anchor" href="#arg-grid-coord"></a></dt>
+<dd><p>(optional) whether to detrend using cell center coordinates (<code>TRUE</code>) or row/column numbers (<code>FALSE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
