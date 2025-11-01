@@ -141,15 +141,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 34.64648 37.95647 38.69064</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 40.46533 34.43484 42.28334</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">cu</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/cu.tif"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">r</span> <span class="op">=</span> <span class="fu">embedded</span><span class="op">(</span><span class="va">cu</span>,<span class="st">"cu"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">r</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">=</span> <span class="fu">embedded</span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span>,arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,<span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]     [,2]     [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 14.13616 13.86900 13.60871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 14.09866 13.59174 13.77765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 13.57425 13.91658 14.02535</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 13.61885 13.81650 14.26563</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 13.82547 13.76455 14.03200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 3467.572 3572.004 2611.333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 3355.386 3361.382      NaN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 3107.368 3736.406 3329.188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 2927.267 3519.752 3652.413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 3089.903 3562.450 3664.286</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
