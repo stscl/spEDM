@@ -209,19 +209,13 @@ shadow manifolds for the variable <code>popd</code>.</div>
 <p>Embedding the variable <code>npp</code> from farmland npp data:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">r</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/embedded.html">embedded</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"npp"</span>,E <span class="op">=</span> <span class="fl">5</span>,tau <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="va">r</span><span class="op">[</span><span class="fl">1.001e4</span><span class="op">:</span><span class="fl">1.002e4</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
-<span><span class="co">##           [,1]     [,2]     [,3]</span></span>
-<span><span class="co">##  [1,] 2614.799 3032.174 2631.979</span></span>
-<span><span class="co">##  [2,] 2621.955 3049.761 2665.456</span></span>
-<span><span class="co">##  [3,] 2648.524 3012.623 2650.998</span></span>
-<span><span class="co">##  [4,] 2592.420 3206.427 2652.669</span></span>
-<span><span class="co">##  [5,] 2549.374 3266.779 2632.158</span></span>
-<span><span class="co">##  [6,] 2574.278 3230.915 2589.830</span></span>
-<span><span class="co">##  [7,] 2631.401 3164.674 2573.544</span></span>
-<span><span class="co">##  [8,] 2674.011 3152.381 2598.629</span></span>
-<span><span class="co">##  [9,] 2546.081 3179.526 2653.730</span></span>
-<span><span class="co">## [10,] 2548.110 3143.147 2660.943</span></span>
-<span><span class="co">## [11,] 2570.946 3162.219 2696.025</span></span></code></pre></div>
+<span><span class="va">r</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span>,arr.ind <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="co">##          [,1]     [,2]     [,3]</span></span>
+<span><span class="co">## [1,] 2896.833 2933.926 2898.288</span></span>
+<span><span class="co">## [2,] 3664.286 3071.789 3003.966</span></span>
+<span><span class="co">## [3,] 3317.337 3090.832 2973.627</span></span>
+<span><span class="co">## [4,] 3196.011 3107.388 2942.477</span></span>
+<span><span class="co">## [5,] 3329.188 3080.360 2892.083</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot3D</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plot3D/man/scatter.html" class="external-link">scatter3D</a></span><span class="op">(</span><span class="va">r</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">r</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="va">r</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, colvar <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">19</span>,</span>
 <span>                  col <span class="op">=</span> <span class="st">"#e77854"</span>, theta <span class="op">=</span> <span class="fl">45</span>, phi <span class="op">=</span> <span class="fl">10</span>, cex <span class="op">=</span> <span class="fl">0.01</span>,</span>
