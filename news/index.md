@@ -14,6 +14,9 @@
 
 #### enhancements
 
+- Maintain consistent double precision floating-point comparisons across
+  cpp sources ([\#850](https://github.com/stscl/spEDM/issues/850)).
+
 - Unify font specification in S3 plotting method for cross-mapping
   results ([\#830](https://github.com/stscl/spEDM/issues/830)).
 
