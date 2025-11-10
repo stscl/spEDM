@@ -164,70 +164,15 @@ patterns. International Journal of Geographical Information Science
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
 gpc(columbus,"hoval","crime", E = 3)
-#> $causality
-#>    no positive  negative       dark     type valid
-#> 1   0        0 0.0000000 0.37422083     dark  TRUE
-#> 2   0        0 0.5129642 0.00000000 negative  TRUE
-#> 3   0        0 0.6286459 0.00000000 negative  TRUE
-#> 4   1        0 0.0000000 0.00000000       no  TRUE
-#> 5   0        0 0.8673032 0.00000000 negative  TRUE
-#> 6   0        0 0.0000000 0.99999999     dark  TRUE
-#> 7   0        0 0.5186639 0.00000000 negative  TRUE
-#> 8   1        0 0.0000000 0.00000000       no  TRUE
-#> 9   0        0 0.3736861 0.00000000 negative  TRUE
-#> 10  0        0 0.0000000 0.45286434     dark  TRUE
-#> 11  0        0 0.0000000 0.99437287     dark  TRUE
-#> 12  0        0 0.0000000 0.96865950     dark  TRUE
-#> 13  0        0 0.6692985 0.00000000 negative  TRUE
-#> 14  1        0 0.0000000 0.00000000       no  TRUE
-#> 15  0        0 0.9543786 0.00000000 negative  TRUE
-#> 16  0        0 0.9242713 0.00000000 negative  TRUE
-#> 17  0        0 0.5051428 0.00000000 negative  TRUE
-#> 18  0        0 0.0000000 0.61747155     dark  TRUE
-#> 19  0        0 0.0000000 0.99948625     dark  TRUE
-#> 20  0        0 0.0000000 0.72278605     dark  TRUE
-#> 21  0        0 0.8138213 0.00000000 negative  TRUE
-#> 22  1        0 0.0000000 0.00000000       no  TRUE
-#> 23  0        0 0.5237650 0.00000000 negative  TRUE
-#> 24  1        0 0.0000000 0.00000000       no  TRUE
-#> 25  0        0 0.6723260 0.00000000 negative  TRUE
-#> 26  1        0 0.0000000 0.00000000       no  TRUE
-#> 27  0        0 0.0000000 0.64424426     dark  TRUE
-#> 28  1        0 0.0000000 0.00000000       no  TRUE
-#> 29  0        0 0.9569679 0.00000000 negative  TRUE
-#> 30  1        0 0.0000000 0.00000000       no  TRUE
-#> 31  0        0 0.0000000 0.13637658     dark  TRUE
-#> 32  0        0 0.2732910 0.00000000 negative  TRUE
-#> 33  1        0 0.0000000 0.00000000       no  TRUE
-#> 34  0        0 0.0000000 0.08019356     dark  TRUE
-#> 35  0        0 0.0000000 0.44506935     dark  TRUE
-#> 36  1        0 0.0000000 0.00000000       no  TRUE
-#> 37  0        0 0.9842995 0.00000000 negative  TRUE
-#> 38  0        0 0.8381526 0.00000000 negative  TRUE
-#> 39  0        0 0.3895475 0.00000000 negative  TRUE
-#> 40  0        0 0.4364243 0.00000000 negative  TRUE
-#> 41  1        0 0.0000000 0.00000000       no  TRUE
-#> 42  0        0 0.0000000 0.12819493     dark  TRUE
-#> 43  0        0 0.0000000 0.99235360     dark  TRUE
-#> 44  1        0 0.0000000 0.00000000       no  TRUE
-#> 45  0        0 0.6172039 0.00000000 negative  TRUE
-#> 46  0        0 0.3642121 0.00000000 negative  TRUE
-#> 47  0        0 0.3922613 0.00000000 negative  TRUE
-#> 48  1        0 0.0000000 0.00000000       no  TRUE
-#> 49  1        0 0.0000000 0.00000000       no  TRUE
-#> 
-#> $summary
-#>       type  strength
-#> 1 positive       NaN
-#> 2 negative 0.4672632
-#> 3     dark 0.4354365
-#> 
-#> $pattern
-#>           11        13        31        33
-#> 11       NaN 0.8087358       NaN 0.5330396
-#> 13 0.0000000       NaN 0.5603749 0.3314576
-#> 31 0.6560486 0.4150578       NaN 0.4961768
-#> 33 0.3605805 0.5166237 0.2390131       NaN
-#> 
+#> -------------------------------- 
+#> ***pattern causality analysis*** 
+#> -------------------------------- 
+#>       type  strength      direction
+#> 1 positive       NaN hoval -> crime
+#> 2 negative 0.4672632 hoval -> crime
+#> 3     dark 0.4354365 hoval -> crime
+#> 4 positive 0.0000000 crime -> hoval
+#> 5 negative 0.3920396 crime -> hoval
+#> 6     dark 0.4048886 crime -> hoval
 # }
 ```

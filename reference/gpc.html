@@ -205,71 +205,16 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">columbus</span> <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/columbus.gpkg"</span>, package<span class="op">=</span><span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">gpc</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"hoval"</span>,<span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $causality</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    no positive  negative       dark     type valid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0        0 0.0000000 0.37422083     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0        0 0.5129642 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0        0 0.6286459 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0        0 0.8673032 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0        0 0.0000000 0.99999999     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0        0 0.5186639 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   0        0 0.3736861 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0        0 0.0000000 0.45286434     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0        0 0.0000000 0.99437287     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  0        0 0.0000000 0.96865950     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  0        0 0.6692985 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  0        0 0.9543786 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  0        0 0.9242713 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  0        0 0.5051428 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18  0        0 0.0000000 0.61747155     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  0        0 0.0000000 0.99948625     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  0        0 0.0000000 0.72278605     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21  0        0 0.8138213 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  0        0 0.5237650 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25  0        0 0.6723260 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27  0        0 0.0000000 0.64424426     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29  0        0 0.9569679 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31  0        0 0.0000000 0.13637658     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32  0        0 0.2732910 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34  0        0 0.0000000 0.08019356     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35  0        0 0.0000000 0.44506935     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37  0        0 0.9842995 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38  0        0 0.8381526 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39  0        0 0.3895475 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40  0        0 0.4364243 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42  0        0 0.0000000 0.12819493     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43  0        0 0.0000000 0.99235360     dark  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45  0        0 0.6172039 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46  0        0 0.3642121 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47  0        0 0.3922613 0.00000000 negative  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49  1        0 0.0000000 0.00000000       no  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type  strength</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 positive       NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 negative 0.4672632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     dark 0.4354365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $pattern</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           11        13        31        33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       NaN 0.8087358       NaN 0.5330396</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 0.0000000       NaN 0.5603749 0.3314576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31 0.6560486 0.4150578       NaN 0.4961768</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33 0.3605805 0.5166237 0.2390131       NaN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***pattern causality analysis*** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       type  strength      direction</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 positive       NaN hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 negative 0.4672632 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     dark 0.4354365 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 positive 0.0000000 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 negative 0.3920396 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     dark 0.4048886 crime -&gt; hoval</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
