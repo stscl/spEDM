@@ -80,11 +80,12 @@ sc.test(
 
 - lib:
 
-  (optional) libraries indices.
+  (optional) libraries indices (input needed: `vector` - spatial vector,
+  `matrix` - spatial raster).
 
 - pred:
 
-  (optional) predictions indices.
+  (optional) predictions indices (input requirement same as `lib`).
 
 - threads:
 
