@@ -28,6 +28,9 @@
 - [`gcmc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gcmc.md)
   [`gcmc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gcmc.md)
   : geographical cross mapping cardinality
+- [`gpc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
+  [`gpc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
+  : geographical pattern causality
 
 ### Nonlinear forecasting
 
