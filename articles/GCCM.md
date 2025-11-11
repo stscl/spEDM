@@ -151,7 +151,7 @@ pd_res = gccm(data = popd_sf,
               progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.786115 mins
+## Time difference of 1.920641 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
 ## 1       100 0.1140592 0.03269659
@@ -251,11 +251,11 @@ npp_res = gccm(data = npp,
                progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 0.9278297 mins
+## Time difference of 1.01308 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
-## 1       10 0.1282926 0.1111690
-## 2       30 0.2600225 0.2346917
+## 1       10 0.1282926 0.1111689
+## 2       30 0.2600228 0.2346917
 ## 3       50 0.3773586 0.2998472
 ## 4       70 0.4968706 0.3411285
 ## 5       90 0.5975915 0.3393013
