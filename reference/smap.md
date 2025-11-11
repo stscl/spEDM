@@ -155,6 +155,7 @@ Engineering, 348 (1688):477-495.
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
 smap(columbus,"inc","crime",E = 5,k = 6)
-#> The suggested theta for variable crime is 8 
+#> Warning: All evaluation metrics are identical within tolerance; choosing theta == 1 if available, otherwise closest to 1.
+#> The suggested theta for variable crime is 1 
 # }
 ```
