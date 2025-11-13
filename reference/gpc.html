@@ -59,20 +59,26 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
+<span>  libsizes <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  boot <span class="op">=</span> <span class="fl">99</span>,</span>
+<span>  random <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
-<span>  zero.tolerance <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
+<span>  zero.tolerance <span class="op">=</span> <span class="va">k</span>,</span>
 <span>  relative <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  weighted <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  detrend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  parallel.level <span class="op">=</span> <span class="st">"low"</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -81,20 +87,26 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">cause</span>,</span>
 <span>  <span class="va">effect</span>,</span>
+<span>  libsizes <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  E <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  k <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
 <span>  tau <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  style <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  boot <span class="op">=</span> <span class="fl">99</span>,</span>
+<span>  random <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
-<span>  zero.tolerance <span class="op">=</span> <span class="va">E</span> <span class="op">+</span> <span class="fl">2</span>,</span>
+<span>  zero.tolerance <span class="op">=</span> <span class="va">k</span>,</span>
 <span>  relative <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  weighted <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fu"><a href="detectThreads.html">detectThreads</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  detrend <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  parallel.level <span class="op">=</span> <span class="st">"low"</span>,</span>
 <span>  bidirectional <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  progressbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grid.coord <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -115,16 +127,20 @@
 <dd><p>name of effect variable.</p></dd>
 
 
+<dt id="arg-libsizes">libsizes<a class="anchor" aria-label="anchor" href="#arg-libsizes"></a></dt>
+<dd><p>(optional) number of spatial units used (input needed: <code>vector</code> - spatial vector, <code>matrix</code> - spatial raster).</p></dd>
+
+
 <dt id="arg-e">E<a class="anchor" aria-label="anchor" href="#arg-e"></a></dt>
-<dd><p>(optional) embedding dimension.</p></dd>
+<dd><p>(optional) embedding dimensions.</p></dd>
 
 
 <dt id="arg-k">k<a class="anchor" aria-label="anchor" href="#arg-k"></a></dt>
-<dd><p>(optional) number of nearest neighbors used in cross mapping.</p></dd>
+<dd><p>(optional) number of nearest neighbors.</p></dd>
 
 
 <dt id="arg-tau">tau<a class="anchor" aria-label="anchor" href="#arg-tau"></a></dt>
-<dd><p>(optional) step of spatial lag.</p></dd>
+<dd><p>(optional) step of spatial lags.</p></dd>
 
 
 <dt id="arg-style">style<a class="anchor" aria-label="anchor" href="#arg-style"></a></dt>
@@ -132,11 +148,23 @@
 
 
 <dt id="arg-lib">lib<a class="anchor" aria-label="anchor" href="#arg-lib"></a></dt>
-<dd><p>(optional) libraries indices (input needed: <code>vector</code> - spatial vector, <code>matrix</code> - spatial raster).</p></dd>
+<dd><p>(optional) libraries indices (input requirement same as <code>libsizes</code>).</p></dd>
 
 
 <dt id="arg-pred">pred<a class="anchor" aria-label="anchor" href="#arg-pred"></a></dt>
-<dd><p>(optional) predictions indices (input requirement same as <code>lib</code>).</p></dd>
+<dd><p>(optional) predictions indices (input requirement same as <code>libsizes</code>).</p></dd>
+
+
+<dt id="arg-boot">boot<a class="anchor" aria-label="anchor" href="#arg-boot"></a></dt>
+<dd><p>(optional) number of bootstraps to perform.</p></dd>
+
+
+<dt id="arg-random">random<a class="anchor" aria-label="anchor" href="#arg-random"></a></dt>
+<dd><p>(optional) whether to use random sampling.</p></dd>
+
+
+<dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
+<dd><p>(optional) random seed.</p></dd>
 
 
 <dt id="arg-dist-metric">dist.metric<a class="anchor" aria-label="anchor" href="#arg-dist-metric"></a></dt>
@@ -167,8 +195,16 @@
 <dd><p>(optional) whether to remove the linear trend.</p></dd>
 
 
+<dt id="arg-parallel-level">parallel.level<a class="anchor" aria-label="anchor" href="#arg-parallel-level"></a></dt>
+<dd><p>(optional) level of parallelism, <code>low</code> or <code>high</code>.</p></dd>
+
+
 <dt id="arg-bidirectional">bidirectional<a class="anchor" aria-label="anchor" href="#arg-bidirectional"></a></dt>
 <dd><p>(optional) whether to examine bidirectional causality.</p></dd>
+
+
+<dt id="arg-progressbar">progressbar<a class="anchor" aria-label="anchor" href="#arg-progressbar"></a></dt>
+<dd><p>(optional) whether to show the progress bar.</p></dd>
 
 
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>
@@ -181,17 +217,23 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list</p><dl><dt><code>causality</code></dt>
-<dd><p>per-sample causality statistics</p></dd>
+    <p>A list</p><dl><dt><code>xmap</code></dt>
+<dd><p>cross mapping results (only present if <code>libsizes</code> is not <code>NULL</code>)</p></dd>
+
+<dt><code>causality</code></dt>
+<dd><p>per-sample causality statistics(present if <code>libsizes</code> is <code>NULL</code>)</p></dd>
 
 <dt><code>summary</code></dt>
-<dd><p>overall causal strength</p></dd>
+<dd><p>overall causal strength(present if <code>libsizes</code> is <code>NULL</code>)</p></dd>
 
 <dt><code>pattern</code></dt>
-<dd><p>pairwise pattern relationships</p></dd>
+<dd><p>pairwise pattern relationships(present if <code>libsizes</code> is <code>NULL</code>)</p></dd>
 
 <dt><code>varname</code></dt>
 <dd><p>names of causal and effect variable</p></dd>
+
+<dt><code>bidirectional</code></dt>
+<dd><p>whether to examine bidirectional causality</p></dd>
 
 
 </dl></div>
@@ -215,6 +257,70 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 positive 0.0000000 crime -&gt; hoval</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 negative 0.3920396 crime -&gt; hoval</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     dark 0.4048886 crime -&gt; hoval</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># convergence diagnostics</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">=</span> <span class="fu">gpc</span><span class="op">(</span><span class="va">columbus</span>,<span class="st">"hoval"</span>,<span class="st">"crime"</span>,libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">45</span>,<span class="fl">5</span><span class="op">)</span>,E <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computing: [========================================] 100% (done)                         </span>
+<span class="r-in"><span><span class="va">g</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ***pattern causality analysis*** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------- </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    libsizes     type        mean        q05        q50       q95      direction</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         5 positive 0.036176018 0.00000000 0.00000000 0.3575097 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        10 positive 0.204854508 0.00000000 0.00000000 0.9998846 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        15 positive 0.166966329 0.00000000 0.00000000 0.9745458 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        20 positive 0.269291264 0.00000000 0.00000000 0.9900096 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        25 positive 0.389912291 0.00000000 0.19954612 0.9990174 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        30 positive 0.288498632 0.00000000 0.00000000 0.9977306 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        35 positive 0.245224832 0.00000000 0.00000000 0.9525968 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        40 positive 0.260125581 0.00000000 0.00000000 0.9808552 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9        45 positive 0.130895771 0.00000000 0.00000000 0.9410527 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        5 negative 0.194028038 0.00000000 0.00000000 0.6936267 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11       10 negative 0.118665459 0.00000000 0.00000000 0.6023785 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       15 negative 0.150688518 0.00000000 0.00000000 0.6119880 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       20 negative 0.293656944 0.00000000 0.06997555 0.9712938 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14       25 negative 0.399200253 0.00000000 0.44550421 0.9803728 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15       30 negative 0.484154652 0.00000000 0.47930290 0.9763150 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       35 negative 0.495635421 0.00000000 0.47393878 0.9831998 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17       40 negative 0.607135964 0.24102406 0.65585068 0.9859078 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18       45 negative 0.651939773 0.47901902 0.65604858 0.9379510 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19        5     dark 0.261691951 0.03075707 0.22042271 0.5848067 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20       10     dark 0.302543989 0.10982579 0.28860403 0.5315738 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21       15     dark 0.347725587 0.17785968 0.35142365 0.5243124 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22       20     dark 0.367281996 0.21419343 0.34947444 0.5273126 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23       25     dark 0.395459887 0.24837914 0.39863388 0.5263926 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24       30     dark 0.408233091 0.29256601 0.40037713 0.5344488 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25       35     dark 0.421067842 0.30944049 0.42995361 0.5190453 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26       40     dark 0.434209601 0.34181795 0.43099400 0.5305141 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27       45     dark 0.443724964 0.38512228 0.44136141 0.5095774 hoval -&gt; crime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28        5 positive 0.074643683 0.00000000 0.00000000 0.5622389 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29       10 positive 0.054697987 0.00000000 0.00000000 0.4455329 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30       15 positive 0.057658931 0.00000000 0.00000000 0.3431772 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31       20 positive 0.064427158 0.00000000 0.00000000 0.3871073 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32       25 positive 0.034785988 0.00000000 0.00000000 0.2948366 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33       30 positive 0.072017593 0.00000000 0.00000000 0.5058090 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34       35 positive 0.030759130 0.00000000 0.00000000 0.2666784 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35       40 positive 0.003632321 0.00000000 0.00000000 0.0000000 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36       45 positive 0.000000000 0.00000000 0.00000000 0.0000000 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37        5 negative 0.428359219 0.00000000 0.38208874 0.9553778 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38       10 negative 0.441918890 0.00000000 0.40488679 0.9684740 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39       15 negative 0.508595932 0.15587241 0.49527142 0.9030983 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40       20 negative 0.493236550 0.26067623 0.47004501 0.9200152 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41       25 negative 0.482211946 0.23931756 0.47234027 0.7902676 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42       30 negative 0.484994993 0.25158791 0.47416142 0.7412896 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43       35 negative 0.409372492 0.24545935 0.38740890 0.6320455 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44       40 negative 0.386542152 0.26427927 0.37003080 0.5630178 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45       45 negative 0.338634335 0.27048704 0.31378757 0.5019020 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46        5     dark 0.308907408 0.00000000 0.24524890 0.8626739 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47       10     dark 0.320420364 0.08725548 0.32736713 0.6176798 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48       15     dark 0.349842419 0.18894228 0.34680609 0.4907322 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49       20     dark 0.360706509 0.17112790 0.37015571 0.5115256 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50       25     dark 0.373620285 0.24108272 0.37437827 0.5366883 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51       30     dark 0.369014119 0.24340322 0.35727364 0.5041561 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52       35     dark 0.372023483 0.28005622 0.36791155 0.4661366 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53       40     dark 0.381208616 0.30244679 0.38098533 0.4670300 crime -&gt; hoval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54       45     dark 0.372072029 0.30867136 0.37282513 0.4425633 crime -&gt; hoval</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
