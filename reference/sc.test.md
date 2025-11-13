@@ -136,7 +136,7 @@ columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
 sc.test(columbus,"hoval","crime", k = 15)
 #> spatial causality test
-#> hoval -> crime: statistic = 1.114, p value = 0.574
-#> crime -> hoval: statistic = 1.555, p value = 0
+#> hoval -> crime: statistic = 1.114, p value = 0.549
+#> crime -> hoval: statistic = 1.555, p value = 0.008
 # }
 ```
