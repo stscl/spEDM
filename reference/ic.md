@@ -19,7 +19,6 @@ ic(
   dist.metric = "L2",
   threads = detectThreads(),
   detrend = FALSE,
-  parallel.level = "low",
   nb = NULL
 )
 
@@ -37,7 +36,6 @@ ic(
   dist.metric = "L2",
   threads = detectThreads(),
   detrend = FALSE,
-  parallel.level = "low",
   grid.coord = TRUE
 )
 ```
@@ -93,10 +91,6 @@ ic(
 - detrend:
 
   (optional) whether to remove the linear trend.
-
-- parallel.level:
-
-  (optional) level of parallelism, `low` or `high`.
 
 - nb:
 
