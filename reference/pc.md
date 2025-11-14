@@ -154,6 +154,6 @@ National Academy of Sciences 117, 7599–7605.
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
 pc(columbus,"hoval","crime", E = 6:8, k = 7:10)
-#> The suggested E,k,tau for variable crime is 6, 7 and 1 
+#> The suggested E,k,tau for variable crime is 8, 7 and 1 
 # }
 ```
