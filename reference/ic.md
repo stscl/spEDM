@@ -119,7 +119,7 @@ A list
 
 - `tau`:
 
-  step of time lag
+  step of spatial lag
 
 ## References
 
