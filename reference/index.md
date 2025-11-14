@@ -22,6 +22,9 @@
 - [`ic(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   [`ic(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   : intersection cardinality
+- [`pc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
+  [`pc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
+  : pattern causality
 - [`gccm(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gccm.md)
   [`gccm(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gccm.md)
   : geographical convergent cross mapping
