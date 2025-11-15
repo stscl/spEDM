@@ -4,6 +4,9 @@
 
 #### new
 
+- Provide R-level API and vignette for geographical pattern causality
+  ([\#868](https://github.com/stscl/spEDM/issues/868)).
+
 - Introduce cross mapping of raster data with anisotropic embedding and
   variable sliding window steps
   ([\#812](https://github.com/stscl/spEDM/issues/812)).

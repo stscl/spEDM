@@ -9,19 +9,21 @@ of the underlying spatial dynamical system.
 Let \\x(s)\\ and \\y(s)\\ denote two spatial cross-sections over
 locations \\s \in \mathcal{S}\\.
 
-**(1) Spatial Embedding** For each location \\s_i\\, GPC constructs an
-embedding vector
+**(1) Spatial Embedding**
 
-\\ \mathbf{E}\*x(s_i) = \big( x(s\*{i}^{(1)}), x(s\_{i}^{(2)}), \dots,
+For each location \\s_i\\, GPC constructs an embedding vector
+
+\\ \mathbf{E}\_{x(s_i)} = \big( x(s\_{i}^{(1)}), x(s\_{i}^{(2)}), \dots,
 x(s\_{i}^{(E\tau)}) \big), \\
 
-where \\s\_{i}^{(k)}\\ denotes the \\k\\-th spatially lagged value,
-determined by embedding dimension \\E\\ and lag \\\tau\\. This yields
-two reconstructed state spaces \\\mathcal{M}\_x, \mathcal{M}\_y \subset
-\mathbb{R}^E\\.
+where \\s\_{i}^{(k)}\\ denotes the \\k\\-th spatially lagged value of
+the spatial unit \\s_i\\, determined by embedding dimension \\E\\ and
+lag \\\tau\\. This yields two reconstructed state spaces
+\\\mathcal{M}\_x, \mathcal{M}\_y \subset \mathbb{R}^E\\.
 
-**(2) Symbolic Pattern Extraction** Local geometric transitions in each
-manifold are mapped to symbols
+**(2) Symbolic Pattern Extraction**
+
+Local geometric transitions in each manifold are mapped to symbols
 
 \\ \sigma_x(s_i),; \sigma_y(s_i) \in \mathcal{A}, \\
 

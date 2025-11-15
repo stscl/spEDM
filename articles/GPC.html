@@ -96,20 +96,22 @@ of the underlying spatial dynamical system.</p>
 <p>Let <span class="math inline">\(x(s)\)</span> and <span class="math inline">\(y(s)\)</span> denote two spatial cross-sections
 over locations <span class="math inline">\(s \in
 \mathcal{S}\)</span>.</p>
-<p><strong>(1) Spatial Embedding</strong> For each location <span class="math inline">\(s_i\)</span>, GPC constructs an embedding
-vector</p>
+<p><strong>(1) Spatial Embedding</strong></p>
+<p>For each location <span class="math inline">\(s_i\)</span>, GPC
+constructs an embedding vector</p>
 <p><span class="math display">\[
-\mathbf{E}*x(s_i) = \big( x(s*{i}^{(1)}), x(s_{i}^{(2)}), \dots,
+\mathbf{E}_{x(s_i)} = \big( x(s_{i}^{(1)}), x(s_{i}^{(2)}), \dots,
 x(s_{i}^{(E\tau)}) \big),
 \]</span></p>
 <p>where <span class="math inline">\(s_{i}^{(k)}\)</span> denotes the
-<span class="math inline">\(k\)</span>-th spatially lagged value,
-determined by embedding dimension <span class="math inline">\(E\)</span>
-and lag <span class="math inline">\(\tau\)</span>. This yields two
-reconstructed state spaces <span class="math inline">\(\mathcal{M}_x,
-\mathcal{M}_y \subset \mathbb{R}^E\)</span>.</p>
-<p><strong>(2) Symbolic Pattern Extraction</strong> Local geometric
-transitions in each manifold are mapped to symbols</p>
+<span class="math inline">\(k\)</span>-th spatially lagged value of the
+spatial unit <span class="math inline">\(s_i\)</span>, determined by
+embedding dimension <span class="math inline">\(E\)</span> and lag <span class="math inline">\(\tau\)</span>. This yields two reconstructed state
+spaces <span class="math inline">\(\mathcal{M}_x, \mathcal{M}_y \subset
+\mathbb{R}^E\)</span>.</p>
+<p><strong>(2) Symbolic Pattern Extraction</strong></p>
+<p>Local geometric transitions in each manifold are mapped to
+symbols</p>
 <p><span class="math display">\[
 \sigma_x(s_i),; \sigma_y(s_i) \in \mathcal{A},
 \]</span></p>
