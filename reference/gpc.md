@@ -207,20 +207,20 @@ patterns. International Journal of Geographical Information Science
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
-gpc(columbus,"hoval","crime", E = 3)
+gpc(columbus,"hoval","crime", E = 5)
 #> -------------------------------- 
 #> ***pattern causality analysis*** 
 #> -------------------------------- 
 #>       type  strength      direction
 #> 1 positive       NaN hoval -> crime
-#> 2 negative 0.4672632 hoval -> crime
-#> 3     dark 0.4354365 hoval -> crime
-#> 4 positive 0.0000000 crime -> hoval
-#> 5 negative 0.3920396 crime -> hoval
-#> 6     dark 0.4048886 crime -> hoval
+#> 2 negative 0.2924760 hoval -> crime
+#> 3     dark 0.3105263 hoval -> crime
+#> 4 positive       NaN crime -> hoval
+#> 5 negative 0.8258171 crime -> hoval
+#> 6     dark 0.2672605 crime -> hoval
 
 # convergence diagnostics
-g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 3)
+g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 5)
 #> Computing: [========================================] 100% (done)                         
 #> Computing: [========================================] 100% (done)                         
 plot(g)
