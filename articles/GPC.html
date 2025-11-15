@@ -93,33 +93,58 @@ Last run: 2025-11-15</div></h4>
 <p>Geographical Pattern Causality (GPC) infers causal relations from
 spatial cross-sectional data by reconstructing a symbolic approximation
 of the underlying spatial dynamical system.</p>
-<p>Let ( x(s) ) and ( y(s) ) denote two spatial fields over locations (
-s ).</p>
-<p><strong>(1) Spatial Embedding.</strong> For each location ( s_i ),
-GPC constructs an embedding vector [ <em>x(s_i) = ( x(s</em>{i}^{(1)}),
-x(s_{i}^{(2)}), , x(s_{i}^{(E)}) ),] where ( s_{i}^{(k)} ) denotes the
-(k)-th spatially lagged value, determined by embedding dimension (E) and
-lag (). This yields two reconstructed state spaces ( _x, _y ^E ).</p>
-<p><strong>(2) Symbolic Pattern Extraction.</strong> Local geometric
-transitions in each manifold are mapped to symbols [ _x(s_i),; _y(s_i)
-,] encoding increasing, decreasing, or complex spatial modes. These
+<p>Let <span class="math inline">\(x(s)\)</span> and <span class="math inline">\(y(s)\)</span> denote two spatial cross-sections
+over locations <span class="math inline">\(s \in
+\mathcal{S}\)</span>.</p>
+<p><strong>(1) Spatial Embedding</strong> For each location <span class="math inline">\(s_i\)</span>, GPC constructs an embedding
+vector</p>
+<p><span class="math display">\[
+\mathbf{E}*x(s_i) = \big( x(s*{i}^{(1)}), x(s_{i}^{(2)}), \dots,
+x(s_{i}^{(E\tau)}) \big),
+\]</span></p>
+<p>where <span class="math inline">\(s_{i}^{(k)}\)</span> denotes the
+<span class="math inline">\(k\)</span>-th spatially lagged value,
+determined by embedding dimension <span class="math inline">\(E\)</span>
+and lag <span class="math inline">\(\tau\)</span>. This yields two
+reconstructed state spaces <span class="math inline">\(\mathcal{M}_x,
+\mathcal{M}_y \subset \mathbb{R}^E\)</span>.</p>
+<p><strong>(2) Symbolic Pattern Extraction</strong> Local geometric
+transitions in each manifold are mapped to symbols</p>
+<p><span class="math display">\[
+\sigma_x(s_i),; \sigma_y(s_i) \in \mathcal{A},
+\]</span></p>
+<p>encoding increasing, decreasing, or non-changing modes. These
 symbolic trajectories summarize local pattern evolution.</p>
-<p><strong>(3) Cross-Pattern Mapping.</strong> Causality from (x y) is
-assessed by predicting [ _y(s_i) = F( _x(s_j): s_j _k(s_i) ),] where
-(_k) denotes the set of (k) nearest neighbors in (_x). The agreement
-structure between (_y(s_i)) and (_y(s_i)) determines the causal
+<p><strong>(3) Cross-Pattern Mapping</strong></p>
+<p>Causality from <span class="math inline">\(x \to y\)</span> is
+assessed by predicting:</p>
+<p><span class="math display">\[
+\hat{\sigma}_y(s_i) = F\big( \sigma_x(s_j): s_j \in \mathcal{N}_k(s_i)
+\big),
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{N}_k\)</span> denotes the
+set of <span class="math inline">\(k\)</span> nearest neighbors in <span class="math inline">\(\mathcal{M}_x\)</span>. The agreement structure
+between <span class="math inline">\(\hat{\sigma}_y(s_i)\)</span> and
+<span class="math inline">\(\sigma_y(s_i)\)</span> determines the causal
 mode:</p>
 <ul>
-<li>Positive: ( _y = _y )</li>
-<li>Negative: ( _y = -_y )</li>
+<li>Positive: <span class="math inline">\(\hat{\sigma}_y =
+\sigma_y\)</span>
+</li>
+<li>Negative: <span class="math inline">\(\hat{\sigma}_y =
+-\sigma_y\)</span>
+</li>
 <li>Dark: neither agreement nor opposition</li>
 </ul>
-<p><strong>(4) Causal Strength.</strong> The global causal strength is
-the normalized consistency of symbol matches: [ C_{x y} = _{s_i } ,]
-where ( ) encodes positive, negative, or dark matching rules.</p>
-<p>Through this embedding–symbolization–mapping sequence, GPC provides a
-compact, dynamical, and nonlinear framework for detecting directional
-causal structures in spatial systems.</p>
+<p><strong>(4) Causal Strength</strong></p>
+<p>The global causal strength is the normalized consistency of symbol
+matches:</p>
+<p><span class="math display">\[
+C_{x \to y} = \frac{1}{|\mathcal{S}|} \sum_{s_i \in \mathcal{S}}
+\mathbb{I}\big[ \hat{\sigma}_y(s_i) \bowtie \sigma_y(s_i) \big],
+\]</span></p>
+<p>where <span class="math inline">\(\bowtie\)</span> encodes positive,
+negative, or dark matching rules.</p>
 </div>
 <div class="section level2">
 <h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
@@ -185,68 +210,65 @@ search.</p>
 <span><span class="co">## 5 negative 0.8347013 crime -&gt; hoval</span></span>
 <span><span class="co">## 6     dark 0.2665406 crime -&gt; hoval</span></span></code></pre></div>
 <p>Convergence diagnostics</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>crime_convergence <span class="ot">=</span> spEDM<span class="sc">::</span><span class="fu">gpc</span>(columbus, <span class="st">"hoval"</span>, <span class="st">"crime"</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                               <span class="at">libsizes =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">45</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                               <span class="at">E =</span> <span class="dv">5</span>, <span class="at">k =</span> <span class="dv">6</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">======================================</span>] <span class="dv">100</span>% (done)                         </span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">======================================</span>] <span class="dv">100</span>% (done)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>crime_convergence</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">## -------------------------------- </span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="do">## ***pattern causality analysis*** </span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="do">## -------------------------------- </span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="do">##    libsizes     type       mean        q05         q50       q95      direction</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="do">## 1        10 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="do">## 2        15 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="do">## 3        20 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="do">## 4        25 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="do">## 5        30 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="do">## 6        35 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="do">## 7        40 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="do">## 8        45 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="do">## 9        10 negative 0.06197905 0.00000000 0.000000000 0.2122731 hoval -&gt; crime</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="do">## 10       15 negative 0.09733382 0.00000000 0.008436065 0.3764162 hoval -&gt; crime</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="do">## 11       20 negative 0.16973789 0.00000000 0.079063725 0.6827156 hoval -&gt; crime</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="do">## 12       25 negative 0.19585505 0.00000000 0.163092046 0.7090052 hoval -&gt; crime</span></span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="do">## 13       30 negative 0.21620032 0.00000000 0.184693649 0.6105418 hoval -&gt; crime</span></span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="do">## 14       35 negative 0.27419530 0.00000000 0.291693414 0.6387668 hoval -&gt; crime</span></span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="do">## 15       40 negative 0.29505999 0.00000000 0.301567205 0.6858029 hoval -&gt; crime</span></span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="do">## 16       45 negative 0.28582637 0.00000000 0.278714857 0.7823519 hoval -&gt; crime</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="do">## 17       10     dark 0.06909548 0.01466280 0.064407248 0.1306970 hoval -&gt; crime</span></span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="do">## 18       15     dark 0.09379292 0.03032706 0.090038526 0.1753795 hoval -&gt; crime</span></span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="do">## 19       20     dark 0.10990907 0.05273241 0.111527731 0.1812541 hoval -&gt; crime</span></span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="do">## 20       25     dark 0.13626822 0.07348148 0.132795897 0.2066249 hoval -&gt; crime</span></span>
-<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="do">## 21       30     dark 0.16691561 0.10837075 0.164160188 0.2323193 hoval -&gt; crime</span></span>
-<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="do">## 22       35     dark 0.20811342 0.14493342 0.205565119 0.2830248 hoval -&gt; crime</span></span>
-<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="do">## 23       40     dark 0.23123661 0.16032023 0.231884982 0.3024902 hoval -&gt; crime</span></span>
-<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="do">## 24       45     dark 0.25667436 0.19059340 0.262871437 0.3119186 hoval -&gt; crime</span></span>
-<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="do">## 25       10 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="do">## 26       15 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="do">## 27       20 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="do">## 28       25 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a><span class="do">## 29       30 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a><span class="do">## 30       35 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="do">## 31       40 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a><span class="do">## 32       45 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
-<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a><span class="do">## 33       10 negative 0.09654436 0.00000000 0.000000000 0.3586954 crime -&gt; hoval</span></span>
-<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="do">## 34       15 negative 0.20393585 0.00000000 0.209139006 0.7079035 crime -&gt; hoval</span></span>
-<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a><span class="do">## 35       20 negative 0.32201217 0.00000000 0.354644641 0.7737565 crime -&gt; hoval</span></span>
-<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a><span class="do">## 36       25 negative 0.42664655 0.00000000 0.387706242 0.8178587 crime -&gt; hoval</span></span>
-<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a><span class="do">## 37       30 negative 0.57588175 0.22782805 0.732695557 0.8347013 crime -&gt; hoval</span></span>
-<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a><span class="do">## 38       35 negative 0.64433710 0.27861320 0.789691315 0.8347013 crime -&gt; hoval</span></span>
-<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a><span class="do">## 39       40 negative 0.68771823 0.40682155 0.810940395 0.8359320 crime -&gt; hoval</span></span>
-<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a><span class="do">## 40       45 negative 0.80291152 0.41832745 0.834701302 0.8368720 crime -&gt; hoval</span></span>
-<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a><span class="do">## 41       10     dark 0.12603205 0.04863464 0.120620434 0.2110495 crime -&gt; hoval</span></span>
-<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a><span class="do">## 42       15     dark 0.14482113 0.07541432 0.138866743 0.2314505 crime -&gt; hoval</span></span>
-<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a><span class="do">## 43       20     dark 0.16382185 0.08162589 0.161596344 0.2379369 crime -&gt; hoval</span></span>
-<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a><span class="do">## 44       25     dark 0.17266178 0.11528366 0.174319496 0.2334413 crime -&gt; hoval</span></span>
-<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a><span class="do">## 45       30     dark 0.19812654 0.13584290 0.200169607 0.2599632 crime -&gt; hoval</span></span>
-<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a><span class="do">## 46       35     dark 0.22141279 0.15870776 0.221354140 0.2861718 crime -&gt; hoval</span></span>
-<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a><span class="do">## 47       40     dark 0.24194166 0.18537228 0.243766935 0.2914456 crime -&gt; hoval</span></span>
-<span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a><span class="do">## 48       45     dark 0.25798204 0.21830835 0.259892742 0.2999078 crime -&gt; hoval</span></span>
-<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a><span class="fu">plot</span>(crime_convergence, <span class="at">ylimits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="dv">1</span>),</span>
-<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a>     <span class="at">xlimits =</span> <span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">46</span>), <span class="at">xbreaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">45</span>, <span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">crime_convergence</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>,</span>
+<span>                               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">45</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
+<span>                               E <span class="op">=</span> <span class="fl">5</span>, k <span class="op">=</span> <span class="fl">6</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">crime_convergence</span></span>
+<span><span class="co">## -------------------------------- </span></span>
+<span><span class="co">## ***pattern causality analysis*** </span></span>
+<span><span class="co">## -------------------------------- </span></span>
+<span><span class="co">##    libsizes     type       mean        q05         q50       q95      direction</span></span>
+<span><span class="co">## 1        10 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 2        15 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 3        20 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 4        25 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 5        30 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 6        35 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 7        40 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 8        45 positive 0.00000000 0.00000000 0.000000000 0.0000000 hoval -&gt; crime</span></span>
+<span><span class="co">## 9        10 negative 0.06197905 0.00000000 0.000000000 0.2122731 hoval -&gt; crime</span></span>
+<span><span class="co">## 10       15 negative 0.09733382 0.00000000 0.008436065 0.3764162 hoval -&gt; crime</span></span>
+<span><span class="co">## 11       20 negative 0.16973789 0.00000000 0.079063725 0.6827156 hoval -&gt; crime</span></span>
+<span><span class="co">## 12       25 negative 0.19585505 0.00000000 0.163092046 0.7090052 hoval -&gt; crime</span></span>
+<span><span class="co">## 13       30 negative 0.21620032 0.00000000 0.184693649 0.6105418 hoval -&gt; crime</span></span>
+<span><span class="co">## 14       35 negative 0.27419530 0.00000000 0.291693414 0.6387668 hoval -&gt; crime</span></span>
+<span><span class="co">## 15       40 negative 0.29505999 0.00000000 0.301567205 0.6858029 hoval -&gt; crime</span></span>
+<span><span class="co">## 16       45 negative 0.28582637 0.00000000 0.278714857 0.7823519 hoval -&gt; crime</span></span>
+<span><span class="co">## 17       10     dark 0.06909548 0.01466280 0.064407248 0.1306970 hoval -&gt; crime</span></span>
+<span><span class="co">## 18       15     dark 0.09379292 0.03032706 0.090038526 0.1753795 hoval -&gt; crime</span></span>
+<span><span class="co">## 19       20     dark 0.10990907 0.05273241 0.111527731 0.1812541 hoval -&gt; crime</span></span>
+<span><span class="co">## 20       25     dark 0.13626822 0.07348148 0.132795897 0.2066249 hoval -&gt; crime</span></span>
+<span><span class="co">## 21       30     dark 0.16691561 0.10837075 0.164160188 0.2323193 hoval -&gt; crime</span></span>
+<span><span class="co">## 22       35     dark 0.20811342 0.14493342 0.205565119 0.2830248 hoval -&gt; crime</span></span>
+<span><span class="co">## 23       40     dark 0.23123661 0.16032023 0.231884982 0.3024902 hoval -&gt; crime</span></span>
+<span><span class="co">## 24       45     dark 0.25667436 0.19059340 0.262871437 0.3119186 hoval -&gt; crime</span></span>
+<span><span class="co">## 25       10 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 26       15 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 27       20 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 28       25 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 29       30 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 30       35 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 31       40 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 32       45 positive 0.00000000 0.00000000 0.000000000 0.0000000 crime -&gt; hoval</span></span>
+<span><span class="co">## 33       10 negative 0.09654436 0.00000000 0.000000000 0.3586954 crime -&gt; hoval</span></span>
+<span><span class="co">## 34       15 negative 0.20393585 0.00000000 0.209139006 0.7079035 crime -&gt; hoval</span></span>
+<span><span class="co">## 35       20 negative 0.32201217 0.00000000 0.354644641 0.7737565 crime -&gt; hoval</span></span>
+<span><span class="co">## 36       25 negative 0.42664655 0.00000000 0.387706242 0.8178587 crime -&gt; hoval</span></span>
+<span><span class="co">## 37       30 negative 0.57588175 0.22782805 0.732695557 0.8347013 crime -&gt; hoval</span></span>
+<span><span class="co">## 38       35 negative 0.64433710 0.27861320 0.789691315 0.8347013 crime -&gt; hoval</span></span>
+<span><span class="co">## 39       40 negative 0.68771823 0.40682155 0.810940395 0.8359320 crime -&gt; hoval</span></span>
+<span><span class="co">## 40       45 negative 0.80291152 0.41832745 0.834701302 0.8368720 crime -&gt; hoval</span></span>
+<span><span class="co">## 41       10     dark 0.12603205 0.04863464 0.120620434 0.2110495 crime -&gt; hoval</span></span>
+<span><span class="co">## 42       15     dark 0.14482113 0.07541432 0.138866743 0.2314505 crime -&gt; hoval</span></span>
+<span><span class="co">## 43       20     dark 0.16382185 0.08162589 0.161596344 0.2379369 crime -&gt; hoval</span></span>
+<span><span class="co">## 44       25     dark 0.17266178 0.11528366 0.174319496 0.2334413 crime -&gt; hoval</span></span>
+<span><span class="co">## 45       30     dark 0.19812654 0.13584290 0.200169607 0.2599632 crime -&gt; hoval</span></span>
+<span><span class="co">## 46       35     dark 0.22141279 0.15870776 0.221354140 0.2861718 crime -&gt; hoval</span></span>
+<span><span class="co">## 47       40     dark 0.24194166 0.18537228 0.243766935 0.2914456 crime -&gt; hoval</span></span>
+<span><span class="co">## 48       45     dark 0.25798204 0.21830835 0.259892742 0.2999078 crime -&gt; hoval</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">crime_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">1</span><span class="op">)</span>,</span>
+<span>     xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>,<span class="fl">46</span><span class="op">)</span>, xbreaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">45</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gpc/fig1-1.png" alt="Figure 1. Convergence curves of causal strengths among house value and crime."><div class="figcaption">
 <strong>Figure 1</strong>. <strong>Convergence
@@ -314,78 +336,65 @@ analysis.</p>
 <span><span class="co">## 5 negative 0.01839649 npp -&gt; pre</span></span>
 <span><span class="co">## 6     dark 0.07731815 npp -&gt; pre</span></span></code></pre></div>
 <p>Convergence diagnostics</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>npp_convergence <span class="ot">=</span> spEDM<span class="sc">::</span><span class="fu">gpc</span>(npp, <span class="st">"pre"</span>, <span class="st">"npp"</span>, </span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                             <span class="at">libsizes =</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">80</span>,<span class="dv">10</span>),<span class="dv">2</span>),<span class="at">ncol =</span> <span class="dv">2</span>), </span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>                             <span class="at">E =</span> <span class="dv">10</span>, <span class="at">k =</span> <span class="dv">8</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">========</span>                              ] <span class="dv">25</span>%  (<span class="sc">~</span><span class="dv">4</span>s remaining)       </span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">==============</span>                        ] <span class="dv">38</span>%  (<span class="sc">~</span><span class="dv">3</span>s remaining)       </span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">==================</span>                    ] <span class="dv">50</span>%  (<span class="sc">~</span><span class="dv">3</span>s remaining)       </span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">========================</span>              ] <span class="dv">63</span>%  (<span class="sc">~</span><span class="dv">2</span>s remaining)       </span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">============================</span>          ] <span class="dv">75</span>%  (<span class="sc">~</span><span class="dv">1</span>s remaining)       </span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">==================================</span>    ] <span class="dv">88</span>%  (<span class="sc">~</span><span class="dv">1</span>s remaining)       </span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">======================================</span>] <span class="dv">100</span>% (done)                         </span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">====</span>                                  ] <span class="dv">13</span>%  (<span class="sc">~</span><span class="dv">15</span>s remaining)       </span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">========</span>                              ] <span class="dv">25</span>%  (<span class="sc">~</span><span class="dv">7</span>s remaining)       </span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">==================</span>                    ] <span class="dv">50</span>%  (<span class="sc">~</span><span class="dv">3</span>s remaining)       </span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">============================</span>          ] <span class="dv">75</span>%  (<span class="sc">~</span><span class="dv">1</span>s remaining)       </span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>Computing<span class="sc">:</span> [<span class="sc">==</span><span class="er">======================================</span>] <span class="dv">100</span>% (done)</span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>npp_convergence</span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="do">## -------------------------------- </span></span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="do">## ***pattern causality analysis*** </span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="do">## -------------------------------- </span></span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="do">##    libsizes     type        mean         q05         q50         q95  direction</span></span>
-<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="do">## 1       100 positive 0.031115313 0.007586101 0.029699586 0.058335871 pre -&gt; npp</span></span>
-<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="do">## 2       400 positive 0.046321136 0.025965817 0.043444827 0.072677663 pre -&gt; npp</span></span>
-<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="do">## 3       900 positive 0.061289327 0.036546196 0.060742103 0.088607440 pre -&gt; npp</span></span>
-<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="do">## 4      1600 positive 0.076140862 0.052179914 0.073213997 0.109569849 pre -&gt; npp</span></span>
-<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="do">## 5      2500 positive 0.099999344 0.061554432 0.099303348 0.138071568 pre -&gt; npp</span></span>
-<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="do">## 6      3600 positive 0.126697417 0.098448170 0.123791233 0.167912560 pre -&gt; npp</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="do">## 7      4900 positive 0.146035271 0.112762146 0.145172371 0.183307027 pre -&gt; npp</span></span>
-<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="do">## 8      6400 positive 0.160439882 0.134164256 0.160445471 0.186289425 pre -&gt; npp</span></span>
-<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="do">## 9       100 negative 0.005034612 0.000000000 0.000000000 0.040091076 pre -&gt; npp</span></span>
-<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="do">## 10      400 negative 0.009928927 0.000000000 0.000000000 0.052005414 pre -&gt; npp</span></span>
-<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="do">## 11      900 negative 0.019165255 0.000000000 0.009337993 0.059256988 pre -&gt; npp</span></span>
-<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="do">## 12     1600 negative 0.029471659 0.000000000 0.027997599 0.073358489 pre -&gt; npp</span></span>
-<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="do">## 13     2500 negative 0.045285442 0.000000000 0.038739984 0.117191230 pre -&gt; npp</span></span>
-<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="do">## 14     3600 negative 0.065880615 0.018235836 0.061356270 0.141681812 pre -&gt; npp</span></span>
-<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a><span class="do">## 15     4900 negative 0.084468586 0.022971353 0.085285422 0.147335973 pre -&gt; npp</span></span>
-<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="do">## 16     6400 negative 0.084044451 0.049760990 0.083386491 0.119344985 pre -&gt; npp</span></span>
-<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a><span class="do">## 17      100     dark 0.011013023 0.007197887 0.011167831 0.015515615 pre -&gt; npp</span></span>
-<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a><span class="do">## 18      400     dark 0.020940904 0.017941858 0.021144785 0.024073808 pre -&gt; npp</span></span>
-<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a><span class="do">## 19      900     dark 0.031601592 0.028162694 0.031760585 0.035366888 pre -&gt; npp</span></span>
-<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a><span class="do">## 20     1600     dark 0.043908454 0.040426567 0.043749224 0.047899451 pre -&gt; npp</span></span>
-<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a><span class="do">## 21     2500     dark 0.057340747 0.053427426 0.057373516 0.060924723 pre -&gt; npp</span></span>
-<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a><span class="do">## 22     3600     dark 0.071494236 0.068717216 0.071382799 0.074614915 pre -&gt; npp</span></span>
-<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a><span class="do">## 23     4900     dark 0.087452806 0.084720124 0.087498875 0.090183299 pre -&gt; npp</span></span>
-<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a><span class="do">## 24     6400     dark 0.105697810 0.103544775 0.105670612 0.108333330 pre -&gt; npp</span></span>
-<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="do">## 25      100 positive 0.030463575 0.006797979 0.023451241 0.072539552 npp -&gt; pre</span></span>
-<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="do">## 26      400 positive 0.032101886 0.010252731 0.027835285 0.064829814 npp -&gt; pre</span></span>
-<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a><span class="do">## 27      900 positive 0.035869465 0.014164942 0.033232723 0.067018898 npp -&gt; pre</span></span>
-<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="do">## 28     1600 positive 0.049411311 0.020915010 0.046109502 0.085792572 npp -&gt; pre</span></span>
-<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="do">## 29     2500 positive 0.061779406 0.030886961 0.058038123 0.104777473 npp -&gt; pre</span></span>
-<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="do">## 30     3600 positive 0.076992050 0.043158420 0.074651929 0.126986637 npp -&gt; pre</span></span>
-<span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="do">## 31     4900 positive 0.086996180 0.054796887 0.086869797 0.120530012 npp -&gt; pre</span></span>
-<span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="do">## 32     6400 positive 0.101064523 0.078249392 0.101266631 0.131261057 npp -&gt; pre</span></span>
-<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="do">## 33      100 negative 0.001047740 0.000000000 0.000000000 0.000000000 npp -&gt; pre</span></span>
-<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="do">## 34      400 negative 0.003933528 0.000000000 0.000000000 0.030443193 npp -&gt; pre</span></span>
-<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="do">## 35      900 negative 0.007788536 0.000000000 0.000000000 0.051665613 npp -&gt; pre</span></span>
-<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="do">## 36     1600 negative 0.015474525 0.000000000 0.000000000 0.073222926 npp -&gt; pre</span></span>
-<span id="cb10-59"><a href="#cb10-59" tabindex="-1"></a><span class="do">## 37     2500 negative 0.033992370 0.000000000 0.000000000 0.138902382 npp -&gt; pre</span></span>
-<span id="cb10-60"><a href="#cb10-60" tabindex="-1"></a><span class="do">## 38     3600 negative 0.035942024 0.000000000 0.024083469 0.122359197 npp -&gt; pre</span></span>
-<span id="cb10-61"><a href="#cb10-61" tabindex="-1"></a><span class="do">## 39     4900 negative 0.021465683 0.000000000 0.020887613 0.054454265 npp -&gt; pre</span></span>
-<span id="cb10-62"><a href="#cb10-62" tabindex="-1"></a><span class="do">## 40     6400 negative 0.024594728 0.000000000 0.021011738 0.048068745 npp -&gt; pre</span></span>
-<span id="cb10-63"><a href="#cb10-63" tabindex="-1"></a><span class="do">## 41      100     dark 0.004628748 0.003073966 0.004491904 0.006746096 npp -&gt; pre</span></span>
-<span id="cb10-64"><a href="#cb10-64" tabindex="-1"></a><span class="do">## 42      400     dark 0.008084206 0.006384447 0.008101869 0.009793286 npp -&gt; pre</span></span>
-<span id="cb10-65"><a href="#cb10-65" tabindex="-1"></a><span class="do">## 43      900     dark 0.013248915 0.011023435 0.013180761 0.015348453 npp -&gt; pre</span></span>
-<span id="cb10-66"><a href="#cb10-66" tabindex="-1"></a><span class="do">## 44     1600     dark 0.019759343 0.016800507 0.019801600 0.022120016 npp -&gt; pre</span></span>
-<span id="cb10-67"><a href="#cb10-67" tabindex="-1"></a><span class="do">## 45     2500     dark 0.028182746 0.025560203 0.028047957 0.030789268 npp -&gt; pre</span></span>
-<span id="cb10-68"><a href="#cb10-68" tabindex="-1"></a><span class="do">## 46     3600     dark 0.039660053 0.036114552 0.039729568 0.042630349 npp -&gt; pre</span></span>
-<span id="cb10-69"><a href="#cb10-69" tabindex="-1"></a><span class="do">## 47     4900     dark 0.052345674 0.048603242 0.052403669 0.055987952 npp -&gt; pre</span></span>
-<span id="cb10-70"><a href="#cb10-70" tabindex="-1"></a><span class="do">## 48     6400     dark 0.069830135 0.067058436 0.070112629 0.072162472 npp -&gt; pre</span></span>
-<span id="cb10-71"><a href="#cb10-71" tabindex="-1"></a><span class="fu">plot</span>(npp_convergence, <span class="at">ylimits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>,<span class="fl">0.35</span>),</span>
-<span id="cb10-72"><a href="#cb10-72" tabindex="-1"></a>     <span class="at">xlimits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6500</span>), <span class="at">xbreaks =</span> <span class="fu">seq</span>(<span class="dv">100</span>, <span class="dv">6400</span>, <span class="dv">500</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">npp_convergence</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>,</span>
+<span>                             libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">80</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                             E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">npp_convergence</span></span>
+<span><span class="co">## -------------------------------- </span></span>
+<span><span class="co">## ***pattern causality analysis*** </span></span>
+<span><span class="co">## -------------------------------- </span></span>
+<span><span class="co">##    libsizes     type        mean         q05         q50         q95  direction</span></span>
+<span><span class="co">## 1       100 positive 0.031115313 0.007586101 0.029699586 0.058335871 pre -&gt; npp</span></span>
+<span><span class="co">## 2       400 positive 0.046321136 0.025965817 0.043444827 0.072677663 pre -&gt; npp</span></span>
+<span><span class="co">## 3       900 positive 0.061289327 0.036546196 0.060742103 0.088607440 pre -&gt; npp</span></span>
+<span><span class="co">## 4      1600 positive 0.076140862 0.052179914 0.073213997 0.109569849 pre -&gt; npp</span></span>
+<span><span class="co">## 5      2500 positive 0.099999344 0.061554432 0.099303348 0.138071568 pre -&gt; npp</span></span>
+<span><span class="co">## 6      3600 positive 0.126697417 0.098448170 0.123791233 0.167912560 pre -&gt; npp</span></span>
+<span><span class="co">## 7      4900 positive 0.146035271 0.112762146 0.145172371 0.183307027 pre -&gt; npp</span></span>
+<span><span class="co">## 8      6400 positive 0.160439882 0.134164256 0.160445471 0.186289425 pre -&gt; npp</span></span>
+<span><span class="co">## 9       100 negative 0.005034612 0.000000000 0.000000000 0.040091076 pre -&gt; npp</span></span>
+<span><span class="co">## 10      400 negative 0.009928927 0.000000000 0.000000000 0.052005414 pre -&gt; npp</span></span>
+<span><span class="co">## 11      900 negative 0.019165255 0.000000000 0.009337993 0.059256988 pre -&gt; npp</span></span>
+<span><span class="co">## 12     1600 negative 0.029471659 0.000000000 0.027997599 0.073358489 pre -&gt; npp</span></span>
+<span><span class="co">## 13     2500 negative 0.045285442 0.000000000 0.038739984 0.117191230 pre -&gt; npp</span></span>
+<span><span class="co">## 14     3600 negative 0.065880615 0.018235836 0.061356270 0.141681812 pre -&gt; npp</span></span>
+<span><span class="co">## 15     4900 negative 0.084468586 0.022971353 0.085285422 0.147335973 pre -&gt; npp</span></span>
+<span><span class="co">## 16     6400 negative 0.084044451 0.049760990 0.083386491 0.119344985 pre -&gt; npp</span></span>
+<span><span class="co">## 17      100     dark 0.011013023 0.007197887 0.011167831 0.015515615 pre -&gt; npp</span></span>
+<span><span class="co">## 18      400     dark 0.020940904 0.017941858 0.021144785 0.024073808 pre -&gt; npp</span></span>
+<span><span class="co">## 19      900     dark 0.031601592 0.028162694 0.031760585 0.035366888 pre -&gt; npp</span></span>
+<span><span class="co">## 20     1600     dark 0.043908454 0.040426567 0.043749224 0.047899451 pre -&gt; npp</span></span>
+<span><span class="co">## 21     2500     dark 0.057340747 0.053427426 0.057373516 0.060924723 pre -&gt; npp</span></span>
+<span><span class="co">## 22     3600     dark 0.071494236 0.068717216 0.071382799 0.074614915 pre -&gt; npp</span></span>
+<span><span class="co">## 23     4900     dark 0.087452806 0.084720124 0.087498875 0.090183299 pre -&gt; npp</span></span>
+<span><span class="co">## 24     6400     dark 0.105697810 0.103544775 0.105670612 0.108333330 pre -&gt; npp</span></span>
+<span><span class="co">## 25      100 positive 0.030463575 0.006797979 0.023451241 0.072539552 npp -&gt; pre</span></span>
+<span><span class="co">## 26      400 positive 0.032101886 0.010252731 0.027835285 0.064829814 npp -&gt; pre</span></span>
+<span><span class="co">## 27      900 positive 0.035869465 0.014164942 0.033232723 0.067018898 npp -&gt; pre</span></span>
+<span><span class="co">## 28     1600 positive 0.049411311 0.020915010 0.046109502 0.085792572 npp -&gt; pre</span></span>
+<span><span class="co">## 29     2500 positive 0.061779406 0.030886961 0.058038123 0.104777473 npp -&gt; pre</span></span>
+<span><span class="co">## 30     3600 positive 0.076992050 0.043158420 0.074651929 0.126986637 npp -&gt; pre</span></span>
+<span><span class="co">## 31     4900 positive 0.086996180 0.054796887 0.086869797 0.120530012 npp -&gt; pre</span></span>
+<span><span class="co">## 32     6400 positive 0.101064523 0.078249392 0.101266631 0.131261057 npp -&gt; pre</span></span>
+<span><span class="co">## 33      100 negative 0.001047740 0.000000000 0.000000000 0.000000000 npp -&gt; pre</span></span>
+<span><span class="co">## 34      400 negative 0.003933528 0.000000000 0.000000000 0.030443193 npp -&gt; pre</span></span>
+<span><span class="co">## 35      900 negative 0.007788536 0.000000000 0.000000000 0.051665613 npp -&gt; pre</span></span>
+<span><span class="co">## 36     1600 negative 0.015474525 0.000000000 0.000000000 0.073222926 npp -&gt; pre</span></span>
+<span><span class="co">## 37     2500 negative 0.033992370 0.000000000 0.000000000 0.138902382 npp -&gt; pre</span></span>
+<span><span class="co">## 38     3600 negative 0.035942024 0.000000000 0.024083469 0.122359197 npp -&gt; pre</span></span>
+<span><span class="co">## 39     4900 negative 0.021465683 0.000000000 0.020887613 0.054454265 npp -&gt; pre</span></span>
+<span><span class="co">## 40     6400 negative 0.024594728 0.000000000 0.021011738 0.048068745 npp -&gt; pre</span></span>
+<span><span class="co">## 41      100     dark 0.004628748 0.003073966 0.004491904 0.006746096 npp -&gt; pre</span></span>
+<span><span class="co">## 42      400     dark 0.008084206 0.006384447 0.008101869 0.009793286 npp -&gt; pre</span></span>
+<span><span class="co">## 43      900     dark 0.013248915 0.011023435 0.013180761 0.015348453 npp -&gt; pre</span></span>
+<span><span class="co">## 44     1600     dark 0.019759343 0.016800507 0.019801600 0.022120016 npp -&gt; pre</span></span>
+<span><span class="co">## 45     2500     dark 0.028182746 0.025560203 0.028047957 0.030789268 npp -&gt; pre</span></span>
+<span><span class="co">## 46     3600     dark 0.039660053 0.036114552 0.039729568 0.042630349 npp -&gt; pre</span></span>
+<span><span class="co">## 47     4900     dark 0.052345674 0.048603242 0.052403669 0.055987952 npp -&gt; pre</span></span>
+<span><span class="co">## 48     6400     dark 0.069830135 0.067058436 0.070112629 0.072162472 npp -&gt; pre</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.35</span><span class="op">)</span>,</span>
+<span>     xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">6500</span><span class="op">)</span>, xbreaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">6400</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gpc/fig2-1.png" alt="Figure 2. Convergence curves of causal strengths among precipitation and NPP."><div class="figcaption">
 <strong>Figure 2</strong>. <strong>Convergence

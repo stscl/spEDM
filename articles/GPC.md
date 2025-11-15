@@ -6,36 +6,53 @@ Geographical Pattern Causality (GPC) infers causal relations from
 spatial cross-sectional data by reconstructing a symbolic approximation
 of the underlying spatial dynamical system.
 
-Let ( x(s) ) and ( y(s) ) denote two spatial fields over locations ( s
-).
+Let \\x(s)\\ and \\y(s)\\ denote two spatial cross-sections over
+locations \\s \in \mathcal{S}\\.
 
-**(1) Spatial Embedding.** For each location ( s_i ), GPC constructs an
-embedding vector \[ *x(s_i) = ( x(s*{i}^{(1)}), x(s\_{i}^{(2)}), ,
-x(s\_{i}^{(E)}) ),\] where ( s\_{i}^{(k)} ) denotes the (k)-th spatially
-lagged value, determined by embedding dimension (E) and lag (). This
-yields two reconstructed state spaces ( \_x, \_y ^E ).
+**(1) Spatial Embedding** For each location \\s_i\\, GPC constructs an
+embedding vector
 
-**(2) Symbolic Pattern Extraction.** Local geometric transitions in each
-manifold are mapped to symbols \[ \_x(s_i),; \_y(s_i) ,\] encoding
-increasing, decreasing, or complex spatial modes. These symbolic
+\\ \mathbf{E}\*x(s_i) = \big( x(s\*{i}^{(1)}), x(s\_{i}^{(2)}), \dots,
+x(s\_{i}^{(E\tau)}) \big), \\
+
+where \\s\_{i}^{(k)}\\ denotes the \\k\\-th spatially lagged value,
+determined by embedding dimension \\E\\ and lag \\\tau\\. This yields
+two reconstructed state spaces \\\mathcal{M}\_x, \mathcal{M}\_y \subset
+\mathbb{R}^E\\.
+
+**(2) Symbolic Pattern Extraction** Local geometric transitions in each
+manifold are mapped to symbols
+
+\\ \sigma_x(s_i),; \sigma_y(s_i) \in \mathcal{A}, \\
+
+encoding increasing, decreasing, or non-changing modes. These symbolic
 trajectories summarize local pattern evolution.
 
-**(3) Cross-Pattern Mapping.** Causality from (x y) is assessed by
-predicting \[ \_y(s_i) = F( \_x(s_j): s_j \_k(s_i) ),\] where (\_k)
-denotes the set of (k) nearest neighbors in (\_x). The agreement
-structure between (\_y(s_i)) and (\_y(s_i)) determines the causal mode:
+**(3) Cross-Pattern Mapping**
 
-- Positive: ( \_y = \_y )
-- Negative: ( \_y = -\_y )
+Causality from \\x \to y\\ is assessed by predicting:
+
+\\ \hat{\sigma}\_y(s_i) = F\big( \sigma_x(s_j): s_j \in
+\mathcal{N}\_k(s_i) \big), \\
+
+where \\\mathcal{N}\_k\\ denotes the set of \\k\\ nearest neighbors in
+\\\mathcal{M}\_x\\. The agreement structure between
+\\\hat{\sigma}\_y(s_i)\\ and \\\sigma_y(s_i)\\ determines the causal
+mode:
+
+- Positive: \\\hat{\sigma}\_y = \sigma_y\\
+- Negative: \\\hat{\sigma}\_y = -\sigma_y\\
 - Dark: neither agreement nor opposition
 
-**(4) Causal Strength.** The global causal strength is the normalized
-consistency of symbol matches: \[ C\_{x y} = \_{s_i } ,\] where ( )
-encodes positive, negative, or dark matching rules.
+**(4) Causal Strength**
 
-Through this embedding–symbolization–mapping sequence, GPC provides a
-compact, dynamical, and nonlinear framework for detecting directional
-causal structures in spatial systems.
+The global causal strength is the normalized consistency of symbol
+matches:
+
+\\ C\_{x \to y} = \frac{1}{\|\mathcal{S}\|} \sum\_{s_i \in \mathcal{S}}
+\mathbb{I}\big\[ \hat{\sigma}\_y(s_i) \bowtie \sigma_y(s_i) \big\], \\
+
+where \\\bowtie\\ encodes positive, negative, or dark matching rules.
 
 ## Usage examples
 
@@ -114,11 +131,7 @@ Convergence diagnostics
 ``` r
 crime_convergence = spEDM::gpc(columbus, "hoval", "crime",
                                libsizes = seq(5, 45, by = 5),
-                               E = 5, k = 6)
-## 
-Computing: [========================================] 100% (done)                         
-## 
-Computing: [========================================] 100% (done)
+                               E = 5, k = 6, progressbar = FALSE)
 crime_convergence
 ## -------------------------------- 
 ## ***pattern causality analysis*** 
@@ -254,23 +267,9 @@ spEDM::gpc(npp, "pre", "npp", E = 10, k = 8)
 Convergence diagnostics
 
 ``` r
-npp_convergence = spEDM::gpc(npp, "pre", "npp", 
-                             libsizes = matrix(rep(seq(10,80,10),2),ncol = 2), 
-                             E = 10, k = 8)
-## 
-Computing: [==========                              ] 25%  (~4s remaining)       
-Computing: [================                        ] 38%  (~3s remaining)       
-Computing: [====================                    ] 50%  (~3s remaining)       
-Computing: [==========================              ] 63%  (~2s remaining)       
-Computing: [==============================          ] 75%  (~1s remaining)       
-Computing: [====================================    ] 88%  (~1s remaining)       
-Computing: [========================================] 100% (done)                         
-## 
-Computing: [======                                  ] 13%  (~15s remaining)       
-Computing: [==========                              ] 25%  (~7s remaining)       
-Computing: [====================                    ] 50%  (~3s remaining)       
-Computing: [==============================          ] 75%  (~1s remaining)       
-Computing: [========================================] 100% (done)
+npp_convergence = spEDM::gpc(npp, "pre", "npp",
+                             libsizes = matrix(rep(seq(10,80,10),2),ncol = 2),
+                             E = 10, k = 8, progressbar = FALSE)
 npp_convergence
 ## -------------------------------- 
 ## ***pattern causality analysis*** 

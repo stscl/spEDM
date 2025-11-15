@@ -79,7 +79,7 @@
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
 update: 2025-08-31<br>
-Last run: 2025-11-11</div></h4>
+Last run: 2025-11-15</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SCT.Rmd" class="external-link"><code>vignettes/SCT.Rmd</code></a></small>
       <div class="d-none name"><code>SCT.Rmd</code></div>
@@ -174,20 +174,20 @@ both entropies will be small. The statistical significance of <span class="math 
 <code class="sourceCode R"><span><span class="co"># house value and crime</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
-<span><span class="co">## hoval -&gt; crime: statistic = 1.114, p value = 0.574</span></span>
-<span><span class="co">## crime -&gt; hoval: statistic = 1.555, p value = 0</span></span>
+<span><span class="co">## hoval -&gt; crime: statistic = 1.114, p value = 0.549</span></span>
+<span><span class="co">## crime -&gt; hoval: statistic = 1.555, p value = 0.008</span></span>
 <span></span>
 <span><span class="co"># household income and crime</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"crime"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
-<span><span class="co">## inc -&gt; crime: statistic = 0.739, p value = 0.975</span></span>
+<span><span class="co">## inc -&gt; crime: statistic = 0.739, p value = 0.99</span></span>
 <span><span class="co">## crime -&gt; inc: statistic = 0.946, p value = 0.762</span></span>
 <span></span>
 <span><span class="co"># household income and house value</span></span>
 <span><span class="fu"><a href="../reference/sc.test.html">sc.test</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"inc"</span>, <span class="st">"hoval"</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">## spatial causality test</span></span>
 <span><span class="co">## inc -&gt; hoval: statistic = 1.211, p value = 0.311</span></span>
-<span><span class="co">## hoval -&gt; inc: statistic = 0.992, p value = 0.712</span></span></code></pre></div>
+<span><span class="co">## hoval -&gt; inc: statistic = 0.992, p value = 0.702</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>

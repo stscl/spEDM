@@ -96,20 +96,20 @@ Detect spatial causality among the variables *inc*, *crime*, and *hoval*
 # house value and crime
 sc.test(columbus, "hoval", "crime", k = 15)
 ## spatial causality test
-## hoval -> crime: statistic = 1.114, p value = 0.574
-## crime -> hoval: statistic = 1.555, p value = 0
+## hoval -> crime: statistic = 1.114, p value = 0.549
+## crime -> hoval: statistic = 1.555, p value = 0.008
 
 # household income and crime
 sc.test(columbus, "inc", "crime", k = 15)
 ## spatial causality test
-## inc -> crime: statistic = 0.739, p value = 0.975
+## inc -> crime: statistic = 0.739, p value = 0.99
 ## crime -> inc: statistic = 0.946, p value = 0.762
 
 # household income and house value
 sc.test(columbus, "inc", "hoval", k = 15)
 ## spatial causality test
 ## inc -> hoval: statistic = 1.211, p value = 0.311
-## hoval -> inc: statistic = 0.992, p value = 0.712
+## hoval -> inc: statistic = 0.992, p value = 0.702
 ```
 
 ### An example of spatial grid data
