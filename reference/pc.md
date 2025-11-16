@@ -1,6 +1,6 @@
-# pattern causality
+# optimal parameter search for pattern causality
 
-pattern causality
+optimal parameter search for pattern causality
 
 ## Usage
 
@@ -21,6 +21,7 @@ pc(
   relative = TRUE,
   weighted = TRUE,
   na.rm = TRUE,
+  maximize = "positive",
   threads = detectThreads(),
   detrend = FALSE,
   nb = NULL
@@ -42,6 +43,7 @@ pc(
   relative = TRUE,
   weighted = TRUE,
   na.rm = TRUE,
+  maximize = "positive",
   threads = detectThreads(),
   detrend = FALSE,
   grid.coord = TRUE
@@ -109,6 +111,11 @@ pc(
   (optional) whether to remove `NA` samples in symbolic pattern
   generation.
 
+- maximize:
+
+  (optional) causality metric to maximize: one of "positive",
+  "negative", or "dark".
+
 - threads:
 
   (optional) number of threads to use.
@@ -142,6 +149,10 @@ A list
 
   method of cross mapping
 
+- `maximize`:
+
+  maximized causality metric
+
 ## References
 
 Stavroglou, S.K., Pantelous, A.A., Stanley, H.E., Zuev, K.M., 2020.
@@ -153,7 +164,7 @@ National Academy of Sciences 117, 7599–7605.
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
-pc(columbus,"hoval","crime", E = 5:10)
+pc(columbus,"hoval","crime",E = 5:10,maximize = "negative")
 #> The suggested E,k,tau for variable crime is 5, 7 and 1 
 # }
 ```

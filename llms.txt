@@ -61,16 +61,16 @@ devtools::install_github("stscl/spEDM",
 
 - [`simplex(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/simplex.md)
   [`simplex(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/simplex.md)
-  : simplex forecast
+  : optimal parameter search for simplex forecasting
 - [`smap(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/smap.md)
   [`smap(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/smap.md)
-  : smap forecast
+  : optimal parameter search for smap forecasting
 - [`ic(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   [`ic(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   : intersection cardinality
 - [`pc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
   [`pc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
-  : pattern causality
+  : optimal parameter search for pattern causality
 - [`gccm(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gccm.md)
   [`gccm(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gccm.md)
   : geographical convergent cross mapping
