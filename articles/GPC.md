@@ -108,7 +108,22 @@ embedding dimension for subsequent parameter search.
 Then, search optimal parameters:
 
 ``` r
-spEDM::pc(columbus, "hoval", "crime", E = 5:10, k = 6:12)
+# determine the type of causality using correlation
+stats::cor.test(columbus$hoval,columbus$crime)
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  columbus$hoval and columbus$crime
+## t = -4.8117, df = 47, p-value = 1.585e-05
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.7366777 -0.3497978
+## sample estimates:
+##        cor 
+## -0.5744867
+
+# since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search
+spEDM::pc(columbus, "hoval", "crime", E = 5:10, k = 6:12, maximize = "negative")
 ## The suggested E,k,tau for variable crime is 5, 6 and 1
 ```
 
@@ -245,7 +260,23 @@ selected as minimal embedding dimension for the subsequent GPC analysis.
 Then, search optimal parameters:
 
 ``` r
-g1 = spEDM::pc(npp, "npp", "pre", E = 6:10, k = 7:12)
+stats::cor.test(~ pre + npp,
+                data = terra::values(npp[[c("pre","npp")]],
+                                      datafame = TRUE, na.rm = TRUE))
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  pre and npp
+## t = 108.74, df = 6912, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7855441 0.8029426
+## sample estimates:
+##       cor 
+## 0.7944062
+
+
+g1 = spEDM::pc(npp, "npp", "pre", E = 6:10, k = 7:12, maximize = "positive")
 g1
 ## The suggested E,k,tau for variable pre is 10, 8 and 1
 ```
