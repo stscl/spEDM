@@ -67,7 +67,7 @@ devtools::install_github("stscl/spEDM",
   : optimal parameter search for smap forecasting
 - [`ic(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   [`ic(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
-  : intersection cardinality
+  : optimal parameter search for intersection cardinality
 - [`pc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
   [`pc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
   : optimal parameter search for pattern causality
