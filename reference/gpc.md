@@ -213,11 +213,11 @@ gpc(columbus,"hoval","crime", E = 5)
 #> -------------------------------- 
 #>       type  strength      direction
 #> 1 positive       NaN hoval -> crime
-#> 2 negative 0.1737452 hoval -> crime
-#> 3     dark 0.2418274 hoval -> crime
+#> 2 negative 0.3268763 hoval -> crime
+#> 3     dark 0.2124429 hoval -> crime
 #> 4 positive       NaN crime -> hoval
-#> 5 negative 0.8091386 crime -> hoval
-#> 6     dark 0.2436296 crime -> hoval
+#> 5 negative 0.3329711 crime -> hoval
+#> 6     dark 0.2412344 crime -> hoval
 
 # convergence diagnostics
 g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 5)
