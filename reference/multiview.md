@@ -137,7 +137,7 @@ ecosystems: Overcoming the curse of dimensionality. Science 353:922-925.
 ## Examples
 
 ``` r
-columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
+columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 multiview(columbus,
           column = c("inc","crime","open","plumb","discbd"),

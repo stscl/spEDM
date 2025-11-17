@@ -15,8 +15,6 @@ An integer
 ## Examples
 
 ``` r
-# \donttest{
 detectThreads()
 #> [1] 4
-# }
 ```

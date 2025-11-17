@@ -17,6 +17,10 @@
 
 #### enhancements
 
+- Calibrate spacing conventions and enable real execution of
+  available-thread detection
+  ([\#885](https://github.com/stscl/spEDM/issues/885)).
+
 - Maintain consistent double precision floating-point comparisons across
   cpp sources ([\#850](https://github.com/stscl/spEDM/issues/850)).
 

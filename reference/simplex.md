@@ -148,7 +148,7 @@ distinguishing chaos from measurement error in time series. Nature,
 ## Examples
 
 ``` r
-columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
+columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 simplex(columbus,"inc","crime")
 #> The suggested E and k for variable crime is 5 and 6 

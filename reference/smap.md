@@ -152,7 +152,7 @@ Engineering, 348 (1688):477-495.
 ## Examples
 
 ``` r
-columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
+columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 smap(columbus,"inc","crime",E = 5,k = 6)
 #> Warning: All evaluation metrics are identical within tolerance; choosing theta == 1 if available, otherwise closest to 1.

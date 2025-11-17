@@ -130,9 +130,9 @@ intersection cardinal concavity. Fundamental Research.
 ## Examples
 
 ``` r
-columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
+columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-ic(columbus,"hoval","crime", E = 7, k = 15:25)
+ic(columbus,"hoval","crime",E = 7,k = 15:25)
 #> The suggested E and k for variable crime is 7 and 18 
 # }
 ```

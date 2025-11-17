@@ -113,7 +113,7 @@ construction, Phys. Rev. A, Volume 45, 3403 (1992).
 ## Examples
 
 ``` r
-columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
+columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 fnn(columbus,"crime")
 #>        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
