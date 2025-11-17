@@ -20,7 +20,6 @@ pc(
   zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
-  na.rm = TRUE,
   maximize = "positive",
   threads = detectThreads(),
   detrend = FALSE,
@@ -42,7 +41,6 @@ pc(
   zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
-  na.rm = TRUE,
   maximize = "positive",
   threads = detectThreads(),
   detrend = FALSE,
@@ -106,11 +104,6 @@ pc(
 
   (optional) whether to weight causal strength.
 
-- na.rm:
-
-  (optional) whether to remove `NA` samples in symbolic pattern
-  generation.
-
 - maximize:
 
   (optional) causality metric to maximize: one of "positive",
@@ -165,6 +158,6 @@ National Academy of Sciences 117, 7599–7605.
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
 pc(columbus,"hoval","crime",E = 5:10,maximize = "negative")
-#> The suggested E,k,tau for variable crime is 5, 7 and 1 
+#> The suggested E,k,tau for variable crime is 6, 9 and 1 
 # }
 ```

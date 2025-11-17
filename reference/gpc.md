@@ -24,7 +24,6 @@ gpc(
   zero.tolerance = k,
   relative = TRUE,
   weighted = TRUE,
-  na.rm = TRUE,
   threads = detectThreads(),
   detrend = FALSE,
   parallel.level = "low",
@@ -52,7 +51,6 @@ gpc(
   zero.tolerance = k,
   relative = TRUE,
   weighted = TRUE,
-  na.rm = TRUE,
   threads = detectThreads(),
   detrend = FALSE,
   parallel.level = "low",
@@ -134,11 +132,6 @@ gpc(
 
   (optional) whether to weight causal strength.
 
-- na.rm:
-
-  (optional) whether to remove `NA` samples in symbolic pattern
-  generation.
-
 - threads:
 
   (optional) number of threads to use.
@@ -207,20 +200,20 @@ patterns. International Journal of Geographical Information Science
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 # \donttest{
-gpc(columbus,"hoval","crime", E = 5)
+gpc(columbus,"hoval","crime",E = 6,k = 9)
 #> -------------------------------- 
 #> ***pattern causality analysis*** 
 #> -------------------------------- 
 #>       type  strength      direction
 #> 1 positive       NaN hoval -> crime
-#> 2 negative 0.3268763 hoval -> crime
-#> 3     dark 0.2124429 hoval -> crime
+#> 2 negative 0.1340069 hoval -> crime
+#> 3     dark 0.1043991 hoval -> crime
 #> 4 positive       NaN crime -> hoval
-#> 5 negative 0.3329711 crime -> hoval
-#> 6     dark 0.2412344 crime -> hoval
+#> 5 negative 0.6251773 crime -> hoval
+#> 6     dark 0.1468990 crime -> hoval
 
 # convergence diagnostics
-g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 5)
+g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 6,k = 9)
 #> Computing: [========================================] 100% (done)                         
 #> Computing: [========================================] 100% (done)                         
 plot(g)
