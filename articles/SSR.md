@@ -48,11 +48,11 @@ Load the `spEDM` package and its county-level population density data:
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
-## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")): neighbour
-## object has 4 sub-graphs
+## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")):
+## neighbour object has 4 sub-graphs
 popd = readr::read_csv(system.file("case/popd.csv",package = "spEDM"))
 ## Rows: 2806 Columns: 7
-## ── Column specification ───────────────────────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (7): lon, lat, popd, elev, tem, pre, slope
 ## 
@@ -105,6 +105,8 @@ popd.](../reference/figures/ssr/fig1-1.png)
 
 **Figure 1**. The reconstructed shadow manifolds for the variable
 `popd`.
+
+  
 
 ### An example of spatial grid data
 
