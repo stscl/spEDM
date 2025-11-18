@@ -45,8 +45,6 @@
 
 ## spEDM 1.8
 
-CRAN release: 2025-08-31
-
 #### new
 
 - Provide new mechanisms for variable interaction in the spatial
@@ -85,8 +83,6 @@ CRAN release: 2025-08-31
   `lat` ([\#741](https://github.com/stscl/spEDM/issues/741)).
 
 ## spEDM 1.7
-
-CRAN release: 2025-06-25
 
 #### new
 
@@ -133,8 +129,6 @@ CRAN release: 2025-06-25
   ([\#552](https://github.com/stscl/spEDM/issues/552)).
 
 ## spEDM 1.6
-
-CRAN release: 2025-05-16
 
 #### new
 
@@ -183,8 +177,6 @@ CRAN release: 2025-05-16
 
 ## spEDM 1.5
 
-CRAN release: 2025-03-12
-
 #### new
 
 - Enable `parallel.level` parameter to specify parallel granularity in
@@ -230,8 +222,6 @@ CRAN release: 2025-03-12
 
 ## spEDM 1.4
 
-CRAN release: 2025-02-10
-
 #### enhancements
 
 - Improve default spatial neighbors list generation for spatial lattice
@@ -245,8 +235,6 @@ CRAN release: 2025-02-10
   ([\#154](https://github.com/stscl/spEDM/issues/154)).
 
 ## spEDM 1.3
-
-CRAN release: 2025-02-01
 
 #### new
 
@@ -298,8 +286,6 @@ CRAN release: 2025-02-01
 
 ## spEDM 1.2
 
-CRAN release: 2025-01-14
-
 #### enhancements
 
 - Encapsulate the `gccm` generic using the S4 class
@@ -319,15 +305,11 @@ CRAN release: 2025-01-14
 
 ## spEDM 1.1
 
-CRAN release: 2024-12-19
-
 #### bug fixes
 
 - Resolve CRAN auto check issues, no significant API changes.
 
 ## spEDM 1.0
-
-CRAN release: 2024-12-16
 
 #### new
 
