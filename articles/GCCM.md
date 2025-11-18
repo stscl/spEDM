@@ -131,9 +131,9 @@ popd_sf
 Determining optimal embedding dimension:
 
 ``` r
-simplex(popd_sf, "pre", "pre", E = 2:10, k = 6)
+spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 6)
 ## The suggested E and k for variable pre is 3 and 6
-simplex(popd_sf, "popd", "popd", E = 2:10, k = 6)
+spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 6)
 ## The suggested E and k for variable popd is 9 and 6
 ```
 
@@ -141,17 +141,12 @@ Run GCCM:
 
 ``` r
 startTime = Sys.time()
-pd_res = gccm(data = popd_sf,
-              cause = "pre",
-              effect = "popd",
-              libsizes = seq(100, 2800, by = 200),
-              E = c(3,9),
-              k = 6,
-              nb = popd_nb,
-              progressbar = FALSE)
+pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
+                     libsizes = seq(100, 2800, by = 200),
+                     E = c(3,9), k = 6, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.920641 mins
+## Time difference of 1.633887 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
 ## 1       100 0.1140592 0.03269659
@@ -183,6 +178,8 @@ precipitation.](../reference/figures/gccm/fig1-1.png)
 
 **Figure 1**. The cross-mapping prediction outputs between population
 density and county-level precipitation.
+
+  
 
 ### An example of spatial grid data
 
@@ -230,9 +227,9 @@ predindice = nnaindice[indices,]
 Determining optimal embedding dimension:
 
 ``` r
-simplex(npp, "pre", "pre", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
+spEDM::simplex(npp, "pre", "pre", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
 ## The suggested E and k for variable pre is 2 and 8
-simplex(npp, "npp", "npp", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
+spEDM::simplex(npp, "npp", "npp", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
 ## The suggested E and k for variable npp is 10 and 8
 ```
 
@@ -240,18 +237,13 @@ Run GCCM:
 
 ``` r
 startTime = Sys.time()
-npp_res = gccm(data = npp,
-               cause = "pre",
-               effect = "npp",
-               libsizes = matrix(rep(seq(10,130,20),2),ncol = 2),
-               E = c(2,10),
-               k = 8,
-               lib = nnaindice,
-               pred = predindice,
-               progressbar = FALSE)
+npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
+                      libsizes = matrix(rep(seq(10,130,20),2),ncol = 2),
+                      E = c(2,10), k = 8, lib = nnaindice, pred = predindice, 
+                      progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.01308 mins
+## Time difference of 0.8821938 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
 ## 1       10 0.1282926 0.1111689

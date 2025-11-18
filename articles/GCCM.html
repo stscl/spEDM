@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-31<br>
-Last run: 2025-11-16</div></h4>
+update: 2025-11-18<br>
+Last run: 2025-11-18</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCCM.Rmd" class="external-link"><code>vignettes/GCCM.Rmd</code></a></small>
       <div class="d-none name"><code>GCCM.Rmd</code></div>
@@ -231,24 +231,19 @@ density data:</p>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co">## The suggested E and k for variable pre is 3 and 6</span></span>
-<span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co">## The suggested E and k for variable popd is 9 and 6</span></span></code></pre></div>
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>,</span>
-<span>              cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
-<span>              effect <span class="op">=</span> <span class="st">"popd"</span>,</span>
-<span>              libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
-<span>              E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>,</span>
-<span>              k <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>              nb <span class="op">=</span> <span class="va">popd_nb</span>,</span>
-<span>              progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"popd"</span>,</span>
+<span>                     libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
+<span>                     E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">6</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.920641 mins</span></span>
+<span><span class="co">## Time difference of 1.633887 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
 <span><span class="co">## 1       100 0.1140592 0.03269659</span></span>
@@ -275,6 +270,7 @@ density data:</p>
 prediction outputs between population density and county-level
 precipitation.</div>
 </div>
+<p><br></p>
 </div>
 <div class="section level3">
 <h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>
@@ -319,25 +315,20 @@ precipitation.</div>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
 <span><span class="co">## The suggested E and k for variable pre is 2 and 8</span></span>
-<span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
 <span><span class="co">## The suggested E and k for variable npp is 10 and 8</span></span></code></pre></div>
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>,</span>
-<span>               cause <span class="op">=</span> <span class="st">"pre"</span>,</span>
-<span>               effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
-<span>               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>               E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>,</span>
-<span>               k <span class="op">=</span> <span class="fl">8</span>,</span>
-<span>               lib <span class="op">=</span> <span class="va">nnaindice</span>,</span>
-<span>               pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>               progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
+<span>                      libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                      E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, </span>
+<span>                      progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.01308 mins</span></span>
+<span><span class="co">## Time difference of 0.8821938 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
 <span><span class="co">## 1       10 0.1282926 0.1111689</span></span>

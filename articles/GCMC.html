@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-31<br>
-Last run: 2025-11-16</div></h4>
+update: 2025-11-18<br>
+Last run: 2025-11-18</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GCMC.Rmd" class="external-link"><code>vignettes/GCMC.Rmd</code></a></small>
       <div class="d-none name"><code>GCMC.Rmd</code></div>
@@ -170,7 +170,7 @@ appropriate embedding dimension for reconstructing the state space of a
 time series or spatial cross-sectional data. A low embedding dimension
 that minimizes false neighbours is considered optimal.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
 <span><span class="co">## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 </span></span>
 <span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14 </span></span>
@@ -182,19 +182,19 @@ stable thereafter. Therefore, we adopted <span class="math inline">\(E =
 <p>Then, run GCMC:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># temperature and population density</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors tem-&gt;popd popd-&gt;tem</span></span>
 <span><span class="co">## 1       200    0.5754   0.08985</span></span>
 <span></span>
 <span><span class="co"># elevation and population density</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors elev-&gt;popd popd-&gt;elev</span></span>
 <span><span class="co">## 1       200     0.2675   0.077025</span></span>
 <span></span>
 <span><span class="co"># elevation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">200</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors elev-&gt;tem tem-&gt;elev</span></span>
 <span><span class="co">## 1       200  0.224925    0.4775</span></span></code></pre></div>
@@ -281,6 +281,7 @@ strengths among elevation, temperature, and population
 density.</strong>
 </div>
 </div>
+<p><br></p>
 </div>
 <div class="section level3">
 <h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>
@@ -325,8 +326,8 @@ density.</strong>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>    eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
+<span>           eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
 <span><span class="co">## 0.94062708 0.43266667 0.29533333 0.28200000 0.24133333 0.23066667 0.23066667 </span></span>
 <span><span class="co">##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 </span></span>
@@ -341,19 +342,19 @@ Therefore, <span class="math inline">\(E = 18\)</span> is selected for
 the subsequent GCMC analysis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
 <span><span class="co">##   neighbors  pre-&gt;npp  npp-&gt;pre</span></span>
 <span><span class="co">## 1       165 0.2397429 0.2060239</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors  tem-&gt;npp npp-&gt;tem</span></span>
 <span><span class="co">## 1       165 0.4287971 0.432213</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors  pre-&gt;tem  tem-&gt;pre</span></span>
 <span><span class="co">## 1       165 0.3222039 0.2725069</span></span></code></pre></div>

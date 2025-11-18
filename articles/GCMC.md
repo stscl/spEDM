@@ -85,7 +85,7 @@ or spatial cross-sectional data. A low embedding dimension that
 minimizes false neighbours is considered optimal.
 
 ``` r
-fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd) / 10)
+spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd) / 10)
 ##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 
 ## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 
 ##       E:9      E:10      E:11      E:12      E:13      E:14 
@@ -101,19 +101,19 @@ Then, run GCMC:
 
 ``` r
 # temperature and population density
-g1 = gcmc(popd_sf, "tem", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
 g1
 ##   neighbors tem->popd popd->tem
 ## 1       200    0.5754   0.08985
 
 # elevation and population density
-g2 = gcmc(popd_sf, "elev", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
 g2
 ##   neighbors elev->popd popd->elev
 ## 1       200     0.2675   0.077025
 
 # elevation and temperature
-g3 = gcmc(popd_sf, "elev", "tem", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
 g3
 ##   neighbors elev->tem tem->elev
 ## 1       200  0.224925    0.4775
@@ -210,6 +210,8 @@ population density.](../reference/figures/gcmc/fig1-1.png)
 **Figure 1**. **Causal strengths among elevation, temperature, and
 population density.**
 
+  
+
 ### An example of spatial grid data
 
 Load the `spEDM` package and its farmland NPP data:
@@ -256,8 +258,8 @@ predindice = nnaindice[indices,]
 Determining optimal embedding dimension:
 
 ``` r
-fnn(npp, "npp", E = 1:25, lib = predindice, pred = predindice,
-    eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE) / 10)
+spEDM::fnn(npp, "npp", E = 1:25, lib = predindice, pred = predindice,
+           eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE) / 10)
 ##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
 ## 0.94062708 0.43266667 0.29533333 0.28200000 0.24133333 0.23066667 0.23066667 
 ##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 
@@ -274,19 +276,19 @@ subsequent GCMC analysis.
 
 ``` r
 # precipitation and npp
-g1 = gcmc(npp, "pre", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g1 = spEDM::gcmc(npp, "pre", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
 g1
 ##   neighbors  pre->npp  npp->pre
 ## 1       165 0.2397429 0.2060239
 
 # temperature and npp
-g2 = gcmc(npp, "tem", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g2 = spEDM::gcmc(npp, "tem", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
 g2
 ##   neighbors  tem->npp npp->tem
 ## 1       165 0.4287971 0.432213
 
 # precipitation and temperature
-g3 = gcmc(npp, "pre", "tem", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g3 = spEDM::gcmc(npp, "pre", "tem", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
 g3
 ##   neighbors  pre->tem  tem->pre
 ## 1       165 0.3222039 0.2725069
