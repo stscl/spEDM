@@ -21,9 +21,9 @@ systems, each variable evolves under its own logistic rule but is also
 influenced by the states of other variables. A common form is:
 
 \\ x\_{t+1}^{(i)} = r_i x_t^{(i)} \left(1 - x_t^{(i)} - \sum\_{j \neq i}
-\beta\_{ij} x_t^{(j)} \right), \\
+\beta\_{ji} x_t^{(j)} \right), \\
 
-where \\\beta\_{ij}\\ denotes the inhibitory (or facilitative) effect of
+where \\\beta\_{ji}\\ denotes the inhibitory (or facilitative) effect of
 variable \\j\\ on variable \\i\\. These multivariate systems allow the
 study of interaction-driven complexity, including predator-prey
 dynamics, interspecies competition, and coevolutionary processes.
@@ -31,8 +31,8 @@ dynamics, interspecies competition, and coevolutionary processes.
 This framework can be further extended to **spatial domains** to account
 for interactions among neighboring spatial units. The resulting system,
 known as the **Spatial Logistic Map (SLM)**, distributes the logistic
-dynamics over a spatial lattice. In the simplest case, each location
-\\i\\ on the lattice updates according to:
+dynamics over a spatial cross section. In the simplest case, each
+location \\i\\ on the cross section updates according to:
 
 \\ x\_{i}^{(t+1)} = 1 - \alpha x_i^{(t)} \cdot \frac{1}{k} \sum\_{j \in
 \mathcal{N}(i)} x_j^{(t)}, \\
@@ -52,22 +52,23 @@ logistic map**, the update rules may be written as:
 
 - **Local cross-variable interaction (default form):**
 
-\\ x\_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum\_{j
-\in \mathcal{N}(i)} x_j^{(t)} - \beta\_{21} y_i^{(t)} \right), \\
-y\_{i}^{(t+1)} = 1 - \alpha_2 y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in
-\mathcal{N}(i)} y_j^{(t)} - \beta\_{12} x_i^{(t)} \right). \\
+\\ \begin{aligned} x\_{i}^{(t+1)} &= 1 - \alpha_x x_i^{(t)} \left(
+\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} - \beta\_{yx}
+y_i^{(t)} \right), \\ y\_{i}^{(t+1)} &= 1 - \alpha_y y_i^{(t)} \left(
+\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} - \beta\_{xy}
+x_i^{(t)} \right). \end{aligned} \\
 
 Here, the inhibitory (or facilitative) influence between variables is
 restricted to the same spatial location.
 
 - **Neighbor-averaged cross-variable interaction (extended form):**
 
-\\ x\_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum\_{j
-\in \mathcal{N}(i)} x_j^{(t)} - \beta\_{21} \frac{1}{k} \sum\_{j \in
-\mathcal{N}(i)} y_j^{(t)} \right), \\ y\_{i}^{(t+1)} = 1 - \alpha_2
-y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} -
-\beta\_{12} \frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} \right).
-\\
+\\ \begin{aligned} x\_{i}^{(t+1)} = 1 - \alpha_x x_i^{(t)} \left(
+\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} - \beta\_{yx}
+\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} \right), \\
+y\_{i}^{(t+1)} = 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in
+\mathcal{N}(i)} y_j^{(t)} - \beta\_{xy} \frac{1}{k} \sum\_{j \in
+\mathcal{N}(i)} x_j^{(t)} \right). \end{aligned} \\
 
 In this alternative form, the inter-variable interactions are mediated
 through the **neighbor-averaged states**, allowing each variable to be
@@ -134,6 +135,8 @@ species (a, b, and c).](../reference/figures/slm/sim_trispecies-1.png)
 **Figure 1**. Simulated initial species density distributions for three
 species (a, b, and c).
 
+  
+
 We assume an underlying causal interaction structure among species,
 where species *a* influences *b*, and *b* in turn influences *c* (i.e.,
 *a* → *b* → *c*). The intrinsic growth rates of species a, b, and c are
@@ -176,6 +179,8 @@ interactions.](../reference/figures/slm/slm1-1.png)
 
 **Figure 2**. Species distributions following spatiotemporal interaction
 and evolution after 20 simulation steps with 4-neighbor interactions.
+
+  
 
 ``` r
 simv = spEDM::slm(species, x = "a", y = "b", z = "c", k = 4, step = 15, transient = 1, interact = "neighbors",

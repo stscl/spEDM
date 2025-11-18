@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-08-31<br>
-Last run: 2025-11-16</div></h4>
+update: 2025-11-18<br>
+Last run: 2025-11-18</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/SLM.Rmd" class="external-link"><code>vignettes/SLM.Rmd</code></a></small>
       <div class="d-none name"><code>SLM.Rmd</code></div>
@@ -110,17 +110,17 @@ is also influenced by the states of other variables. A common form
 is:</p>
 <p><span class="math display">\[
 x_{t+1}^{(i)} = r_i x_t^{(i)} \left(1 - x_t^{(i)} - \sum_{j \neq i}
-\beta_{ij} x_t^{(j)} \right),
+\beta_{ji} x_t^{(j)} \right),
 \]</span></p>
-<p>where <span class="math inline">\(\beta_{ij}\)</span> denotes the
+<p>where <span class="math inline">\(\beta_{ji}\)</span> denotes the
 inhibitory (or facilitative) effect of variable <span class="math inline">\(j\)</span> on variable <span class="math inline">\(i\)</span>. These multivariate systems allow the
 study of interaction-driven complexity, including predator-prey
 dynamics, interspecies competition, and coevolutionary processes.</p>
 <p>This framework can be further extended to <strong>spatial
 domains</strong> to account for interactions among neighboring spatial
 units. The resulting system, known as the <strong>Spatial Logistic Map
-(SLM)</strong>, distributes the logistic dynamics over a spatial
-lattice. In the simplest case, each location <span class="math inline">\(i\)</span> on the lattice updates according
+(SLM)</strong>, distributes the logistic dynamics over a spatial cross
+section. In the simplest case, each location <span class="math inline">\(i\)</span> on the cross section updates according
 to:</p>
 <p><span class="math display">\[
 x_{i}^{(t+1)} = 1 - \alpha x_i^{(t)} \cdot \frac{1}{k} \sum_{j \in
@@ -142,10 +142,12 @@ spatial logistic map</strong>, the update rules may be written as:</p>
 form):</strong></li>
 </ul>
 <p><span class="math display">\[
-x_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} x_j^{(t)} - \beta_{21} y_i^{(t)} \right), \\
-y_{i}^{(t+1)} = 1 - \alpha_2 y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} y_j^{(t)} - \beta_{12} x_i^{(t)} \right).
+\begin{aligned}
+x_{i}^{(t+1)} &amp;= 1 - \alpha_x x_i^{(t)} \left( \frac{1}{k} \sum_{j
+\in \mathcal{N}(i)} x_j^{(t)} - \beta_{yx} y_i^{(t)} \right), \\
+y_{i}^{(t+1)} &amp;= 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum_{j
+\in \mathcal{N}(i)} y_j^{(t)} - \beta_{xy} x_i^{(t)} \right).
+\end{aligned}
 \]</span></p>
 <p>Here, the inhibitory (or facilitative) influence between variables is
 restricted to the same spatial location.</p>
@@ -154,12 +156,14 @@ restricted to the same spatial location.</p>
 form):</strong></li>
 </ul>
 <p><span class="math display">\[
-x_{i}^{(t+1)} = 1 - \alpha_1 x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} x_j^{(t)} - \beta_{21} \frac{1}{k} \sum_{j \in
+\begin{aligned}
+x_{i}^{(t+1)} = 1 - \alpha_x x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} x_j^{(t)} - \beta_{yx} \frac{1}{k} \sum_{j \in
 \mathcal{N}(i)} y_j^{(t)} \right), \\
-y_{i}^{(t+1)} = 1 - \alpha_2 y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} y_j^{(t)} - \beta_{12} \frac{1}{k} \sum_{j \in
+y_{i}^{(t+1)} = 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
+\mathcal{N}(i)} y_j^{(t)} - \beta_{xy} \frac{1}{k} \sum_{j \in
 \mathcal{N}(i)} x_j^{(t)} \right).
+\end{aligned}
 \]</span></p>
 <p>In this alternative form, the inter-variable interactions are
 mediated through the <strong>neighbor-averaged states</strong>, allowing
@@ -222,6 +226,7 @@ distribution.</p>
 <strong>Figure 1</strong>. Simulated initial
 species density distributions for three species (a, b, and c).</div>
 </div>
+<p><br></p>
 <p>We assume an underlying causal interaction structure among species,
 where species <em>a</em> influences <em>b</em>, and <em>b</em> in turn
 influences <em>c</em> (i.e., <em>a</em> → <em>b</em> → <em>c</em>). The
@@ -262,6 +267,7 @@ interactions.</p>
 following spatiotemporal interaction and evolution after 20 simulation
 steps with 4-neighbor interactions.</div>
 </div>
+<p><br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>, x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>, interact <span class="op">=</span> <span class="st">"neighbors"</span>,</span>
 <span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>, beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
