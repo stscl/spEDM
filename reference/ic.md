@@ -117,10 +117,6 @@ A list
 
   method of cross mapping
 
-- `tau`:
-
-  step of spatial lag
-
 ## References
 
 Tao, P., Wang, Q., Shi, J., Hao, X., Liu, X., Min, B., Zhang, Y., Li,
@@ -133,6 +129,6 @@ intersection cardinal concavity. Fundamental Research.
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 ic(columbus,"hoval","crime",E = 7,k = 15:25)
-#> The suggested E and k for variable crime is 7 and 18 
+#> The suggested E,k,tau for variable crime is 7, 18 and 1 
 # }
 ```
