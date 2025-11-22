@@ -17,6 +17,9 @@
 
 #### enhancements
 
+- Permit `simplex` and `ic` generics to accept varying E, k, and tau
+  inputs ([\#900](https://github.com/stscl/spEDM/issues/900)).
+
 - Calibrate spacing conventions and enable real execution of
   available-thread detection
   ([\#885](https://github.com/stscl/spEDM/issues/885)).
