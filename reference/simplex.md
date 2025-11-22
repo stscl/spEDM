@@ -135,10 +135,6 @@ A list
 
   method of cross mapping
 
-- `tau`:
-
-  step of spatial lag
-
 ## References
 
 Sugihara G. and May R. 1990. Nonlinear forecasting as a way of
@@ -151,6 +147,6 @@ distinguishing chaos from measurement error in time series. Nature,
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 simplex(columbus,"inc","crime")
-#> The suggested E and k for variable crime is 5 and 6 
+#> The suggested E,k,tau for variable crime is 5, 6 and 1 
 # }
 ```
