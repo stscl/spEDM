@@ -12,6 +12,7 @@ fnn(
   E = 1:10,
   tau = 1,
   style = 1,
+  stack = FALSE,
   lib = NULL,
   pred = NULL,
   dist.metric = "L1",
@@ -29,6 +30,7 @@ fnn(
   E = 1:10,
   tau = 1,
   style = 1,
+  stack = FALSE,
   lib = NULL,
   pred = NULL,
   dist.metric = "L1",
@@ -36,7 +38,8 @@ fnn(
   eps = 2,
   threads = detectThreads(),
   detrend = TRUE,
-  grid.coord = TRUE
+  grid.coord = TRUE,
+  embed.direction = 0
 )
 ```
 
@@ -62,6 +65,10 @@ fnn(
 
   (optional) embedding style (`0` includes current state, `1` excludes
   it).
+
+- stack:
+
+  (optional) whether to stack embeddings.
 
 - lib:
 
@@ -99,6 +106,11 @@ fnn(
 
   (optional) whether to detrend using cell center coordinates (`TRUE`)
   or row/column numbers (`FALSE`).
+
+- embed.direction:
+
+  (optional) direction selector for embeddings (`0` returns all
+  directions, `1-8` correspond to NW, N, NE, W, E, SW, S, SE).
 
 ## Value
 
