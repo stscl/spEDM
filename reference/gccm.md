@@ -172,7 +172,7 @@ A list
 
 - `varname`:
 
-  names of causal and effect variable
+  names of causal and effect variables
 
 - `bidirectional`:
 
