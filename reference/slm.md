@@ -25,6 +25,7 @@ slm(
   threshold = Inf,
   transient = 1,
   interact = "local",
+  aggregate_fn = NULL,
   nb = NULL
 )
 
@@ -47,7 +48,8 @@ slm(
   beta_zy = 0.35,
   threshold = Inf,
   transient = 1,
-  interact = "local"
+  interact = "local",
+  aggregate_fn = NULL
 )
 ```
 
@@ -87,7 +89,7 @@ slm(
 
 - alpha_z:
 
-  (optional) growth parameter for y.
+  (optional) growth parameter for z.
 
 - beta_xy:
 
@@ -125,6 +127,11 @@ slm(
 
   (optional) type of cross-variable interaction (`local` or
   `neighbors`).
+
+- aggregate_fn:
+
+  (optional) Custom aggregation function. Must accept a numeric vector
+  and return a single numeric value.
 
 - nb:
 

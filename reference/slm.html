@@ -75,6 +75,7 @@
 <span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  interact <span class="op">=</span> <span class="st">"local"</span>,</span>
+<span>  aggregate_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -97,7 +98,8 @@
 <span>  beta_zy <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  interact <span class="op">=</span> <span class="st">"local"</span></span>
+<span>  interact <span class="op">=</span> <span class="st">"local"</span>,</span>
+<span>  aggregate_fn <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -138,7 +140,7 @@
 
 
 <dt id="arg-alpha-z">alpha_z<a class="anchor" aria-label="anchor" href="#arg-alpha-z"></a></dt>
-<dd><p>(optional) growth parameter for y.</p></dd>
+<dd><p>(optional) growth parameter for z.</p></dd>
 
 
 <dt id="arg-beta-xy">beta_xy<a class="anchor" aria-label="anchor" href="#arg-beta-xy"></a></dt>
@@ -175,6 +177,10 @@
 
 <dt id="arg-interact">interact<a class="anchor" aria-label="anchor" href="#arg-interact"></a></dt>
 <dd><p>(optional) type of cross-variable interaction (<code>local</code> or <code>neighbors</code>).</p></dd>
+
+
+<dt id="arg-aggregate-fn">aggregate_fn<a class="anchor" aria-label="anchor" href="#arg-aggregate-fn"></a></dt>
+<dd><p>(optional) Custom aggregation function. Must accept a numeric vector and return a single numeric value.</p></dd>
 
 
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>

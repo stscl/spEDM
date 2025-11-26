@@ -17,6 +17,9 @@
 
 #### enhancements
 
+- Drive extension of `slm` generics with custom aggregation capabilities
+  ([\#912](https://github.com/stscl/spEDM/issues/912)).
+
 - Permit `simplex` and `ic` generics to accept varying E, k, and tau
   inputs ([\#900](https://github.com/stscl/spEDM/issues/900)).
 
