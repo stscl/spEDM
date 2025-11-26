@@ -230,35 +230,35 @@ density data:</p>
 <span><span class="co">## # ℹ 2,796 more rows</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">## The suggested E and k for variable pre is 3 and 6</span></span>
-<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
-<span><span class="co">## The suggested E and k for variable popd is 9 and 6</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E,k,tau for variable pre is 3, 12 and 1</span></span>
+<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E,k,tau for variable popd is 9, 12 and 1</span></span></code></pre></div>
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">pd_res</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">popd_sf</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"popd"</span>,</span>
 <span>                     libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">2800</span>, by <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
-<span>                     E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">6</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                     E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.633887 mins</span></span>
+<span><span class="co">## Time difference of 2.147843 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
-<span><span class="co">## 1       100 0.1140592 0.03269659</span></span>
-<span><span class="co">## 2       300 0.2324104 0.06451333</span></span>
-<span><span class="co">## 3       500 0.3000403 0.09424558</span></span>
-<span><span class="co">## 4       700 0.3576318 0.12213856</span></span>
-<span><span class="co">## 5       900 0.4023234 0.14794178</span></span>
-<span><span class="co">## 6      1100 0.4449998 0.17006265</span></span>
-<span><span class="co">## 7      1300 0.4888766 0.19055016</span></span>
-<span><span class="co">## 8      1500 0.5289804 0.21034768</span></span>
-<span><span class="co">## 9      1700 0.5720495 0.22720335</span></span>
-<span><span class="co">## 10     1900 0.6122726 0.24169609</span></span>
-<span><span class="co">## 11     2100 0.6506091 0.25473781</span></span>
-<span><span class="co">## 12     2300 0.6863609 0.26493519</span></span>
-<span><span class="co">## 13     2500 0.7203389 0.27377272</span></span>
-<span><span class="co">## 14     2700 0.7519251 0.28118969</span></span></code></pre></div>
+<span><span class="co">## 1       100 0.1199174 0.03313697</span></span>
+<span><span class="co">## 2       300 0.2359430 0.06783942</span></span>
+<span><span class="co">## 3       500 0.3036477 0.09908984</span></span>
+<span><span class="co">## 4       700 0.3589912 0.12790924</span></span>
+<span><span class="co">## 5       900 0.4002043 0.15290218</span></span>
+<span><span class="co">## 6      1100 0.4410549 0.17431029</span></span>
+<span><span class="co">## 7      1300 0.4850465 0.19399537</span></span>
+<span><span class="co">## 8      1500 0.5252593 0.21250237</span></span>
+<span><span class="co">## 9      1700 0.5681300 0.22907550</span></span>
+<span><span class="co">## 10     1900 0.6087514 0.24370783</span></span>
+<span><span class="co">## 11     2100 0.6471818 0.25669742</span></span>
+<span><span class="co">## 12     2300 0.6822049 0.26774678</span></span>
+<span><span class="co">## 13     2500 0.7154519 0.27716611</span></span>
+<span><span class="co">## 14     2700 0.7470211 0.28586628</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>, xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -314,29 +314,29 @@ precipitation.</div>
 <span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
-<span><span class="co">## The suggested E and k for variable pre is 2 and 8</span></span>
-<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
-<span><span class="co">## The suggested E and k for variable npp is 10 and 8</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">12</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E,k,tau for variable pre is 2, 12 and 1</span></span>
+<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/simplex.html">simplex</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">12</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span><span class="op">)</span></span>
+<span><span class="co">## The suggested E,k,tau for variable npp is 10, 12 and 1</span></span></code></pre></div>
 <p>Run GCCM:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
 <span>                      libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>                      E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">8</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, </span>
+<span>                      E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, </span>
 <span>                      progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 0.8821938 mins</span></span>
+<span><span class="co">## Time difference of 1.097801 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       10 0.1282926 0.1111689</span></span>
-<span><span class="co">## 2       30 0.2600228 0.2346917</span></span>
-<span><span class="co">## 3       50 0.3773586 0.2998472</span></span>
-<span><span class="co">## 4       70 0.4968706 0.3411285</span></span>
-<span><span class="co">## 5       90 0.5975915 0.3393013</span></span>
-<span><span class="co">## 6      110 0.7362461 0.3434810</span></span>
-<span><span class="co">## 7      130 0.8385761 0.3633303</span></span></code></pre></div>
+<span><span class="co">## 1       10 0.1235069 0.1061684</span></span>
+<span><span class="co">## 2       30 0.2629126 0.2340358</span></span>
+<span><span class="co">## 3       50 0.3780635 0.3031695</span></span>
+<span><span class="co">## 4       70 0.4980299 0.3450645</span></span>
+<span><span class="co">## 5       90 0.5954949 0.3434175</span></span>
+<span><span class="co">## 6      110 0.7297306 0.3453495</span></span>
+<span><span class="co">## 7      130 0.8272545 0.3677895</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>

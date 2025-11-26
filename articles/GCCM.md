@@ -131,10 +131,10 @@ popd_sf
 Determining optimal embedding dimension:
 
 ``` r
-spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 6)
-## The suggested E and k for variable pre is 3 and 6
-spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 6)
-## The suggested E and k for variable popd is 9 and 6
+spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 12)
+## The suggested E,k,tau for variable pre is 3, 12 and 1
+spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 12)
+## The suggested E,k,tau for variable popd is 9, 12 and 1
 ```
 
 Run GCCM:
@@ -143,26 +143,26 @@ Run GCCM:
 startTime = Sys.time()
 pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      libsizes = seq(100, 2800, by = 200),
-                     E = c(3,9), k = 6, nb = popd_nb, progressbar = FALSE)
+                     E = c(3,9), k = 12, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.633887 mins
+## Time difference of 2.147843 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
-## 1       100 0.1140592 0.03269659
-## 2       300 0.2324104 0.06451333
-## 3       500 0.3000403 0.09424558
-## 4       700 0.3576318 0.12213856
-## 5       900 0.4023234 0.14794178
-## 6      1100 0.4449998 0.17006265
-## 7      1300 0.4888766 0.19055016
-## 8      1500 0.5289804 0.21034768
-## 9      1700 0.5720495 0.22720335
-## 10     1900 0.6122726 0.24169609
-## 11     2100 0.6506091 0.25473781
-## 12     2300 0.6863609 0.26493519
-## 13     2500 0.7203389 0.27377272
-## 14     2700 0.7519251 0.28118969
+## 1       100 0.1199174 0.03313697
+## 2       300 0.2359430 0.06783942
+## 3       500 0.3036477 0.09908984
+## 4       700 0.3589912 0.12790924
+## 5       900 0.4002043 0.15290218
+## 6      1100 0.4410549 0.17431029
+## 7      1300 0.4850465 0.19399537
+## 8      1500 0.5252593 0.21250237
+## 9      1700 0.5681300 0.22907550
+## 10     1900 0.6087514 0.24370783
+## 11     2100 0.6471818 0.25669742
+## 12     2300 0.6822049 0.26774678
+## 13     2500 0.7154519 0.27716611
+## 14     2700 0.7470211 0.28586628
 ```
 
 Visualize the result:
@@ -227,10 +227,10 @@ predindice = nnaindice[indices,]
 Determining optimal embedding dimension:
 
 ``` r
-spEDM::simplex(npp, "pre", "pre", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
-## The suggested E and k for variable pre is 2 and 8
-spEDM::simplex(npp, "npp", "npp", E = 2:10, k = 8, lib = nnaindice, pred = predindice)
-## The suggested E and k for variable npp is 10 and 8
+spEDM::simplex(npp, "pre", "pre", E = 2:10, k = 12, lib = nnaindice, pred = predindice)
+## The suggested E,k,tau for variable pre is 2, 12 and 1
+spEDM::simplex(npp, "npp", "npp", E = 2:10, k = 12, lib = nnaindice, pred = predindice)
+## The suggested E,k,tau for variable npp is 10, 12 and 1
 ```
 
 Run GCCM:
@@ -239,20 +239,20 @@ Run GCCM:
 startTime = Sys.time()
 npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
                       libsizes = matrix(rep(seq(10,130,20),2),ncol = 2),
-                      E = c(2,10), k = 8, lib = nnaindice, pred = predindice, 
+                      E = c(2,10), k = 12, lib = nnaindice, pred = predindice, 
                       progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 0.8821938 mins
+## Time difference of 1.097801 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
-## 1       10 0.1282926 0.1111689
-## 2       30 0.2600228 0.2346917
-## 3       50 0.3773586 0.2998472
-## 4       70 0.4968706 0.3411285
-## 5       90 0.5975915 0.3393013
-## 6      110 0.7362461 0.3434810
-## 7      130 0.8385761 0.3633303
+## 1       10 0.1235069 0.1061684
+## 2       30 0.2629126 0.2340358
+## 3       50 0.3780635 0.3031695
+## 4       70 0.4980299 0.3450645
+## 5       90 0.5954949 0.3434175
+## 6      110 0.7297306 0.3453495
+## 7      130 0.8272545 0.3677895
 ```
 
 Visualize the result:

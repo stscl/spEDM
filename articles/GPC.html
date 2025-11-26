@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-11-20<br>
-Last run: 2025-11-20</div></h4>
+update: 2025-11-25<br>
+Last run: 2025-11-25</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/GPC.Rmd" class="external-link"><code>vignettes/GPC.Rmd</code></a></small>
       <div class="d-none name"><code>GPC.Rmd</code></div>
@@ -211,7 +211,7 @@ search.</p>
 <span><span class="co">## -0.5744867</span></span>
 <span></span>
 <span><span class="co"># since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search</span></span>
-<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/pc.html">pc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">12</span>, maximize <span class="op">=</span> <span class="st">"negative"</span><span class="op">)</span></span>
+<span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/pc.html">pc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">6</span>, k <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">10</span>, tau <span class="op">=</span> <span class="fl">1</span>, maximize <span class="op">=</span> <span class="st">"negative"</span><span class="op">)</span></span>
 <span><span class="co">## The suggested E,k,tau for variable crime is 6, 9 and 1</span></span></code></pre></div>
 <p>Run geographical pattern causality analysis</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -402,81 +402,81 @@ analysis.</p>
 <span><span class="co">## 0.7944062</span></span>
 <span></span>
 <span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/pc.html">pc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">12</span>, maximize <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/pc.html">pc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, <span class="st">"pre"</span>, E <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">12</span>, tau <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, maximize <span class="op">=</span> <span class="st">"positive"</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
-<span><span class="co">## The suggested E,k,tau for variable pre is 10, 8 and 1</span></span></code></pre></div>
+<span><span class="co">## The suggested E,k,tau for variable pre is 8, 12 and 5</span></span></code></pre></div>
 <p>Run geographical pattern causality analysis</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">12</span>, tau <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">## -------------------------------- </span></span>
 <span><span class="co">## ***pattern causality analysis*** </span></span>
 <span><span class="co">## -------------------------------- </span></span>
-<span><span class="co">##       type   strength  direction</span></span>
-<span><span class="co">## 1 positive 0.17965602 pre -&gt; npp</span></span>
-<span><span class="co">## 2 negative 0.07324967 pre -&gt; npp</span></span>
-<span><span class="co">## 3     dark 0.11234022 pre -&gt; npp</span></span>
-<span><span class="co">## 4 positive 0.11660150 npp -&gt; pre</span></span>
-<span><span class="co">## 5 negative 0.02060173 npp -&gt; pre</span></span>
-<span><span class="co">## 6     dark 0.07498946 npp -&gt; pre</span></span></code></pre></div>
+<span><span class="co">##       type  strength  direction</span></span>
+<span><span class="co">## 1 positive 0.5348284 pre -&gt; npp</span></span>
+<span><span class="co">## 2 negative       NaN pre -&gt; npp</span></span>
+<span><span class="co">## 3     dark 0.4184010 pre -&gt; npp</span></span>
+<span><span class="co">## 4 positive 0.4346310 npp -&gt; pre</span></span>
+<span><span class="co">## 5 negative 0.0000000 npp -&gt; pre</span></span>
+<span><span class="co">## 6     dark 0.3810809 npp -&gt; pre</span></span></code></pre></div>
 <p>Convergence diagnostics</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp_convergence</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>,</span>
 <span>                             libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">80</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>                             E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">8</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                             E <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">12</span>, tau <span class="op">=</span> <span class="fl">5</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">npp_convergence</span></span>
 <span><span class="co">## -------------------------------- </span></span>
 <span><span class="co">## ***pattern causality analysis*** </span></span>
 <span><span class="co">## -------------------------------- </span></span>
-<span><span class="co">##    libsizes     type        mean         q05         q50         q95  direction</span></span>
-<span><span class="co">## 1       100 positive 0.031115313 0.007586101 0.029699586 0.058335871 pre -&gt; npp</span></span>
-<span><span class="co">## 2       400 positive 0.046321136 0.025965817 0.043444827 0.072677663 pre -&gt; npp</span></span>
-<span><span class="co">## 3       900 positive 0.061289327 0.036546196 0.060742103 0.088607440 pre -&gt; npp</span></span>
-<span><span class="co">## 4      1600 positive 0.076140862 0.052179914 0.073213997 0.109569849 pre -&gt; npp</span></span>
-<span><span class="co">## 5      2500 positive 0.099999344 0.061554432 0.099303348 0.138071568 pre -&gt; npp</span></span>
-<span><span class="co">## 6      3600 positive 0.126697417 0.098448170 0.123791233 0.167912560 pre -&gt; npp</span></span>
-<span><span class="co">## 7      4900 positive 0.146035271 0.112762146 0.145172371 0.183307027 pre -&gt; npp</span></span>
-<span><span class="co">## 8      6400 positive 0.160439882 0.134164256 0.160445471 0.186289425 pre -&gt; npp</span></span>
-<span><span class="co">## 9       100 negative 0.003273151 0.000000000 0.000000000 0.026239627 pre -&gt; npp</span></span>
-<span><span class="co">## 10      400 negative 0.012317191 0.000000000 0.000000000 0.080175322 pre -&gt; npp</span></span>
-<span><span class="co">## 11      900 negative 0.010041381 0.000000000 0.000000000 0.052225817 pre -&gt; npp</span></span>
-<span><span class="co">## 12     1600 negative 0.014646855 0.000000000 0.000000000 0.051719668 pre -&gt; npp</span></span>
-<span><span class="co">## 13     2500 negative 0.017304728 0.000000000 0.012908133 0.060407569 pre -&gt; npp</span></span>
-<span><span class="co">## 14     3600 negative 0.029873744 0.000000000 0.023609577 0.084630632 pre -&gt; npp</span></span>
-<span><span class="co">## 15     4900 negative 0.052685098 0.000000000 0.044056385 0.112090962 pre -&gt; npp</span></span>
-<span><span class="co">## 16     6400 negative 0.079284906 0.040603770 0.073939966 0.144740517 pre -&gt; npp</span></span>
-<span><span class="co">## 17      100     dark 0.011016952 0.007199096 0.011132782 0.015484596 pre -&gt; npp</span></span>
-<span><span class="co">## 18      400     dark 0.020933433 0.017930911 0.021111871 0.024097073 pre -&gt; npp</span></span>
-<span><span class="co">## 19      900     dark 0.031608707 0.028162091 0.031778577 0.035363644 pre -&gt; npp</span></span>
-<span><span class="co">## 20     1600     dark 0.043926249 0.040428070 0.043734773 0.047935433 pre -&gt; npp</span></span>
-<span><span class="co">## 21     2500     dark 0.057378635 0.053587736 0.057374306 0.060963609 pre -&gt; npp</span></span>
-<span><span class="co">## 22     3600     dark 0.071548875 0.068658387 0.071466039 0.074681528 pre -&gt; npp</span></span>
-<span><span class="co">## 23     4900     dark 0.087497393 0.084610447 0.087512476 0.090274961 pre -&gt; npp</span></span>
-<span><span class="co">## 24     6400     dark 0.105680749 0.103470002 0.105644417 0.108325521 pre -&gt; npp</span></span>
-<span><span class="co">## 25      100 positive 0.028569076 0.007135101 0.019419478 0.071601455 npp -&gt; pre</span></span>
-<span><span class="co">## 26      400 positive 0.028527969 0.010031453 0.023908329 0.058591795 npp -&gt; pre</span></span>
-<span><span class="co">## 27      900 positive 0.036122075 0.014168932 0.033033341 0.072532610 npp -&gt; pre</span></span>
-<span><span class="co">## 28     1600 positive 0.047301056 0.022247962 0.045376114 0.075475672 npp -&gt; pre</span></span>
-<span><span class="co">## 29     2500 positive 0.062906169 0.028936818 0.060119839 0.104134649 npp -&gt; pre</span></span>
-<span><span class="co">## 30     3600 positive 0.074948324 0.045138188 0.072470117 0.112803779 npp -&gt; pre</span></span>
-<span><span class="co">## 31     4900 positive 0.083409494 0.048460474 0.083202422 0.117838640 npp -&gt; pre</span></span>
-<span><span class="co">## 32     6400 positive 0.106386835 0.083585629 0.105913467 0.134241910 npp -&gt; pre</span></span>
-<span><span class="co">## 33      100 negative 0.003011197 0.000000000 0.000000000 0.023066673 npp -&gt; pre</span></span>
-<span><span class="co">## 34      400 negative 0.004083593 0.000000000 0.000000000 0.006696365 npp -&gt; pre</span></span>
-<span><span class="co">## 35      900 negative 0.002551397 0.000000000 0.000000000 0.012484206 npp -&gt; pre</span></span>
-<span><span class="co">## 36     1600 negative 0.011731070 0.000000000 0.000000000 0.082612764 npp -&gt; pre</span></span>
-<span><span class="co">## 37     2500 negative 0.021074707 0.000000000 0.000000000 0.091628715 npp -&gt; pre</span></span>
-<span><span class="co">## 38     3600 negative 0.023902755 0.000000000 0.007702966 0.090909071 npp -&gt; pre</span></span>
-<span><span class="co">## 39     4900 negative 0.022095474 0.000000000 0.011767492 0.085813742 npp -&gt; pre</span></span>
-<span><span class="co">## 40     6400 negative 0.020143626 0.000000000 0.020601731 0.046991718 npp -&gt; pre</span></span>
-<span><span class="co">## 41      100     dark 0.004600106 0.002857303 0.004447841 0.006728481 npp -&gt; pre</span></span>
-<span><span class="co">## 42      400     dark 0.008263541 0.006582778 0.008192628 0.010447302 npp -&gt; pre</span></span>
-<span><span class="co">## 43      900     dark 0.013526187 0.011453966 0.013519120 0.015781555 npp -&gt; pre</span></span>
-<span><span class="co">## 44     1600     dark 0.020439415 0.017787637 0.020304423 0.023424297 npp -&gt; pre</span></span>
-<span><span class="co">## 45     2500     dark 0.029546189 0.026802226 0.029597209 0.032334222 npp -&gt; pre</span></span>
-<span><span class="co">## 46     3600     dark 0.041574610 0.038806536 0.041788692 0.044113261 npp -&gt; pre</span></span>
-<span><span class="co">## 47     4900     dark 0.054393996 0.050785504 0.054506748 0.058884190 npp -&gt; pre</span></span>
-<span><span class="co">## 48     6400     dark 0.069724825 0.066373466 0.069559462 0.072356255 npp -&gt; pre</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.35</span><span class="op">)</span>,</span>
+<span><span class="co">##    libsizes     type       mean        q05        q50        q95  direction</span></span>
+<span><span class="co">## 1       100 positive 0.13329950 0.07407592 0.12538196 0.21019892 pre -&gt; npp</span></span>
+<span><span class="co">## 2       400 positive 0.18100175 0.14249619 0.18018497 0.22147429 pre -&gt; npp</span></span>
+<span><span class="co">## 3       900 positive 0.25003464 0.21385822 0.24754501 0.29748254 pre -&gt; npp</span></span>
+<span><span class="co">## 4      1600 positive 0.30971383 0.26851762 0.30981312 0.34501340 pre -&gt; npp</span></span>
+<span><span class="co">## 5      2500 positive 0.37591136 0.34370484 0.37799443 0.40938124 pre -&gt; npp</span></span>
+<span><span class="co">## 6      3600 positive 0.42811423 0.39096905 0.43029973 0.46082807 pre -&gt; npp</span></span>
+<span><span class="co">## 7      4900 positive 0.46727140 0.43908847 0.46526482 0.49780759 pre -&gt; npp</span></span>
+<span><span class="co">## 8      6400 positive 0.50712681 0.48845730 0.50607359 0.52917024 pre -&gt; npp</span></span>
+<span><span class="co">## 9       100 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 10      400 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 11      900 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 12     1600 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 13     2500 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 14     3600 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 15     4900 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 16     6400 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -&gt; npp</span></span>
+<span><span class="co">## 17      100     dark 0.06333096 0.04886528 0.06183032 0.08358828 pre -&gt; npp</span></span>
+<span><span class="co">## 18      400     dark 0.11278520 0.10155495 0.11232502 0.12549444 pre -&gt; npp</span></span>
+<span><span class="co">## 19      900     dark 0.17254903 0.16158658 0.17258621 0.18589246 pre -&gt; npp</span></span>
+<span><span class="co">## 20     1600     dark 0.23544491 0.22435755 0.23518092 0.24744847 pre -&gt; npp</span></span>
+<span><span class="co">## 21     2500     dark 0.29216320 0.28271925 0.29193486 0.30170269 pre -&gt; npp</span></span>
+<span><span class="co">## 22     3600     dark 0.33692868 0.32827102 0.33645457 0.34721452 pre -&gt; npp</span></span>
+<span><span class="co">## 23     4900     dark 0.37562510 0.36731091 0.37582609 0.38212762 pre -&gt; npp</span></span>
+<span><span class="co">## 24     6400     dark 0.40905193 0.40228743 0.40879652 0.41570044 pre -&gt; npp</span></span>
+<span><span class="co">## 25      100 positive 0.08370604 0.04391305 0.07934454 0.14943187 npp -&gt; pre</span></span>
+<span><span class="co">## 26      400 positive 0.11837244 0.08625077 0.11817574 0.15751796 npp -&gt; pre</span></span>
+<span><span class="co">## 27      900 positive 0.18424920 0.15435809 0.18403265 0.21228492 npp -&gt; pre</span></span>
+<span><span class="co">## 28     1600 positive 0.26954887 0.23293732 0.26820265 0.31161775 npp -&gt; pre</span></span>
+<span><span class="co">## 29     2500 positive 0.33977236 0.29821853 0.34026886 0.38175475 npp -&gt; pre</span></span>
+<span><span class="co">## 30     3600 positive 0.38400895 0.35424047 0.38219004 0.42224626 npp -&gt; pre</span></span>
+<span><span class="co">## 31     4900 positive 0.41104801 0.38079297 0.41126235 0.43664446 npp -&gt; pre</span></span>
+<span><span class="co">## 32     6400 positive 0.42379598 0.40593770 0.42254648 0.44334792 npp -&gt; pre</span></span>
+<span><span class="co">## 33      100 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 34      400 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 35      900 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 36     1600 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 37     2500 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 38     3600 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 39     4900 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 40     6400 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -&gt; pre</span></span>
+<span><span class="co">## 41      100     dark 0.02942263 0.02228002 0.02919551 0.03682652 npp -&gt; pre</span></span>
+<span><span class="co">## 42      400     dark 0.06566183 0.05533017 0.06567401 0.07682947 npp -&gt; pre</span></span>
+<span><span class="co">## 43      900     dark 0.11924707 0.10860295 0.11937259 0.13028348 npp -&gt; pre</span></span>
+<span><span class="co">## 44     1600     dark 0.18077129 0.17055326 0.18083090 0.19054978 npp -&gt; pre</span></span>
+<span><span class="co">## 45     2500     dark 0.23789787 0.22516765 0.23808200 0.24874971 npp -&gt; pre</span></span>
+<span><span class="co">## 46     3600     dark 0.28437360 0.27353890 0.28469842 0.29349259 npp -&gt; pre</span></span>
+<span><span class="co">## 47     4900     dark 0.32567219 0.31519618 0.32666764 0.33424028 npp -&gt; pre</span></span>
+<span><span class="co">## 48     6400     dark 0.36628717 0.36014813 0.36603708 0.37331526 npp -&gt; pre</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.65</span><span class="op">)</span>,</span>
 <span>     xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">6500</span><span class="op">)</span>, xbreaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">6400</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
 <img src="../reference/figures/gpc/fig2-1.png" alt="Figure 2. Convergence curves of causal strengths among precipitation and NPP."><div class="figcaption">
