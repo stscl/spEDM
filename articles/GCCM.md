@@ -36,7 +36,7 @@ as:
 \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)} \\
 
 where \\\psi(M_x, s_i)\\ is the state vector of spatial unit \\s_i\\ in
-the shadow manifold \$ M_x\$, and \\weight (\ast, \ast)\\ is the weight
+the shadow manifold \\M_x\\, and \\weight (\ast, \ast)\\ is the weight
 function between two states in the shadow manifold, defined as:
 
 \\ weight \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right) =
