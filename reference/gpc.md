@@ -171,15 +171,15 @@ A list
 
 - `causality`:
 
-  per-sample causality statistics(present if `libsizes` is `NULL`)
+  per-sample causality statistics (present if `libsizes` is `NULL`)
 
 - `summary`:
 
-  overall causal strength(present if `libsizes` is `NULL`)
+  overall causal strength (present if `libsizes` is `NULL`)
 
 - `pattern`:
 
-  pairwise pattern relationships(present if `libsizes` is `NULL`)
+  pairwise pattern relationships (present if `libsizes` is `NULL`)
 
 - `varname`:
 
