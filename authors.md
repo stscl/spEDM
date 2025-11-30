@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/stscl/spEDM/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/stscl/spEDM/blob/v1.9/inst/CITATION)
 
 Lv W (2025). *spEDM: Spatial Empirical Dynamic Modeling*.
 [doi:10.32614/CRAN.package.spEDM](https://doi.org/10.32614/CRAN.package.spEDM),

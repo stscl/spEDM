@@ -2,6 +2,8 @@
 
 ## spEDM 1.9
 
+CRAN release: 2025-11-30
+
 #### new
 
 - Provide R-level API and vignette for geographical pattern causality
