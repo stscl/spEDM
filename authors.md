@@ -12,12 +12,12 @@ Source:
 
 Lv W (2025). *spEDM: Spatial Empirical Dynamic Modeling*.
 [doi:10.32614/CRAN.package.spEDM](https://doi.org/10.32614/CRAN.package.spEDM),
-R package version 1.9.
+R package version 1.10.
 
     @Manual{,
       title = {{spEDM: Spatial Empirical Dynamic Modeling}},
       author = {Wenbo Lv},
       year = {2025},
-      note = {R package version 1.9},
+      note = {R package version 1.10},
       doi = {10.32614/CRAN.package.spEDM},
     }

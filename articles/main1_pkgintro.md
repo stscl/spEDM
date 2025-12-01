@@ -68,18 +68,18 @@ columbus
 ## Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245
 ## Projected CRS: Undefined Cartesian SRS with unknown unit
 ## # A tibble: 49 × 7
-##    hoval   inc  crime  open plumb discbd                                           geom
-##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                                      <POLYGON>
-##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.74245, 8.80945…
-##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22994, 8.3307…
-##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00205, 9.0089…
-##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83227, 8.502…
-##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72221, 8.909…
-##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69427, 9.6052…
-##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60452, 8.072…
-##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965, 8.294443…
-##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361, 9.677…
-## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275, 10.126…
+##    hoval   inc  crime  open plumb discbd                                        geom
+##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                                   <POLYGON>
+##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.74245, 8.80…
+##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22994, 8.3…
+##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00205, 9.0…
+##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83227, 8.…
+##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72221, 8.…
+##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69427, 9.6…
+##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60452, 8.…
+##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965, 8.294…
+##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361, 9.…
+## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275, 10.…
 ## # ℹ 39 more rows
 ```
 
@@ -101,7 +101,7 @@ popd_nb
 
 popd = readr::read_csv(system.file("case/popd.csv",package = "spEDM"))
 ## Rows: 2806 Columns: 7
-## ── Column specification ───────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (7): lon, lat, popd, elev, tem, pre, slope
 ## 
@@ -168,24 +168,25 @@ npp
 Users can refer to several additional vignettes for more detailed
 examples of using *spEDM*, namely:
 
-| *Method*                               | *Vignette*                                               |
-|----------------------------------------|----------------------------------------------------------|
-| State Space Reconstruction             | [SSR](https://stscl.github.io/spEDM/articles/SSR.html)   |
-| Spatial Logistic Map                   | [SLM](https://stscl.github.io/spEDM/articles/SLM.html)   |
-| Geographical Convergent Cross Mapping  | [GCCM](https://stscl.github.io/spEDM/articles/GCCM.html) |
-| Geographical Cross Mapping Cardinality | [GCMC](https://stscl.github.io/spEDM/articles/GCMC.html) |
-| Geographical Pattern Causality         | [GPC](https://stscl.github.io/spEDM/articles/GPC.html)   |
-| Spatial Causality Test                 | [SCT](https://stscl.github.io/spEDM/articles/SCT.html)   |
+| *Method*                               | *Vignette*                                                     |
+|----------------------------------------|----------------------------------------------------------------|
+| State Space Reconstruction             | [SSR](https://stscl.github.io/spEDM/articles/main2_ssr.html)   |
+| Geographical Convergent Cross Mapping  | [GCCM](https://stscl.github.io/spEDM/articles/main3_gccm.html) |
+| Geographical Cross Mapping Cardinality | [GCMC](https://stscl.github.io/spEDM/articles/main5_gcmc.html) |
+| Geographical Pattern Causality         | [GPC](https://stscl.github.io/spEDM/articles/main4_gpc.html)   |
+| Spatial Logistic Map                   | [SLM](https://stscl.github.io/spEDM/articles/si1_slm.html)     |
+| Spatial Causality Test                 | [SCT](https://stscl.github.io/spEDM/articles/si2_sct.html)     |
 
 In addition to the spatial extensions provided by *spEDM*, several other
 R packages support Empirical Dynamic Modeling (EDM) for **time series
 data**:
 
-- **[tEDM](https://stscl.github.io/tEDM/)**: An R package developed by
-  the author of `spEDM`, designed to implement the **Temporal Empirical
-  Dynamic Modeling** framework. It aims for maximal consistency with
-  `spEDM` in terms of API design and modeling workflow, facilitating
-  seamless transition between spatial and temporal EDM applications.
+- **[tEDM](https://cran.r-project.org/package=tEDM)**: An R package
+  developed by the author of `spEDM`, designed to implement the
+  **Temporal Empirical Dynamic Modeling** framework. It aims for maximal
+  consistency with `spEDM` in terms of API design and modeling workflow,
+  facilitating seamless transition between spatial and temporal EDM
+  applications.
 - **[rEDM](https://cran.r-project.org/package=rEDM)**: A foundational
   EDM package implementing simplex projection, S-map, and convergent
   cross mapping (CCM), widely used for analyzing nonlinear time series
