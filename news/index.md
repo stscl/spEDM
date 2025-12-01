@@ -2,6 +2,11 @@
 
 ## spEDM 1.10
 
+#### enhancements
+
+- Align vignette metadata with index entry for correct cran listing
+  ([\#920](https://github.com/stscl/spEDM/issues/920)).
+
 ## spEDM 1.9
 
 CRAN release: 2025-11-30

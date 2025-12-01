@@ -15,7 +15,13 @@ package submission.
 - Compile all vignettes at once
 
 ``` r
-for (v in c("PkgIntro", "SSR", "SLM", "SCT", "GPC", "GCCM", "GCMC", "SCPCM")) {
+# list vignette names
+vignettes = paste0(c(paste0("main", 1:5), 
+                     paste0("si", 1:2)), "_",
+                   c("pkgintro", "ssr", "gccm", "gpc",
+                     "gcmc", "slm", "sct"))
+
+for (v in vignettes) {
   .prebuild_vignettes(v)
 }
 ```
@@ -23,12 +29,11 @@ for (v in c("PkgIntro", "SSR", "SLM", "SCT", "GPC", "GCCM", "GCMC", "SCPCM")) {
 - Build vignettes separately
 
 ``` r
-.prebuild_vignettes("PkgIntro")
-.prebuild_vignettes("SSR")
-.prebuild_vignettes("SLM")
-.prebuild_vignettes("SCT")
-.prebuild_vignettes("GPC")
-.prebuild_vignettes("GCCM")
-.prebuild_vignettes("GCMC")
-.prebuild_vignettes("SCPCM")
+.prebuild_vignettes("main1_pkgintro")
+.prebuild_vignettes("main2_ssr")
+.prebuild_vignettes("main3_gccm")
+.prebuild_vignettes("main4_gpc")
+.prebuild_vignettes("main5_gcmc")
+.prebuild_vignettes("si1_slm")
+.prebuild_vignettes("si2_sct")
 ```

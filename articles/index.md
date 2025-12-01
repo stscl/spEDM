@@ -2,16 +2,17 @@
 
 ### All vignettes
 
-- [Geographical Convergent Cross
-  Mapping](https://stscl.github.io/spEDM/articles/GCCM.md):
-- [Geographical Cross Mapping
-  Cardinality](https://stscl.github.io/spEDM/articles/GCMC.md):
-- [Geographical Pattern
-  Causality](https://stscl.github.io/spEDM/articles/GPC.md):
 - [Introduction to the spEDM
-  package](https://stscl.github.io/spEDM/articles/PkgIntro.md):
-- [Spatial Causality
-  Test](https://stscl.github.io/spEDM/articles/SCT.md):
-- [Spatial Logistic Map](https://stscl.github.io/spEDM/articles/SLM.md):
+  package](https://stscl.github.io/spEDM/articles/main1_pkgintro.md):
 - [State Space
-  Reconstruction](https://stscl.github.io/spEDM/articles/SSR.md):
+  Reconstruction](https://stscl.github.io/spEDM/articles/main2_ssr.md):
+- [Geographical Convergent Cross
+  Mapping](https://stscl.github.io/spEDM/articles/main3_gccm.md):
+- [Geographical Pattern
+  Causality](https://stscl.github.io/spEDM/articles/main4_gpc.md):
+- [Geographical Cross Mapping
+  Cardinality](https://stscl.github.io/spEDM/articles/main5_gcmc.md):
+- [Spatial Logistic
+  Map](https://stscl.github.io/spEDM/articles/si1_slm.md):
+- [Spatial Causality
+  Test](https://stscl.github.io/spEDM/articles/si2_sct.md):

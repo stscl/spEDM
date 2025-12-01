@@ -1,13 +1,13 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://stscl.github.io/spEDM/404.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/GCCM.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/GCMC.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/GPC.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/PkgIntro.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/SCT.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/SLM.html</loc></url>
-<url><loc>https://stscl.github.io/spEDM/articles/SSR.html</loc></url>
 <url><loc>https://stscl.github.io/spEDM/articles/index.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/main1_pkgintro.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/main2_ssr.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/main3_gccm.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/main4_gpc.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/main5_gcmc.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/si1_slm.html</loc></url>
+<url><loc>https://stscl.github.io/spEDM/articles/si2_sct.html</loc></url>
 <url><loc>https://stscl.github.io/spEDM/authors.html</loc></url>
 <url><loc>https://stscl.github.io/spEDM/build-vignettes.html</loc></url>
 <url><loc>https://stscl.github.io/spEDM/index.html</loc></url>

@@ -2,14 +2,14 @@ pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
-  GCCM: GCCM.html
-  GCMC: GCMC.html
-  GPC: GPC.html
-  PkgIntro: PkgIntro.html
-  SCT: SCT.html
-  SLM: SLM.html
-  SSR: SSR.html
-last_built: 2025-12-01T01:04Z
+  main1_pkgintro: main1_pkgintro.html
+  main2_ssr: main2_ssr.html
+  main3_gccm: main3_gccm.html
+  main4_gpc: main4_gpc.html
+  main5_gcmc: main5_gcmc.html
+  si1_slm: si1_slm.html
+  si2_sct: si2_sct.html
+last_built: 2025-12-01T03:41Z
 urls:
   reference: https://stscl.github.io/spEDM/reference
   article: https://stscl.github.io/spEDM/articles
