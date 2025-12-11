@@ -26,6 +26,8 @@ slm(
   transient = 1,
   interact = "local",
   aggregate_fn = NULL,
+  noise = 0,
+  seed = 42L,
   nb = NULL
 )
 
@@ -49,7 +51,9 @@ slm(
   threshold = Inf,
   transient = 1,
   interact = "local",
-  aggregate_fn = NULL
+  aggregate_fn = NULL,
+  noise = 0,
+  seed = 42L
 )
 ```
 
@@ -130,8 +134,16 @@ slm(
 
 - aggregate_fn:
 
-  (optional) Custom aggregation function. Must accept a numeric vector
-  and return a single numeric value.
+  (optional) custom aggregation function (must accept a numeric vector
+  and return a single numeric value).
+
+- noise:
+
+  (optional) standard deviation of white noise.
+
+- seed:
+
+  (optional) random seed.
 
 - nb:
 

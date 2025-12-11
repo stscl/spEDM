@@ -76,6 +76,8 @@
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  interact <span class="op">=</span> <span class="st">"local"</span>,</span>
 <span>  aggregate_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  noise <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">42L</span>,</span>
 <span>  nb <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -99,7 +101,9 @@
 <span>  threshold <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  transient <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  interact <span class="op">=</span> <span class="st">"local"</span>,</span>
-<span>  aggregate_fn <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  aggregate_fn <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  noise <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">42L</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -180,7 +184,15 @@
 
 
 <dt id="arg-aggregate-fn">aggregate_fn<a class="anchor" aria-label="anchor" href="#arg-aggregate-fn"></a></dt>
-<dd><p>(optional) Custom aggregation function. Must accept a numeric vector and return a single numeric value.</p></dd>
+<dd><p>(optional) custom aggregation function (must accept a numeric vector and return a single numeric value).</p></dd>
+
+
+<dt id="arg-noise">noise<a class="anchor" aria-label="anchor" href="#arg-noise"></a></dt>
+<dd><p>(optional) standard deviation of white noise.</p></dd>
+
+
+<dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
+<dd><p>(optional) random seed.</p></dd>
 
 
 <dt id="arg-nb">nb<a class="anchor" aria-label="anchor" href="#arg-nb"></a></dt>

@@ -4,6 +4,9 @@
 
 #### enhancements
 
+- Support optional white noise in spatial logistic map simulation
+  ([\#922](https://github.com/stscl/spEDM/issues/922)).
+
 - Align vignette metadata with index entry for correct cran listing
   ([\#920](https://github.com/stscl/spEDM/issues/920)).
 
