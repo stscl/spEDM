@@ -150,11 +150,11 @@ A list
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-g = gcmc(columbus,"hoval","crime",E = 7,k = 18)
+g = gcmc(columbus,"hoval","crime",E = 7,k = 19)
 #> Computing: [========================================] 100% (done)                         
 #> Computing: [========================================] 100% (done)                         
 g
 #>   neighbors hoval->crime crime->hoval
-#> 1        18     0.183642    0.2901235
+#> 1        19    0.1634349    0.2770083
 # }
 ```
