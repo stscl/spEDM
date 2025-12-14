@@ -59,7 +59,7 @@ statistical significance of \\\hat{\delta}(\mathcal{Y}\_W,
 
 ## Usage examples
 
-### An example of spatial lattice data
+### Example of spatial vector data
 
 Load the `spEDM` package and the columbus OH dataset:
 
@@ -112,7 +112,7 @@ sc.test(columbus, "inc", "hoval", k = 15)
 ## hoval -> inc: statistic = 0.992, p value = 0.702
 ```
 
-### An example of spatial grid data
+### Example of spatial raster data
 
 Load the `spEDM` package and its farmland NPP data:
 

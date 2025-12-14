@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-11-20<br>
-Last run: 2025-12-01</div></h4>
+update: 2025-12-15<br>
+Last run: 2025-12-15</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/si1_slm.Rmd" class="external-link"><code>vignettes/si1_slm.Rmd</code></a></small>
       <div class="d-none name"><code>si1_slm.Rmd</code></div>
@@ -113,7 +113,7 @@ x_{t+1}^{(i)} = r_i x_t^{(i)} \left(1 - x_t^{(i)} - \sum_{j \neq i}
 \beta_{ji} x_t^{(j)} \right),
 \]</span></p>
 <p>where <span class="math inline">\(\beta_{ji}\)</span> denotes the
-inhibitory (or facilitative) effect of variable <span class="math inline">\(j\)</span> on variable <span class="math inline">\(i\)</span>. These multivariate systems allow the
+inhibitory (or facilitative) effect of variable <span class="math inline">\(j\)</span> on variable <span class="math inline">\(i\)</span>. These multivariable systems allow the
 study of interaction-driven complexity, including predator-prey
 dynamics, interspecies competition, and coevolutionary processes.</p>
 <p>This framework can be further extended to <strong>spatial
@@ -142,12 +142,18 @@ spatial logistic map</strong>, the update rules may be written as:</p>
 form):</strong></li>
 </ul>
 <p><span class="math display">\[
+\begin{equation}
+\left\{
 \begin{aligned}
 x_{i}^{(t+1)} &amp;= 1 - \alpha_x x_i^{(t)} \left( \frac{1}{k} \sum_{j
-\in \mathcal{N}(i)} x_j^{(t)} - \beta_{yx} y_i^{(t)} \right), \\
+\in \mathcal{N}(i)} x_j^{(t)} - \beta_{yx} y_i^{(t)} \right) +
+\xi_{x,i}^{(t)}, \\
 y_{i}^{(t+1)} &amp;= 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum_{j
-\in \mathcal{N}(i)} y_j^{(t)} - \beta_{xy} x_i^{(t)} \right).
+\in \mathcal{N}(i)} y_j^{(t)} - \beta_{xy} x_i^{(t)} \right) +
+\xi_{y,i}^{(t)}.
 \end{aligned}
+\right.
+\end{equation}
 \]</span></p>
 <p>Here, the inhibitory (or facilitative) influence between variables is
 restricted to the same spatial location.</p>
@@ -156,14 +162,18 @@ restricted to the same spatial location.</p>
 form):</strong></li>
 </ul>
 <p><span class="math display">\[
+\begin{equation}
+\left\{
 \begin{aligned}
 x_{i}^{(t+1)} = 1 - \alpha_x x_i^{(t)} \left( \frac{1}{k} \sum_{j \in
 \mathcal{N}(i)} x_j^{(t)} - \beta_{yx} \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} y_j^{(t)} \right), \\
+\mathcal{N}(i)} y_j^{(t)} \right) + \xi_{x,i}^{(t)}, \\
 y_{i}^{(t+1)} = 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum_{j \in
 \mathcal{N}(i)} y_j^{(t)} - \beta_{xy} \frac{1}{k} \sum_{j \in
-\mathcal{N}(i)} x_j^{(t)} \right).
+\mathcal{N}(i)} x_j^{(t)} \right) + \xi_{y,i}^{(t)}.
 \end{aligned}
+\right.
+\end{equation}
 \]</span></p>
 <p>In this alternative form, the inter-variable interactions are
 mediated through the <strong>neighbor-averaged states</strong>, allowing
@@ -177,6 +187,10 @@ and spatiotemporal chaos.</p>
 <p>By performing statistical aggregation over the long-run time series
 values at each spatial unit, one can generate spatial cross-sectional
 data that reflect different causal scenarios.</p>
+<p><span class="math inline">\(\xi_{x,i}^{(t)}\)</span> and <span class="math inline">\(\xi_{y,i}^{(t)}\)</span> denote white noise with
+zero mean and varying standard deviations. In our simulations of spatial
+causal structures, these noise terms are set to zero, and are only
+activated when testing sensitivity to noise.</p>
 </div>
 <div class="section level2">
 <h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>

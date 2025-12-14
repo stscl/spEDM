@@ -24,7 +24,7 @@ influenced by the states of other variables. A common form is:
 \beta\_{ji} x_t^{(j)} \right), \\
 
 where \\\beta\_{ji}\\ denotes the inhibitory (or facilitative) effect of
-variable \\j\\ on variable \\i\\. These multivariate systems allow the
+variable \\j\\ on variable \\i\\. These multivariable systems allow the
 study of interaction-driven complexity, including predator-prey
 dynamics, interspecies competition, and coevolutionary processes.
 
@@ -52,23 +52,25 @@ logistic map**, the update rules may be written as:
 
 - **Local cross-variable interaction (default form):**
 
-\\ \begin{aligned} x\_{i}^{(t+1)} &= 1 - \alpha_x x_i^{(t)} \left(
-\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} - \beta\_{yx}
-y_i^{(t)} \right), \\ y\_{i}^{(t+1)} &= 1 - \alpha_y y_i^{(t)} \left(
-\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} - \beta\_{xy}
-x_i^{(t)} \right). \end{aligned} \\
+\\ \begin{equation} \left\\ \begin{aligned} x\_{i}^{(t+1)} &= 1 -
+\alpha_x x_i^{(t)} \left( \frac{1}{k} \sum\_{j \in \mathcal{N}(i)}
+x_j^{(t)} - \beta\_{yx} y_i^{(t)} \right) + \xi\_{x,i}^{(t)}, \\
+y\_{i}^{(t+1)} &= 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in
+\mathcal{N}(i)} y_j^{(t)} - \beta\_{xy} x_i^{(t)} \right) +
+\xi\_{y,i}^{(t)}. \end{aligned} \right. \end{equation} \\
 
 Here, the inhibitory (or facilitative) influence between variables is
 restricted to the same spatial location.
 
 - **Neighbor-averaged cross-variable interaction (extended form):**
 
-\\ \begin{aligned} x\_{i}^{(t+1)} = 1 - \alpha_x x_i^{(t)} \left(
-\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} - \beta\_{yx}
-\frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} \right), \\
-y\_{i}^{(t+1)} = 1 - \alpha_y y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in
-\mathcal{N}(i)} y_j^{(t)} - \beta\_{xy} \frac{1}{k} \sum\_{j \in
-\mathcal{N}(i)} x_j^{(t)} \right). \end{aligned} \\
+\\ \begin{equation} \left\\ \begin{aligned} x\_{i}^{(t+1)} = 1 -
+\alpha_x x_i^{(t)} \left( \frac{1}{k} \sum\_{j \in \mathcal{N}(i)}
+x_j^{(t)} - \beta\_{yx} \frac{1}{k} \sum\_{j \in \mathcal{N}(i)}
+y_j^{(t)} \right) + \xi\_{x,i}^{(t)}, \\ y\_{i}^{(t+1)} = 1 - \alpha_y
+y_i^{(t)} \left( \frac{1}{k} \sum\_{j \in \mathcal{N}(i)} y_j^{(t)} -
+\beta\_{xy} \frac{1}{k} \sum\_{j \in \mathcal{N}(i)} x_j^{(t)} \right) +
+\xi\_{y,i}^{(t)}. \end{aligned} \right. \end{equation} \\
 
 In this alternative form, the inter-variable interactions are mediated
 through the **neighbor-averaged states**, allowing each variable to be
@@ -83,6 +85,11 @@ waves, kinks, frozen random states, and spatiotemporal chaos.
 By performing statistical aggregation over the long-run time series
 values at each spatial unit, one can generate spatial cross-sectional
 data that reflect different causal scenarios.
+
+\\\xi\_{x,i}^{(t)}\\ and \\\xi\_{y,i}^{(t)}\\ denote white noise with
+zero mean and varying standard deviations. In our simulations of spatial
+causal structures, these noise terms are set to zero, and are only
+activated when testing sensitivity to noise.
 
 ## Usage examples
 

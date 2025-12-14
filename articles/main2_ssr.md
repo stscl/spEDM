@@ -40,7 +40,7 @@ to maintain a one-to-one embedding.
 
 ## Usage examples
 
-### An example of spatial lattice data
+### Example of spatial vector data
 
 Load the `spEDM` package and its county-level population density data:
 
@@ -108,7 +108,7 @@ popd.](../reference/figures/ssr/fig1-1.png)
 
   
 
-### An example of spatial grid data
+### Example of spatial raster data
 
 Load the `spEDM` package and its farmland npp data:
 
