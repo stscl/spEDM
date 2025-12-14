@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-11-25<br>
-Last run: 2025-12-01</div></h4>
+update: 2025-12-15<br>
+Last run: 2025-12-15</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main3_gccm.Rmd" class="external-link"><code>vignettes/main3_gccm.Rmd</code></a></small>
       <div class="d-none name"><code>main3_gccm.Rmd</code></div>
@@ -189,7 +189,7 @@ reverse direction.</p>
 <h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
 </h2>
 <div class="section level3">
-<h3 id="an-example-of-spatial-lattice-data">An example of spatial lattice data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-lattice-data"></a>
+<h3 id="example-of-spatial-vector-data">Example of spatial vector data<a class="anchor" aria-label="anchor" href="#example-of-spatial-vector-data"></a>
 </h3>
 <p>Load the <code>spEDM</code> package and its county-level population
 density data:</p>
@@ -242,7 +242,7 @@ density data:</p>
 <span>                     E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 2.147843 mins</span></span>
+<span><span class="co">## Time difference of 1.867319 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
 <span><span class="co">## 1       100 0.1199174 0.03313697</span></span>
@@ -272,7 +272,7 @@ precipitation.</div>
 <p><br></p>
 </div>
 <div class="section level3">
-<h3 id="an-example-of-spatial-grid-data">An example of spatial grid data<a class="anchor" aria-label="anchor" href="#an-example-of-spatial-grid-data"></a>
+<h3 id="example-of-spatial-raster-data">Example of spatial raster data<a class="anchor" aria-label="anchor" href="#example-of-spatial-raster-data"></a>
 </h3>
 <p>Load the <code>spEDM</code> package and its farmland NPP data:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -323,11 +323,11 @@ precipitation.</div>
 <code class="sourceCode R"><span><span class="va">startTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">npp_res</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gccm.html">gccm</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">npp</span>, cause <span class="op">=</span> <span class="st">"pre"</span>, effect <span class="op">=</span> <span class="st">"npp"</span>,</span>
 <span>                      libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>                      E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, </span>
+<span>                      E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, lib <span class="op">=</span> <span class="va">nnaindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
 <span>                      progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.097801 mins</span></span>
+<span><span class="co">## Time difference of 0.9425755 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
 <span><span class="co">## 1       10 0.1235069 0.1061684</span></span>

@@ -58,7 +58,7 @@ where \\\bowtie\\ encodes positive, negative, or dark matching rules.
 
 ## Usage examples
 
-### An example of spatial lattice data
+### Example of spatial vector data
 
 Load the `spEDM` package and its columbus spatial analysis data:
 
@@ -263,7 +263,7 @@ and crime.**
 
   
 
-### An example of spatial grid data
+### Example of spatial raster data
 
 Load the `spEDM` package and its farmland NPP data:
 

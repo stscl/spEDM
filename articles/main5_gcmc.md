@@ -38,7 +38,7 @@ intervals, supporting robust causal inference.
 
 ## Usage examples
 
-### An example of spatial lattice data
+### Example of spatial vector data
 
 Load the `spEDM` package and its county-level population density data:
 
@@ -97,26 +97,34 @@ when the embedding dimension E reached 10, and remained relatively
 stable thereafter. Therefore, we adopted \\E = 10\\ as the embedding
 dimension for subsequent GCMC analysis.
 
+Adopt an empirical k value derived from the square root of the product
+of embedding dimension and number of prediction samples:
+
+``` r
+ceiling(sqrt(10 * nrow(popd_sf)))
+## [1] 168
+```
+
 Then, run GCMC:
 
 ``` r
 # temperature and population density
-g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
 g1
 ##   neighbors tem->popd popd->tem
-## 1       200    0.5754   0.08985
+## 1       168 0.6186579 0.1063634
 
 # elevation and population density
-g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
 g2
 ##   neighbors elev->popd popd->elev
-## 1       200     0.2675   0.077025
+## 1       168  0.3006307 0.09279337
 
 # elevation and temperature
-g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 10, k = 200, nb = popd_nb, progressbar = FALSE)
+g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
 g3
 ##   neighbors elev->tem tem->elev
-## 1       200  0.224925    0.4775
+## 1       168 0.2424178 0.5001772
 ```
 
 Here we define two functions to process the results and plot the causal
@@ -189,13 +197,13 @@ res1 = list(g1,g2,g3) |>
   purrr::map(.process_xmap_result) |>
   purrr::list_rbind()
 res1
-##   cause effect       cs           sig
-## 1   tem   popd 0.575400  1.861243e-02
-## 2  popd    tem 0.089850 5.082649e-115
-## 3  elev   popd 0.267500  9.449794e-16
-## 4  popd   elev 0.077025 2.308728e-147
-## 5  elev    tem 0.224925  1.985034e-23
-## 6   tem   elev 0.477500  4.965603e-01
+##   cause effect         cs          sig
+## 1   tem   popd 0.61865788 6.192749e-04
+## 2  popd    tem 0.10636338 2.155996e-74
+## 3  elev   popd 0.30063067 1.757118e-09
+## 4  popd   elev 0.09279337 7.741115e-95
+## 5  elev    tem 0.24241780 1.674870e-16
+## 6   tem   elev 0.50017715 9.961254e-01
 ```
 
 Visualize the result:
@@ -212,7 +220,7 @@ population density.**
 
   
 
-### An example of spatial grid data
+### Example of spatial raster data
 
 Load the `spEDM` package and its farmland NPP data:
 
@@ -273,6 +281,14 @@ spEDM::fnn(npp, "npp", E = 1:25, lib = predindice, pred = predindice,
 At \\E = 18\\, the false nearest neighbor ratio stabilizes at 0.10 and
 remains constant thereafter. Therefore, \\E = 18\\ is selected for the
 subsequent GCMC analysis.
+
+Adopt an empirical k value derived from the square root of the product
+of embedding dimension and number of prediction samples:
+
+``` r
+ceiling(sqrt(18 * 1500))
+## [1] 165
+```
 
 ``` r
 # precipitation and npp

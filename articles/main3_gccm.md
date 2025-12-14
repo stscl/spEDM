@@ -87,7 +87,7 @@ suggesting the reverse direction.
 
 ## Usage examples
 
-### An example of spatial lattice data
+### Example of spatial vector data
 
 Load the `spEDM` package and its county-level population density data:
 
@@ -146,7 +146,7 @@ pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      E = c(3,9), k = 12, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 2.147843 mins
+## Time difference of 1.867319 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
 ## 1       100 0.1199174 0.03313697
@@ -181,7 +181,7 @@ density and county-level precipitation.
 
   
 
-### An example of spatial grid data
+### Example of spatial raster data
 
 Load the `spEDM` package and its farmland NPP data:
 
@@ -239,11 +239,11 @@ Run GCCM:
 startTime = Sys.time()
 npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
                       libsizes = matrix(rep(seq(10,130,20),2),ncol = 2),
-                      E = c(2,10), k = 12, lib = nnaindice, pred = predindice, 
+                      E = c(2,10), k = 12, lib = nnaindice, pred = predindice,
                       progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.097801 mins
+## Time difference of 0.9425755 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
 ## 1       10 0.1235069 0.1061684
