@@ -103,14 +103,14 @@ attribute values from its spatial neighbors at lag orders <span class="math inli
 These values are then summarized—commonly using the mean—to construct an
 embedding vector for each unit. Aggregating these vectors across all
 spatial units results in the reconstructed state spaces, denoted as
-<span class="math inline">\(E_x\)</span> and <span class="math inline">\(E_y\)</span>.</p>
+<span class="math inline">\(M_x\)</span> and <span class="math inline">\(M_y\)</span>.</p>
 <p><strong>Stage two</strong> constructs the Intersectional Cardinality
 (IC) curve, which serves to evaluate causal strength. To measure whether
-<span class="math inline">\(y\)</span> causally affects <span class="math inline">\(x\)</span>, one computes, for each <span class="math inline">\(k\)</span>, the overlap between the <span class="math inline">\(k\)</span> nearest neighbors of <span class="math inline">\(E_y\)</span> and the corresponding “projected”
-neighbors traced through <span class="math inline">\(E_x\)</span>.
-Specifically, for each point in <span class="math inline">\(E_x\)</span>, its <span class="math inline">\(k\)</span> nearest neighbors are identified, and
-their mapped neighbors in <span class="math inline">\(E_y\)</span> are
-compared with the direct neighbors of <span class="math inline">\(E_y\)</span>. The IC curve is formed by recording
+<span class="math inline">\(y\)</span> causally affects <span class="math inline">\(x\)</span>, one computes, for each <span class="math inline">\(k\)</span>, the overlap between the <span class="math inline">\(k\)</span> nearest neighbors of <span class="math inline">\(M_y\)</span> and the corresponding “projected”
+neighbors traced through <span class="math inline">\(M_x\)</span>.
+Specifically, for each point in <span class="math inline">\(M_x\)</span>, its <span class="math inline">\(k\)</span> nearest neighbors are identified, and
+their mapped neighbors in <span class="math inline">\(M_y\)</span> are
+compared with the direct neighbors of <span class="math inline">\(M_y\)</span>. The IC curve is formed by recording
 the number of shared neighbors across a range of <span class="math inline">\(k = 1, 2, \dots, n\)</span>. This process can also
 be reversed to test for causality from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>.</p>
 <p><strong>Stage three</strong> involves quantifying and validating the
@@ -178,9 +178,10 @@ that minimizes false neighbours is considered optimal.</p>
 <span><span class="co">##         E:13         E:14 </span></span>
 <span><span class="co">## 0.0014255167 0.0007127584</span></span></code></pre></div>
 <p>The false nearest neighbours (FNN) ratio decreased to approximately
-0.001 when the embedding dimension E reached 11, and remained relatively
-stable thereafter. Therefore, we adopted <span class="math inline">\(E =
-11\)</span> as the embedding dimension for subsequent GCMC analysis.</p>
+<span class="math inline">\(0.001\)</span> when the embedding dimension
+E reached <span class="math inline">\(11\)</span>, and remained
+relatively stable thereafter. Therefore, we adopted <span class="math inline">\(E = 11\)</span> as the embedding dimension for
+subsequent GCMC analysis.</p>
 <p>Adopt an empirical k value derived from the square root of the
 product of embedding dimension and number of prediction samples:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -338,9 +339,9 @@ density.</strong>
 <span><span class="co">##         E:19         E:20         E:21         E:22         E:23         E:24 </span></span>
 <span><span class="co">## 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000</span></span></code></pre></div>
 <p>At <span class="math inline">\(E = 5\)</span>, the false nearest
-neighbor ratio stabilizes at 0 and remains constant thereafter.
-Therefore, <span class="math inline">\(E = 5\)</span> is selected for
-the subsequent GCMC analysis.</p>
+neighbor ratio stabilizes at <span class="math inline">\(0\)</span> and
+remains constant thereafter. Therefore, <span class="math inline">\(E =
+5\)</span> is selected for the subsequent GCMC analysis.</p>
 <p>Adopt an empirical k value derived from the square root of the
 product of embedding dimension and number of prediction samples:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">

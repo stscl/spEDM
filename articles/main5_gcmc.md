@@ -14,16 +14,16 @@ neighbors at lag orders \\\tau, 2\tau, \dots, E\tau\\ are collected.
 These values are then summarized—commonly using the mean—to construct an
 embedding vector for each unit. Aggregating these vectors across all
 spatial units results in the reconstructed state spaces, denoted as
-\\E_x\\ and \\E_y\\.
+\\M_x\\ and \\M_y\\.
 
 **Stage two** constructs the Intersectional Cardinality (IC) curve,
 which serves to evaluate causal strength. To measure whether \\y\\
 causally affects \\x\\, one computes, for each \\k\\, the overlap
-between the \\k\\ nearest neighbors of \\E_y\\ and the corresponding
-“projected” neighbors traced through \\E_x\\. Specifically, for each
-point in \\E_x\\, its \\k\\ nearest neighbors are identified, and their
-mapped neighbors in \\E_y\\ are compared with the direct neighbors of
-\\E_y\\. The IC curve is formed by recording the number of shared
+between the \\k\\ nearest neighbors of \\M_y\\ and the corresponding
+“projected” neighbors traced through \\M_x\\. Specifically, for each
+point in \\M_x\\, its \\k\\ nearest neighbors are identified, and their
+mapped neighbors in \\M_y\\ are compared with the direct neighbors of
+\\M_y\\. The IC curve is formed by recording the number of shared
 neighbors across a range of \\k = 1, 2, \dots, n\\. This process can
 also be reversed to test for causality from \\x\\ to \\y\\.
 
@@ -95,9 +95,9 @@ spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
 ```
 
 The false nearest neighbours (FNN) ratio decreased to approximately
-0.001 when the embedding dimension E reached 11, and remained relatively
-stable thereafter. Therefore, we adopted \\E = 11\\ as the embedding
-dimension for subsequent GCMC analysis.
+\\0.001\\ when the embedding dimension E reached \\11\\, and remained
+relatively stable thereafter. Therefore, we adopted \\E = 11\\ as the
+embedding dimension for subsequent GCMC analysis.
 
 Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
@@ -274,7 +274,7 @@ spEDM::fnn(npp, "npp", E = 1:25,
 ## 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000
 ```
 
-At \\E = 5\\, the false nearest neighbor ratio stabilizes at 0 and
+At \\E = 5\\, the false nearest neighbor ratio stabilizes at \\0\\ and
 remains constant thereafter. Therefore, \\E = 5\\ is selected for the
 subsequent GCMC analysis.
 
