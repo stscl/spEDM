@@ -85,46 +85,48 @@ or spatial cross-sectional data. A low embedding dimension that
 minimizes false neighbours is considered optimal.
 
 ``` r
-spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd) / 10)
-##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 
-## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 
-##       E:9      E:10      E:11      E:12      E:13      E:14 
-## 0.3150392 0.2957947 0.2875980 0.2915182 0.2701354 0.2494654
+spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
+##          E:1          E:2          E:3          E:4          E:5          E:6 
+## 0.9643620813 0.5516749822 0.1813970064 0.0548823949 0.0138987883 0.0035637919 
+##          E:7          E:8          E:9         E:10         E:11         E:12 
+## 0.0017818959 0.0010691376 0.0035637919 0.0021382751 0.0010691376 0.0010691376 
+##         E:13         E:14 
+## 0.0014255167 0.0007127584
 ```
 
-The false nearest neighbours (FNN) ratio decreased to approximately 0.3
-when the embedding dimension E reached 10, and remained relatively
-stable thereafter. Therefore, we adopted \\E = 10\\ as the embedding
+The false nearest neighbours (FNN) ratio decreased to approximately
+0.001 when the embedding dimension E reached 11, and remained relatively
+stable thereafter. Therefore, we adopted \\E = 11\\ as the embedding
 dimension for subsequent GCMC analysis.
 
 Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
 
 ``` r
-ceiling(sqrt(10 * nrow(popd_sf)))
-## [1] 168
+ceiling(sqrt(11 * nrow(popd_sf)))
+## [1] 176
 ```
 
 Then, run GCMC:
 
 ``` r
 # temperature and population density
-g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
+g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
 g1
-##   neighbors tem->popd popd->tem
-## 1       168 0.6186579 0.1063634
+##   neighbors tem->popd  popd->tem
+## 1       176   0.58668 0.07818957
 
 # elevation and population density
-g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
+g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
 g2
 ##   neighbors elev->popd popd->elev
-## 1       168  0.3006307 0.09279337
+## 1       176  0.2730178 0.07644628
 
 # elevation and temperature
-g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 10, k = 168, nb = popd_nb, progressbar = FALSE)
+g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
 g3
 ##   neighbors elev->tem tem->elev
-## 1       168 0.2424178 0.5001772
+## 1       176 0.2188468 0.4734956
 ```
 
 Here we define two functions to process the results and plot the causal
@@ -197,13 +199,13 @@ res1 = list(g1,g2,g3) |>
   purrr::map(.process_xmap_result) |>
   purrr::list_rbind()
 res1
-##   cause effect         cs          sig
-## 1   tem   popd 0.61865788 6.192749e-04
-## 2  popd    tem 0.10636338 2.155996e-74
-## 3  elev   popd 0.30063067 1.757118e-09
-## 4  popd   elev 0.09279337 7.741115e-95
-## 5  elev    tem 0.24241780 1.674870e-16
-## 6   tem   elev 0.50017715 9.961254e-01
+##   cause effect         cs           sig
+## 1   tem   popd 0.58668001  1.102583e-02
+## 2  popd    tem 0.07818957 2.817486e-119
+## 3  elev   popd 0.27301782  3.996458e-13
+## 4  popd   elev 0.07644628 1.466165e-125
+## 5  elev    tem 0.21884685  6.996949e-22
+## 6   tem   elev 0.47349561  4.541299e-01
 ```
 
 Visualize the result:
@@ -228,86 +230,80 @@ Load the `spEDM` package and its farmland NPP data:
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
-# To save the computation time, we will aggregate the data by 3 times
-npp = terra::aggregate(npp, fact = 3, na.rm = TRUE)
+# To save the computation time, we will aggregate the data by 4 times
+npp = terra::aggregate(npp, fact = 4, na.rm = TRUE)
 npp
 ## class       : SpatRaster 
-## size        : 135, 161, 5  (nrow, ncol, nlyr)
-## resolution  : 30000, 30000  (x, y)
-## extent      : -2625763, 2204237, 1867078, 5917078  (xmin, xmax, ymin, ymax)
+## size        : 101, 121, 5  (nrow, ncol, nlyr)
+## resolution  : 40000, 40000  (x, y)
+## extent      : -2625763, 2214237, 1877078, 5917078  (xmin, xmax, ymin, ymax)
 ## coord. ref. : CGCS2000_Albers 
 ## source(s)   : memory
-## names       :      npp,        pre,      tem,      elev,         hfp 
-## min values  :   187.50,   390.3351, -47.8194, -110.1494,  0.04434316 
-## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431, 42.68803711
+## names       :      npp,        pre,      tem,       elev,         hfp 
+## min values  :   200.50,   391.9702, -47.8194,  -68.03307,  0.08262913 
+## max values  : 15299.53, 23675.4185, 262.3801, 5193.36182, 41.80874634
 
 # Inspect NA values
 terra::global(npp,"isNA")
-##       isNA
-## npp  14815
-## pre  14766
-## tem  14766
-## elev 14760
-## hfp  14972
+##      isNA
+## npp  8109
+## pre  8075
+## tem  8075
+## elev 8070
+## hfp  8205
 terra::ncell(npp)
-## [1] 21735
+## [1] 12221
 nnamat = terra::as.matrix(npp[[1]], wide = TRUE)
 nnaindice = which(!is.na(nnamat), arr.ind = TRUE)
 dim(nnaindice)
-## [1] 6920    2
-
-# Select 1500 non-NA pixels to predict:
-set.seed(2025)
-indices = sample(nrow(nnaindice), size = 1500, replace = FALSE)
-libindice = nnaindice[-indices,]
-predindice = nnaindice[indices,]
+## [1] 4112    2
 ```
 
 Determining optimal embedding dimension:
 
 ``` r
-spEDM::fnn(npp, "npp", E = 1:25, lib = predindice, pred = predindice,
-           eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE) / 10)
-##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
-## 0.94062708 0.43266667 0.29533333 0.28200000 0.24133333 0.23066667 0.23066667 
-##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 
-## 0.19733333 0.19533333 0.15333333 0.15933333 0.16333333 0.14600000 0.13000000 
-##       E:15       E:16       E:17       E:18       E:19       E:20       E:21 
-## 0.13400000 0.10733333 0.11466667 0.10933333 0.09000000 0.09933333 0.08600000 
-##       E:22       E:23       E:24 
-## 0.09866667 0.10466667 0.10866667
+spEDM::fnn(npp, "npp", E = 1:25,
+           eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
+##          E:1          E:2          E:3          E:4          E:5          E:6 
+## 0.9714842798 0.4732490272 0.0926556420 0.0043774319 0.0000000000 0.0000000000 
+##          E:7          E:8          E:9         E:10         E:11         E:12 
+## 0.0000000000 0.0004863813 0.0000000000 0.0000000000 0.0002431907 0.0000000000 
+##         E:13         E:14         E:15         E:16         E:17         E:18 
+## 0.0007295720 0.0009727626 0.0000000000 0.0004863813 0.0000000000 0.0000000000 
+##         E:19         E:20         E:21         E:22         E:23         E:24 
+## 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000
 ```
 
-At \\E = 18\\, the false nearest neighbor ratio stabilizes at 0.10 and
-remains constant thereafter. Therefore, \\E = 18\\ is selected for the
+At \\E = 5\\, the false nearest neighbor ratio stabilizes at 0 and
+remains constant thereafter. Therefore, \\E = 5\\ is selected for the
 subsequent GCMC analysis.
 
 Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
 
 ``` r
-ceiling(sqrt(18 * 1500))
-## [1] 165
+ceiling(sqrt(5 * dim(nnaindice)[1]))
+## [1] 144
 ```
 
 ``` r
 # precipitation and npp
-g1 = spEDM::gcmc(npp, "pre", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g1 = spEDM::gcmc(npp, "pre", "npp", E = 5, k = 144, progressbar = FALSE)
 g1
-##   neighbors  pre->npp  npp->pre
-## 1       165 0.2397429 0.2060239
+##   neighbors  pre->npp npp->pre
+## 1       144 0.5995853 0.557581
 
 # temperature and npp
-g2 = spEDM::gcmc(npp, "tem", "npp", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g2 = spEDM::gcmc(npp, "tem", "npp", E = 5, k = 144, progressbar = FALSE)
 g2
-##   neighbors  tem->npp npp->tem
-## 1       165 0.4287971 0.432213
+##   neighbors  tem->npp  npp->tem
+## 1       144 0.7325424 0.7235725
 
 # precipitation and temperature
-g3 = spEDM::gcmc(npp, "pre", "tem", E = 18, k = 165, lib = predindice, pred = predindice, progressbar = FALSE)
+g3 = spEDM::gcmc(npp, "pre", "tem", E = 5, k = 144, progressbar = FALSE)
 g3
 ##   neighbors  pre->tem  tem->pre
-## 1       165 0.3222039 0.2725069
+## 1       144 0.6616995 0.6358989
 ```
 
 Organize the results into a long table:
@@ -318,12 +314,12 @@ res2 = list(g1,g2,g3) |>
   purrr::list_rbind()
 res2
 ##   cause effect        cs          sig
-## 1   pre    npp 0.2397429 1.571807e-17
-## 2   npp    pre 0.2060239 6.525044e-25
-## 3   tem    npp 0.4287971 4.706879e-02
-## 4   npp    tem 0.4322130 5.956946e-02
-## 5   pre    tem 0.3222039 1.261609e-07
-## 6   tem    pre 0.2725069 5.041517e-13
+## 1   pre    npp 0.5995853 9.477523e-03
+## 2   npp    pre 0.5575810 1.389267e-01
+## 3   tem    npp 0.7325424 2.978542e-11
+## 4   npp    tem 0.7235725 2.734370e-10
+## 5   pre    tem 0.6616995 1.485632e-05
+## 6   tem    pre 0.6358989 3.248357e-04
 ```
 
 Visualize the result:

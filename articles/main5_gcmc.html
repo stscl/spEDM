@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-12-15<br>
-Last run: 2025-12-15</div></h4>
+update: 2025-12-20<br>
+Last run: 2025-12-20</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main5_gcmc.Rmd" class="external-link"><code>vignettes/main5_gcmc.Rmd</code></a></small>
       <div class="d-none name"><code>main5_gcmc.Rmd</code></div>
@@ -170,39 +170,41 @@ appropriate embedding dimension for reconstructing the state space of a
 time series or spatial cross-sectional data. A low embedding dimension
 that minimizes false neighbours is considered optimal.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 </span></span>
-<span><span class="co">## 0.9707769 0.6404134 0.4885959 0.4012830 0.3346401 0.3296507 0.3260870 0.3150392 </span></span>
-<span><span class="co">##       E:9      E:10      E:11      E:12      E:13      E:14 </span></span>
-<span><span class="co">## 0.3150392 0.2957947 0.2875980 0.2915182 0.2701354 0.2494654</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">$</span><span class="va">popd</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##          E:1          E:2          E:3          E:4          E:5          E:6 </span></span>
+<span><span class="co">## 0.9643620813 0.5516749822 0.1813970064 0.0548823949 0.0138987883 0.0035637919 </span></span>
+<span><span class="co">##          E:7          E:8          E:9         E:10         E:11         E:12 </span></span>
+<span><span class="co">## 0.0017818959 0.0010691376 0.0035637919 0.0021382751 0.0010691376 0.0010691376 </span></span>
+<span><span class="co">##         E:13         E:14 </span></span>
+<span><span class="co">## 0.0014255167 0.0007127584</span></span></code></pre></div>
 <p>The false nearest neighbours (FNN) ratio decreased to approximately
-0.3 when the embedding dimension E reached 10, and remained relatively
+0.001 when the embedding dimension E reached 11, and remained relatively
 stable thereafter. Therefore, we adopted <span class="math inline">\(E =
-10\)</span> as the embedding dimension for subsequent GCMC analysis.</p>
+11\)</span> as the embedding dimension for subsequent GCMC analysis.</p>
 <p>Adopt an empirical k value derived from the square root of the
 product of embedding dimension and number of prediction samples:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] 168</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">11</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">popd_sf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [1] 176</span></span></code></pre></div>
 <p>Then, run GCMC:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># temperature and population density</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">168</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"tem"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">11</span>, k <span class="op">=</span> <span class="fl">176</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
-<span><span class="co">##   neighbors tem-&gt;popd popd-&gt;tem</span></span>
-<span><span class="co">## 1       168 0.6186579 0.1063634</span></span>
+<span><span class="co">##   neighbors tem-&gt;popd  popd-&gt;tem</span></span>
+<span><span class="co">## 1       176   0.58668 0.07818957</span></span>
 <span></span>
 <span><span class="co"># elevation and population density</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">168</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"popd"</span>, E <span class="op">=</span> <span class="fl">11</span>, k <span class="op">=</span> <span class="fl">176</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
 <span><span class="co">##   neighbors elev-&gt;popd popd-&gt;elev</span></span>
-<span><span class="co">## 1       168  0.3006307 0.09279337</span></span>
+<span><span class="co">## 1       176  0.2730178 0.07644628</span></span>
 <span></span>
 <span><span class="co"># elevation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">168</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">popd_sf</span>, <span class="st">"elev"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">11</span>, k <span class="op">=</span> <span class="fl">176</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors elev-&gt;tem tem-&gt;elev</span></span>
-<span><span class="co">## 1       168 0.2424178 0.5001772</span></span></code></pre></div>
+<span><span class="co">## 1       176 0.2188468 0.4734956</span></span></code></pre></div>
 <p>Here we define two functions to process the results and plot the
 causal strengths matrix.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -269,13 +271,13 @@ causal strengths matrix.</p>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">.process_xmap_result</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">res1</span></span>
-<span><span class="co">##   cause effect         cs          sig</span></span>
-<span><span class="co">## 1   tem   popd 0.61865788 6.192749e-04</span></span>
-<span><span class="co">## 2  popd    tem 0.10636338 2.155996e-74</span></span>
-<span><span class="co">## 3  elev   popd 0.30063067 1.757118e-09</span></span>
-<span><span class="co">## 4  popd   elev 0.09279337 7.741115e-95</span></span>
-<span><span class="co">## 5  elev    tem 0.24241780 1.674870e-16</span></span>
-<span><span class="co">## 6   tem   elev 0.50017715 9.961254e-01</span></span></code></pre></div>
+<span><span class="co">##   cause effect         cs           sig</span></span>
+<span><span class="co">## 1   tem   popd 0.58668001  1.102583e-02</span></span>
+<span><span class="co">## 2  popd    tem 0.07818957 2.817486e-119</span></span>
+<span><span class="co">## 3  elev   popd 0.27301782  3.996458e-13</span></span>
+<span><span class="co">## 4  popd   elev 0.07644628 1.466165e-125</span></span>
+<span><span class="co">## 5  elev    tem 0.21884685  6.996949e-22</span></span>
+<span><span class="co">## 6   tem   elev 0.47349561  4.541299e-01</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_cs_matrix</span><span class="op">(</span><span class="va">res1</span><span class="op">)</span></span></code></pre></div>
@@ -296,78 +298,72 @@ density.</strong>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stscl.github.io/spEDM/">spEDM</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"case/npp.tif"</span>, package <span class="op">=</span> <span class="st">"spEDM"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># To save the computation time, we will aggregate the data by 3 times</span></span>
-<span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">3</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># To save the computation time, we will aggregate the data by 4 times</span></span>
+<span><span class="va">npp</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="va">npp</span>, fact <span class="op">=</span> <span class="fl">4</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">npp</span></span>
 <span><span class="co">## class       : SpatRaster </span></span>
-<span><span class="co">## size        : 135, 161, 5  (nrow, ncol, nlyr)</span></span>
-<span><span class="co">## resolution  : 30000, 30000  (x, y)</span></span>
-<span><span class="co">## extent      : -2625763, 2204237, 1867078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">## size        : 101, 121, 5  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">## resolution  : 40000, 40000  (x, y)</span></span>
+<span><span class="co">## extent      : -2625763, 2214237, 1877078, 5917078  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">## coord. ref. : CGCS2000_Albers </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       :      npp,        pre,      tem,      elev,         hfp </span></span>
-<span><span class="co">## min values  :   187.50,   390.3351, -47.8194, -110.1494,  0.04434316 </span></span>
-<span><span class="co">## max values  : 15381.89, 23734.5330, 262.8576, 5217.6431, 42.68803711</span></span>
+<span><span class="co">## names       :      npp,        pre,      tem,       elev,         hfp </span></span>
+<span><span class="co">## min values  :   200.50,   391.9702, -47.8194,  -68.03307,  0.08262913 </span></span>
+<span><span class="co">## max values  : 15299.53, 23675.4185, 262.3801, 5193.36182, 41.80874634</span></span>
 <span></span>
 <span><span class="co"># Inspect NA values</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/global.html" class="external-link">global</a></span><span class="op">(</span><span class="va">npp</span>,<span class="st">"isNA"</span><span class="op">)</span></span>
-<span><span class="co">##       isNA</span></span>
-<span><span class="co">## npp  14815</span></span>
-<span><span class="co">## pre  14766</span></span>
-<span><span class="co">## tem  14766</span></span>
-<span><span class="co">## elev 14760</span></span>
-<span><span class="co">## hfp  14972</span></span>
+<span><span class="co">##      isNA</span></span>
+<span><span class="co">## npp  8109</span></span>
+<span><span class="co">## pre  8075</span></span>
+<span><span class="co">## tem  8075</span></span>
+<span><span class="co">## elev 8070</span></span>
+<span><span class="co">## hfp  8205</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html" class="external-link">ncell</a></span><span class="op">(</span><span class="va">npp</span><span class="op">)</span></span>
-<span><span class="co">## [1] 21735</span></span>
+<span><span class="co">## [1] 12221</span></span>
 <span><span class="va">nnamat</span> <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/coerce.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, wide <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">nnaindice</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">nnamat</span><span class="op">)</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span></span>
-<span><span class="co">## [1] 6920    2</span></span>
-<span></span>
-<span><span class="co"># Select 1500 non-NA pixels to predict:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2025</span><span class="op">)</span></span>
-<span><span class="va">indices</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1500</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">libindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="op">-</span><span class="va">indices</span>,<span class="op">]</span></span>
-<span><span class="va">predindice</span> <span class="op">=</span> <span class="va">nnaindice</span><span class="op">[</span><span class="va">indices</span>,<span class="op">]</span></span></code></pre></div>
+<span><span class="co">## [1] 4112    2</span></span></code></pre></div>
 <p>Determining optimal embedding dimension:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>,</span>
-<span>           eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
-<span><span class="co">## 0.94062708 0.43266667 0.29533333 0.28200000 0.24133333 0.23066667 0.23066667 </span></span>
-<span><span class="co">##        E:8        E:9       E:10       E:11       E:12       E:13       E:14 </span></span>
-<span><span class="co">## 0.19733333 0.19533333 0.15333333 0.15933333 0.16333333 0.14600000 0.13000000 </span></span>
-<span><span class="co">##       E:15       E:16       E:17       E:18       E:19       E:20       E:21 </span></span>
-<span><span class="co">## 0.13400000 0.10733333 0.11466667 0.10933333 0.09000000 0.09933333 0.08600000 </span></span>
-<span><span class="co">##       E:22       E:23       E:24 </span></span>
-<span><span class="co">## 0.09866667 0.10466667 0.10866667</span></span></code></pre></div>
-<p>At <span class="math inline">\(E = 18\)</span>, the false nearest
-neighbor ratio stabilizes at 0.10 and remains constant thereafter.
-Therefore, <span class="math inline">\(E = 18\)</span> is selected for
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>,</span>
+<span>           eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">##          E:1          E:2          E:3          E:4          E:5          E:6 </span></span>
+<span><span class="co">## 0.9714842798 0.4732490272 0.0926556420 0.0043774319 0.0000000000 0.0000000000 </span></span>
+<span><span class="co">##          E:7          E:8          E:9         E:10         E:11         E:12 </span></span>
+<span><span class="co">## 0.0000000000 0.0004863813 0.0000000000 0.0000000000 0.0002431907 0.0000000000 </span></span>
+<span><span class="co">##         E:13         E:14         E:15         E:16         E:17         E:18 </span></span>
+<span><span class="co">## 0.0007295720 0.0009727626 0.0000000000 0.0004863813 0.0000000000 0.0000000000 </span></span>
+<span><span class="co">##         E:19         E:20         E:21         E:22         E:23         E:24 </span></span>
+<span><span class="co">## 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000 0.0000000000</span></span></code></pre></div>
+<p>At <span class="math inline">\(E = 5\)</span>, the false nearest
+neighbor ratio stabilizes at 0 and remains constant thereafter.
+Therefore, <span class="math inline">\(E = 5\)</span> is selected for
 the subsequent GCMC analysis.</p>
 <p>Adopt an empirical k value derived from the square root of the
 product of embedding dimension and number of prediction samples:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">18</span> <span class="op">*</span> <span class="fl">1500</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## [1] 165</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">nnaindice</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [1] 144</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># precipitation and npp</span></span>
-<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g1</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">5</span>, k <span class="op">=</span> <span class="fl">144</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g1</span></span>
-<span><span class="co">##   neighbors  pre-&gt;npp  npp-&gt;pre</span></span>
-<span><span class="co">## 1       165 0.2397429 0.2060239</span></span>
+<span><span class="co">##   neighbors  pre-&gt;npp npp-&gt;pre</span></span>
+<span><span class="co">## 1       144 0.5995853 0.557581</span></span>
 <span></span>
 <span><span class="co"># temperature and npp</span></span>
-<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g2</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"tem"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">5</span>, k <span class="op">=</span> <span class="fl">144</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g2</span></span>
-<span><span class="co">##   neighbors  tem-&gt;npp npp-&gt;tem</span></span>
-<span><span class="co">## 1       165 0.4287971 0.432213</span></span>
+<span><span class="co">##   neighbors  tem-&gt;npp  npp-&gt;tem</span></span>
+<span><span class="co">## 1       144 0.7325424 0.7235725</span></span>
 <span></span>
 <span><span class="co"># precipitation and temperature</span></span>
-<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">18</span>, k <span class="op">=</span> <span class="fl">165</span>, lib <span class="op">=</span> <span class="va">predindice</span>, pred <span class="op">=</span> <span class="va">predindice</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">g3</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gcmc.html">gcmc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"tem"</span>, E <span class="op">=</span> <span class="fl">5</span>, k <span class="op">=</span> <span class="fl">144</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g3</span></span>
 <span><span class="co">##   neighbors  pre-&gt;tem  tem-&gt;pre</span></span>
-<span><span class="co">## 1       165 0.3222039 0.2725069</span></span></code></pre></div>
+<span><span class="co">## 1       144 0.6616995 0.6358989</span></span></code></pre></div>
 <p>Organize the results into a long table:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span>,<span class="va">g3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -375,12 +371,12 @@ product of embedding dimension and number of prediction samples:</p>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">res2</span></span>
 <span><span class="co">##   cause effect        cs          sig</span></span>
-<span><span class="co">## 1   pre    npp 0.2397429 1.571807e-17</span></span>
-<span><span class="co">## 2   npp    pre 0.2060239 6.525044e-25</span></span>
-<span><span class="co">## 3   tem    npp 0.4287971 4.706879e-02</span></span>
-<span><span class="co">## 4   npp    tem 0.4322130 5.956946e-02</span></span>
-<span><span class="co">## 5   pre    tem 0.3222039 1.261609e-07</span></span>
-<span><span class="co">## 6   tem    pre 0.2725069 5.041517e-13</span></span></code></pre></div>
+<span><span class="co">## 1   pre    npp 0.5995853 9.477523e-03</span></span>
+<span><span class="co">## 2   npp    pre 0.5575810 1.389267e-01</span></span>
+<span><span class="co">## 3   tem    npp 0.7325424 2.978542e-11</span></span>
+<span><span class="co">## 4   npp    tem 0.7235725 2.734370e-10</span></span>
+<span><span class="co">## 5   pre    tem 0.6616995 1.485632e-05</span></span>
+<span><span class="co">## 6   tem    pre 0.6358989 3.248357e-04</span></span></code></pre></div>
 <p>Visualize the result:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_cs_matrix</span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></span></code></pre></div>
