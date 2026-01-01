@@ -31,8 +31,8 @@ dynamics, interspecies competition, and coevolutionary processes.
 This framework can be further extended to **spatial domains** to account
 for interactions among neighboring spatial units. The resulting system,
 known as the **Spatial Logistic Map (SLM)**, distributes the logistic
-dynamics over a spatial cross section. In the simplest case, each
-location \\i\\ on the cross section updates according to:
+dynamics over a spatial cross section. In the simplest case, each unit
+\\i\\ on the cross section updates according to:
 
 \\ x\_{i}^{(t+1)} = 1 - \alpha x_i^{(t)} \cdot \frac{1}{k} \sum\_{j \in
 \mathcal{N}(i)} x_j^{(t)}, \\

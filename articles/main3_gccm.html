@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-12-15<br>
-Last run: 2025-12-20</div></h4>
+update: 2026-01-01<br>
+Last run: 2026-01-01</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main3_gccm.Rmd" class="external-link"><code>vignettes/main3_gccm.Rmd</code></a></small>
       <div class="d-none name"><code>main3_gccm.Rmd</code></div>
@@ -105,7 +105,7 @@ S_{(E\tau)}(x_2) \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 S_{(\tau)}(x_n) &amp; S_{(2\tau)}(x_n) &amp; \cdots &amp;
 S_{(E\tau)}(x_n)
-\end{bmatrix}
+\end{bmatrix}.
 \]</span></p>
 <p>Here, <span class="math inline">\(S_{(j)}(x_i)\)</span> denotes the
 <span class="math inline">\(j\)</span> th-order spatial lag value of
@@ -117,7 +117,7 @@ the shadow manifolds of <span class="math inline">\(X\)</span>.</p>
 with the state of X through</p>
 <p><span class="math display">\[
 \hat{Y}_s \mid M_x = \sum\limits_{i=1}^k \left(\omega_{si}Y_{si} \mid
-M_x \right)
+M_x \right),
 \]</span></p>
 <p>where <span class="math inline">\(s\)</span> represents a spatial
 unit at which the value of <span class="math inline">\(Y\)</span> needs
@@ -130,7 +130,7 @@ defined as:</p>
 <p><span class="math display">\[
 \omega_{si} \mid M_x = \frac{weight
 \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}{\sum_{i=1}^{L+1}weight
-\left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}
+\left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)},
 \]</span></p>
 <p>where <span class="math inline">\(\psi(M_x, s_i)\)</span> is the
 state vector of spatial unit <span class="math inline">\(s_i\)</span> in
@@ -140,7 +140,7 @@ function between two states in the shadow manifold, defined as:</p>
 weight \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right) =
 \exp \left(- \frac{dis
 \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}{dis
-\left(\psi\left(M_x,s_1\right),\psi\left(M_x,s\right)\right)} \right)
+\left(\psi\left(M_x,s_1\right),\psi\left(M_x,s\right)\right)} \right),
 \]</span></p>
 <p>where <span class="math inline">\(\exp\)</span> is the exponential
 function and <span class="math inline">\(dis
@@ -148,7 +148,7 @@ function and <span class="math inline">\(dis
 two states in the shadow manifold defined as:</p>
 <p><span class="math display">\[
 dis \left( \psi(M_x, s_i), \psi(M_x, s) \right) = \frac{1}{E}
-\sum_{m=1}^{E} \left| \psi_m(M_x, s_i) - \psi_m(M_x, s) \right|
+\sum_{m=1}^{E} \left| \psi_m(M_x, s_i) - \psi_m(M_x, s) \right|,
 \]</span></p>
 <p>where <span class="math inline">\(dis \left( \psi(M_x, s_i),
 \psi(M_x, s) \right)\)</span> denotes the average absolute difference
@@ -160,15 +160,15 @@ predictions, and the confidence interval of <span class="math inline">\(\rho\)</
 distribution:</p>
 <p><span class="math display">\[
 \rho = \frac{Cov\left(Y,\hat{Y}\mid M_x\right)}{\sqrt{Var\left(Y\right)
-Var\left(\hat{Y}\mid M_x\right)}}
+Var\left(\hat{Y}\mid M_x\right)}},
 \]</span></p>
 <p><span class="math display">\[
-t = \rho \sqrt{\frac{n-2}{1-\rho^2}}
+t = \rho \sqrt{\frac{n-2}{1-\rho^2}},
 \]</span></p>
 <p>where <span class="math inline">\(n\)</span> is the number of
 observations to be predicted, and</p>
 <p><span class="math display">\[
-z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right)
+z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right).
 \]</span></p>
 <p>The prediction skill <span class="math inline">\(\rho\)</span> varies
 by setting different sizes of libraries, which means the quantity of
@@ -178,7 +178,7 @@ the causal associations. For GCCM, the convergence means that <span class="math 
 and is statistically significant when the library becomes largest.</p>
 <p><span class="math display">\[
 \rho_{x \to y} = \lim_{L \to \infty} cor \left( Y,\hat{Y}\mid M_x
-\right)
+\right),
 \]</span></p>
 <p>where <span class="math inline">\(\rho_{x \to y}\)</span> is the
 correlation after convergence, used to measure the causation effect from
@@ -242,7 +242,7 @@ density data:</p>
 <span>                     E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">9</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">12</span>, nb <span class="op">=</span> <span class="va">popd_nb</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 1.867319 mins</span></span>
+<span><span class="co">## Time difference of 1.816188 mins</span></span>
 <span><span class="va">pd_res</span></span>
 <span><span class="co">##    libsizes pre-&gt;popd  popd-&gt;pre</span></span>
 <span><span class="co">## 1       100 0.1199174 0.03313697</span></span>
@@ -264,10 +264,9 @@ density data:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pd_res</span>, xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.65</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping prediction outputs between population density and county-level precipitation."><div class="figcaption">
+<img src="../reference/figures/gccm/fig1-1.png" alt="Figure 1. The cross-mapping results between population density and county-level precipitation."><div class="figcaption">
 <strong>Figure 1</strong>. The cross-mapping
-prediction outputs between population density and county-level
-precipitation.</div>
+results between population density and county-level precipitation.</div>
 </div>
 <p><br></p>
 </div>
@@ -327,7 +326,7 @@ precipitation.</div>
 <span>                      progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">endTime</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">endTime</span>,<span class="va">startTime</span>, units <span class="op">=</span><span class="st">"mins"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">## Time difference of 0.9425755 mins</span></span>
+<span><span class="co">## Time difference of 0.9297233 mins</span></span>
 <span><span class="va">npp_res</span></span>
 <span><span class="co">##   libsizes  pre-&gt;npp  npp-&gt;pre</span></span>
 <span><span class="co">## 1       10 0.1235069 0.1061684</span></span>
@@ -342,9 +341,9 @@ precipitation.</div>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_res</span>,xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">135</span><span class="op">)</span>,ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">1</span><span class="op">)</span>, draw_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="../reference/figures/gccm/fig2-1.png" alt="Figure 2. The cross-mapping prediction outputs between farmland NPP and precipitation."><div class="figcaption">
+<img src="../reference/figures/gccm/fig2-1.png" alt="Figure 2. The cross-mapping results between farmland NPP and precipitation."><div class="figcaption">
 <strong>Figure 2</strong>. The cross-mapping
-prediction outputs between farmland NPP and precipitation.</div>
+results between farmland NPP and precipitation.</div>
 </div>
 </div>
 </div>

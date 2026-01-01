@@ -8,9 +8,11 @@ represents the study area.
 
 We use:
 
-\\ \mathcal{X}\_W = \\ W_i x \mid W_i \in \mathcal{W}(x, y) \\ \\
+\\ \mathcal{X}\_W = \\ W_i x \mid W_i \in \mathcal{W}(x, y) \\, \\
 
-\\ \mathcal{Y}\_W = \\ W_i y \mid W_i \in \mathcal{W}(x, y) \\ \\
+and
+
+\\ \mathcal{Y}\_W = \\ W_i y \mid W_i \in \mathcal{W}(x, y) \\, \\
 
 to denote the sets of spatial lags of \\x\\ and \\y\\ given by all the
 weighting matrices in \\\mathcal{W}(x, y)\\(that is the set of spatial
@@ -21,9 +23,10 @@ We say that \\\\x_s\\\_{s \in S}\\ does not cause \\\\y_s\\\_{s \in S}\\
 \\\mathcal{Y}\_W\\ if
 
 \\ h\_{y \|\mathcal{Y}\_W}(m) = h\_{y \|
-\mathcal{Y}\_W,\mathcal{X}\_W}(m) \\ A unilateral non-parametric test
-can be applied to assess the spatial causality via the following null
-hypothesis:
+\mathcal{Y}\_W,\mathcal{X}\_W}(m). \\
+
+A unilateral non-parametric test can be applied to assess the spatial
+causality via the following null hypothesis:
 
 \\ H_0 : \\x_s\\\_{s \in S} \text{ does not cause } \\y_s\\\_{s \in S}
 \text{ under the spatial structures } \mathcal{X}\_W \text{ and }
@@ -32,7 +35,7 @@ hypothesis:
 with the following statistic:
 
 \\ \hat{\delta}(\mathcal{Y}\_W, \mathcal{X}\_W) = \hat{h}\_{y
-\|\mathcal{Y}\_W}(m) - \hat{h}\_{y \| \mathcal{Y}\_W,\mathcal{X}\_W}(m)
+\|\mathcal{Y}\_W}(m) - \hat{h}\_{y \| \mathcal{Y}\_W,\mathcal{X}\_W}(m),
 \\
 
 where \\\hat{h}\_\*(m)\\ is the estimated conditional symbolic entropy

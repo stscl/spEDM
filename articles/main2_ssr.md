@@ -25,7 +25,7 @@ data*, which lack temporal ordering but are observed over a spatial
 domain. In this context, the observation functions can be defined using
 the values of a variable at a focal spatial unit and its surrounding
 neighbors (known as *spatial lags* in spatial statistics). Specifically,
-for a spatial location \\s\\, the embedding can be written as:
+for a spatial unit \\s\\, the embedding can be written as:
 
 \\ \psi(x, s) = \langle h_s(x), h\_{s(1)}(x), \ldots, h\_{s(L-1)}(x)
 \rangle, \\
@@ -100,11 +100,10 @@ plot3D::scatter3D(v[,4], v[,5], v[,10], colvar = NULL, pch = 19,
                   bty = "f", clab = NA, tickmarks = FALSE)
 ```
 
-![Figure 1. The reconstructed shadow manifolds for the variable
+![Figure 1. The reconstructed attractors for the variable
 popd.](../reference/figures/ssr/fig1-1.png)
 
-**Figure 1**. The reconstructed shadow manifolds for the variable
-`popd`.
+**Figure 1**. The reconstructed attractors for the variable `popd`.
 
   
 
@@ -147,7 +146,7 @@ plot3D::scatter3D(r[,1], r[,2], r[,3], colvar = NULL, pch = 19,
                   bty = "f", clab = NA, tickmarks = FALSE)
 ```
 
-![Figure 2. The reconstructed shadow manifolds for the variable
+![Figure 2. The reconstructed attractors for the variable
 npp.](../reference/figures/ssr/fig2-1.png)
 
-**Figure 2**. The reconstructed shadow manifolds for the variable `npp`.
+**Figure 2**. The reconstructed attractors for the variable `npp`.

@@ -47,7 +47,7 @@ causation to demonstrate key functionalities:
     `popd_nb.gal`
 
 3.  **Farmland NPP and related variables** — A raster dataset capturing
-    net primary productivity (NPP) of farmland, key climatic variables,
+    farmland net primary productivity (NPP), key climatic variables,
     elevation, and human activity footprints across mainland China,
     suitable for analyzing the interactions between agricultural
     productivity, environmental conditions, and human activities. *Data

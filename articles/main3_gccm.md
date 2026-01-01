@@ -11,7 +11,7 @@ constructed using the different spatial lag values of all spatial units:
 \cdots & S\_{(E\tau)}(x_1) \\ S\_{(\tau)}(x_2) & S\_{(2\tau)}(x_2) &
 \cdots & S\_{(E\tau)}(x_2) \\ \vdots & \vdots & \ddots & \vdots \\
 S\_{(\tau)}(x_n) & S\_{(2\tau)}(x_n) & \cdots & S\_{(E\tau)}(x_n)
-\end{bmatrix} \\
+\end{bmatrix}. \\
 
 Here, \\S\_{(j)}(x_i)\\ denotes the \\j\\ th-order spatial lag value of
 spatial unit \\i\\, \\\tau\\ is the step size for the spatial lag order,
@@ -22,7 +22,7 @@ With the reconstructed shadow manifolds \\M\_{x}\\, the state of Y can
 be predicted with the state of X through
 
 \\ \hat{Y}\_s \mid M_x = \sum\limits\_{i=1}^k \left(\omega\_{si}Y\_{si}
-\mid M_x \right) \\
+\mid M_x \right), \\
 
 where \\s\\ represents a spatial unit at which the value of \\Y\\ needs
 to be predicted, \\\hat{Y}\_s\\ is the prediction result, \\k\\ is the
@@ -33,7 +33,7 @@ as:
 
 \\ \omega\_{si} \mid M_x = \frac{weight
 \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}{\sum\_{i=1}^{L+1}weight
-\left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)} \\
+\left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}, \\
 
 where \\\psi(M_x, s_i)\\ is the state vector of spatial unit \\s_i\\ in
 the shadow manifold \\M_x\\, and \\weight (\ast, \ast)\\ is the weight
@@ -42,14 +42,15 @@ function between two states in the shadow manifold, defined as:
 \\ weight \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right) =
 \exp \left(- \frac{dis
 \left(\psi\left(M_x,s_i\right),\psi\left(M_x,s\right)\right)}{dis
-\left(\psi\left(M_x,s_1\right),\psi\left(M_x,s\right)\right)} \right) \\
+\left(\psi\left(M_x,s_1\right),\psi\left(M_x,s\right)\right)} \right),
+\\
 
 where \\\exp\\ is the exponential function and \\dis
 \left(\ast,\ast\right)\\ represents the distance function between two
 states in the shadow manifold defined as:
 
 \\ dis \left( \psi(M_x, s_i), \psi(M_x, s) \right) = \frac{1}{E}
-\sum\_{m=1}^{E} \left\| \psi_m(M_x, s_i) - \psi_m(M_x, s) \right\| \\
+\sum\_{m=1}^{E} \left\| \psi_m(M_x, s_i) - \psi_m(M_x, s) \right\|, \\
 
 where \\dis \left( \psi(M_x, s_i), \psi(M_x, s) \right)\\ denotes the
 average absolute difference between corresponding elements of the two
@@ -63,13 +64,14 @@ corresponding predictions, and the confidence interval of \\\rho\\ can
 be estimated based the \\z\\-statistics with the normal distribution:
 
 \\ \rho = \frac{Cov\left(Y,\hat{Y}\mid
-M_x\right)}{\sqrt{Var\left(Y\right) Var\left(\hat{Y}\mid M_x\right)}} \\
+M_x\right)}{\sqrt{Var\left(Y\right) Var\left(\hat{Y}\mid M_x\right)}},
+\\
 
-\\ t = \rho \sqrt{\frac{n-2}{1-\rho^2}} \\
+\\ t = \rho \sqrt{\frac{n-2}{1-\rho^2}}, \\
 
 where \\n\\ is the number of observations to be predicted, and
 
-\\ z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right) \\
+\\ z = \frac{1}{2} \ln \left(\frac{1+\rho}{1-\rho}\right). \\
 
 The prediction skill \\\rho\\ varies by setting different sizes of
 libraries, which means the quantity of observations used in
@@ -79,7 +81,7 @@ means that \\\rho\\ increases with the size of libraries and is
 statistically significant when the library becomes largest.
 
 \\ \rho\_{x \to y} = \lim\_{L \to \infty} cor \left( Y,\hat{Y}\mid M_x
-\right) \\
+\right), \\
 
 where \\\rho\_{x \to y}\\ is the correlation after convergence, used to
 measure the causation effect from \\Y\\ to \\X\\, despite the notation
@@ -146,7 +148,7 @@ pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      E = c(3,9), k = 12, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.867319 mins
+## Time difference of 1.816188 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
 ## 1       100 0.1199174 0.03313697
@@ -172,12 +174,11 @@ plot(pd_res, xlimits = c(0, 2800), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.65,1))
 ```
 
-![Figure 1. The cross-mapping prediction outputs between population
-density and county-level
-precipitation.](../reference/figures/gccm/fig1-1.png)
+![Figure 1. The cross-mapping results between population density and
+county-level precipitation.](../reference/figures/gccm/fig1-1.png)
 
-**Figure 1**. The cross-mapping prediction outputs between population
-density and county-level precipitation.
+**Figure 1**. The cross-mapping results between population density and
+county-level precipitation.
 
   
 
@@ -243,7 +244,7 @@ npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
                       progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 0.9425755 mins
+## Time difference of 0.9297233 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
 ## 1       10 0.1235069 0.1061684
@@ -262,8 +263,8 @@ plot(npp_res,xlimits = c(5, 135),ylimits = c(0.05,1), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.25,1))
 ```
 
-![Figure 2. The cross-mapping prediction outputs between farmland NPP
-and precipitation.](../reference/figures/gccm/fig2-1.png)
+![Figure 2. The cross-mapping results between farmland NPP and
+precipitation.](../reference/figures/gccm/fig2-1.png)
 
-**Figure 2**. The cross-mapping prediction outputs between farmland NPP
-and precipitation.
+**Figure 2**. The cross-mapping results between farmland NPP and
+precipitation.

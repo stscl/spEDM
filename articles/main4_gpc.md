@@ -6,12 +6,12 @@ Geographical Pattern Causality (GPC) infers causal relations from
 spatial cross-sectional data by reconstructing a symbolic approximation
 of the underlying spatial dynamical system.
 
-Let \\x(s)\\ and \\y(s)\\ denote two spatial cross-sections over
-locations \\s \in \mathcal{S}\\.
+Let \\x(s)\\ and \\y(s)\\ denote two spatial cross-sections over spatial
+units \\s \in \mathcal{S}\\.
 
 **(1) Spatial Embedding**
 
-For each location \\s_i\\, GPC constructs an embedding vector
+For each spatial unit \\s_i\\, GPC constructs an embedding vector
 
 \\ \mathbf{E}\_{x(s_i)} = \big( x(s\_{i}^{(1)}), x(s\_{i}^{(2)}), \dots,
 x(s\_{i}^{(E\tau)}) \big), \\

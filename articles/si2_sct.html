@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-12-15<br>
-Last run: 2025-12-20</div></h4>
+update: 2026-01-01<br>
+Last run: 2026-01-01</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/si2_sct.Rmd" class="external-link"><code>vignettes/si2_sct.Rmd</code></a></small>
       <div class="d-none name"><code>si2_sct.Rmd</code></div>
@@ -93,10 +93,11 @@ Last run: 2025-12-20</div></h4>
 <p>Let us begin by defining two spatial cross-sectional series <span class="math inline">\(\{x_s\}_{s \in S}\)</span> and <span class="math inline">\(\{y_s\}_{s \in S}\)</span>, where <span class="math inline">\(S\)</span> represents the study area.</p>
 <p>We use:</p>
 <p><span class="math display">\[
-\mathcal{X}_W = \{ W_i x \mid W_i \in \mathcal{W}(x, y) \}
+\mathcal{X}_W = \{ W_i x \mid W_i \in \mathcal{W}(x, y) \},
 \]</span></p>
+<p>and</p>
 <p><span class="math display">\[
-\mathcal{Y}_W = \{ W_i y \mid W_i \in \mathcal{W}(x, y) \}
+\mathcal{Y}_W = \{ W_i y \mid W_i \in \mathcal{W}(x, y) \},
 \]</span></p>
 <p>to denote the sets of spatial lags of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> given by all the weighting matrices in
 <span class="math inline">\(\mathcal{W}(x, y)\)</span>(that is the set
@@ -105,9 +106,10 @@ of spatial dependence structures between <span class="math inline">\(x\)</span> 
 does not cause <span class="math inline">\(\{y_s\}_{s \in S}\)</span>
 <strong>under the spatial structures</strong> <span class="math inline">\(\mathcal{X}_W\)</span> and <span class="math inline">\(\mathcal{Y}_W\)</span> if</p>
 <p><span class="math display">\[
-h_{y |\mathcal{Y}_W}(m) = h_{y | \mathcal{Y}_W,\mathcal{X}_W}(m)
-\]</span> A unilateral non-parametric test can be applied to assess the
-spatial causality via the following null hypothesis:</p>
+h_{y |\mathcal{Y}_W}(m) = h_{y | \mathcal{Y}_W,\mathcal{X}_W}(m).
+\]</span></p>
+<p>A unilateral non-parametric test can be applied to assess the spatial
+causality via the following null hypothesis:</p>
 <p><span class="math display">\[
 H_0 : \{x_s\}_{s \in S} \text{ does not cause } \{y_s\}_{s \in S} \text{
 under the spatial structures } \mathcal{X}_W \text{ and } \mathcal{Y}_W,
@@ -115,7 +117,7 @@ under the spatial structures } \mathcal{X}_W \text{ and } \mathcal{Y}_W,
 <p>with the following statistic:</p>
 <p><span class="math display">\[
 \hat{\delta}(\mathcal{Y}_W, \mathcal{X}_W) = \hat{h}_{y
-|\mathcal{Y}_W}(m) - \hat{h}_{y | \mathcal{Y}_W,\mathcal{X}_W}(m)
+|\mathcal{Y}_W}(m) - \hat{h}_{y | \mathcal{Y}_W,\mathcal{X}_W}(m),
 \]</span></p>
 <p>where <span class="math inline">\(\hat{h}_*(m)\)</span> is the
 estimated conditional symbolic entropy using Shannon’s entropy with

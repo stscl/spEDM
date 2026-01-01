@@ -6,17 +6,17 @@ To measure causal strengths from spatial cross-sectional data, GCMC
 (Geographical Cross Mapping Cardinality) employs a three-stage
 procedure:
 
-**Stage one** involves reconstructing the state space. Given two spatial
-variables, \\x\\ and \\y\\, this step requires determining a suitable
-embedding dimension \\E\\ and a spatial lag interval \\\tau\\. For each
-spatial location (unit) \\i\\, the attribute values from its spatial
-neighbors at lag orders \\\tau, 2\tau, \dots, E\tau\\ are collected.
-These values are then summarized—commonly using the mean—to construct an
+**Stage one** involves reconstructing the shadow manifolds. Given two
+spatial variables, \\x\\ and \\y\\, this step requires determining a
+suitable embedding dimension \\E\\ and a spatial lag step \\\tau\\. For
+each spatial unit \\i\\, the attribute values from its spatial neighbors
+at spatial lag orders \\\tau, 2\tau, \dots, E\tau\\ are collected. These
+values are then summarized—commonly using the mean—to construct an
 embedding vector for each unit. Aggregating these vectors across all
-spatial units results in the reconstructed state spaces, denoted as
+spatial units results in the reconstructed shadow manifolds, denoted as
 \\M_x\\ and \\M_y\\.
 
-**Stage two** constructs the Intersectional Cardinality (IC) curve,
+**Stage two** constructs the intersectional cardinality (IC) curve,
 which serves to evaluate causal strength. To measure whether \\y\\
 causally affects \\x\\, one computes, for each \\k\\, the overlap
 between the \\k\\ nearest neighbors of \\M_y\\ and the corresponding
@@ -33,8 +33,9 @@ measure of causal strength. To determine whether the observed causal
 strength is statistically significant, a hypothesis test is performed:
 the null assumes no causality, while the alternative assumes its
 presence. The DeLong palcements method is applied to evaluate the
-difference in AUCs under these hypotheses. It also yields confidence
-intervals, supporting robust causal inference.
+difference in AUCs under these hypotheses. It also yields statistical
+significance and confidence intervals, supporting reliable causal
+inference.
 
 ## Usage examples
 

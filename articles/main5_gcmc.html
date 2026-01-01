@@ -78,8 +78,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2025-12-20<br>
-Last run: 2025-12-20</div></h4>
+update: 2026-01-01<br>
+Last run: 2026-01-01</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main5_gcmc.Rmd" class="external-link"><code>vignettes/main5_gcmc.Rmd</code></a></small>
       <div class="d-none name"><code>main5_gcmc.Rmd</code></div>
@@ -93,18 +93,17 @@ Last run: 2025-12-20</div></h4>
 <p>To measure causal strengths from spatial cross-sectional data, GCMC
 (Geographical Cross Mapping Cardinality) employs a three-stage
 procedure:</p>
-<p><strong>Stage one</strong> involves reconstructing the state space.
-Given two spatial variables, <span class="math inline">\(x\)</span> and
-<span class="math inline">\(y\)</span>, this step requires determining a
+<p><strong>Stage one</strong> involves reconstructing the shadow
+manifolds. Given two spatial variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, this step requires determining a
 suitable embedding dimension <span class="math inline">\(E\)</span> and
-a spatial lag interval <span class="math inline">\(\tau\)</span>. For
-each spatial location (unit) <span class="math inline">\(i\)</span>, the
-attribute values from its spatial neighbors at lag orders <span class="math inline">\(\tau, 2\tau, \dots, E\tau\)</span> are collected.
+a spatial lag step <span class="math inline">\(\tau\)</span>. For each
+spatial unit <span class="math inline">\(i\)</span>, the attribute
+values from its spatial neighbors at spatial lag orders <span class="math inline">\(\tau, 2\tau, \dots, E\tau\)</span> are collected.
 These values are then summarized—commonly using the mean—to construct an
 embedding vector for each unit. Aggregating these vectors across all
-spatial units results in the reconstructed state spaces, denoted as
+spatial units results in the reconstructed shadow manifolds, denoted as
 <span class="math inline">\(M_x\)</span> and <span class="math inline">\(M_y\)</span>.</p>
-<p><strong>Stage two</strong> constructs the Intersectional Cardinality
+<p><strong>Stage two</strong> constructs the intersectional cardinality
 (IC) curve, which serves to evaluate causal strength. To measure whether
 <span class="math inline">\(y\)</span> causally affects <span class="math inline">\(x\)</span>, one computes, for each <span class="math inline">\(k\)</span>, the overlap between the <span class="math inline">\(k\)</span> nearest neighbors of <span class="math inline">\(M_y\)</span> and the corresponding “projected”
 neighbors traced through <span class="math inline">\(M_x\)</span>.
@@ -119,8 +118,9 @@ measure of causal strength. To determine whether the observed causal
 strength is statistically significant, a hypothesis test is performed:
 the null assumes no causality, while the alternative assumes its
 presence. The DeLong palcements method is applied to evaluate the
-difference in AUCs under these hypotheses. It also yields confidence
-intervals, supporting robust causal inference.</p>
+difference in AUCs under these hypotheses. It also yields statistical
+significance and confidence intervals, supporting reliable causal
+inference.</p>
 </div>
 <div class="section level2">
 <h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
