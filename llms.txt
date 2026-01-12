@@ -63,10 +63,10 @@ devtools::install_github("stscl/spEDM",
 
 - [`simplex(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/simplex.md)
   [`simplex(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/simplex.md)
-  : optimal parameter search for simplex forecasting
+  : optimal parameter search for simplex projection
 - [`smap(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/smap.md)
   [`smap(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/smap.md)
-  : optimal parameter search for smap forecasting
+  : optimal parameter search for s-mapping
 - [`ic(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   [`ic(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   : optimal parameter search for intersectional cardinality

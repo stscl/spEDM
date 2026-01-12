@@ -1,6 +1,6 @@
-# optimal parameter search for smap forecasting
+# optimal parameter search for s-mapping
 
-optimal parameter search for smap forecasting
+optimal parameter search for s-mapping
 
 ## Usage
 
