@@ -1,6 +1,6 @@
-# optimal parameter search for intersection cardinality
+# optimal parameter search for intersectional cardinality
 
-optimal parameter search for intersection cardinality
+optimal parameter search for intersectional cardinality
 
 ## Usage
 

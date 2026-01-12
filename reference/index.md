@@ -21,7 +21,7 @@
   : optimal parameter search for smap forecasting
 - [`ic(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
   [`ic(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/ic.md)
-  : optimal parameter search for intersection cardinality
+  : optimal parameter search for intersectional cardinality
 - [`pc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
   [`pc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/pc.md)
   : optimal parameter search for pattern causality
