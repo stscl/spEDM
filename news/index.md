@@ -4,6 +4,9 @@
 
 #### enhancements
 
+- Enforce include order to prevent R headers from preceding Rcpp headers
+  ([\#932](https://github.com/stscl/spEDM/issues/932)).
+
 - Support optional white noise in spatial logistic map simulation
   ([\#922](https://github.com/stscl/spEDM/issues/922)).
 
