@@ -251,8 +251,8 @@ variables.](../reference/figures/scpcm/fig2-1.png)
 
 Since the self-prediction performance of the y variable is relatively
 weaker than that of x and z, we select the embedding dimension that
-yields the strongest predictive performance for y as the final dimension
-used in the SCPCM analysis, that is \\E = 9\\.
+yields the strongest predictive performance for y as the final
+dimension, that is \\E = 9\\.
 
 Investigate the causation between x and z, with y as control variables:
 
@@ -291,8 +291,8 @@ xz
 Visualize the result:
 
 ``` r
-fig2a = plot(xz,partial = FALSE,ylimits = c(0.05,0.7))
-fig2b = plot(xz,partial = TRUE,ylimits = c(0.05,0.7))
+fig2a = plot(xz,partial = FALSE,ylimits = c(0.05,0.65))
+fig2b = plot(xz,partial = TRUE,ylimits = c(0.05,0.65))
 fig2 = cowplot::plot_grid(fig2a,fig2b,ncol = 2,label_fontfamily = 'serif',
                           labels = paste0('(',letters[1:2],')'))
 fig2
