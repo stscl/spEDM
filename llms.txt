@@ -82,6 +82,9 @@ devtools::install_github("stscl/spEDM",
 - [`gpc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
   [`gpc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
   : geographical pattern causality
+- [`scpcm(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/scpcm.md)
+  [`scpcm(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/scpcm.md)
+  : spatially convergent partial cross mapping
 
 ### Nonlinear forecasting
 
@@ -120,6 +123,8 @@ devtools::install_github("stscl/spEDM",
   Causality](https://stscl.github.io/spEDM/articles/main4_gpc.md):
 - [Geographical Cross Mapping
   Cardinality](https://stscl.github.io/spEDM/articles/main5_gcmc.md):
+- [Spatially Convergent Partial Cross
+  Mapping](https://stscl.github.io/spEDM/articles/main6_scpcm.md):
 - [Spatial Logistic
   Map](https://stscl.github.io/spEDM/articles/si1_slm.md):
 - [Spatial Causality

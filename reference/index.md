@@ -34,6 +34,9 @@
 - [`gpc(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
   [`gpc(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/gpc.md)
   : geographical pattern causality
+- [`scpcm(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/scpcm.md)
+  [`scpcm(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/scpcm.md)
+  : spatially convergent partial cross mapping
 
 ### Nonlinear forecasting
 

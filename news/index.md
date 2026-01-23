@@ -2,6 +2,11 @@
 
 ## spEDM 1.10
 
+#### new
+
+- Provide R-level API and vignette for spatially convergent partial
+  cross mapping ([\#936](https://github.com/stscl/spEDM/issues/936)).
+
 #### enhancements
 
 - Enforce include order to prevent R headers from preceding Rcpp headers

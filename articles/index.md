@@ -12,6 +12,8 @@
   Causality](https://stscl.github.io/spEDM/articles/main4_gpc.md):
 - [Geographical Cross Mapping
   Cardinality](https://stscl.github.io/spEDM/articles/main5_gcmc.md):
+- [Spatially Convergent Partial Cross
+  Mapping](https://stscl.github.io/spEDM/articles/main6_scpcm.md):
 - [Spatial Logistic
   Map](https://stscl.github.io/spEDM/articles/si1_slm.md):
 - [Spatial Causality

@@ -7,9 +7,10 @@ articles:
   main3_gccm: main3_gccm.html
   main4_gpc: main4_gpc.html
   main5_gcmc: main5_gcmc.html
+  main6_scpcm: main6_scpcm.html
   si1_slm: si1_slm.html
   si2_sct: si2_sct.html
-last_built: 2026-01-17T06:39Z
+last_built: 2026-01-23T01:58Z
 urls:
   reference: https://stscl.github.io/spEDM/reference
   article: https://stscl.github.io/spEDM/articles

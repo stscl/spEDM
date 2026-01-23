@@ -29,6 +29,7 @@
     <li><a class="dropdown-item" href="articles/main3_gccm.html">3. Geographical Convergent Cross Mapping</a></li>
     <li><a class="dropdown-item" href="articles/main4_gpc.html">4. Geographical Pattern Causality</a></li>
     <li><a class="dropdown-item" href="articles/main5_gcmc.html">5. Geographical Cross Mapping Cardinality</a></li>
+    <li><a class="dropdown-item" href="articles/main6_scpcm.html">6. Spatially Convergent Partial Cross Mapping</a></li>
     <li><a class="dropdown-item" href="articles/si1_slm.html">SI1. Spatial Logistic Map</a></li>
     <li><a class="dropdown-item" href="articles/si2_sct.html">SI2. Spatial Causality Test</a></li>
   </ul></li>
@@ -59,10 +60,10 @@
 <ul><li>Compile all vignettes at once</li>
 </ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># list vignette names</span></span>
-<span><span class="va">vignettes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"main"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, </span>
+<span><span class="va">vignettes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"main"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, </span>
 <span>                     <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"si"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="st">"_"</span>,</span>
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pkgintro"</span>, <span class="st">"ssr"</span>, <span class="st">"gccm"</span>, <span class="st">"gpc"</span>,</span>
-<span>                     <span class="st">"gcmc"</span>, <span class="st">"slm"</span>, <span class="st">"sct"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                     <span class="st">"gcmc"</span>, <span class="st">"scpcm"</span>, <span class="st">"slm"</span>, <span class="st">"sct"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="va">vignettes</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span>
@@ -74,6 +75,7 @@
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"main3_gccm"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"main4_gpc"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"main5_gcmc"</span><span class="op">)</span></span>
+<span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"main6_scpcm"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"si1_slm"</span><span class="op">)</span></span>
 <span><span class="fu">.prebuild_vignettes</span><span class="op">(</span><span class="st">"si2_sct"</span><span class="op">)</span></span></code></pre></div>
 

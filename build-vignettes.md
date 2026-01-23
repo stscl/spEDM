@@ -16,10 +16,10 @@ package submission.
 
 ``` r
 # list vignette names
-vignettes = paste0(c(paste0("main", 1:5), 
+vignettes = paste0(c(paste0("main", 1:6), 
                      paste0("si", 1:2)), "_",
                    c("pkgintro", "ssr", "gccm", "gpc",
-                     "gcmc", "slm", "sct"))
+                     "gcmc", "scpcm", "slm", "sct"))
 
 for (v in vignettes) {
   .prebuild_vignettes(v)
@@ -34,6 +34,7 @@ for (v in vignettes) {
 .prebuild_vignettes("main3_gccm")
 .prebuild_vignettes("main4_gpc")
 .prebuild_vignettes("main5_gcmc")
+.prebuild_vignettes("main6_scpcm")
 .prebuild_vignettes("si1_slm")
 .prebuild_vignettes("si2_sct")
 ```
