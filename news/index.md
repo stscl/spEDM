@@ -9,6 +9,9 @@
 
 #### enhancements
 
+- Trim console output for geographical pattern causality results
+  ([\#942](https://github.com/stscl/spEDM/issues/942)).
+
 - Enforce include order to prevent R headers from preceding Rcpp headers
   ([\#932](https://github.com/stscl/spEDM/issues/932)).
 

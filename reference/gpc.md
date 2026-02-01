@@ -201,9 +201,6 @@ patterns. International Journal of Geographical Information Science
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 gpc(columbus,"hoval","crime",E = 6,k = 9)
-#> -------------------------------- 
-#> ***pattern causality analysis*** 
-#> -------------------------------- 
 #>       type  strength      direction
 #> 1 positive       NaN hoval -> crime
 #> 2 negative 0.1340069 hoval -> crime
