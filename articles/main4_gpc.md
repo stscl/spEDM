@@ -131,9 +131,6 @@ Run geographical pattern causality analysis
 
 ``` r
 spEDM::gpc(columbus, "hoval", "crime", E = 6, k = 9)
-## -------------------------------- 
-## ***pattern causality analysis*** 
-## -------------------------------- 
 ##       type  strength      direction
 ## 1 positive       NaN hoval -> crime
 ## 2 negative 0.1340069 hoval -> crime
@@ -150,107 +147,55 @@ crime_convergence = spEDM::gpc(columbus, "hoval", "crime",
                                libsizes = seq(5, 45, by = 5),
                                E = 6, k = 9, progressbar = FALSE)
 crime_convergence
-## -------------------------------- 
-## ***pattern causality analysis*** 
-## -------------------------------- 
-##    libsizes     type        mean        q05        q50        q95
-## 1        10 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 2        15 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 3        20 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 4        25 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 5        30 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 6        35 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 7        40 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 8        45 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 9        10 negative 0.070625218 0.00000000 0.00000000 0.30659823
-## 10       15 negative 0.115077546 0.00000000 0.10275505 0.30880682
-## 11       20 negative 0.108616161 0.00000000 0.10662265 0.24102060
-## 12       25 negative 0.121201874 0.04592266 0.11589173 0.21679072
-## 13       30 negative 0.131173338 0.04875268 0.13260719 0.23211138
-## 14       35 negative 0.135053399 0.05939354 0.12811574 0.23473999
-## 15       40 negative 0.143462998 0.06274451 0.13875013 0.22583851
-## 16       45 negative 0.132237392 0.05154815 0.13400692 0.20321523
-## 17       10     dark 0.017014322 0.00000000 0.01608876 0.04951971
-## 18       15     dark 0.022611842 0.00000000 0.01861307 0.05769873
-## 19       20     dark 0.021763180 0.00000000 0.02173713 0.04624619
-## 20       25     dark 0.022012245 0.00000000 0.01813809 0.05928351
-## 21       30     dark 0.042402814 0.00000000 0.04362907 0.08131942
-## 22       35     dark 0.051311033 0.01622624 0.04623515 0.10253654
-## 23       40     dark 0.071720825 0.03282035 0.06830303 0.11263398
-## 24       45     dark 0.090931207 0.05514622 0.09094789 0.12987726
-## 25       10 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 26       15 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 27       20 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 28       25 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 29       30 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 30       35 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 31       40 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 32       45 positive 0.000000000 0.00000000 0.00000000 0.00000000
-## 33       10 negative 0.008533609 0.00000000 0.00000000 0.00000000
-## 34       15 negative 0.000000000 0.00000000 0.00000000 0.00000000
-## 35       20 negative 0.005673075 0.00000000 0.00000000 0.00000000
-## 36       25 negative 0.007707627 0.00000000 0.00000000 0.00000000
-## 37       30 negative 0.056205723 0.00000000 0.00000000 0.51354762
-## 38       35 negative 0.167157122 0.00000000 0.10376552 0.62340830
-## 39       40 negative 0.337778689 0.00000000 0.30424357 0.62517731
-## 40       45 negative 0.571883820 0.08335697 0.62517731 0.62517731
-## 41       10     dark 0.074196224 0.03913357 0.07618520 0.10862499
-## 42       15     dark 0.083670433 0.04180185 0.08637332 0.11457037
-## 43       20     dark 0.098846255 0.06356219 0.09795915 0.14037150
-## 44       25     dark 0.103796838 0.07022535 0.10459567 0.13903714
-## 45       30     dark 0.112353198 0.08234950 0.11259679 0.15063914
-## 46       35     dark 0.118136046 0.08068679 0.11467853 0.15527543
-## 47       40     dark 0.131994205 0.08956014 0.13381611 0.16799219
-## 48       45     dark 0.142222189 0.10399541 0.14525108 0.17518310
-##         direction
-## 1  hoval -> crime
-## 2  hoval -> crime
-## 3  hoval -> crime
-## 4  hoval -> crime
-## 5  hoval -> crime
-## 6  hoval -> crime
-## 7  hoval -> crime
-## 8  hoval -> crime
-## 9  hoval -> crime
-## 10 hoval -> crime
-## 11 hoval -> crime
-## 12 hoval -> crime
-## 13 hoval -> crime
-## 14 hoval -> crime
-## 15 hoval -> crime
-## 16 hoval -> crime
-## 17 hoval -> crime
-## 18 hoval -> crime
-## 19 hoval -> crime
-## 20 hoval -> crime
-## 21 hoval -> crime
-## 22 hoval -> crime
-## 23 hoval -> crime
-## 24 hoval -> crime
-## 25 crime -> hoval
-## 26 crime -> hoval
-## 27 crime -> hoval
-## 28 crime -> hoval
-## 29 crime -> hoval
-## 30 crime -> hoval
-## 31 crime -> hoval
-## 32 crime -> hoval
-## 33 crime -> hoval
-## 34 crime -> hoval
-## 35 crime -> hoval
-## 36 crime -> hoval
-## 37 crime -> hoval
-## 38 crime -> hoval
-## 39 crime -> hoval
-## 40 crime -> hoval
-## 41 crime -> hoval
-## 42 crime -> hoval
-## 43 crime -> hoval
-## 44 crime -> hoval
-## 45 crime -> hoval
-## 46 crime -> hoval
-## 47 crime -> hoval
-## 48 crime -> hoval
+##    libsizes     type   strength      direction
+## 1        10 positive 0.00000000 hoval -> crime
+## 2        15 positive 0.00000000 hoval -> crime
+## 3        20 positive 0.00000000 hoval -> crime
+## 4        25 positive 0.00000000 hoval -> crime
+## 5        30 positive 0.00000000 hoval -> crime
+## 6        35 positive 0.00000000 hoval -> crime
+## 7        40 positive 0.00000000 hoval -> crime
+## 8        45 positive 0.00000000 hoval -> crime
+## 9        10 negative 0.00000000 hoval -> crime
+## 10       15 negative 0.10275505 hoval -> crime
+## 11       20 negative 0.10662265 hoval -> crime
+## 12       25 negative 0.11589173 hoval -> crime
+## 13       30 negative 0.13260719 hoval -> crime
+## 14       35 negative 0.12811574 hoval -> crime
+## 15       40 negative 0.13875013 hoval -> crime
+## 16       45 negative 0.13400692 hoval -> crime
+## 17       10     dark 0.01608876 hoval -> crime
+## 18       15     dark 0.01861307 hoval -> crime
+## 19       20     dark 0.02173713 hoval -> crime
+## 20       25     dark 0.01813809 hoval -> crime
+## 21       30     dark 0.04362907 hoval -> crime
+## 22       35     dark 0.04623515 hoval -> crime
+## 23       40     dark 0.06830303 hoval -> crime
+## 24       45     dark 0.09094789 hoval -> crime
+## 25       10 positive 0.00000000 crime -> hoval
+## 26       15 positive 0.00000000 crime -> hoval
+## 27       20 positive 0.00000000 crime -> hoval
+## 28       25 positive 0.00000000 crime -> hoval
+## 29       30 positive 0.00000000 crime -> hoval
+## 30       35 positive 0.00000000 crime -> hoval
+## 31       40 positive 0.00000000 crime -> hoval
+## 32       45 positive 0.00000000 crime -> hoval
+## 33       10 negative 0.00000000 crime -> hoval
+## 34       15 negative 0.00000000 crime -> hoval
+## 35       20 negative 0.00000000 crime -> hoval
+## 36       25 negative 0.00000000 crime -> hoval
+## 37       30 negative 0.00000000 crime -> hoval
+## 38       35 negative 0.10376552 crime -> hoval
+## 39       40 negative 0.30424357 crime -> hoval
+## 40       45 negative 0.62517731 crime -> hoval
+## 41       10     dark 0.07618520 crime -> hoval
+## 42       15     dark 0.08637332 crime -> hoval
+## 43       20     dark 0.09795915 crime -> hoval
+## 44       25     dark 0.10459567 crime -> hoval
+## 45       30     dark 0.11259679 crime -> hoval
+## 46       35     dark 0.11467853 crime -> hoval
+## 47       40     dark 0.13381611 crime -> hoval
+## 48       45     dark 0.14525108 crime -> hoval
 plot(crime_convergence, ylimits = c(-0.01,1),
      xlimits = c(9,46), xbreaks = seq(10, 45, 10))
 ```
@@ -336,9 +281,6 @@ Run geographical pattern causality analysis
 
 ``` r
 spEDM::gpc(npp, "pre", "npp", E = 8, k = 12, tau = 5)
-## -------------------------------- 
-## ***pattern causality analysis*** 
-## -------------------------------- 
 ##       type  strength  direction
 ## 1 positive 0.5348284 pre -> npp
 ## 2 negative       NaN pre -> npp
@@ -355,58 +297,55 @@ npp_convergence = spEDM::gpc(npp, "pre", "npp",
                              libsizes = matrix(rep(seq(10,80,10),2),ncol = 2),
                              E = 8, k = 12, tau = 5, progressbar = FALSE)
 npp_convergence
-## -------------------------------- 
-## ***pattern causality analysis*** 
-## -------------------------------- 
-##    libsizes     type       mean        q05        q50        q95  direction
-## 1       100 positive 0.13329950 0.07407592 0.12538196 0.21019892 pre -> npp
-## 2       400 positive 0.18100175 0.14249619 0.18018497 0.22147429 pre -> npp
-## 3       900 positive 0.25003464 0.21385822 0.24754501 0.29748254 pre -> npp
-## 4      1600 positive 0.30971383 0.26851762 0.30981312 0.34501340 pre -> npp
-## 5      2500 positive 0.37591136 0.34370484 0.37799443 0.40938124 pre -> npp
-## 6      3600 positive 0.42811423 0.39096905 0.43029973 0.46082807 pre -> npp
-## 7      4900 positive 0.46727140 0.43908847 0.46526482 0.49780759 pre -> npp
-## 8      6400 positive 0.50712681 0.48845730 0.50607359 0.52917024 pre -> npp
-## 9       100 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 10      400 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 11      900 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 12     1600 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 13     2500 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 14     3600 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 15     4900 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 16     6400 negative 0.00000000 0.00000000 0.00000000 0.00000000 pre -> npp
-## 17      100     dark 0.06333096 0.04886528 0.06183032 0.08358828 pre -> npp
-## 18      400     dark 0.11278520 0.10155495 0.11232502 0.12549444 pre -> npp
-## 19      900     dark 0.17254903 0.16158658 0.17258621 0.18589246 pre -> npp
-## 20     1600     dark 0.23544491 0.22435755 0.23518092 0.24744847 pre -> npp
-## 21     2500     dark 0.29216320 0.28271925 0.29193486 0.30170269 pre -> npp
-## 22     3600     dark 0.33692868 0.32827102 0.33645457 0.34721452 pre -> npp
-## 23     4900     dark 0.37562510 0.36731091 0.37582609 0.38212762 pre -> npp
-## 24     6400     dark 0.40905193 0.40228743 0.40879652 0.41570044 pre -> npp
-## 25      100 positive 0.08370604 0.04391305 0.07934454 0.14943187 npp -> pre
-## 26      400 positive 0.11837244 0.08625077 0.11817574 0.15751796 npp -> pre
-## 27      900 positive 0.18424920 0.15435809 0.18403265 0.21228492 npp -> pre
-## 28     1600 positive 0.26954887 0.23293732 0.26820265 0.31161775 npp -> pre
-## 29     2500 positive 0.33977236 0.29821853 0.34026886 0.38175475 npp -> pre
-## 30     3600 positive 0.38400895 0.35424047 0.38219004 0.42224626 npp -> pre
-## 31     4900 positive 0.41104801 0.38079297 0.41126235 0.43664446 npp -> pre
-## 32     6400 positive 0.42379598 0.40593770 0.42254648 0.44334792 npp -> pre
-## 33      100 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 34      400 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 35      900 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 36     1600 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 37     2500 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 38     3600 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 39     4900 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 40     6400 negative 0.00000000 0.00000000 0.00000000 0.00000000 npp -> pre
-## 41      100     dark 0.02942263 0.02228002 0.02919551 0.03682652 npp -> pre
-## 42      400     dark 0.06566183 0.05533017 0.06567401 0.07682947 npp -> pre
-## 43      900     dark 0.11924707 0.10860295 0.11937259 0.13028348 npp -> pre
-## 44     1600     dark 0.18077129 0.17055326 0.18083090 0.19054978 npp -> pre
-## 45     2500     dark 0.23789787 0.22516765 0.23808200 0.24874971 npp -> pre
-## 46     3600     dark 0.28437360 0.27353890 0.28469842 0.29349259 npp -> pre
-## 47     4900     dark 0.32567219 0.31519618 0.32666764 0.33424028 npp -> pre
-## 48     6400     dark 0.36628717 0.36014813 0.36603708 0.37331526 npp -> pre
+##    libsizes     type   strength  direction
+## 1       100 positive 0.12538196 pre -> npp
+## 2       400 positive 0.18018497 pre -> npp
+## 3       900 positive 0.24754501 pre -> npp
+## 4      1600 positive 0.30981312 pre -> npp
+## 5      2500 positive 0.37799443 pre -> npp
+## 6      3600 positive 0.43029973 pre -> npp
+## 7      4900 positive 0.46526482 pre -> npp
+## 8      6400 positive 0.50607359 pre -> npp
+## 9       100 negative 0.00000000 pre -> npp
+## 10      400 negative 0.00000000 pre -> npp
+## 11      900 negative 0.00000000 pre -> npp
+## 12     1600 negative 0.00000000 pre -> npp
+## 13     2500 negative 0.00000000 pre -> npp
+## 14     3600 negative 0.00000000 pre -> npp
+## 15     4900 negative 0.00000000 pre -> npp
+## 16     6400 negative 0.00000000 pre -> npp
+## 17      100     dark 0.06183032 pre -> npp
+## 18      400     dark 0.11232502 pre -> npp
+## 19      900     dark 0.17258621 pre -> npp
+## 20     1600     dark 0.23518092 pre -> npp
+## 21     2500     dark 0.29193486 pre -> npp
+## 22     3600     dark 0.33645457 pre -> npp
+## 23     4900     dark 0.37582609 pre -> npp
+## 24     6400     dark 0.40879652 pre -> npp
+## 25      100 positive 0.07934454 npp -> pre
+## 26      400 positive 0.11817574 npp -> pre
+## 27      900 positive 0.18403265 npp -> pre
+## 28     1600 positive 0.26820265 npp -> pre
+## 29     2500 positive 0.34026886 npp -> pre
+## 30     3600 positive 0.38219004 npp -> pre
+## 31     4900 positive 0.41126235 npp -> pre
+## 32     6400 positive 0.42254648 npp -> pre
+## 33      100 negative 0.00000000 npp -> pre
+## 34      400 negative 0.00000000 npp -> pre
+## 35      900 negative 0.00000000 npp -> pre
+## 36     1600 negative 0.00000000 npp -> pre
+## 37     2500 negative 0.00000000 npp -> pre
+## 38     3600 negative 0.00000000 npp -> pre
+## 39     4900 negative 0.00000000 npp -> pre
+## 40     6400 negative 0.00000000 npp -> pre
+## 41      100     dark 0.02919551 npp -> pre
+## 42      400     dark 0.06567401 npp -> pre
+## 43      900     dark 0.11937259 npp -> pre
+## 44     1600     dark 0.18083090 npp -> pre
+## 45     2500     dark 0.23808200 npp -> pre
+## 46     3600     dark 0.28469842 npp -> pre
+## 47     4900     dark 0.32666764 npp -> pre
+## 48     6400     dark 0.36603708 npp -> pre
 plot(npp_convergence, ylimits = c(-0.01,0.65),
      xlimits = c(0,6500), xbreaks = seq(100, 6400, 500))
 ```
