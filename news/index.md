@@ -2,6 +2,8 @@
 
 ## spEDM 1.10
 
+CRAN release: 2026-02-01
+
 #### new
 
 - Provide R-level API and vignette for spatially convergent partial
