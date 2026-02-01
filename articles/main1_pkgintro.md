@@ -8,7 +8,7 @@ Modeling**. It supports a suite of prediction-based causal discovery
 algorithms, including *spatial (granger) causality test*, *geographical
 convergent cross mapping*, *geographical pattern causality*,
 *geographical cross mapping cardinality*, and *spatially convergent
-partial cross mapping*
+partial cross mapping*.
 
 To support both learning and practical application, *spEDM* offers four
 carefully curated spatial cross-sectional datasets, each paired with a
