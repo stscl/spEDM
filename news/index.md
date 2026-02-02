@@ -4,6 +4,10 @@
 
 #### bug fixes
 
+- Eliminate default initialization pollution from NaN-skipped elements
+  in library and prediction sets
+  ([\#951](https://github.com/stscl/spEDM/issues/951)).
+
 - Resolve macOS CRAN check failures caused by missing `#include`
   directives for `string` and `utility` headers
   ([\#948](https://github.com/stscl/spEDM/issues/948)).

@@ -148,7 +148,7 @@ pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      E = c(3,9), k = 12, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 2.336358 mins
+## Time difference of 1.818866 mins
 pd_res
 ##    libsizes pre->popd  popd->pre
 ## 1       100 0.1199174 0.03313697
@@ -244,7 +244,7 @@ npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
                       progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
-## Time difference of 1.12162 mins
+## Time difference of 0.9307269 mins
 npp_res
 ##   libsizes  pre->npp  npp->pre
 ## 1       10 0.1235069 0.1061684

@@ -13,6 +13,7 @@ Load the `spEDM` package and columbus OH spatial analysis dataset:
 
 ``` r
 if (!requireNamespace("spEDM")) install.packages("spEDM")
+## Loading required namespace: spEDM
 
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
 columbus
