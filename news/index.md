@@ -2,6 +2,8 @@
 
 ## spEDM 1.11
 
+CRAN release: 2026-02-03
+
 #### bug fixes
 
 - Eliminate default initialization pollution from NaN-skipped elements
