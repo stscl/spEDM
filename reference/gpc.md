@@ -21,7 +21,7 @@ gpc(
   random = TRUE,
   seed = 42L,
   dist.metric = "L2",
-  zero.tolerance = k,
+  zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
   threads = detectThreads(),
@@ -48,7 +48,7 @@ gpc(
   random = TRUE,
   seed = 42L,
   dist.metric = "L2",
-  zero.tolerance = k,
+  zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
   threads = detectThreads(),
@@ -126,7 +126,7 @@ gpc(
 
 - relative:
 
-  (optional) whether to calculate relative changes in embeddings.
+  (optional) whether to calculate relative changes in embedding.
 
 - weighted:
 
