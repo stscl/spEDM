@@ -2,6 +2,12 @@
 
 ## spEDM 1.12
 
+#### enhancements
+
+- Enable asymmetric configurations (`E`, `tau`, `k`) in bidirectional
+  pattern causality analysis
+  ([\#955](https://github.com/stscl/spEDM/issues/955)).
+
 ## spEDM 1.11
 
 CRAN release: 2026-02-03
