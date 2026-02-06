@@ -201,13 +201,13 @@ patterns. International Journal of Geographical Information Science
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 gpc(columbus,"hoval","crime",E = 6,k = 9)
-#>       type  strength      direction
-#> 1 positive       NaN hoval -> crime
-#> 2 negative 0.1340069 hoval -> crime
-#> 3     dark 0.1043991 hoval -> crime
-#> 4 positive       NaN crime -> hoval
-#> 5 negative 0.6251773 crime -> hoval
-#> 6     dark 0.1468990 crime -> hoval
+#>       type   strength      direction
+#> 1 positive        NaN hoval -> crime
+#> 2 negative 0.12226140 hoval -> crime
+#> 3     dark 0.08292105 hoval -> crime
+#> 4 positive        NaN crime -> hoval
+#> 5 negative 0.64799884 crime -> hoval
+#> 6     dark 0.15444661 crime -> hoval
 
 # convergence diagnostics
 g = gpc(columbus,"hoval","crime",libsizes = seq(5,45,5),E = 6,k = 9)
