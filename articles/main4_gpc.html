@@ -79,8 +79,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lv</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2026-02-01<br>
-Last run: 2026-02-02</div></h4>
+update: 2026-02-06<br>
+Last run: 2026-02-06</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main4_gpc.Rmd" class="external-link"><code>vignettes/main4_gpc.Rmd</code></a></small>
       <div class="d-none name"><code>main4_gpc.Rmd</code></div>
@@ -213,22 +213,22 @@ search.</p>
 <span></span>
 <span><span class="co"># since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search</span></span>
 <span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/pc.html">pc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">6</span>, k <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">10</span>, tau <span class="op">=</span> <span class="fl">1</span>, maximize <span class="op">=</span> <span class="st">"negative"</span><span class="op">)</span></span>
-<span><span class="co">## The suggested E,k,tau for variable crime is 6, 9 and 1</span></span></code></pre></div>
+<span><span class="co">## The suggested E,k,tau for variable crime is 6, 8 and 1</span></span></code></pre></div>
 <p>Run geographical pattern causality analysis</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">6</span>, k <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span>
-<span><span class="co">##       type  strength      direction</span></span>
-<span><span class="co">## 1 positive       NaN hoval -&gt; crime</span></span>
-<span><span class="co">## 2 negative 0.1340069 hoval -&gt; crime</span></span>
-<span><span class="co">## 3     dark 0.1043991 hoval -&gt; crime</span></span>
-<span><span class="co">## 4 positive       NaN crime -&gt; hoval</span></span>
-<span><span class="co">## 5 negative 0.6251773 crime -&gt; hoval</span></span>
-<span><span class="co">## 6     dark 0.1468990 crime -&gt; hoval</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">6</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="co">##       type   strength      direction</span></span>
+<span><span class="co">## 1 positive        NaN hoval -&gt; crime</span></span>
+<span><span class="co">## 2 negative 0.10339376 hoval -&gt; crime</span></span>
+<span><span class="co">## 3     dark 0.09591306 hoval -&gt; crime</span></span>
+<span><span class="co">## 4 positive        NaN crime -&gt; hoval</span></span>
+<span><span class="co">## 5 negative 0.66263003 crime -&gt; hoval</span></span>
+<span><span class="co">## 6     dark 0.17201123 crime -&gt; hoval</span></span></code></pre></div>
 <p>Convergence diagnostics</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">crime_convergence</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"hoval"</span>, <span class="st">"crime"</span>,</span>
 <span>                               libsizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">45</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>                               E <span class="op">=</span> <span class="fl">6</span>, k <span class="op">=</span> <span class="fl">9</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>                               E <span class="op">=</span> <span class="fl">6</span>, k <span class="op">=</span> <span class="fl">8</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">crime_convergence</span></span>
 <span><span class="co">##    libsizes     type   strength      direction</span></span>
 <span><span class="co">## 1        10 positive 0.00000000 hoval -&gt; crime</span></span>
@@ -240,21 +240,21 @@ search.</p>
 <span><span class="co">## 7        40 positive 0.00000000 hoval -&gt; crime</span></span>
 <span><span class="co">## 8        45 positive 0.00000000 hoval -&gt; crime</span></span>
 <span><span class="co">## 9        10 negative 0.00000000 hoval -&gt; crime</span></span>
-<span><span class="co">## 10       15 negative 0.10275505 hoval -&gt; crime</span></span>
-<span><span class="co">## 11       20 negative 0.10662265 hoval -&gt; crime</span></span>
-<span><span class="co">## 12       25 negative 0.11589173 hoval -&gt; crime</span></span>
-<span><span class="co">## 13       30 negative 0.13260719 hoval -&gt; crime</span></span>
-<span><span class="co">## 14       35 negative 0.12811574 hoval -&gt; crime</span></span>
-<span><span class="co">## 15       40 negative 0.13875013 hoval -&gt; crime</span></span>
-<span><span class="co">## 16       45 negative 0.13400692 hoval -&gt; crime</span></span>
-<span><span class="co">## 17       10     dark 0.01608876 hoval -&gt; crime</span></span>
-<span><span class="co">## 18       15     dark 0.01861307 hoval -&gt; crime</span></span>
-<span><span class="co">## 19       20     dark 0.02173713 hoval -&gt; crime</span></span>
-<span><span class="co">## 20       25     dark 0.01813809 hoval -&gt; crime</span></span>
-<span><span class="co">## 21       30     dark 0.04362907 hoval -&gt; crime</span></span>
-<span><span class="co">## 22       35     dark 0.04623515 hoval -&gt; crime</span></span>
-<span><span class="co">## 23       40     dark 0.06830303 hoval -&gt; crime</span></span>
-<span><span class="co">## 24       45     dark 0.09094789 hoval -&gt; crime</span></span>
+<span><span class="co">## 10       15 negative 0.07911243 hoval -&gt; crime</span></span>
+<span><span class="co">## 11       20 negative 0.09306701 hoval -&gt; crime</span></span>
+<span><span class="co">## 12       25 negative 0.11800623 hoval -&gt; crime</span></span>
+<span><span class="co">## 13       30 negative 0.12405268 hoval -&gt; crime</span></span>
+<span><span class="co">## 14       35 negative 0.12273355 hoval -&gt; crime</span></span>
+<span><span class="co">## 15       40 negative 0.11469876 hoval -&gt; crime</span></span>
+<span><span class="co">## 16       45 negative 0.11305740 hoval -&gt; crime</span></span>
+<span><span class="co">## 17       10     dark 0.01365380 hoval -&gt; crime</span></span>
+<span><span class="co">## 18       15     dark 0.02102581 hoval -&gt; crime</span></span>
+<span><span class="co">## 19       20     dark 0.01839746 hoval -&gt; crime</span></span>
+<span><span class="co">## 20       25     dark 0.02450954 hoval -&gt; crime</span></span>
+<span><span class="co">## 21       30     dark 0.04140131 hoval -&gt; crime</span></span>
+<span><span class="co">## 22       35     dark 0.05119651 hoval -&gt; crime</span></span>
+<span><span class="co">## 23       40     dark 0.06686337 hoval -&gt; crime</span></span>
+<span><span class="co">## 24       45     dark 0.07935427 hoval -&gt; crime</span></span>
 <span><span class="co">## 25       10 positive 0.00000000 crime -&gt; hoval</span></span>
 <span><span class="co">## 26       15 positive 0.00000000 crime -&gt; hoval</span></span>
 <span><span class="co">## 27       20 positive 0.00000000 crime -&gt; hoval</span></span>
@@ -268,17 +268,17 @@ search.</p>
 <span><span class="co">## 35       20 negative 0.00000000 crime -&gt; hoval</span></span>
 <span><span class="co">## 36       25 negative 0.00000000 crime -&gt; hoval</span></span>
 <span><span class="co">## 37       30 negative 0.00000000 crime -&gt; hoval</span></span>
-<span><span class="co">## 38       35 negative 0.10376552 crime -&gt; hoval</span></span>
-<span><span class="co">## 39       40 negative 0.30424357 crime -&gt; hoval</span></span>
-<span><span class="co">## 40       45 negative 0.62517731 crime -&gt; hoval</span></span>
-<span><span class="co">## 41       10     dark 0.07618520 crime -&gt; hoval</span></span>
-<span><span class="co">## 42       15     dark 0.08637332 crime -&gt; hoval</span></span>
-<span><span class="co">## 43       20     dark 0.09795915 crime -&gt; hoval</span></span>
-<span><span class="co">## 44       25     dark 0.10459567 crime -&gt; hoval</span></span>
-<span><span class="co">## 45       30     dark 0.11259679 crime -&gt; hoval</span></span>
-<span><span class="co">## 46       35     dark 0.11467853 crime -&gt; hoval</span></span>
-<span><span class="co">## 47       40     dark 0.13381611 crime -&gt; hoval</span></span>
-<span><span class="co">## 48       45     dark 0.14525108 crime -&gt; hoval</span></span>
+<span><span class="co">## 38       35 negative 0.30524907 crime -&gt; hoval</span></span>
+<span><span class="co">## 39       40 negative 0.58603540 crime -&gt; hoval</span></span>
+<span><span class="co">## 40       45 negative 0.66263003 crime -&gt; hoval</span></span>
+<span><span class="co">## 41       10     dark 0.07055205 crime -&gt; hoval</span></span>
+<span><span class="co">## 42       15     dark 0.08995711 crime -&gt; hoval</span></span>
+<span><span class="co">## 43       20     dark 0.11123206 crime -&gt; hoval</span></span>
+<span><span class="co">## 44       25     dark 0.12403194 crime -&gt; hoval</span></span>
+<span><span class="co">## 45       30     dark 0.13377971 crime -&gt; hoval</span></span>
+<span><span class="co">## 46       35     dark 0.14469520 crime -&gt; hoval</span></span>
+<span><span class="co">## 47       40     dark 0.15517056 crime -&gt; hoval</span></span>
+<span><span class="co">## 48       45     dark 0.16563975 crime -&gt; hoval</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">crime_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>     xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>,<span class="fl">46</span><span class="op">)</span>, xbreaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">45</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
@@ -334,7 +334,7 @@ analysis.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test</a></span><span class="op">(</span><span class="op">~</span> <span class="va">pre</span> <span class="op">+</span> <span class="va">npp</span>,</span>
 <span>                data <span class="op">=</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pre"</span>,<span class="st">"npp"</span><span class="op">)</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>                                      datafame <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                     dataframe <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##  Pearson's product-moment correlation</span></span>
 <span><span class="co">## </span></span>
@@ -355,12 +355,12 @@ analysis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">12</span>, tau <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">##       type  strength  direction</span></span>
-<span><span class="co">## 1 positive 0.5348284 pre -&gt; npp</span></span>
+<span><span class="co">## 1 positive 0.5587734 pre -&gt; npp</span></span>
 <span><span class="co">## 2 negative       NaN pre -&gt; npp</span></span>
-<span><span class="co">## 3     dark 0.4184010 pre -&gt; npp</span></span>
-<span><span class="co">## 4 positive 0.4346310 npp -&gt; pre</span></span>
+<span><span class="co">## 3     dark 0.4228069 pre -&gt; npp</span></span>
+<span><span class="co">## 4 positive 0.4426710 npp -&gt; pre</span></span>
 <span><span class="co">## 5 negative 0.0000000 npp -&gt; pre</span></span>
-<span><span class="co">## 6     dark 0.3810809 npp -&gt; pre</span></span></code></pre></div>
+<span><span class="co">## 6     dark 0.3793368 npp -&gt; pre</span></span></code></pre></div>
 <p>Convergence diagnostics</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npp_convergence</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/gpc.html">gpc</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"pre"</span>, <span class="st">"npp"</span>,</span>
@@ -368,14 +368,14 @@ analysis.</p>
 <span>                             E <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">12</span>, tau <span class="op">=</span> <span class="fl">5</span>, progressbar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">npp_convergence</span></span>
 <span><span class="co">##    libsizes     type   strength  direction</span></span>
-<span><span class="co">## 1       100 positive 0.12538196 pre -&gt; npp</span></span>
-<span><span class="co">## 2       400 positive 0.18018497 pre -&gt; npp</span></span>
-<span><span class="co">## 3       900 positive 0.24754501 pre -&gt; npp</span></span>
-<span><span class="co">## 4      1600 positive 0.30981312 pre -&gt; npp</span></span>
-<span><span class="co">## 5      2500 positive 0.37799443 pre -&gt; npp</span></span>
-<span><span class="co">## 6      3600 positive 0.43029973 pre -&gt; npp</span></span>
-<span><span class="co">## 7      4900 positive 0.46526482 pre -&gt; npp</span></span>
-<span><span class="co">## 8      6400 positive 0.50607359 pre -&gt; npp</span></span>
+<span><span class="co">## 1       100 positive 0.11924559 pre -&gt; npp</span></span>
+<span><span class="co">## 2       400 positive 0.18641533 pre -&gt; npp</span></span>
+<span><span class="co">## 3       900 positive 0.25999206 pre -&gt; npp</span></span>
+<span><span class="co">## 4      1600 positive 0.32186441 pre -&gt; npp</span></span>
+<span><span class="co">## 5      2500 positive 0.39667771 pre -&gt; npp</span></span>
+<span><span class="co">## 6      3600 positive 0.44540723 pre -&gt; npp</span></span>
+<span><span class="co">## 7      4900 positive 0.47912447 pre -&gt; npp</span></span>
+<span><span class="co">## 8      6400 positive 0.52691047 pre -&gt; npp</span></span>
 <span><span class="co">## 9       100 negative 0.00000000 pre -&gt; npp</span></span>
 <span><span class="co">## 10      400 negative 0.00000000 pre -&gt; npp</span></span>
 <span><span class="co">## 11      900 negative 0.00000000 pre -&gt; npp</span></span>
@@ -384,22 +384,22 @@ analysis.</p>
 <span><span class="co">## 14     3600 negative 0.00000000 pre -&gt; npp</span></span>
 <span><span class="co">## 15     4900 negative 0.00000000 pre -&gt; npp</span></span>
 <span><span class="co">## 16     6400 negative 0.00000000 pre -&gt; npp</span></span>
-<span><span class="co">## 17      100     dark 0.06183032 pre -&gt; npp</span></span>
-<span><span class="co">## 18      400     dark 0.11232502 pre -&gt; npp</span></span>
-<span><span class="co">## 19      900     dark 0.17258621 pre -&gt; npp</span></span>
-<span><span class="co">## 20     1600     dark 0.23518092 pre -&gt; npp</span></span>
-<span><span class="co">## 21     2500     dark 0.29193486 pre -&gt; npp</span></span>
-<span><span class="co">## 22     3600     dark 0.33645457 pre -&gt; npp</span></span>
-<span><span class="co">## 23     4900     dark 0.37582609 pre -&gt; npp</span></span>
-<span><span class="co">## 24     6400     dark 0.40879652 pre -&gt; npp</span></span>
-<span><span class="co">## 25      100 positive 0.07934454 npp -&gt; pre</span></span>
-<span><span class="co">## 26      400 positive 0.11817574 npp -&gt; pre</span></span>
-<span><span class="co">## 27      900 positive 0.18403265 npp -&gt; pre</span></span>
-<span><span class="co">## 28     1600 positive 0.26820265 npp -&gt; pre</span></span>
-<span><span class="co">## 29     2500 positive 0.34026886 npp -&gt; pre</span></span>
-<span><span class="co">## 30     3600 positive 0.38219004 npp -&gt; pre</span></span>
-<span><span class="co">## 31     4900 positive 0.41126235 npp -&gt; pre</span></span>
-<span><span class="co">## 32     6400 positive 0.42254648 npp -&gt; pre</span></span>
+<span><span class="co">## 17      100     dark 0.05477351 pre -&gt; npp</span></span>
+<span><span class="co">## 18      400     dark 0.10639504 pre -&gt; npp</span></span>
+<span><span class="co">## 19      900     dark 0.16627407 pre -&gt; npp</span></span>
+<span><span class="co">## 20     1600     dark 0.23190492 pre -&gt; npp</span></span>
+<span><span class="co">## 21     2500     dark 0.29044339 pre -&gt; npp</span></span>
+<span><span class="co">## 22     3600     dark 0.33700220 pre -&gt; npp</span></span>
+<span><span class="co">## 23     4900     dark 0.37823271 pre -&gt; npp</span></span>
+<span><span class="co">## 24     6400     dark 0.41256952 pre -&gt; npp</span></span>
+<span><span class="co">## 25      100 positive 0.08070530 npp -&gt; pre</span></span>
+<span><span class="co">## 26      400 positive 0.11426176 npp -&gt; pre</span></span>
+<span><span class="co">## 27      900 positive 0.18021979 npp -&gt; pre</span></span>
+<span><span class="co">## 28     1600 positive 0.25729359 npp -&gt; pre</span></span>
+<span><span class="co">## 29     2500 positive 0.33203272 npp -&gt; pre</span></span>
+<span><span class="co">## 30     3600 positive 0.37662754 npp -&gt; pre</span></span>
+<span><span class="co">## 31     4900 positive 0.41361082 npp -&gt; pre</span></span>
+<span><span class="co">## 32     6400 positive 0.42959642 npp -&gt; pre</span></span>
 <span><span class="co">## 33      100 negative 0.00000000 npp -&gt; pre</span></span>
 <span><span class="co">## 34      400 negative 0.00000000 npp -&gt; pre</span></span>
 <span><span class="co">## 35      900 negative 0.00000000 npp -&gt; pre</span></span>
@@ -408,14 +408,14 @@ analysis.</p>
 <span><span class="co">## 38     3600 negative 0.00000000 npp -&gt; pre</span></span>
 <span><span class="co">## 39     4900 negative 0.00000000 npp -&gt; pre</span></span>
 <span><span class="co">## 40     6400 negative 0.00000000 npp -&gt; pre</span></span>
-<span><span class="co">## 41      100     dark 0.02919551 npp -&gt; pre</span></span>
-<span><span class="co">## 42      400     dark 0.06567401 npp -&gt; pre</span></span>
-<span><span class="co">## 43      900     dark 0.11937259 npp -&gt; pre</span></span>
-<span><span class="co">## 44     1600     dark 0.18083090 npp -&gt; pre</span></span>
-<span><span class="co">## 45     2500     dark 0.23808200 npp -&gt; pre</span></span>
-<span><span class="co">## 46     3600     dark 0.28469842 npp -&gt; pre</span></span>
-<span><span class="co">## 47     4900     dark 0.32666764 npp -&gt; pre</span></span>
-<span><span class="co">## 48     6400     dark 0.36603708 npp -&gt; pre</span></span>
+<span><span class="co">## 41      100     dark 0.02628157 npp -&gt; pre</span></span>
+<span><span class="co">## 42      400     dark 0.06125898 npp -&gt; pre</span></span>
+<span><span class="co">## 43      900     dark 0.11418591 npp -&gt; pre</span></span>
+<span><span class="co">## 44     1600     dark 0.17595918 npp -&gt; pre</span></span>
+<span><span class="co">## 45     2500     dark 0.23454296 npp -&gt; pre</span></span>
+<span><span class="co">## 46     3600     dark 0.28152186 npp -&gt; pre</span></span>
+<span><span class="co">## 47     4900     dark 0.32463349 npp -&gt; pre</span></span>
+<span><span class="co">## 48     6400     dark 0.36526339 npp -&gt; pre</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">npp_convergence</span>, ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.65</span><span class="op">)</span>,</span>
 <span>     xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">6500</span><span class="op">)</span>, xbreaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">6400</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="float">

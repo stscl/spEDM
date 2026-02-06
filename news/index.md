@@ -14,6 +14,10 @@
 
 #### breaking changes
 
+- Normalize causal strength in `gpc` generic by predicted-to-observed
+  signature norm ratio
+  ([\#962](https://github.com/stscl/spEDM/issues/962)).
+
 - Align `conds` parameter in `scpcm` generic to accept condition
   variables in direct path order for causal mediation analysis
   ([\#961](https://github.com/stscl/spEDM/issues/961)).

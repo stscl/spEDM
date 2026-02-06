@@ -124,20 +124,20 @@ stats::cor.test(columbus$hoval,columbus$crime)
 
 # since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search
 spEDM::pc(columbus, "hoval", "crime", E = 5:6, k = 7:10, tau = 1, maximize = "negative")
-## The suggested E,k,tau for variable crime is 6, 9 and 1
+## The suggested E,k,tau for variable crime is 6, 8 and 1
 ```
 
 Run geographical pattern causality analysis
 
 ``` r
-spEDM::gpc(columbus, "hoval", "crime", E = 6, k = 9)
-##       type  strength      direction
-## 1 positive       NaN hoval -> crime
-## 2 negative 0.1340069 hoval -> crime
-## 3     dark 0.1043991 hoval -> crime
-## 4 positive       NaN crime -> hoval
-## 5 negative 0.6251773 crime -> hoval
-## 6     dark 0.1468990 crime -> hoval
+spEDM::gpc(columbus, "hoval", "crime", E = 6, k = 8)
+##       type   strength      direction
+## 1 positive        NaN hoval -> crime
+## 2 negative 0.10339376 hoval -> crime
+## 3     dark 0.09591306 hoval -> crime
+## 4 positive        NaN crime -> hoval
+## 5 negative 0.66263003 crime -> hoval
+## 6     dark 0.17201123 crime -> hoval
 ```
 
 Convergence diagnostics
@@ -145,7 +145,7 @@ Convergence diagnostics
 ``` r
 crime_convergence = spEDM::gpc(columbus, "hoval", "crime",
                                libsizes = seq(5, 45, by = 5),
-                               E = 6, k = 9, progressbar = FALSE)
+                               E = 6, k = 8, progressbar = FALSE)
 crime_convergence
 ##    libsizes     type   strength      direction
 ## 1        10 positive 0.00000000 hoval -> crime
@@ -157,21 +157,21 @@ crime_convergence
 ## 7        40 positive 0.00000000 hoval -> crime
 ## 8        45 positive 0.00000000 hoval -> crime
 ## 9        10 negative 0.00000000 hoval -> crime
-## 10       15 negative 0.10275505 hoval -> crime
-## 11       20 negative 0.10662265 hoval -> crime
-## 12       25 negative 0.11589173 hoval -> crime
-## 13       30 negative 0.13260719 hoval -> crime
-## 14       35 negative 0.12811574 hoval -> crime
-## 15       40 negative 0.13875013 hoval -> crime
-## 16       45 negative 0.13400692 hoval -> crime
-## 17       10     dark 0.01608876 hoval -> crime
-## 18       15     dark 0.01861307 hoval -> crime
-## 19       20     dark 0.02173713 hoval -> crime
-## 20       25     dark 0.01813809 hoval -> crime
-## 21       30     dark 0.04362907 hoval -> crime
-## 22       35     dark 0.04623515 hoval -> crime
-## 23       40     dark 0.06830303 hoval -> crime
-## 24       45     dark 0.09094789 hoval -> crime
+## 10       15 negative 0.07911243 hoval -> crime
+## 11       20 negative 0.09306701 hoval -> crime
+## 12       25 negative 0.11800623 hoval -> crime
+## 13       30 negative 0.12405268 hoval -> crime
+## 14       35 negative 0.12273355 hoval -> crime
+## 15       40 negative 0.11469876 hoval -> crime
+## 16       45 negative 0.11305740 hoval -> crime
+## 17       10     dark 0.01365380 hoval -> crime
+## 18       15     dark 0.02102581 hoval -> crime
+## 19       20     dark 0.01839746 hoval -> crime
+## 20       25     dark 0.02450954 hoval -> crime
+## 21       30     dark 0.04140131 hoval -> crime
+## 22       35     dark 0.05119651 hoval -> crime
+## 23       40     dark 0.06686337 hoval -> crime
+## 24       45     dark 0.07935427 hoval -> crime
 ## 25       10 positive 0.00000000 crime -> hoval
 ## 26       15 positive 0.00000000 crime -> hoval
 ## 27       20 positive 0.00000000 crime -> hoval
@@ -185,17 +185,17 @@ crime_convergence
 ## 35       20 negative 0.00000000 crime -> hoval
 ## 36       25 negative 0.00000000 crime -> hoval
 ## 37       30 negative 0.00000000 crime -> hoval
-## 38       35 negative 0.10376552 crime -> hoval
-## 39       40 negative 0.30424357 crime -> hoval
-## 40       45 negative 0.62517731 crime -> hoval
-## 41       10     dark 0.07618520 crime -> hoval
-## 42       15     dark 0.08637332 crime -> hoval
-## 43       20     dark 0.09795915 crime -> hoval
-## 44       25     dark 0.10459567 crime -> hoval
-## 45       30     dark 0.11259679 crime -> hoval
-## 46       35     dark 0.11467853 crime -> hoval
-## 47       40     dark 0.13381611 crime -> hoval
-## 48       45     dark 0.14525108 crime -> hoval
+## 38       35 negative 0.30524907 crime -> hoval
+## 39       40 negative 0.58603540 crime -> hoval
+## 40       45 negative 0.66263003 crime -> hoval
+## 41       10     dark 0.07055205 crime -> hoval
+## 42       15     dark 0.08995711 crime -> hoval
+## 43       20     dark 0.11123206 crime -> hoval
+## 44       25     dark 0.12403194 crime -> hoval
+## 45       30     dark 0.13377971 crime -> hoval
+## 46       35     dark 0.14469520 crime -> hoval
+## 47       40     dark 0.15517056 crime -> hoval
+## 48       45     dark 0.16563975 crime -> hoval
 plot(crime_convergence, ylimits = c(-0.01,1),
      xlimits = c(9,46), xbreaks = seq(10, 45, 10))
 ```
@@ -258,7 +258,7 @@ Then, search optimal parameters:
 ``` r
 stats::cor.test(~ pre + npp,
                 data = terra::values(npp[[c("pre","npp")]],
-                                      datafame = TRUE, na.rm = TRUE))
+                                     dataframe = TRUE, na.rm = TRUE))
 ## 
 ##  Pearson's product-moment correlation
 ## 
@@ -282,12 +282,12 @@ Run geographical pattern causality analysis
 ``` r
 spEDM::gpc(npp, "pre", "npp", E = 8, k = 12, tau = 5)
 ##       type  strength  direction
-## 1 positive 0.5348284 pre -> npp
+## 1 positive 0.5587734 pre -> npp
 ## 2 negative       NaN pre -> npp
-## 3     dark 0.4184010 pre -> npp
-## 4 positive 0.4346310 npp -> pre
+## 3     dark 0.4228069 pre -> npp
+## 4 positive 0.4426710 npp -> pre
 ## 5 negative 0.0000000 npp -> pre
-## 6     dark 0.3810809 npp -> pre
+## 6     dark 0.3793368 npp -> pre
 ```
 
 Convergence diagnostics
@@ -298,14 +298,14 @@ npp_convergence = spEDM::gpc(npp, "pre", "npp",
                              E = 8, k = 12, tau = 5, progressbar = FALSE)
 npp_convergence
 ##    libsizes     type   strength  direction
-## 1       100 positive 0.12538196 pre -> npp
-## 2       400 positive 0.18018497 pre -> npp
-## 3       900 positive 0.24754501 pre -> npp
-## 4      1600 positive 0.30981312 pre -> npp
-## 5      2500 positive 0.37799443 pre -> npp
-## 6      3600 positive 0.43029973 pre -> npp
-## 7      4900 positive 0.46526482 pre -> npp
-## 8      6400 positive 0.50607359 pre -> npp
+## 1       100 positive 0.11924559 pre -> npp
+## 2       400 positive 0.18641533 pre -> npp
+## 3       900 positive 0.25999206 pre -> npp
+## 4      1600 positive 0.32186441 pre -> npp
+## 5      2500 positive 0.39667771 pre -> npp
+## 6      3600 positive 0.44540723 pre -> npp
+## 7      4900 positive 0.47912447 pre -> npp
+## 8      6400 positive 0.52691047 pre -> npp
 ## 9       100 negative 0.00000000 pre -> npp
 ## 10      400 negative 0.00000000 pre -> npp
 ## 11      900 negative 0.00000000 pre -> npp
@@ -314,22 +314,22 @@ npp_convergence
 ## 14     3600 negative 0.00000000 pre -> npp
 ## 15     4900 negative 0.00000000 pre -> npp
 ## 16     6400 negative 0.00000000 pre -> npp
-## 17      100     dark 0.06183032 pre -> npp
-## 18      400     dark 0.11232502 pre -> npp
-## 19      900     dark 0.17258621 pre -> npp
-## 20     1600     dark 0.23518092 pre -> npp
-## 21     2500     dark 0.29193486 pre -> npp
-## 22     3600     dark 0.33645457 pre -> npp
-## 23     4900     dark 0.37582609 pre -> npp
-## 24     6400     dark 0.40879652 pre -> npp
-## 25      100 positive 0.07934454 npp -> pre
-## 26      400 positive 0.11817574 npp -> pre
-## 27      900 positive 0.18403265 npp -> pre
-## 28     1600 positive 0.26820265 npp -> pre
-## 29     2500 positive 0.34026886 npp -> pre
-## 30     3600 positive 0.38219004 npp -> pre
-## 31     4900 positive 0.41126235 npp -> pre
-## 32     6400 positive 0.42254648 npp -> pre
+## 17      100     dark 0.05477351 pre -> npp
+## 18      400     dark 0.10639504 pre -> npp
+## 19      900     dark 0.16627407 pre -> npp
+## 20     1600     dark 0.23190492 pre -> npp
+## 21     2500     dark 0.29044339 pre -> npp
+## 22     3600     dark 0.33700220 pre -> npp
+## 23     4900     dark 0.37823271 pre -> npp
+## 24     6400     dark 0.41256952 pre -> npp
+## 25      100 positive 0.08070530 npp -> pre
+## 26      400 positive 0.11426176 npp -> pre
+## 27      900 positive 0.18021979 npp -> pre
+## 28     1600 positive 0.25729359 npp -> pre
+## 29     2500 positive 0.33203272 npp -> pre
+## 30     3600 positive 0.37662754 npp -> pre
+## 31     4900 positive 0.41361082 npp -> pre
+## 32     6400 positive 0.42959642 npp -> pre
 ## 33      100 negative 0.00000000 npp -> pre
 ## 34      400 negative 0.00000000 npp -> pre
 ## 35      900 negative 0.00000000 npp -> pre
@@ -338,14 +338,14 @@ npp_convergence
 ## 38     3600 negative 0.00000000 npp -> pre
 ## 39     4900 negative 0.00000000 npp -> pre
 ## 40     6400 negative 0.00000000 npp -> pre
-## 41      100     dark 0.02919551 npp -> pre
-## 42      400     dark 0.06567401 npp -> pre
-## 43      900     dark 0.11937259 npp -> pre
-## 44     1600     dark 0.18083090 npp -> pre
-## 45     2500     dark 0.23808200 npp -> pre
-## 46     3600     dark 0.28469842 npp -> pre
-## 47     4900     dark 0.32666764 npp -> pre
-## 48     6400     dark 0.36603708 npp -> pre
+## 41      100     dark 0.02628157 npp -> pre
+## 42      400     dark 0.06125898 npp -> pre
+## 43      900     dark 0.11418591 npp -> pre
+## 44     1600     dark 0.17595918 npp -> pre
+## 45     2500     dark 0.23454296 npp -> pre
+## 46     3600     dark 0.28152186 npp -> pre
+## 47     4900     dark 0.32463349 npp -> pre
+## 48     6400     dark 0.36526339 npp -> pre
 plot(npp_convergence, ylimits = c(-0.01,0.65),
      xlimits = c(0,6500), xbreaks = seq(100, 6400, 500))
 ```
