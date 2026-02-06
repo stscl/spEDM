@@ -12,6 +12,12 @@
   pattern causality analysis
   ([\#955](https://github.com/stscl/spEDM/issues/955)).
 
+#### breaking changes
+
+- Align `conds` parameter in `scpcm` generic to accept condition
+  variables in direct path order for causal mediation analysis
+  ([\#961](https://github.com/stscl/spEDM/issues/961)).
+
 ## spEDM 1.11
 
 CRAN release: 2026-02-03
