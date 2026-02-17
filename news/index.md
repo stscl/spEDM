@@ -2,6 +2,11 @@
 
 ## spEDM 1.12
 
+#### new
+
+- Correct maintainer surname spelling from `Lv` to `Lyu` for pinyin
+  compliance ([\#966](https://github.com/stscl/spEDM/issues/966)).
+
 #### enhancements
 
 - Inject plain-text terminal hint to `fnn` output
