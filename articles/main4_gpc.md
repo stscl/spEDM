@@ -94,6 +94,9 @@ series or spatial cross-sectional data.
 
 ``` r
 spEDM::fnn(columbus, "crime", E = 1:10, eps = stats::sd(columbus$crime))
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
 ##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
 ## 0.59183673 0.04081633 0.04081633 0.10204082 0.00000000 0.00000000 0.00000000 
 ##        E:8 
@@ -241,6 +244,9 @@ Determining minimal embedding dimension:
 ``` r
 spEDM::fnn(npp, "npp", E = 1:15,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
 ## 0.9813070569 0.5309427415 0.1322254335 0.0167630058 0.0017341040 0.0000000000 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 

@@ -87,6 +87,9 @@ minimizes false neighbours is considered optimal.
 
 ``` r
 spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
 ## 0.9643620813 0.5516749822 0.1813970064 0.0548823949 0.0138987883 0.0035637919 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 
@@ -265,6 +268,9 @@ Determining optimal embedding dimension:
 ``` r
 spEDM::fnn(npp, "npp", E = 1:25,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
 ## 0.9714842798 0.4732490272 0.0926556420 0.0043774319 0.0000000000 0.0000000000 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 

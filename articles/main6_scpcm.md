@@ -23,18 +23,18 @@ columbus
 ## Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245
 ## Projected CRS: Undefined Cartesian SRS with unknown unit
 ## # A tibble: 49 × 7
-##    hoval   inc  crime  open plumb discbd                                     geom
-##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                                <POLYGON>
-##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.74245, 8…
-##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22994, …
-##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00205, …
-##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83227,…
-##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72221,…
-##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69427, …
-##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60452,…
-##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965, 8.…
-##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361,…
-## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275, …
+##    hoval   inc  crime  open plumb discbd                                                   geom
+##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                                              <POLYGON>
+##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.74245, 8.809452 14.734…
+##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22994, 8.330711 14.22…
+##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00205, 9.008951 13.99…
+##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83227, 8.502935 13.8…
+##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72221, 8.90994 13.71…
+##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69427, 9.605247 13.69…
+##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60452, 8.072695 13.5…
+##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965, 8.294443 13.6045…
+##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361, 9.67701 13.29…
+## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275, 10.12649 13.09…
 ## # ℹ 39 more rows
 ```
 
@@ -47,20 +47,23 @@ Determine minimum embedding dimensions:
 
 ``` r
 spEDM::fnn(columbus,"crime",E = 1:10)
-##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
-## 0.79591837 0.53061224 0.63265306 0.51020408 0.12244898 0.04081633 0.00000000 
-##        E:8 
-## 0.00000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##        E:1        E:2        E:3        E:4        E:5        E:6        E:7        E:8 
+## 0.79591837 0.53061224 0.63265306 0.51020408 0.12244898 0.04081633 0.00000000 0.00000000
 spEDM::fnn(columbus,"hoval",E = 1:10)
-##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
-## 0.85714286 0.77551020 0.51020408 0.61224490 0.22448980 0.08163265 0.00000000 
-##        E:8 
-## 0.00000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##        E:1        E:2        E:3        E:4        E:5        E:6        E:7        E:8 
+## 0.85714286 0.77551020 0.51020408 0.61224490 0.22448980 0.08163265 0.00000000 0.00000000
 spEDM::fnn(columbus,"inc",E = 1:10)
-##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
-## 0.73469388 0.24489796 0.30612245 0.38775510 0.24489796 0.04081633 0.00000000 
-##        E:8 
-## 0.00000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##        E:1        E:2        E:3        E:4        E:5        E:6        E:7        E:8 
+## 0.73469388 0.24489796 0.30612245 0.38775510 0.24489796 0.04081633 0.00000000 0.00000000
 ```
 
 Self prediction for parameter turning:
@@ -195,20 +198,23 @@ Determine minimum embedding dimensions:
 
 ``` r
 spEDM::fnn(species, "x")
-##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 
-## 0.8937824 0.3125000 0.0100000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 
-##       E:9 
-## 0.0000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8       E:9 
+## 0.8937824 0.3125000 0.0100000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 spEDM::fnn(species, "y")
-##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 
-## 0.9333333 0.2525000 0.0425000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 
-##       E:9 
-## 0.0000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8       E:9 
+## 0.9333333 0.2525000 0.0425000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 spEDM::fnn(species, "z")
-##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8 
-## 0.9238845 0.3375000 0.0625000 0.0200000 0.0000000 0.0000000 0.0000000 0.0000000 
-##       E:9 
-## 0.0000000
+## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
+## [spEDM] Input E values exceeding max embeddable dimension were truncated.
+## [spEDM] Please map output indices to original E inputs before interpretation.
+##       E:1       E:2       E:3       E:4       E:5       E:6       E:7       E:8       E:9 
+## 0.9238845 0.3375000 0.0625000 0.0200000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 ```
 
 Self prediction for parameter turning:

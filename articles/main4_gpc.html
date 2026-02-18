@@ -76,11 +76,11 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Geographical Pattern Causality</h1>
-                        <h4 data-toc-skip class="author">Wenbo Lv</h4>
+                        <h4 data-toc-skip class="author">Wenbo Lyu</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2026-02-06<br>
-Last run: 2026-02-10</div></h4>
+update: 2026-02-15<br>
+Last run: 2026-02-18</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/main4_gpc.Rmd" class="external-link"><code>vignettes/main4_gpc.Rmd</code></a></small>
       <div class="d-none name"><code>main4_gpc.Rmd</code></div>
@@ -186,6 +186,9 @@ appropriate minimal embedding dimension for reconstructing the state
 space of a time series or spatial cross-sectional data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">columbus</span>, <span class="st">"crime"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">columbus</span><span class="op">$</span><span class="va">crime</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.</span></span>
+<span><span class="co">## [spEDM] Input E values exceeding max embeddable dimension were truncated.</span></span>
+<span><span class="co">## [spEDM] Please map output indices to original E inputs before interpretation.</span></span>
 <span><span class="co">##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 </span></span>
 <span><span class="co">## 0.59183673 0.04081633 0.04081633 0.10204082 0.00000000 0.00000000 0.00000000 </span></span>
 <span><span class="co">##        E:8 </span></span>
@@ -319,6 +322,9 @@ curves of causal strengths among house value and crime.</strong>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/fnn.html">fnn</a></span><span class="op">(</span><span class="va">npp</span>, <span class="st">"npp"</span>, E <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span>
 <span>           eps <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">npp</span><span class="op">[[</span><span class="st">"npp"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.</span></span>
+<span><span class="co">## [spEDM] Input E values exceeding max embeddable dimension were truncated.</span></span>
+<span><span class="co">## [spEDM] Please map output indices to original E inputs before interpretation.</span></span>
 <span><span class="co">##          E:1          E:2          E:3          E:4          E:5          E:6 </span></span>
 <span><span class="co">## 0.9813070569 0.5309427415 0.1322254335 0.0167630058 0.0017341040 0.0000000000 </span></span>
 <span><span class="co">##          E:7          E:8          E:9         E:10         E:11         E:12 </span></span>
