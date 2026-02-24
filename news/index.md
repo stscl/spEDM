@@ -22,6 +22,9 @@
 
 #### breaking changes
 
+- Rename NA handling argument from `NA_rm` to `na_rm` and change default
+  value to true ([\#968](https://github.com/stscl/spEDM/issues/968)).
+
 - Normalize causal strength in `gpc` generic by predicted-to-observed
   signature norm ratio
   ([\#962](https://github.com/stscl/spEDM/issues/962)).
