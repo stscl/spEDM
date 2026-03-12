@@ -15,6 +15,6 @@ An integer
 ## Examples
 
 ``` r
-detectThreads()
+spEDM::detectThreads()
 #> [1] 4
 ```

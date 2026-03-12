@@ -139,9 +139,9 @@ ecosystems: Overcoming the curse of dimensionality. Science 353:922-925.
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-multiview(columbus,
-          column = c("inc","crime","open","plumb","discbd"),
-          target = "hoval", nvar = 3)
+spEDM::multiview(columbus,
+                 column = c("inc","crime","open","plumb","discbd"),
+                 target = "hoval", nvar = 3)
 #>  [1]  18.8646054  22.4869617  21.1550738  -1.1253460  -9.1007114  -2.7903615
 #>  [7]  -7.6201012  -6.6613986  -8.7202885  16.2907046 -13.4100870   5.5617166
 #> [13]  -4.6242104  -6.0215133 -12.1983725  -9.3303243  14.4441917   2.2055448

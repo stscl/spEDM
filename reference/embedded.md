@@ -84,7 +84,7 @@ A matrix (when `stack` is `FALSE`) or list.
 
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
-v = embedded(columbus,"crime")
+v = spEDM::embedded(columbus,"crime")
 v[1:5,]
 #>          [,1]     [,2]     [,3]
 #> [1,] 24.71427 41.55964 43.45135
@@ -94,7 +94,7 @@ v[1:5,]
 #> [5,] 40.46533 34.43484 42.28334
 
 npp = terra::rast(system.file("case/npp.tif",package="spEDM"))
-r = embedded(npp,"npp")
+r = spEDM::embedded(npp,"npp")
 r[which(!is.na(r),arr.ind = TRUE)[1:5],]
 #>          [,1]     [,2]     [,3]
 #> [1,] 3467.572 3572.004 2611.333

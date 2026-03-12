@@ -128,7 +128,7 @@ construction, Phys. Rev. A, Volume 45, 3403 (1992).
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-fnn(columbus,"crime")
+spEDM::fnn(columbus,"crime")
 #> [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
 #> [spEDM] Input E values exceeding max embeddable dimension were truncated.
 #> [spEDM] Please map output indices to original E inputs before interpretation.

@@ -163,7 +163,7 @@ spatiotemporal chaos, Chaos, 533–540 (2003).
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 columbus$inc = sdsfun::normalize_vector(columbus$inc)
-slm(columbus,"inc")
+spEDM::slm(columbus,"inc")
 #> $x
 #>  [1] 0.8985452 0.8981079 0.8996913 0.9023158 0.9012219 0.8993983 0.9014626
 #>  [8] 0.9011186 0.8995365 0.8998710 0.9016004 0.9012866 0.9013377 0.9012993

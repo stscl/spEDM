@@ -9,6 +9,9 @@
 
 #### enhancements
 
+- Qualify function calls in examples with namespace for reproducibility
+  ([\#971](https://github.com/stscl/spEDM/issues/971)).
+
 - Inject plain-text terminal hint to `fnn` output
   ([\#965](https://github.com/stscl/spEDM/issues/965)).
 

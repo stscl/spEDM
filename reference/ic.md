@@ -128,7 +128,7 @@ intersection cardinal concavity. Fundamental Research.
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-ic(columbus,"hoval","crime",E = 7,k = 15:25)
+spEDM::ic(columbus,"hoval","crime",E = 7,k = 15:25)
 #> The suggested E,k,tau for variable crime is 7, 18 and 1 
 # }
 ```

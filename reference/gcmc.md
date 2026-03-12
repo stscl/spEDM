@@ -150,7 +150,7 @@ A list
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-g = gcmc(columbus,"hoval","crime",E = 7,k = 19)
+g = spEDM::gcmc(columbus,"hoval","crime",E = 7,k = 19)
 #> Computing: [========================================] 100% (done)                         
 #> Computing: [========================================] 100% (done)                         
 g

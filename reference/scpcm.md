@@ -199,7 +199,7 @@ A list
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-g = scpcm(columbus,"hoval","crime","inc",libsizes = seq(5,45,5),E = 6)
+g = spEDM::scpcm(columbus,"hoval","crime","inc",libsizes = seq(5,45,5),E = 6)
 #> Computing: [========================================] 100% (done)                         
 #> Computing: [========================================] 100% (done)                         
 g
