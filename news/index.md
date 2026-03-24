@@ -36,6 +36,11 @@
   variables in direct path order for causal mediation analysis
   ([\#961](https://github.com/stscl/spEDM/issues/961)).
 
+#### bug fixes
+
+- Fix incorrect midpoint-based pattern causality classification
+  ([\#973](https://github.com/stscl/spEDM/issues/973)).
+
 ## spEDM 1.11
 
 CRAN release: 2026-02-03
