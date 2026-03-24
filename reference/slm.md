@@ -155,8 +155,9 @@ A list
 
 ## References
 
-Willeboordse, F.H., The spatial logistic map as a simple prototype for
-spatiotemporal chaos, Chaos, 533–540 (2003).
+Willeboordse, F.H., 2003. The spatial logistic map as a simple prototype
+for spatiotemporal chaos. Chaos: An Interdisciplinary Journal of
+Nonlinear Science 13, 533–540.
 
 ## Examples
 
