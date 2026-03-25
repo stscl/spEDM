@@ -78,7 +78,7 @@ embedded(
 
 ## Value
 
-A matrix (when `stack` is `FALSE`) or list.
+A matrix (when `stack` is `FALSE`) or list
 
 ## Examples
 
