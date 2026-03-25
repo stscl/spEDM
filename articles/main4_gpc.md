@@ -103,10 +103,10 @@ spEDM::fnn(columbus, "crime", E = 1:10, eps = stats::sd(columbus$crime))
 ## 0.00000000
 ```
 
-The false nearest neighbours (FNN) ratio decreased to approximately
-0.001 when the embedding dimension E reached 7, and remained relatively
-stable thereafter. Therefore, we adopted \\E = 7\\ as the minimal
-embedding dimension for subsequent parameter search.
+The false nearest neighbours (FNN) ratio decreased to `0` when the
+embedding dimension E reached 5, and remained relatively stable
+thereafter. Therefore, we adopted \\E = 5\\ as the minimal embedding
+dimension for subsequent parameter search.
 
 Then, search optimal parameters:
 
@@ -127,80 +127,74 @@ stats::cor.test(columbus$hoval,columbus$crime)
 
 # since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search
 spEDM::pc(columbus, "hoval", "crime", E = 5:6, k = 7:10, tau = 1, maximize = "negative")
-## The suggested E,k,tau for variable crime is 6, 8 and 1
+## The suggested E,k,tau for variable crime is 5, 10 and 1
 ```
 
 Run geographical pattern causality analysis
 
 ``` r
-spEDM::gpc(columbus, "hoval", "crime", E = 6, k = 8)
-##       type   strength      direction
-## 1 positive        NaN hoval -> crime
-## 2 negative 0.10339376 hoval -> crime
-## 3     dark 0.09591306 hoval -> crime
-## 4 positive        NaN crime -> hoval
-## 5 negative 0.66263003 crime -> hoval
-## 6     dark 0.17201123 crime -> hoval
+spEDM::gpc(columbus, "hoval", "crime", E = 5, k = 10)
+##       type  strength      direction
+## 1 positive       NaN hoval -> crime
+## 2 negative 0.5012149 hoval -> crime
+## 3     dark 0.4598582 hoval -> crime
+## 4 positive       NaN crime -> hoval
+## 5 negative 0.7761732 crime -> hoval
+## 6     dark 0.5982743 crime -> hoval
 ```
 
 Convergence diagnostics
 
 ``` r
 crime_convergence = spEDM::gpc(columbus, "hoval", "crime",
-                               libsizes = seq(5, 45, by = 5),
-                               E = 6, k = 8, progressbar = FALSE)
+                               libsizes = seq(10, 45, by = 5),
+                               E = 5, k = 10, progressbar = FALSE)
 crime_convergence
-##    libsizes     type   strength      direction
-## 1        10 positive 0.00000000 hoval -> crime
-## 2        15 positive 0.00000000 hoval -> crime
-## 3        20 positive 0.00000000 hoval -> crime
-## 4        25 positive 0.00000000 hoval -> crime
-## 5        30 positive 0.00000000 hoval -> crime
-## 6        35 positive 0.00000000 hoval -> crime
-## 7        40 positive 0.00000000 hoval -> crime
-## 8        45 positive 0.00000000 hoval -> crime
-## 9        10 negative 0.00000000 hoval -> crime
-## 10       15 negative 0.07911243 hoval -> crime
-## 11       20 negative 0.09306701 hoval -> crime
-## 12       25 negative 0.11800623 hoval -> crime
-## 13       30 negative 0.12405268 hoval -> crime
-## 14       35 negative 0.12273355 hoval -> crime
-## 15       40 negative 0.11469876 hoval -> crime
-## 16       45 negative 0.11305740 hoval -> crime
-## 17       10     dark 0.01365380 hoval -> crime
-## 18       15     dark 0.02102581 hoval -> crime
-## 19       20     dark 0.01839746 hoval -> crime
-## 20       25     dark 0.02450954 hoval -> crime
-## 21       30     dark 0.04140131 hoval -> crime
-## 22       35     dark 0.05119651 hoval -> crime
-## 23       40     dark 0.06686337 hoval -> crime
-## 24       45     dark 0.07935427 hoval -> crime
-## 25       10 positive 0.00000000 crime -> hoval
-## 26       15 positive 0.00000000 crime -> hoval
-## 27       20 positive 0.00000000 crime -> hoval
-## 28       25 positive 0.00000000 crime -> hoval
-## 29       30 positive 0.00000000 crime -> hoval
-## 30       35 positive 0.00000000 crime -> hoval
-## 31       40 positive 0.00000000 crime -> hoval
-## 32       45 positive 0.00000000 crime -> hoval
-## 33       10 negative 0.00000000 crime -> hoval
-## 34       15 negative 0.00000000 crime -> hoval
-## 35       20 negative 0.00000000 crime -> hoval
-## 36       25 negative 0.00000000 crime -> hoval
-## 37       30 negative 0.00000000 crime -> hoval
-## 38       35 negative 0.30524907 crime -> hoval
-## 39       40 negative 0.58603540 crime -> hoval
-## 40       45 negative 0.66263003 crime -> hoval
-## 41       10     dark 0.07055205 crime -> hoval
-## 42       15     dark 0.08995711 crime -> hoval
-## 43       20     dark 0.11123206 crime -> hoval
-## 44       25     dark 0.12403194 crime -> hoval
-## 45       30     dark 0.13377971 crime -> hoval
-## 46       35     dark 0.14469520 crime -> hoval
-## 47       40     dark 0.15517056 crime -> hoval
-## 48       45     dark 0.16563975 crime -> hoval
+##    libsizes     type  strength      direction
+## 1        15 positive 0.0000000 hoval -> crime
+## 2        20 positive 0.0000000 hoval -> crime
+## 3        25 positive 0.0000000 hoval -> crime
+## 4        30 positive 0.0000000 hoval -> crime
+## 5        35 positive 0.0000000 hoval -> crime
+## 6        40 positive 0.0000000 hoval -> crime
+## 7        45 positive 0.0000000 hoval -> crime
+## 8        15 negative 0.4051208 hoval -> crime
+## 9        20 negative 0.4355984 hoval -> crime
+## 10       25 negative 0.4504459 hoval -> crime
+## 11       30 negative 0.4883107 hoval -> crime
+## 12       35 negative 0.4915511 hoval -> crime
+## 13       40 negative 0.5000245 hoval -> crime
+## 14       45 negative 0.5063276 hoval -> crime
+## 15       15     dark 0.3891514 hoval -> crime
+## 16       20     dark 0.4052408 hoval -> crime
+## 17       25     dark 0.4156170 hoval -> crime
+## 18       30     dark 0.4266375 hoval -> crime
+## 19       35     dark 0.4364390 hoval -> crime
+## 20       40     dark 0.4595852 hoval -> crime
+## 21       45     dark 0.4564123 hoval -> crime
+## 22       15 positive 0.0000000 crime -> hoval
+## 23       20 positive 0.0000000 crime -> hoval
+## 24       25 positive 0.0000000 crime -> hoval
+## 25       30 positive 0.0000000 crime -> hoval
+## 26       35 positive 0.0000000 crime -> hoval
+## 27       40 positive 0.0000000 crime -> hoval
+## 28       45 positive 0.0000000 crime -> hoval
+## 29       15 negative 0.4257492 crime -> hoval
+## 30       20 negative 0.5259713 crime -> hoval
+## 31       25 negative 0.5737823 crime -> hoval
+## 32       30 negative 0.6311876 crime -> hoval
+## 33       35 negative 0.6492459 crime -> hoval
+## 34       40 negative 0.6767014 crime -> hoval
+## 35       45 negative 0.6873619 crime -> hoval
+## 36       15     dark 0.5169742 crime -> hoval
+## 37       20     dark 0.5640859 crime -> hoval
+## 38       25     dark 0.5746654 crime -> hoval
+## 39       30     dark 0.5954902 crime -> hoval
+## 40       35     dark 0.6266836 crime -> hoval
+## 41       40     dark 0.6264865 crime -> hoval
+## 42       45     dark 0.6110617 crime -> hoval
 plot(crime_convergence, ylimits = c(-0.01,1),
-     xlimits = c(9,46), xbreaks = seq(10, 45, 10))
+     xlimits = c(14,46), xbreaks = seq(10, 45, 10))
 ```
 
 ![Figure 1. Convergence curves of causal strengths among house value and
@@ -280,79 +274,79 @@ stats::cor.test(~ pre + npp,
 
 g1 = spEDM::pc(npp, "npp", "pre", E = 6:10, k = 12, tau = 1:5, maximize = "positive")
 g1
-## The suggested E,k,tau for variable pre is 8, 12 and 5
+## The suggested E,k,tau for variable pre is 10, 12 and 5
 ```
 
 Run geographical pattern causality analysis
 
 ``` r
-spEDM::gpc(npp, "pre", "npp", E = 8, k = 12, tau = 5)
+spEDM::gpc(npp, "pre", "npp", E = 10, k = 12, tau = 5)
 ##       type  strength  direction
-## 1 positive 0.5587734 pre -> npp
+## 1 positive 0.8159290 pre -> npp
 ## 2 negative       NaN pre -> npp
-## 3     dark 0.4228069 pre -> npp
-## 4 positive 0.4426710 npp -> pre
-## 5 negative 0.0000000 npp -> pre
-## 6     dark 0.3793368 npp -> pre
+## 3     dark 0.8167167 pre -> npp
+## 4 positive 0.8154200 npp -> pre
+## 5 negative       NaN npp -> pre
+## 6     dark 0.8099229 npp -> pre
 ```
 
 Convergence diagnostics
 
 ``` r
 npp_convergence = spEDM::gpc(npp, "pre", "npp",
-                             libsizes = matrix(rep(seq(10,80,10),2),ncol = 2),
-                             E = 8, k = 12, tau = 5, progressbar = FALSE)
+                             libsizes = matrix(rep(seq(10,80,10),2), ncol = 2),
+                             E = 10, k = 12, tau = 5, progressbar = FALSE)
 npp_convergence
-##    libsizes     type   strength  direction
-## 1       100 positive 0.11924559 pre -> npp
-## 2       400 positive 0.18641533 pre -> npp
-## 3       900 positive 0.25999206 pre -> npp
-## 4      1600 positive 0.32186441 pre -> npp
-## 5      2500 positive 0.39667771 pre -> npp
-## 6      3600 positive 0.44540723 pre -> npp
-## 7      4900 positive 0.47912447 pre -> npp
-## 8      6400 positive 0.52691047 pre -> npp
-## 9       100 negative 0.00000000 pre -> npp
-## 10      400 negative 0.00000000 pre -> npp
-## 11      900 negative 0.00000000 pre -> npp
-## 12     1600 negative 0.00000000 pre -> npp
-## 13     2500 negative 0.00000000 pre -> npp
-## 14     3600 negative 0.00000000 pre -> npp
-## 15     4900 negative 0.00000000 pre -> npp
-## 16     6400 negative 0.00000000 pre -> npp
-## 17      100     dark 0.05477351 pre -> npp
-## 18      400     dark 0.10639504 pre -> npp
-## 19      900     dark 0.16627407 pre -> npp
-## 20     1600     dark 0.23190492 pre -> npp
-## 21     2500     dark 0.29044339 pre -> npp
-## 22     3600     dark 0.33700220 pre -> npp
-## 23     4900     dark 0.37823271 pre -> npp
-## 24     6400     dark 0.41256952 pre -> npp
-## 25      100 positive 0.08070530 npp -> pre
-## 26      400 positive 0.11426176 npp -> pre
-## 27      900 positive 0.18021979 npp -> pre
-## 28     1600 positive 0.25729359 npp -> pre
-## 29     2500 positive 0.33203272 npp -> pre
-## 30     3600 positive 0.37662754 npp -> pre
-## 31     4900 positive 0.41361082 npp -> pre
-## 32     6400 positive 0.42959642 npp -> pre
-## 33      100 negative 0.00000000 npp -> pre
-## 34      400 negative 0.00000000 npp -> pre
-## 35      900 negative 0.00000000 npp -> pre
-## 36     1600 negative 0.00000000 npp -> pre
-## 37     2500 negative 0.00000000 npp -> pre
-## 38     3600 negative 0.00000000 npp -> pre
-## 39     4900 negative 0.00000000 npp -> pre
-## 40     6400 negative 0.00000000 npp -> pre
-## 41      100     dark 0.02628157 npp -> pre
-## 42      400     dark 0.06125898 npp -> pre
-## 43      900     dark 0.11418591 npp -> pre
-## 44     1600     dark 0.17595918 npp -> pre
-## 45     2500     dark 0.23454296 npp -> pre
-## 46     3600     dark 0.28152186 npp -> pre
-## 47     4900     dark 0.32463349 npp -> pre
-## 48     6400     dark 0.36526339 npp -> pre
-plot(npp_convergence, ylimits = c(-0.01,0.65),
+##    libsizes     type  strength  direction
+## 1       100 positive 0.6850953 pre -> npp
+## 2       400 positive 0.7396173 pre -> npp
+## 3       900 positive 0.7655295 pre -> npp
+## 4      1600 positive 0.7824870 pre -> npp
+## 5      2500 positive 0.7980530 pre -> npp
+## 6      3600 positive 0.8069800 pre -> npp
+## 7      4900 positive 0.8114319 pre -> npp
+## 8      6400 positive 0.8149437 pre -> npp
+## 9       100 negative 0.0000000 pre -> npp
+## 10      400 negative 0.0000000 pre -> npp
+## 11      900 negative 0.0000000 pre -> npp
+## 12     1600 negative 0.0000000 pre -> npp
+## 13     2500 negative 0.0000000 pre -> npp
+## 14     3600 negative 0.0000000 pre -> npp
+## 15     4900 negative 0.0000000 pre -> npp
+## 16     6400 negative 0.0000000 pre -> npp
+## 17      100     dark 0.6738137 pre -> npp
+## 18      400     dark 0.7302056 pre -> npp
+## 19      900     dark 0.7631953 pre -> npp
+## 20     1600     dark 0.7831458 pre -> npp
+## 21     2500     dark 0.7964809 pre -> npp
+## 22     3600     dark 0.8055473 pre -> npp
+## 23     4900     dark 0.8117243 pre -> npp
+## 24     6400     dark 0.8158818 pre -> npp
+## 25      100 positive 0.6300842 npp -> pre
+## 26      400 positive 0.7009959 npp -> pre
+## 27      900 positive 0.7468174 npp -> pre
+## 28     1600 positive 0.7683138 npp -> pre
+## 29     2500 positive 0.7819171 npp -> pre
+## 30     3600 positive 0.7966786 npp -> pre
+## 31     4900 positive 0.8059297 npp -> pre
+## 32     6400 positive 0.8133877 npp -> pre
+## 33      100 negative 0.0000000 npp -> pre
+## 34      400 negative 0.0000000 npp -> pre
+## 35      900 negative 0.0000000 npp -> pre
+## 36     1600 negative 0.0000000 npp -> pre
+## 37     2500 negative 0.0000000 npp -> pre
+## 38     3600 negative 0.0000000 npp -> pre
+## 39     4900 negative 0.0000000 npp -> pre
+## 40     6400 negative 0.0000000 npp -> pre
+## 41      100     dark 0.6126288 npp -> pre
+## 42      400     dark 0.6954580 npp -> pre
+## 43      900     dark 0.7381289 npp -> pre
+## 44     1600     dark 0.7659993 npp -> pre
+## 45     2500     dark 0.7837131 npp -> pre
+## 46     3600     dark 0.7943509 npp -> pre
+## 47     4900     dark 0.8020743 npp -> pre
+## 48     6400     dark 0.8081414 npp -> pre
+plot(npp_convergence, ylimits = c(-0.01,1.05),
      xlimits = c(0,6500), xbreaks = seq(100, 6400, 500))
 ```
 
