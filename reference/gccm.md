@@ -205,6 +205,10 @@ g
 #> 8       40    0.2383788    0.6364897
 #> 9       45    0.2339483    0.6484721
 plot(g,ylimits = c(0,0.85))
+#> Warning: Removed 8 rows containing missing values or values outside the scale range
+#> (`geom_line()`).
+#> `geom_line()`: Each group consists of only one observation.
+#> ℹ Do you need to adjust the group aesthetic?
 
 # }
 ```

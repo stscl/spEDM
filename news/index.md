@@ -34,6 +34,10 @@
 
 #### bug fixes
 
+- Resolve visualization failure when probing only one direction of
+  causality with `bidirectional` set to `FALSE`
+  ([\#981](https://github.com/stscl/spEDM/issues/981)).
+
 - Correct mismatch between causal strength direction and prediction
   direction in pattern causality
   ([\#978](https://github.com/stscl/spEDM/issues/978)).
