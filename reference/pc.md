@@ -20,7 +20,7 @@ pc(
   zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
-  maximize = "positive",
+  maximize = "dark",
   threads = detectThreads(),
   detrend = FALSE,
   nb = NULL
@@ -41,7 +41,7 @@ pc(
   zero.tolerance = max(k),
   relative = TRUE,
   weighted = TRUE,
-  maximize = "positive",
+  maximize = "dark",
   threads = detectThreads(),
   detrend = FALSE,
   grid.coord = TRUE
@@ -157,7 +157,7 @@ National Academy of Sciences 117, 7599–7605.
 ``` r
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
-spEDM::pc(columbus,"hoval","crime",E = 5:10,maximize = "negative")
-#> The suggested E,k,tau for variable crime is 5, 10 and 1 
+spEDM::pc(columbus,"crime","hoval",E = 5:10,maximize = "negative")
+#> The suggested E,k,tau for variable hoval is 7, 9 and 1 
 # }
 ```

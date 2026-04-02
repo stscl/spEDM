@@ -28,15 +28,15 @@
 - Rename NA handling argument from `NA_rm` to `na_rm` and change default
   value to true ([\#968](https://github.com/stscl/spEDM/issues/968)).
 
-- Normalize causal strength in `gpc` generic by predicted-to-observed
-  signature norm ratio
-  ([\#962](https://github.com/stscl/spEDM/issues/962)).
-
 - Align `conds` parameter in `scpcm` generic to accept condition
   variables in direct path order for causal mediation analysis
   ([\#961](https://github.com/stscl/spEDM/issues/961)).
 
 #### bug fixes
+
+- Correct mismatch between causal strength direction and prediction
+  direction in pattern causality
+  ([\#978](https://github.com/stscl/spEDM/issues/978)).
 
 - Fix incorrect midpoint-based pattern causality classification
   ([\#973](https://github.com/stscl/spEDM/issues/973)).
