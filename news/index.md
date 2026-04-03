@@ -7,7 +7,11 @@
 - Correct maintainer surname spelling from `Lv` to `Lyu` for pinyin
   compliance ([\#966](https://github.com/stscl/spEDM/issues/966)).
 
-#### enhancements
+#### 
+
+- Assign zero to missing pattern causality values for positive,
+  negative, and dark categories in returned results
+  ([\#983](https://github.com/stscl/spEDM/issues/983)).
 
 - Qualify function calls in examples with namespace for reproducibility
   ([\#971](https://github.com/stscl/spEDM/issues/971)).

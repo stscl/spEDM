@@ -202,11 +202,11 @@ columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 spEDM::gpc(columbus,"crime","hoval",E = 7,k = 9)
 #>       type   strength      direction
-#> 1 positive        NaN crime -> hoval
+#> 1 positive 0.00000000 crime -> hoval
 #> 2 negative 0.34035656 crime -> hoval
 #> 3     dark 0.02786836 crime -> hoval
-#> 4 positive        NaN hoval -> crime
-#> 5 negative        NaN hoval -> crime
+#> 4 positive 0.00000000 hoval -> crime
+#> 5 negative 0.00000000 hoval -> crime
 #> 6     dark 0.05337361 hoval -> crime
 
 # convergence diagnostics
