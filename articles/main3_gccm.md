@@ -170,7 +170,7 @@ pd_res
 Visualize the result:
 
 ``` r
-plot(pd_res, xlimits = c(0, 2800), draw_ci = TRUE) +
+plot(pd_res, xlimits = c(0, 2800), ylimits = c(-0.01,1), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.65,1))
 ```
 
@@ -259,7 +259,7 @@ npp_res
 Visualize the result:
 
 ``` r
-plot(npp_res,xlimits = c(5, 135),ylimits = c(0.05,1), draw_ci = TRUE) +
+plot(npp_res, xlimits = c(5, 135), ylimits = c(0.05,1), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.25,1))
 ```
 
