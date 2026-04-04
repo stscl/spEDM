@@ -69,7 +69,7 @@
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  boot <span class="op">=</span> <span class="fl">99</span>,</span>
-<span>  random <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  replace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">42L</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  zero.tolerance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>,</span>
@@ -96,7 +96,7 @@
 <span>  lib <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pred <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  boot <span class="op">=</span> <span class="fl">99</span>,</span>
-<span>  random <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  replace <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">42L</span>,</span>
 <span>  dist.metric <span class="op">=</span> <span class="st">"L2"</span>,</span>
 <span>  zero.tolerance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span>,</span>
@@ -159,8 +159,8 @@
 <dd><p>(optional) number of bootstraps to perform.</p></dd>
 
 
-<dt id="arg-random">random<a class="anchor" aria-label="anchor" href="#arg-random"></a></dt>
-<dd><p>(optional) whether to use random sampling.</p></dd>
+<dt id="arg-replace">replace<a class="anchor" aria-label="anchor" href="#arg-replace"></a></dt>
+<dd><p>(optional) should sampling be with replacement?</p></dd>
 
 
 <dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>

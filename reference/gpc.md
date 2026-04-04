@@ -18,7 +18,7 @@ gpc(
   lib = NULL,
   pred = NULL,
   boot = 99,
-  random = TRUE,
+  replace = FALSE,
   seed = 42L,
   dist.metric = "L2",
   zero.tolerance = max(k),
@@ -45,7 +45,7 @@ gpc(
   lib = NULL,
   pred = NULL,
   boot = 99,
-  random = TRUE,
+  replace = FALSE,
   seed = 42L,
   dist.metric = "L2",
   zero.tolerance = max(k),
@@ -108,9 +108,9 @@ gpc(
 
   (optional) number of bootstraps to perform.
 
-- random:
+- replace:
 
-  (optional) whether to use random sampling.
+  (optional) should sampling be with replacement?
 
 - seed:
 
