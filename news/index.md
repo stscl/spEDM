@@ -35,7 +35,7 @@
 
 - Match causality detection direction in optimal parameter search to
   actual variable naming
-  ([\#955](https://github.com/stscl/spEDM/issues/955)).
+  ([\#995](https://github.com/stscl/spEDM/issues/995)).
 
 - Ensure that `k` is constrained to be greater than or equal to `E`
   during optimal parameter search
