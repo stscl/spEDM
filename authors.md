@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/stscl/spEDM/blob/v1.12/inst/CITATION)
+[`inst/CITATION`](https://github.com/stscl/spEDM/blob/main/inst/CITATION)
 
 Lyu W (2026). *spEDM: Spatial Empirical Dynamic Modeling*.
 [doi:10.32614/CRAN.package.spEDM](https://doi.org/10.32614/CRAN.package.spEDM),

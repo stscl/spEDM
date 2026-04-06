@@ -1,6 +1,10 @@
 # Changelog
 
+## spEDM 1.13
+
 ## spEDM 1.12
+
+CRAN release: 2026-04-05
 
 #### new
 
