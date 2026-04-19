@@ -129,9 +129,9 @@ construction. Physical Review A 45, 3403–3411.
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))
 # \donttest{
 spEDM::fnn(columbus,"crime")
-#> [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
-#> [spEDM] Input E values exceeding max embeddable dimension were truncated.
-#> [spEDM] Please map output indices to original E inputs before interpretation.
+#> [fnn] Input E values exceeding max embeddable dimension were truncated, and values < 2 were clamped to 2.
+#> [fnn] Max embedding dimension E_max is auto-computed, with results returned for dimensions 1 through E_max.
+#> [fnn] Output 'E:i' (where i = 1 to E_max-1) corresponds to the comparison between dimension i and i+1.
 #>        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
 #> 0.79591837 0.53061224 0.63265306 0.51020408 0.12244898 0.04081633 0.00000000 
 #>        E:8 

@@ -2,6 +2,12 @@
 
 ## spEDM 1.13
 
+#### enhancements
+
+- Clarify output indexing and boundary handling in `fnn` generic via
+  console output modification
+  ([\#999](https://github.com/stscl/spEDM/issues/999)).
+
 ## spEDM 1.12
 
 CRAN release: 2026-04-05
