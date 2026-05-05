@@ -21,6 +21,7 @@ enables data-driven causal inference from spatial snapshots.
 - Install from [CRAN](https://CRAN.R-project.org/package=spEDM) with:
 
 ``` r
+
 install.packages("spEDM", dep = TRUE)
 ```
 
@@ -28,6 +29,7 @@ install.packages("spEDM", dep = TRUE)
   [R-universe](https://stscl.r-universe.dev/spEDM) with:
 
 ``` r
+
 install.packages("spEDM",
                  repos = c("https://stscl.r-universe.dev",
                            "https://cloud.r-project.org"),
@@ -38,6 +40,7 @@ install.packages("spEDM",
   with:
 
 ``` r
+
 if (!requireNamespace("devtools")) {
     install.packages("devtools")
 }

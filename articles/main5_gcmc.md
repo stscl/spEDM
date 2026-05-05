@@ -44,6 +44,7 @@ inference.
 Load the `spEDM` package and its county-level population density data:
 
 ``` r
+
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
@@ -86,6 +87,7 @@ or spatial cross-sectional data. A low embedding dimension that
 minimizes false neighbours is considered optimal.
 
 ``` r
+
 spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
 ## [spEDM] Input E values exceeding max embeddable dimension were truncated.
@@ -107,6 +109,7 @@ Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
 
 ``` r
+
 ceiling(sqrt(11 * nrow(popd_sf)))
 ## [1] 176
 ```
@@ -114,6 +117,7 @@ ceiling(sqrt(11 * nrow(popd_sf)))
 Then, run GCMC:
 
 ``` r
+
 # temperature and population density
 g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
 g1
@@ -137,6 +141,7 @@ Here we define two functions to process the results and plot the causal
 strengths matrix.
 
 ``` r
+
 .process_xmap_result = \(g){
   tempdf = g$xmap
   tempdf$x = g$varname[1]
@@ -199,6 +204,7 @@ plot_cs_matrix = \(.tbf,legend_title = "Causal Strength"){
 Organize the results into a long table:
 
 ``` r
+
 res1 = list(g1,g2,g3) |>
   purrr::map(.process_xmap_result) |>
   purrr::list_rbind()
@@ -215,6 +221,7 @@ res1
 Visualize the result:
 
 ``` r
+
 plot_cs_matrix(res1)
 ```
 
@@ -231,6 +238,7 @@ population density.**
 Load the `spEDM` package and its farmland NPP data:
 
 ``` r
+
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
@@ -266,6 +274,7 @@ dim(nnaindice)
 Determining optimal embedding dimension:
 
 ``` r
+
 spEDM::fnn(npp, "npp", E = 1:25,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
@@ -289,11 +298,13 @@ Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
 
 ``` r
+
 ceiling(sqrt(5 * dim(nnaindice)[1]))
 ## [1] 144
 ```
 
 ``` r
+
 # precipitation and npp
 g1 = spEDM::gcmc(npp, "pre", "npp", E = 5, k = 144, progressbar = FALSE)
 g1
@@ -316,6 +327,7 @@ g3
 Organize the results into a long table:
 
 ``` r
+
 res2 = list(g1,g2,g3) |>
   purrr::map(.process_xmap_result) |>
   purrr::list_rbind()
@@ -332,6 +344,7 @@ res2
 Visualize the result:
 
 ``` r
+
 plot_cs_matrix(res2)
 ```
 

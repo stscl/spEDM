@@ -63,6 +63,7 @@ where \\\bowtie\\ encodes positive, negative, or dark matching rules.
 Load the `spEDM` package and its columbus spatial analysis data:
 
 ``` r
+
 library(spEDM)
 
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
@@ -93,6 +94,7 @@ minimal embedding dimension for reconstructing the state space of a time
 series or spatial cross-sectional data.
 
 ``` r
+
 spEDM::fnn(columbus, "crime", E = 1:10, eps = stats::sd(columbus$crime))
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
 ## [spEDM] Input E values exceeding max embeddable dimension were truncated.
@@ -111,6 +113,7 @@ dimension for subsequent parameter search.
 Then, search optimal parameters:
 
 ``` r
+
 # determine the type of causality using correlation
 stats::cor.test(columbus$hoval,columbus$crime)
 ## 
@@ -133,6 +136,7 @@ spEDM::pc(columbus, "crime", "hoval", E = 5:9, k = 7:10, tau = 1, maximize = "ne
 Run geographical pattern causality analysis
 
 ``` r
+
 spEDM::gpc(columbus, "crime", "hoval", E = 7, k = 9)
 ##       type   strength      direction
 ## 1 positive 0.00000000 crime -> hoval
@@ -146,6 +150,7 @@ spEDM::gpc(columbus, "crime", "hoval", E = 7, k = 9)
 Convergence diagnostics
 
 ``` r
+
 crime_convergence = spEDM::gpc(columbus, "crime", "hoval", 
                                libsizes = seq(9, 50, by = 1),
                                E = 7, k = 9, progressbar = FALSE)
@@ -408,6 +413,7 @@ and crime.**
 Load the `spEDM` package and its farmland NPP data:
 
 ``` r
+
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
@@ -434,6 +440,7 @@ dim(nnaindice)
 Determining minimal embedding dimension:
 
 ``` r
+
 spEDM::fnn(npp, "npp", E = 1:15,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
@@ -454,6 +461,7 @@ selected as minimal embedding dimension for the subsequent GPC analysis.
 Then, search optimal parameters:
 
 ``` r
+
 stats::cor.test(~ pre + npp,
                 data = terra::values(npp[[c("pre","npp")]],
                                      dataframe = TRUE, na.rm = TRUE))
@@ -478,6 +486,7 @@ g1
 Run geographical pattern causality analysis
 
 ``` r
+
 spEDM::gpc(npp, "pre", "npp", E = 6, k = 9, tau = 5)
 ##       type  strength  direction
 ## 1 positive 0.5222514 pre -> npp
@@ -491,6 +500,7 @@ spEDM::gpc(npp, "pre", "npp", E = 6, k = 9, tau = 5)
 Convergence diagnostics
 
 ``` r
+
 npp_convergence = spEDM::gpc(npp, "pre", "npp",
                              libsizes = matrix(rep(seq(10,80,10),2), ncol = 2),
                              E = 6, k = 9, tau = 5, progressbar = FALSE)

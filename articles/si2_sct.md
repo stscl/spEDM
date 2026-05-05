@@ -67,6 +67,7 @@ statistical significance of \\\hat{\delta}(\mathcal{Y}\_W,
 Load the `spEDM` package and the columbus OH dataset:
 
 ``` r
+
 library(spEDM)
 
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
@@ -96,6 +97,7 @@ Detect spatial causality among the variables *inc*, *crime*, and *hoval*
 :
 
 ``` r
+
 # house value and crime
 sc.test(columbus, "hoval", "crime", k = 15)
 ## spatial causality test
@@ -120,6 +122,7 @@ sc.test(columbus, "inc", "hoval", k = 15)
 Load the `spEDM` package and its farmland NPP data:
 
 ``` r
+
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
@@ -140,6 +143,7 @@ npp
 Detect spatial causality among the variables *pre*, *tem*, and *npp* :
 
 ``` r
+
 # precipitation and npp
 sc.test(npp,"pre","npp",k = 30)
 ## spatial causality test

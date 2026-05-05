@@ -45,6 +45,7 @@ to maintain a one-to-one embedding.
 Load the `spEDM` package and its county-level population density data:
 
 ``` r
+
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
@@ -84,6 +85,7 @@ popd_sf
 Embedding the variable `popd` from county-level population density:
 
 ``` r
+
 v = spEDM::embedded(popd_sf,"popd",E = 10)
 v[1:5,c(4,5,10)]
 ##           [,1]     [,2]      [,3]
@@ -95,6 +97,7 @@ v[1:5,c(4,5,10)]
 ```
 
 ``` r
+
 plot3D::scatter3D(v[,4], v[,5], v[,10], colvar = NULL, pch = 19,
                   col = "red", theta = 45, phi = 10, cex = 0.35,
                   bty = "f", clab = NA, tickmarks = FALSE)
@@ -112,6 +115,7 @@ popd.](../reference/figures/ssr/fig1-1.png)
 Load the `spEDM` package and its farmland npp data:
 
 ``` r
+
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
@@ -130,6 +134,7 @@ npp
 Embedding the variable `npp` from farmland npp data:
 
 ``` r
+
 r = spEDM::embedded(npp,"npp",E = 5,tau = 20)
 r[which(!is.na(r),arr.ind = T)[1:5],1:3]
 ##          [,1]     [,2]     [,3]
@@ -141,6 +146,7 @@ r[which(!is.na(r),arr.ind = T)[1:5],1:3]
 ```
 
 ``` r
+
 plot3D::scatter3D(r[,1], r[,2], r[,3], colvar = NULL, pch = 19,
                   col = "#e77854", theta = 45, phi = 10, cex = 0.01,
                   bty = "f", clab = NA, tickmarks = FALSE)

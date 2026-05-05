@@ -94,6 +94,7 @@ suggesting the reverse direction.
 Load the `spEDM` package and its county-level population density data:
 
 ``` r
+
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
@@ -133,6 +134,7 @@ popd_sf
 Determining optimal embedding dimension:
 
 ``` r
+
 spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 12)
 ## The suggested E,k,tau for variable pre is 3, 12 and 1
 spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 12)
@@ -142,6 +144,7 @@ spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 12)
 Run GCCM:
 
 ``` r
+
 startTime = Sys.time()
 pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      libsizes = seq(100, 2800, by = 200),
@@ -170,6 +173,7 @@ pd_res
 Visualize the result:
 
 ``` r
+
 plot(pd_res, xlimits = c(0, 2800), ylimits = c(-0.01,1), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.65,1))
 ```
@@ -187,6 +191,7 @@ county-level precipitation.
 Load the `spEDM` package and its farmland NPP data:
 
 ``` r
+
 library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
@@ -228,6 +233,7 @@ predindice = nnaindice[indices,]
 Determining optimal embedding dimension:
 
 ``` r
+
 spEDM::simplex(npp, "pre", "pre", E = 2:10, k = 12, lib = nnaindice, pred = predindice)
 ## The suggested E,k,tau for variable pre is 2, 12 and 1
 spEDM::simplex(npp, "npp", "npp", E = 2:10, k = 12, lib = nnaindice, pred = predindice)
@@ -237,6 +243,7 @@ spEDM::simplex(npp, "npp", "npp", E = 2:10, k = 12, lib = nnaindice, pred = pred
 Run GCCM:
 
 ``` r
+
 startTime = Sys.time()
 npp_res = spEDM::gccm(data = npp, cause = "pre", effect = "npp",
                       libsizes = matrix(rep(seq(10,130,20),2),ncol = 2),
@@ -259,6 +266,7 @@ npp_res
 Visualize the result:
 
 ``` r
+
 plot(npp_res, xlimits = c(5, 135), ylimits = c(0.05,1), draw_ci = TRUE) +
   ggplot2::theme(legend.justification = c(0.25,1))
 ```

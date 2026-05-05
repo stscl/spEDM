@@ -20,6 +20,7 @@ Install the stable version from
 [CRAN](https://CRAN.R-project.org/package=spEDM) with:
 
 ``` r
+
 install.packages("spEDM", dep = TRUE)
 ```
 
@@ -27,6 +28,7 @@ Alternatively, you can install the development version from
 [R-universe](https://stscl.r-universe.dev/spEDM) with:
 
 ``` r
+
 install.packages("spEDM",
                  repos = c("https://stscl.r-universe.dev",
                            "https://cloud.r-project.org"),
@@ -59,6 +61,7 @@ These datasets can be loaded as shown below:
 ### Columbus OH spatial analysis dataset
 
 ``` r
+
 library(spEDM)
 
 columbus = sf::read_sf(system.file("case/columbus.gpkg", package="spEDM"))
@@ -87,6 +90,7 @@ columbus
 ### County-level population density in mainland China
 
 ``` r
+
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
@@ -150,6 +154,7 @@ popd_sf
 ### Farmland NPP and related variables in mainland China
 
 ``` r
+
 library(spEDM)
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
 npp
@@ -169,15 +174,15 @@ npp
 Users can refer to several additional vignettes for more detailed
 examples of using *spEDM*, namely:
 
-| *Method*                                   | *Vignette*                                                       |
-|--------------------------------------------|------------------------------------------------------------------|
-| State Space Reconstruction                 | [SSR](https://stscl.github.io/spEDM/articles/main2_ssr.html)     |
-| Geographical Convergent Cross Mapping      | [GCCM](https://stscl.github.io/spEDM/articles/main3_gccm.html)   |
-| Geographical Pattern Causality             | [GPC](https://stscl.github.io/spEDM/articles/main4_gpc.html)     |
-| Geographical Cross Mapping Cardinality     | [GCMC](https://stscl.github.io/spEDM/articles/main5_gcmc.html)   |
+| *Method* | *Vignette* |
+|----|----|
+| State Space Reconstruction | [SSR](https://stscl.github.io/spEDM/articles/main2_ssr.html) |
+| Geographical Convergent Cross Mapping | [GCCM](https://stscl.github.io/spEDM/articles/main3_gccm.html) |
+| Geographical Pattern Causality | [GPC](https://stscl.github.io/spEDM/articles/main4_gpc.html) |
+| Geographical Cross Mapping Cardinality | [GCMC](https://stscl.github.io/spEDM/articles/main5_gcmc.html) |
 | Spatially Convergent Partial Cross Mapping | [SCPCM](https://stscl.github.io/spEDM/articles/main6_scpcm.html) |
-| Spatial Logistic Map                       | [SLM](https://stscl.github.io/spEDM/articles/si1_slm.html)       |
-| Spatial Causality Test                     | [SCT](https://stscl.github.io/spEDM/articles/si2_sct.html)       |
+| Spatial Logistic Map | [SLM](https://stscl.github.io/spEDM/articles/si1_slm.html) |
+| Spatial Causality Test | [SCT](https://stscl.github.io/spEDM/articles/si2_sct.html) |
 
 In addition to the spatial extensions provided by *spEDM*, several other
 R packages support Empirical Dynamic Modeling (EDM) for **time series

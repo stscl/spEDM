@@ -12,6 +12,7 @@ available thereafter.
 Load the `spEDM` package and columbus OH spatial analysis dataset:
 
 ``` r
+
 if (!requireNamespace("spEDM")) install.packages("spEDM")
 ## Loading required namespace: spEDM
 
@@ -46,6 +47,7 @@ neighbourhood household income included as a conditioning variable.
 Determine minimum embedding dimensions:
 
 ``` r
+
 spEDM::fnn(columbus,"crime",E = 1:10)
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
 ## [spEDM] Input E values exceeding max embeddable dimension were truncated.
@@ -69,6 +71,7 @@ spEDM::fnn(columbus,"inc",E = 1:10)
 Self prediction for parameter turning:
 
 ``` r
+
 spEDM::simplex(columbus,"crime","crime",E = 7:10,k=12)
 ## The suggested E,k,tau for variable crime is 8, 12 and 1
 spEDM::simplex(columbus,"hoval","hoval",E = 7:10,k=12)
@@ -80,6 +83,7 @@ spEDM::simplex(columbus,"inc","inc",E = 7:10,k=12)
 Conduct SCPCM:
 
 ``` r
+
 crime_hoval = spEDM::scpcm(data = columbus,
                            cause = "crime",
                            effect = "hoval",
@@ -121,6 +125,7 @@ crime_hoval
 Visualize the result:
 
 ``` r
+
 if (!requireNamespace("cowplot")) install.packages("cowplot")
 ## Loading required namespace: cowplot
 
@@ -148,6 +153,7 @@ Load the `spEDM` package and simulate raster data with a cyclic
 interaction structure \\x \rightarrow y \rightarrow z \rightarrow x\\:
 
 ``` r
+
 if (!requireNamespace("fields")) install.packages("fields")
 ## Loading required namespace: fields
 if (!requireNamespace("MASS")) install.packages("MASS")
@@ -197,6 +203,7 @@ species
 Determine minimum embedding dimensions:
 
 ``` r
+
 spEDM::fnn(species, "x")
 ## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
 ## [spEDM] Input E values exceeding max embeddable dimension were truncated.
@@ -220,6 +227,7 @@ spEDM::fnn(species, "z")
 Self prediction for parameter turning:
 
 ``` r
+
 s1 = spEDM::simplex(species, "x", "x", E = 5:10, k = 15, tau = 1)
 s2 = spEDM::simplex(species, "y", "y", E = 5:10, k = 15, tau = 1)
 s3 = spEDM::simplex(species, "z", "z", E = 5:10, k = 15, tau = 1)
@@ -239,6 +247,7 @@ spatial logistic map, we adopt a uniform embedding dimension for x, y,
 and z to reduce inference bias:
 
 ``` r
+
 if (!requireNamespace("purrr")) install.packages("purrr")
 ## Loading required namespace: purrr
 simplex_res = purrr::map2_dfr(list(s1,s2,s3), c("x","y","z"),
@@ -263,6 +272,7 @@ dimension, that is \\E = 9\\.
 Investigate the causation between x and z, with y as control variables:
 
 ``` r
+
 xz = spEDM::scpcm(species, "x", "z", "y", E = 9, k = 15,
                   libsizes = matrix(seq(50,400,50), ncol = 1),
                   progressbar = FALSE)
@@ -297,6 +307,7 @@ xz
 Visualize the result:
 
 ``` r
+
 fig2a = plot(xz,partial = FALSE,ylimits = c(0.05,0.65))
 fig2b = plot(xz,partial = TRUE,ylimits = c(0.05,0.65))
 fig2 = cowplot::plot_grid(fig2a,fig2b,ncol = 2,label_fontfamily = 'serif',

@@ -98,6 +98,7 @@ combining a Gaussian random field with a multivariate normal
 distribution.
 
 ``` r
+
 sim_trispecies = \(nx,ny,seed = 123){
   grid = expand.grid(seq(0, 10, length.out = nx),
                      seq(0, 10, length.out = ny))
@@ -154,6 +155,7 @@ controlled environment to test spatial causality detection methods under
 known dynamic interactions.
 
 ``` r
+
 simv = spEDM::slm(species, x = "a", y = "b", z = "c", k = 4, step = 15, transient = 1, interact = "local",
                   alpha_x = 0.2, alpha_y = 0.2, alpha_z = 0.2,
                   beta_xy = 1, beta_xz = 0, beta_yx = 0, beta_yz = 1, beta_zx = 0, beta_zy = 0)
@@ -190,6 +192,7 @@ and evolution after 20 simulation steps with 4-neighbor interactions.
   
 
 ``` r
+
 simv = spEDM::slm(species, x = "a", y = "b", z = "c", k = 4, step = 15, transient = 1, interact = "neighbors",
                   alpha_x = 0.2, alpha_y = 0.2, alpha_z = 0.2, beta_xy = 1, beta_xz = 0, beta_yx = 0, beta_yz = 1, beta_zx = 0, beta_zy = 0)
 
