@@ -53,7 +53,8 @@
 <h2 class="pkg-version" data-toc-text="1.13" id="spedm-113">spEDM 1.13<a class="anchor" aria-label="anchor" href="#spedm-113"></a></h2>
 <div class="section level4">
 <h4 id="enhancements-1-13">enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-13"></a></h4>
-<ul><li>Clarify output indexing and boundary handling in <code>fnn</code> generic via console output modification (<a href="https://github.com/stscl/spEDM/issues/999" class="external-link">#999</a>).</li>
+<ul><li><p>No longer loads the <code>sf</code> and <code>terra</code> namespaces when loading <code>spEDM</code> package. (<a href="https://github.com/stscl/spEDM/issues/1000" class="external-link">#1000</a>).</p></li>
+<li><p>Clarify output indexing and boundary handling in <code>fnn</code> generic via console output modification (<a href="https://github.com/stscl/spEDM/issues/999" class="external-link">#999</a>).</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -124,12 +125,11 @@
 <li><p>Maintain consistent double precision floating-point comparisons across cpp sources (<a href="https://github.com/stscl/spEDM/issues/850" class="external-link">#850</a>).</p></li>
 <li><p>Unify font specification in S3 plotting method for cross-mapping results (<a href="https://github.com/stscl/spEDM/issues/830" class="external-link">#830</a>).</p></li>
 <li><p>Support spatial grid(raster) data detrending with cell center coordinates or row/column numbers (<a href="https://github.com/stscl/spEDM/issues/815" class="external-link">#815</a>).</p></li>
-<li><p>Adjust <code>Makevars</code> to track latest rcpparmadillo release and armadillo updates improving build integration and forward compatibility (<a href="https://github.com/stscl/spEDM/issues/785" class="external-link">#785</a>).</p></li>
 </ul></div>
 <div class="section level4">
 <h4 id="breaking-changes-1-9">breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-9"></a></h4>
 <ul><li><p>Remove redundant internal case data (<code>cu.tif</code>) from the package (<a href="https://github.com/stscl/spEDM/issues/828" class="external-link">#828</a>).</p></li>
-<li><p>Harmonize parameter order across s4 generics for spatial vector and raster data (<a href="https://github.com/stscl/spEDM/issues/817" class="external-link">#817</a>).</p></li>
+<li><p>Harmonize parameter order across S4 generics for spatial vector and raster data (<a href="https://github.com/stscl/spEDM/issues/817" class="external-link">#817</a>).</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -161,7 +161,8 @@
 </ul></div>
 <div class="section level4">
 <h4 id="enhancements-1-7">enhancements<a class="anchor" aria-label="anchor" href="#enhancements-1-7"></a></h4>
-<ul><li><p>Replace logical vectors with integer index vectors for <code>lib</code> and <code>pred</code> in <code>simplex</code> and <code>s-mapping</code> forecasting sources (<a href="https://github.com/stscl/spEDM/issues/632" class="external-link">#632</a>).</p></li>
+<ul><li><p>No longer initializes the RNG state when loading <code>spEDM</code> package (<a href="https://github.com/stscl/spEDM/issues/652" class="external-link">#652</a>).</p></li>
+<li><p>Replace logical vectors with integer index vectors for <code>lib</code> and <code>pred</code> in <code>simplex</code> and <code>s-mapping</code> forecasting sources (<a href="https://github.com/stscl/spEDM/issues/632" class="external-link">#632</a>).</p></li>
 <li><p>Prevent duplicate generic registrations and simplify method definitions (<a href="https://github.com/stscl/spEDM/issues/627" class="external-link">#627</a>).</p></li>
 <li><p>Unify parameter descriptions to lowercase (<a href="https://github.com/stscl/spEDM/issues/570" class="external-link">#570</a>).</p></li>
 <li><p>Introduce confidence interval ribbon support in plot method for <code>gccm</code> results (<a href="https://github.com/stscl/spEDM/issues/550" class="external-link">#550</a>).</p></li>

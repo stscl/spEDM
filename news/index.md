@@ -4,6 +4,9 @@
 
 #### enhancements
 
+- No longer loads the `sf` and `terra` namespaces when loading `spEDM`
+  package. ([\#1000](https://github.com/stscl/spEDM/issues/1000)).
+
 - Clarify output indexing and boundary handling in `fnn` generic via
   console output modification
   ([\#999](https://github.com/stscl/spEDM/issues/999)).
@@ -151,16 +154,12 @@ CRAN release: 2025-11-30
   coordinates or row/column numbers
   ([\#815](https://github.com/stscl/spEDM/issues/815)).
 
-- Adjust `Makevars` to track latest rcpparmadillo release and armadillo
-  updates improving build integration and forward compatibility
-  ([\#785](https://github.com/stscl/spEDM/issues/785)).
-
 #### breaking changes
 
 - Remove redundant internal case data (`cu.tif`) from the package
   ([\#828](https://github.com/stscl/spEDM/issues/828)).
 
-- Harmonize parameter order across s4 generics for spatial vector and
+- Harmonize parameter order across S4 generics for spatial vector and
   raster data ([\#817](https://github.com/stscl/spEDM/issues/817)).
 
 ## spEDM 1.8
@@ -214,6 +213,9 @@ CRAN release: 2025-06-25
   ([\#609](https://github.com/stscl/spEDM/pull/609),[\#612](https://github.com/stscl/spEDM/pull/612)).
 
 #### enhancements
+
+- No longer initializes the RNG state when loading `spEDM` package
+  ([\#652](https://github.com/stscl/spEDM/issues/652)).
 
 - Replace logical vectors with integer index vectors for `lib` and
   `pred` in `simplex` and `s-mapping` forecasting sources
