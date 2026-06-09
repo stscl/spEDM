@@ -22,7 +22,7 @@ enables data-driven causal inference from spatial snapshots.
 
 ``` r
 
-install.packages("spEDM", dep = TRUE)
+install.packages("spEDM", dependencies = TRUE)
 ```
 
 - Install binary version from
@@ -33,7 +33,7 @@ install.packages("spEDM", dep = TRUE)
 install.packages("spEDM",
                  repos = c("https://stscl.r-universe.dev",
                            "https://cloud.r-project.org"),
-                 dep = TRUE)
+                 dependencies = TRUE)
 ```
 
 - Install from source code on [GitHub](https://github.com/stscl/spEDM)
@@ -41,10 +41,8 @@ install.packages("spEDM",
 
 ``` r
 
-if (!requireNamespace("devtools")) {
-    install.packages("devtools")
+if (!requireNamespace("pak", quietly = TRUE)) {
+    install.packages("pak")
 }
-devtools::install_github("stscl/spEDM",
-                         build_vignettes = TRUE,
-                         dep = TRUE)
+pak::pak("stscl/spEDM", dependencies = TRUE)
 ```

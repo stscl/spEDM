@@ -21,7 +21,7 @@ Install the stable version from
 
 ``` r
 
-install.packages("spEDM", dep = TRUE)
+install.packages("spEDM", dependencies = TRUE)
 ```
 
 Alternatively, you can install the development version from
@@ -32,7 +32,7 @@ Alternatively, you can install the development version from
 install.packages("spEDM",
                  repos = c("https://stscl.r-universe.dev",
                            "https://cloud.r-project.org"),
-                 dep = TRUE)
+                 dependencies = TRUE)
 ```
 
 ## Data
@@ -72,18 +72,18 @@ columbus
 ## Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245
 ## Projected CRS: Undefined Cartesian SRS with unknown unit
 ## # A tibble: 49 × 7
-##    hoval   inc  crime  open plumb discbd                                                   geom
-##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                                              <POLYGON>
-##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.74245, 8.809452 14.734…
-##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22994, 8.330711 14.22…
-##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00205, 9.008951 13.99…
-##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.83227, 8.502935 13.8…
-##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.72221, 8.90994 13.71…
-##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69427, 9.605247 13.69…
-##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.60452, 8.072695 13.5…
-##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.5965, 8.294443 13.6045…
-##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.27361, 9.67701 13.29…
-## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05275, 10.12649 13.09…
+##    hoval   inc  crime  open plumb discbd                                geom
+##    <dbl> <dbl>  <dbl> <dbl> <dbl>  <dbl>                           <POLYGON>
+##  1  80.5 19.5  15.7   2.85  0.217   5.03 ((8.624129 14.23698, 8.5597 14.742…
+##  2  44.6 21.2  18.8   5.30  0.321   4.27 ((8.25279 14.23694, 8.282758 14.22…
+##  3  26.4 16.0  30.6   4.53  0.374   3.89 ((8.653305 14.00809, 8.81814 14.00…
+##  4  33.2  4.48 32.4   0.394 1.19    3.7  ((8.459499 13.82035, 8.473408 13.8…
+##  5  23.2 11.3  50.7   0.406 0.625   2.83 ((8.685274 13.63952, 8.677577 13.7…
+##  6  28.8 16.0  26.1   0.563 0.254   3.78 ((9.401384 13.5504, 9.434411 13.69…
+##  7  75    8.44  0.178 0     2.40    2.74 ((8.037741 13.60752, 8.062716 13.6…
+##  8  37.1 11.3  38.4   3.48  2.74    2.89 ((8.247527 13.58651, 8.2795 13.596…
+##  9  52.6 17.6  30.5   0.527 0.891   3.17 ((9.333297 13.27242, 9.671007 13.2…
+## 10  96.4 13.6  34.0   1.55  0.558   4.33 ((10.08251 13.03377, 10.0925 13.05…
 ## # ℹ 39 more rows
 ```
 
@@ -94,8 +94,8 @@ columbus
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
-## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")): neighbour
-## object has 4 sub-graphs
+## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package =
+## "spEDM")): neighbour object has 4 sub-graphs
 popd_nb
 ## Neighbour list object:
 ## Number of regions: 2806 
@@ -106,7 +106,7 @@ popd_nb
 
 popd = readr::read_csv(system.file("case/popd.csv",package = "spEDM"))
 ## Rows: 2806 Columns: 7
-## ── Column specification ───────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (7): lon, lat, popd, elev, tem, pre, slope
 ## 
@@ -158,15 +158,15 @@ popd_sf
 library(spEDM)
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
 npp
-## class       : SpatRaster 
+## class       : SpatRaster
 ## size        : 404, 483, 5  (nrow, ncol, nlyr)
 ## resolution  : 10000, 10000  (x, y)
 ## extent      : -2625763, 2204237, 1877078, 5917078  (xmin, xmax, ymin, ymax)
-## coord. ref. : CGCS2000_Albers 
-## source      : npp.tif 
-## names       :      npp,        pre,      tem,      elev,         hfp 
-## min values  :   164.00,   384.3409, -47.8194, -122.2004,  0.03390418 
-## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195
+## coord. ref. : CGCS2000_Albers
+## source      : npp.tif
+## names       :          npp,          pre,        tem,        elev,       hfp
+## min values  :          164,   384.340942, -47.819405, -122.200386,  0.033904
+## max values  : 16606.333984, 23878.355469, 263.693787, 5350.490234, 44.903122
 ```
 
 ## Usage
