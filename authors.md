@@ -10,14 +10,16 @@
 Source:
 [`inst/CITATION`](https://github.com/stscl/spEDM/blob/main/inst/CITATION)
 
-Lyu W (2026). *spEDM: Spatial Empirical Dynamic Modeling*.
-[doi:10.32614/CRAN.package.spEDM](https://doi.org/10.32614/CRAN.package.spEDM).
-R package version 1.12.
+Lyu, W., Dai, S., Song, Y., Zhao, W., Yi, W., Xiao, Y., & Jia, N, 2026.
+Measuring causal strengths from spatial cross sectional data with
+geographical cross mapping cardinality. International Journal of
+Geographical Information Science.
+https://doi.org/10.1080/13658816.2026.2687121
 
-    @Manual{,
-      title = {{spEDM: Spatial Empirical Dynamic Modeling}},
-      author = {Wenbo Lyu},
+    @Article{,
+      title = {Measuring causal strengths from spatial cross sectional data with geographical cross mapping cardinality},
+      author = {Wenbo Lyu and Shaoqing Dai and Yongze Song and Wufan Zhao and Wen Yi and Yumiao Xiao and Nan Jia},
+      journal = {International Journal of Geographical Information Science},
       year = {2026},
-      note = {R package version 1.12},
-      doi = {10.32614/CRAN.package.spEDM},
+      doi = {10.1080/13658816.2026.2687121},
     }

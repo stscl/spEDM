@@ -4,6 +4,10 @@
 
 #### enhancements
 
+- Integrate accepted IJGIS publication details for geographical cross
+  mapping cardinality
+  ([\#1005](https://github.com/stscl/spEDM/issues/1005)).
+
 - No longer loads the `sf` and `terra` namespaces when loading `spEDM`
   package ([\#1000](https://github.com/stscl/spEDM/issues/1000)).
 
