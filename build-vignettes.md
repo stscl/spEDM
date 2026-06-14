@@ -17,7 +17,6 @@ package submission.
 
 ``` r
 
-# list vignette names
 vignettes = paste0(c(paste0("main", 1:6), 
                      paste0("si", 1:2)), "_",
                    c("pkgintro", "ssr", "gccm", "gpc",

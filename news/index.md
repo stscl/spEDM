@@ -5,7 +5,7 @@
 #### enhancements
 
 - No longer loads the `sf` and `terra` namespaces when loading `spEDM`
-  package. ([\#1000](https://github.com/stscl/spEDM/issues/1000)).
+  package ([\#1000](https://github.com/stscl/spEDM/issues/1000)).
 
 - Clarify output indexing and boundary handling in `fnn` generic via
   console output modification
