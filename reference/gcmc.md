@@ -147,10 +147,10 @@ A list
 
 ## References
 
-Lyu, W., Dai, S., Song, Y., Zhao, W., Yi, W., Xiao, Y., & Jia, N, 2026.
-Measuring causal strengths from spatial cross sectional data with
+Lyu, W., Dai, S., Song, Y., Zhao, W., Yi, W., Xiao, Y., Jia, N., 2026.
+Measuring causal strengths from spatial cross-sectional data with
 geographical cross mapping cardinality. International Journal of
-Geographical Information Science.
+Geographical Information Science 1–23.
 
 ## Examples
 
