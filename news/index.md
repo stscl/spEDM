@@ -4,6 +4,9 @@
 
 #### enhancements
 
+- Use queen contiguity to construct default `nb` when required but not
+  provided ([\#1007](https://github.com/stscl/spEDM/issues/1007)).
+
 - Integrate accepted IJGIS publication details for geographical cross
   mapping cardinality
   ([\#1005](https://github.com/stscl/spEDM/issues/1005)).
