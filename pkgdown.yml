@@ -1,5 +1,5 @@
 pandoc: 3.8.3
-pkgdown: 2.2.0
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   main1_pkgintro: main1_pkgintro.html
@@ -10,7 +10,7 @@ articles:
   main6_scpcm: main6_scpcm.html
   si1_slm: si1_slm.html
   si2_sct: si2_sct.html
-last_built: 2026-07-05T12:59Z
+last_built: 2026-07-17T10:29Z
 urls:
   reference: https://stscl.github.io/spEDM/reference
   article: https://stscl.github.io/spEDM/articles
