@@ -18,6 +18,12 @@
   console output modification
   ([\#999](https://github.com/stscl/spEDM/issues/999)).
 
+#### bug fixes
+
+- Fix incorrect auto-filling of default `E`, `tau`, `k` parameters in
+  `scpcm` generic
+  ([\#1009](https://github.com/stscl/spEDM/issues/1009)).
+
 ## spEDM 1.12
 
 CRAN release: 2026-04-05
