@@ -102,13 +102,13 @@ distribution.
 sim_trispecies = \(nx,ny,seed = 123){
   grid = expand.grid(seq(0, 10, length.out = nx),
                      seq(0, 10, length.out = ny))
-  cov.fun = \(d, range = 1.5, sill=1) sill * exp(-d/range)
+  cov.fun = \(d, range=1.5, sill=1) sill * exp(-d/range)
   dist.mat = fields::rdist(grid)
   cov.mat = cov.fun(dist.mat, range=1.5, sill=1)
   set.seed(seed)
   res = replicate(3, {
     MASS::mvrnorm(1, rep(0, nrow(grid)), cov.mat) |>
-      pmax(0) |>
+      #pmax(0) |>
       sdsfun::normalize_vector(0,1) |>
       matrix(nrow = nx, ncol = ny) |>
       terra::rast()
@@ -119,14 +119,14 @@ sim_trispecies = \(nx,ny,seed = 123){
 species = sim_trispecies(20,20)
 names(species) = letters[1:3]
 species
-## class       : SpatRaster 
+## class       : SpatRaster
 ## size        : 20, 20, 3  (nrow, ncol, nlyr)
 ## resolution  : 1, 1  (x, y)
 ## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)
-## coord. ref. :  
+## coord. ref. : 
 ## source(s)   : memory
-## names       : a, b, c 
-## min values  : 0, 0, 0 
+## names       : a, b, c
+## min values  : 0, 0, 0
 ## max values  : 1, 1, 1
 
 options(terra.pal = grDevices::terrain.colors(100,rev = T))
@@ -148,32 +148,32 @@ species (a, b, and c).
 We assume an underlying causal interaction structure among species,
 where species *a* influences *b*, and *b* in turn influences *c* (i.e.,
 *a* → *b* → *c*). The intrinsic growth rates of species a, b, and c are
-uniformly assigned a value of 0.2. Species a exerts an effect of 1 on
-species b, and species b exerts an effect of 1 on species c. All other
-interspecific influence parameters are set to 0. This setup provides a
-controlled environment to test spatial causality detection methods under
-known dynamic interactions.
+assigned to 0.75, 0.78 and 0.76 respectively. Species a exerts an effect
+of 0.04 on species b, and species b exerts an effect of 0.04 on species
+c. All other interspecific influence parameters are set to 0. This setup
+provides a controlled environment to test spatial causality detection
+methods under known dynamic interactions.
 
 ``` r
 
 simv = spEDM::slm(species, x = "a", y = "b", z = "c", k = 4, step = 15, transient = 1, interact = "local",
-                  alpha_x = 0.2, alpha_y = 0.2, alpha_z = 0.2,
-                  beta_xy = 1, beta_xz = 0, beta_yx = 0, beta_yz = 1, beta_zx = 0, beta_zy = 0)
+                  alpha_x = 0.75, alpha_y = 0.78, alpha_z = 0.76,
+                  beta_xy = 0.04, beta_xz = 0, beta_yx = 0, beta_yz = 0.04, beta_zx = 0, beta_zy = 0)
 
 species_evolution = species
 terra::values(species_evolution[["a"]]) = simv$x
 terra::values(species_evolution[["b"]]) = simv$y
 terra::values(species_evolution[["c"]]) = simv$z
 species_evolution
-## class       : SpatRaster 
+## class       : SpatRaster
 ## size        : 20, 20, 3  (nrow, ncol, nlyr)
 ## resolution  : 1, 1  (x, y)
 ## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)
-## coord. ref. :  
+## coord. ref. : 
 ## source(s)   : memory
-## names       :         a,         b,         c 
-## min values  : 0.8553408, 0.9733337, 0.9886246 
-## max values  : 0.8611597, 0.9803933, 1.0008822
+## names       :        a,        b,        c
+## min values  : 0.652826,  0.65015,   0.6594
+## max values  : 0.672098, 0.673739, 0.681139
 
 terra::plot(species_evolution, nc = 3,
             mar = rep(0.1,4),
@@ -183,33 +183,33 @@ terra::plot(species_evolution, nc = 3,
 ```
 
 ![Figure 2. Species distributions following spatiotemporal interaction
-and evolution after 20 simulation steps with 4-neighbor
+and evolution after 15 simulation steps with 4-neighbor
 interactions.](../reference/figures/slm/slm1-1.png)
 
 **Figure 2**. Species distributions following spatiotemporal interaction
-and evolution after 20 simulation steps with 4-neighbor interactions.
+and evolution after 15 simulation steps with 4-neighbor interactions.
 
   
 
 ``` r
 
 simv = spEDM::slm(species, x = "a", y = "b", z = "c", k = 4, step = 15, transient = 1, interact = "neighbors",
-                  alpha_x = 0.2, alpha_y = 0.2, alpha_z = 0.2, beta_xy = 1, beta_xz = 0, beta_yx = 0, beta_yz = 1, beta_zx = 0, beta_zy = 0)
+                  alpha_x = 0.75, alpha_y = 0.78, alpha_z = 0.76, beta_xy = 0.04, beta_xz = 0, beta_yx = 0, beta_yz = 0.04, beta_zx = 0, beta_zy = 0)
 
 species_evolution = species
 terra::values(species_evolution[["a"]]) = simv$x
 terra::values(species_evolution[["b"]]) = simv$y
 terra::values(species_evolution[["c"]]) = simv$z
 species_evolution
-## class       : SpatRaster 
+## class       : SpatRaster
 ## size        : 20, 20, 3  (nrow, ncol, nlyr)
 ## resolution  : 1, 1  (x, y)
 ## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)
-## coord. ref. :  
+## coord. ref. : 
 ## source(s)   : memory
-## names       :         a,         b,         c 
-## min values  : 0.8553408, 0.9718102, 0.9887262 
-## max values  : 0.8611597, 0.9803232, 0.9986816
+## names       :        a,        b,        c
+## min values  : 0.652826, 0.649896, 0.659449
+## max values  : 0.672098, 0.673748, 0.681138
 
 terra::plot(species_evolution, nc = 3,
             mar = rep(0.1,4),
@@ -218,9 +218,9 @@ terra::plot(species_evolution, nc = 3,
             legend = FALSE)
 ```
 
-![Figure 3. Species distributions after 20 simulation steps with
+![Figure 3. Species distributions after 15 simulation steps with
 4-neighbor interactions and neighbor-averaged cross-variable
 dynamics.](../reference/figures/slm/slm2-1.png)
 
-**Figure 3**. Species distributions after 20 simulation steps with
+**Figure 3**. Species distributions after 15 simulation steps with
 4-neighbor interactions and neighbor-averaged cross-variable dynamics.

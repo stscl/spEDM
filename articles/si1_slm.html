@@ -79,8 +79,8 @@
                         <h4 data-toc-skip class="author">Wenbo Lyu</h4>
             
             <h4 data-toc-skip class="date"><div class="line-block">Last
-update: 2026-02-15<br>
-Last run: 2026-04-05</div></h4>
+update: 2026-07-20<br>
+Last run: 2026-07-20</div></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/stscl/spEDM/blob/main/vignettes/si1_slm.Rmd" class="external-link"><code>vignettes/si1_slm.Rmd</code></a></small>
       <div class="d-none name"><code>si1_slm.Rmd</code></div>
@@ -203,13 +203,13 @@ distribution.</p>
 <code class="sourceCode R"><span><span class="va">sim_trispecies</span> <span class="op">=</span> \<span class="op">(</span><span class="va">nx</span>,<span class="va">ny</span>,<span class="va">seed</span> <span class="op">=</span> <span class="fl">123</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">grid</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, length.out <span class="op">=</span> <span class="va">nx</span><span class="op">)</span>,</span>
 <span>                     <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, length.out <span class="op">=</span> <span class="va">ny</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">cov.fun</span> <span class="op">=</span> \<span class="op">(</span><span class="va">d</span>, <span class="va">range</span> <span class="op">=</span> <span class="fl">1.5</span>, <span class="va">sill</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="va">sill</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span><span class="op">/</span><span class="va">range</span><span class="op">)</span></span>
+<span>  <span class="va">cov.fun</span> <span class="op">=</span> \<span class="op">(</span><span class="va">d</span>, <span class="va">range</span><span class="op">=</span><span class="fl">1.5</span>, <span class="va">sill</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="va">sill</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span><span class="op">/</span><span class="va">range</span><span class="op">)</span></span>
 <span>  <span class="va">dist.mat</span> <span class="op">=</span> <span class="fu">fields</span><span class="fu">::</span><span class="fu">rdist</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span>
 <span>  <span class="va">cov.mat</span> <span class="op">=</span> <span class="fu">cov.fun</span><span class="op">(</span><span class="va">dist.mat</span>, range<span class="op">=</span><span class="fl">1.5</span>, sill<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
 <span>  <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">3</span>, <span class="op">{</span></span>
 <span>    <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span><span class="op">)</span>, <span class="va">cov.mat</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="co">#pmax(0) |&gt;</span></span>
 <span>      <span class="fu">sdsfun</span><span class="fu">::</span><span class="fu"><a href="https://stscl.github.io/sdsfun/reference/normalize_vector.html" class="external-link">normalize_vector</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="va">nx</span>, ncol <span class="op">=</span> <span class="va">ny</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -220,14 +220,14 @@ distribution.</p>
 <span><span class="va">species</span> <span class="op">=</span> <span class="fu">sim_trispecies</span><span class="op">(</span><span class="fl">20</span>,<span class="fl">20</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">=</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">species</span></span>
-<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## class       : SpatRaster</span></span>
 <span><span class="co">## size        : 20, 20, 3  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">## coord. ref. :  </span></span>
+<span><span class="co">## coord. ref. : </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       : a, b, c </span></span>
-<span><span class="co">## min values  : 0, 0, 0 </span></span>
+<span><span class="co">## names       : a, b, c</span></span>
+<span><span class="co">## min values  : 0, 0, 0</span></span>
 <span><span class="co">## max values  : 1, 1, 1</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>terra.pal <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">terrain.colors</a></span><span class="op">(</span><span class="fl">100</span>,rev <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
@@ -245,31 +245,31 @@ species density distributions for three species (a, b, and c).</div>
 <p>We assume an underlying causal interaction structure among species,
 where species <em>a</em> influences <em>b</em>, and <em>b</em> in turn
 influences <em>c</em> (i.e., <em>a</em> → <em>b</em> → <em>c</em>). The
-intrinsic growth rates of species a, b, and c are uniformly assigned a
-value of 0.2. Species a exerts an effect of 1 on species b, and species
-b exerts an effect of 1 on species c. All other interspecific influence
-parameters are set to 0. This setup provides a controlled environment to
-test spatial causality detection methods under known dynamic
-interactions.</p>
+intrinsic growth rates of species a, b, and c are assigned to 0.75, 0.78
+and 0.76 respectively. Species a exerts an effect of 0.04 on species b,
+and species b exerts an effect of 0.04 on species c. All other
+interspecific influence parameters are set to 0. This setup provides a
+controlled environment to test spatial causality detection methods under
+known dynamic interactions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>, x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>, interact <span class="op">=</span> <span class="st">"local"</span>,</span>
-<span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>,</span>
-<span>                  beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>                  alpha_x <span class="op">=</span> <span class="fl">0.75</span>, alpha_y <span class="op">=</span> <span class="fl">0.78</span>, alpha_z <span class="op">=</span> <span class="fl">0.76</span>,</span>
+<span>                  beta_xy <span class="op">=</span> <span class="fl">0.04</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">0.04</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">species_evolution</span> <span class="op">=</span> <span class="va">species</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"a"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">x</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"b"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">y</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"c"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">z</span></span>
 <span><span class="va">species_evolution</span></span>
-<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## class       : SpatRaster</span></span>
 <span><span class="co">## size        : 20, 20, 3  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">## coord. ref. :  </span></span>
+<span><span class="co">## coord. ref. : </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       :         a,         b,         c </span></span>
-<span><span class="co">## min values  : 0.8553408, 0.9733337, 0.9886246 </span></span>
-<span><span class="co">## max values  : 0.8611597, 0.9803933, 1.0008822</span></span>
+<span><span class="co">## names       :        a,        b,        c</span></span>
+<span><span class="co">## min values  : 0.652826,  0.65015,   0.6594</span></span>
+<span><span class="co">## max values  : 0.672098, 0.673739, 0.681139</span></span>
 <span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species_evolution</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
@@ -277,30 +277,30 @@ interactions.</p>
 <span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="../reference/figures/slm/slm1-1.png" alt="Figure 2. Species distributions following spatiotemporal interaction and evolution after 20 simulation steps with 4-neighbor interactions."><div class="figcaption">
+<img src="../reference/figures/slm/slm1-1.png" alt="Figure 2. Species distributions following spatiotemporal interaction and evolution after 15 simulation steps with 4-neighbor interactions."><div class="figcaption">
 <strong>Figure 2</strong>. Species distributions
-following spatiotemporal interaction and evolution after 20 simulation
+following spatiotemporal interaction and evolution after 15 simulation
 steps with 4-neighbor interactions.</div>
 </div>
 <p><br></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">simv</span> <span class="op">=</span> <span class="fu">spEDM</span><span class="fu">::</span><span class="fu"><a href="../reference/slm.html">slm</a></span><span class="op">(</span><span class="va">species</span>, x <span class="op">=</span> <span class="st">"a"</span>, y <span class="op">=</span> <span class="st">"b"</span>, z <span class="op">=</span> <span class="st">"c"</span>, k <span class="op">=</span> <span class="fl">4</span>, step <span class="op">=</span> <span class="fl">15</span>, transient <span class="op">=</span> <span class="fl">1</span>, interact <span class="op">=</span> <span class="st">"neighbors"</span>,</span>
-<span>                  alpha_x <span class="op">=</span> <span class="fl">0.2</span>, alpha_y <span class="op">=</span> <span class="fl">0.2</span>, alpha_z <span class="op">=</span> <span class="fl">0.2</span>, beta_xy <span class="op">=</span> <span class="fl">1</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">1</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>                  alpha_x <span class="op">=</span> <span class="fl">0.75</span>, alpha_y <span class="op">=</span> <span class="fl">0.78</span>, alpha_z <span class="op">=</span> <span class="fl">0.76</span>, beta_xy <span class="op">=</span> <span class="fl">0.04</span>, beta_xz <span class="op">=</span> <span class="fl">0</span>, beta_yx <span class="op">=</span> <span class="fl">0</span>, beta_yz <span class="op">=</span> <span class="fl">0.04</span>, beta_zx <span class="op">=</span> <span class="fl">0</span>, beta_zy <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">species_evolution</span> <span class="op">=</span> <span class="va">species</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"a"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">x</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"b"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">y</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html" class="external-link">values</a></span><span class="op">(</span><span class="va">species_evolution</span><span class="op">[[</span><span class="st">"c"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">=</span> <span class="va">simv</span><span class="op">$</span><span class="va">z</span></span>
 <span><span class="va">species_evolution</span></span>
-<span><span class="co">## class       : SpatRaster </span></span>
+<span><span class="co">## class       : SpatRaster</span></span>
 <span><span class="co">## size        : 20, 20, 3  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">## resolution  : 1, 1  (x, y)</span></span>
 <span><span class="co">## extent      : 0, 20, 0, 20  (xmin, xmax, ymin, ymax)</span></span>
-<span><span class="co">## coord. ref. :  </span></span>
+<span><span class="co">## coord. ref. : </span></span>
 <span><span class="co">## source(s)   : memory</span></span>
-<span><span class="co">## names       :         a,         b,         c </span></span>
-<span><span class="co">## min values  : 0.8553408, 0.9718102, 0.9887262 </span></span>
-<span><span class="co">## max values  : 0.8611597, 0.9803232, 0.9986816</span></span>
+<span><span class="co">## names       :        a,        b,        c</span></span>
+<span><span class="co">## min values  : 0.652826, 0.649896, 0.659449</span></span>
+<span><span class="co">## max values  : 0.672098, 0.673748, 0.681138</span></span>
 <span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">species_evolution</span>, nc <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>            mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">4</span><span class="op">)</span>,</span>
@@ -308,9 +308,9 @@ steps with 4-neighbor interactions.</div>
 <span>            axes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>            legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="../reference/figures/slm/slm2-1.png" alt="Figure 3. Species distributions after 20 simulation steps with 4-neighbor interactions and neighbor-averaged cross-variable dynamics."><div class="figcaption">
+<img src="../reference/figures/slm/slm2-1.png" alt="Figure 3. Species distributions after 15 simulation steps with 4-neighbor interactions and neighbor-averaged cross-variable dynamics."><div class="figcaption">
 <strong>Figure 3</strong>. Species distributions
-after 20 simulation steps with 4-neighbor interactions and
+after 15 simulation steps with 4-neighbor interactions and
 neighbor-averaged cross-variable dynamics.</div>
 </div>
 </div>
