@@ -49,11 +49,11 @@ Load the `spEDM` package and its county-level population density data:
 library(spEDM)
 
 popd_nb = spdep::read.gal(system.file("case/popd_nb.gal",package = "spEDM"))
-## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package = "spEDM")): neighbour
-## object has 4 sub-graphs
+## Warning in spdep::read.gal(system.file("case/popd_nb.gal", package =
+## "spEDM")): neighbour object has 4 sub-graphs
 popd = readr::read_csv(system.file("case/popd.csv",package = "spEDM"))
 ## Rows: 2806 Columns: 7
-## ── Column specification ───────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────
 ## Delimiter: ","
 ## dbl (7): lon, lat, popd, elev, tem, pre, slope
 ## 
@@ -86,14 +86,14 @@ Embedding the variable `popd` from county-level population density:
 
 ``` r
 
-v = spEDM::embedded(popd_sf,"popd",E = 10)
+v = spEDM::embedded(popd_sf,"popd",E = 10,nb = popd_nb)
 v[1:5,c(4,5,10)]
-##           [,1]     [,2]      [,3]
-## [1,]  962.7204 1664.756 1581.4351
-## [2,]  919.6000 2408.766 1494.8241
-## [3,] 1435.0165 1958.686  813.9077
-## [4,] 1488.2727 2066.748 1216.6986
-## [5,] 2326.8429 1290.188 1038.3864
+##           [,1]      [,2]      [,3]
+## [1,]  901.3706 1224.1902 1195.7158
+## [2,] 1148.8062  798.9245 1171.5278
+## [3,] 1186.0886  602.1987  992.6353
+## [4,]  816.2770 1216.5657 1230.1971
+## [5,]  569.2246 1181.7305  801.7195
 ```
 
 ``` r
@@ -120,15 +120,15 @@ library(spEDM)
 
 npp = terra::rast(system.file("case/npp.tif", package = "spEDM"))
 npp
-## class       : SpatRaster 
+## class       : SpatRaster
 ## size        : 404, 483, 5  (nrow, ncol, nlyr)
 ## resolution  : 10000, 10000  (x, y)
 ## extent      : -2625763, 2204237, 1877078, 5917078  (xmin, xmax, ymin, ymax)
-## coord. ref. : CGCS2000_Albers 
-## source      : npp.tif 
-## names       :      npp,        pre,      tem,      elev,         hfp 
-## min values  :   164.00,   384.3409, -47.8194, -122.2004,  0.03390418 
-## max values  : 16606.33, 23878.3555, 263.6938, 5350.4902, 44.90312195
+## coord. ref. : CGCS2000_Albers
+## source      : npp.tif
+## names       :          npp,          pre,        tem,        elev,       hfp
+## min values  :          164,   384.340942, -47.819405, -122.200386,  0.033904
+## max values  : 16606.333984, 23878.355469, 263.693787, 5350.490234, 44.903122
 ```
 
 Embedding the variable `npp` from farmland npp data:
