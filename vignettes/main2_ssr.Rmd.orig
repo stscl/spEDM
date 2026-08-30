@@ -2,7 +2,7 @@
 title: "State Space Reconstruction"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-02-15
+  | Last update: 2026-08-15
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >
@@ -51,7 +51,7 @@ popd_sf
 Embedding the variable `popd` from county-level population density:
 
 ```{r embed_lattice_data}
-v = spEDM::embedded(popd_sf,"popd",E = 10)
+v = spEDM::embedded(popd_sf,"popd",E = 10,nb = popd_nb)
 v[1:5,c(4,5,10)]
 ```
 
