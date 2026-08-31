@@ -34,6 +34,7 @@
  *
  * @param x         2D grid (matrix) representing variable X.
  * @param y         2D grid (matrix) representing variable Y.
+ * @param dir       Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param lib       A vector of pairs representing the indices (row, column) of spatial units to be the library.
  * @param pred      A vector of pairs representing the indices (row, column) of spatial units to be predicted.
  * @param k         Embedding neighborhood radius (e.g., k = 1 means 3×3 window).
@@ -48,6 +49,7 @@
 std::vector<double> SGCSingle4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     size_t k,
@@ -59,14 +61,14 @@ std::vector<double> SGCSingle4Grid(
   // size_t cols = x[0].size();
 
   std::vector<double> wx;
-  std::vector<std::vector<double>> Ex = GenGridEmbeddings(x,1,1);
+  std::vector<std::vector<double>> Ex = GenGridEmbeddings(x,1,1,1,dir);
   for (const auto& row : Ex) {
     wx.insert(wx.end(), row.begin(), row.end());
   }
   std::vector<std::vector<double>> xw = GridVec2Mat(wx,rows);
 
   std::vector<double> wy;
-  std::vector<std::vector<double>> Ey = GenGridEmbeddings(y,1,1);
+  std::vector<std::vector<double>> Ey = GenGridEmbeddings(y,1,1,1,dir);
   for (const auto& row : Ey) {
     wy.insert(wy.end(), row.begin(), row.end());
   }
@@ -151,6 +153,7 @@ std::vector<double> SGCSingle4Grid(
  *
  * @param x           2D grid (matrix) of variable X.
  * @param y           2D grid (matrix) of variable Y, same size as x.
+ * @param dir         Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param lib         A vector of pairs representing the indices (row, column) of spatial units to be the library.
  * @param pred        A vector of pairs representing the indices (row, column) of spatial units to be predicted.
  * @param block       Vector assigning each grid cell to a spatial block for bootstrapping.
@@ -172,6 +175,7 @@ std::vector<double> SGCSingle4Grid(
 std::vector<double> SGC4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     const std::vector<int>& block,
@@ -231,7 +235,7 @@ std::vector<double> SGC4Grid(
     std::vector<std::vector<double>> x_boot = GridVec2Mat(x_bs,static_cast<int>(rows));
     std::vector<std::vector<double>> y_boot = GridVec2Mat(y_bs,static_cast<int>(rows));
     // Estimate the bootstrapped realization of the spatial granger causality statistic
-    sc_bootstraps[n] = SGCSingle4Grid(x_boot,y_boot,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
+    sc_bootstraps[n] = SGCSingle4Grid(x_boot,y_boot,dir,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
   };
 
   // Configure threads
@@ -252,7 +256,7 @@ std::vector<double> SGC4Grid(
   }
 
   // The "true" spatial granger causality statistic
-  std::vector<double> sc = SGCSingle4Grid(x,y,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
+  std::vector<double> sc = SGCSingle4Grid(x,y,dir,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
   double scx = sc[0];
   double scy = sc[1];
   // Compute the estimated bootstrap p–value

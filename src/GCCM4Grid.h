@@ -162,9 +162,9 @@ std::vector<std::pair<int, double>> GCCMSingle4GridOneDim(
  * @param dist_metric    Distance metric selector (1: Manhattan, 2: Euclidean).
  * @param dist_average   Whether to average distance by the number of valid vector components.
  * @param single_sig     Whether to estimate significance and confidence intervals using a single rho value.
+ * @param progressbar    If true, display a progress bar during computation.
  * @param dir            Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param win_rations    Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
- * @param progressbar    If true, display a progress bar during computation.
  *
  * @return A 2D vector where each row contains the library size, mean cross mapping result,
  *         significance, and confidence interval bounds.
@@ -187,9 +187,9 @@ std::vector<std::vector<double>> GCCM4Grid(
     int dist_metric,
     bool dist_average,
     bool single_sig,
+    bool progressbar = false,
     const std::vector<int>& dir = {0},
-    const std::vector<double>& win_ratios = {0,0},
-    bool progressbar = false
+    const std::vector<double>& win_ratios = {0,0}
 );
 
 /**
@@ -215,8 +215,8 @@ std::vector<std::vector<double>> GCCM4Grid(
  * @param dist_metric    Distance metric selector (1: Manhattan, 2: Euclidean).
  * @param dist_average   Whether to average distance by the number of valid vector components.
  * @param single_sig     Whether to estimate significance and confidence intervals using a single rho value.
- * @param dir            Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param progressbar    If true, display a progress bar during computation.
+ * @param dir            Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * @return A 2D vector where each row contains the library size, mean cross mapping result,
  *         significance, and confidence interval bounds.
@@ -239,8 +239,8 @@ std::vector<std::vector<double>> GCCM4GridOneDim(
     int dist_metric,
     bool dist_average,
     bool single_sig,
-    const std::vector<int>& dir = {0},
-    bool progressbar = false
+    bool progressbar = false,
+    const std::vector<int>& dir = {0}
 );
 
 #endif // GCCM4Grid_H

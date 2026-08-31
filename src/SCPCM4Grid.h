@@ -58,7 +58,8 @@ std::vector<double> PartialSimplex4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 );
 
 /**
@@ -125,7 +126,8 @@ std::vector<double> PartialSMap4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 );
 
 /**
@@ -202,6 +204,7 @@ std::vector<PartialCorRes> SCPCMSingle4Grid(
     int style,
     int dist_metric,
     bool dist_average,
+    const std::vector<int>& dir = {0},
     const std::vector<double>& win_ratios = {0,0}
 );
 
@@ -279,7 +282,8 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
     bool cumulate,
     int style,
     int dist_metric,
-    bool dist_average
+    bool dist_average,
+    const std::vector<int>& dir = {0}
 );
 
 // Perform Grid-based Spatially Convergent Partial Cross Mapping (SCPCM) for a single library size (composite embeddings version).
@@ -333,9 +337,9 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
  * - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean).
  * - dist_average: Whether to average distance by the number of valid vector components.
  * - single_sig: Whether to estimate significance and confidence intervals using a single rho value.
+ * - progressbar: Boolean flag indicating whether to display a progress bar during computation.
  * - dir: Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * - win_rations: Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
- * - progressbar: Boolean flag indicating whether to display a progress bar during computation.
  *
  * Returns:
  *    A 2D vector of results, where each row contains:
@@ -369,9 +373,9 @@ std::vector<std::vector<double>> SCPCM4Grid(
     int dist_metric,                                     // Distance metric selector (1: Manhattan, 2: Euclidean)
     bool dist_average,                                   // Whether to average distance by the number of valid vector components
     bool single_sig,                                     // Whether to estimate significance and confidence intervals using a single rho value
+    bool progressbar = false,                            // Whether to print the progress bar
     const std::vector<int>& dir = {0},                   // Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
-    const std::vector<double>& win_ratios = {0,0},       // Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
-    bool progressbar = false                             // Whether to print the progress bar
+    const std::vector<double>& win_ratios = {0,0}        // Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
 );
 
 /**
@@ -397,8 +401,8 @@ std::vector<std::vector<double>> SCPCM4Grid(
  * - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean).
  * - dist_average: Whether to average distance by the number of valid vector components.
  * - single_sig: Whether to estimate significance and confidence intervals using a single rho value.
- * - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * - progressbar: Display progress bar during computation
+ * - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   2D vector containing:
@@ -432,8 +436,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
     int dist_metric,
     bool dist_average,
     bool single_sig,
-    const std::vector<int>& dir = {0},
-    bool progressbar = false
+    bool progressbar = false,
+    const std::vector<int>& dir = {0}
 );
 
 #endif // SCPCM4Grid_H

@@ -12,7 +12,7 @@
 }
 
 .gpc_spatraster_method = \(data, cause, effect, libsizes = NULL, E = 3, k = E+2, tau = 1, style = 1, lib = NULL, pred = NULL, boot = 99, replace = FALSE, seed = 42L, dist.metric = "L2", zero.tolerance = max(k),
-                           relative = TRUE, weighted = TRUE, threads = detectThreads(), detrend = FALSE, parallel.level = "low", bidirectional = TRUE, progressbar = TRUE, grid.coord = TRUE){
+                           relative = TRUE, weighted = TRUE, threads = detectThreads(), detrend = FALSE, parallel.level = "low", bidirectional = TRUE, progressbar = TRUE, grid.coord = TRUE, embed.direction = 0){
   varname = .check_character(cause, effect)
   cause = .uni_grid(data,cause,detrend,grid.coord)
   effect = .uni_grid(data,effect,detrend,grid.coord)
@@ -20,7 +20,7 @@
   if (is.null(pred)) pred = lib
   return(.run_gpc(cause, effect, E, k, tau, style, lib, pred, .check_distmetric(dist.metric),
                   zero.tolerance, relative, weighted, threads, bidirectional, varname, NULL,
-                  libsizes, boot, replace, seed, parallel.level, progressbar))
+                  libsizes, boot, replace, seed, parallel.level, progressbar, embed.direction))
 }
 
 #' geographical pattern causality

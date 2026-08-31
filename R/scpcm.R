@@ -63,10 +63,10 @@
   x_xmap_y = NULL
   if (bidirectional){
     x_xmap_y = RcppSCPCM4Grid(causemat,effectmat,condmat,libsizes,lib,pred,E[-c(2,2+seq_along(conds))],tau[-c(2,2+seq_along(conds))],k[-c(2,2+seq_along(conds))],simplex,
-                              theta, threads, pl, cumulate, style, stack, .check_distmetric(dist.metric), dist.average, TRUE, embed.direction, win.ratio, progressbar)
+                              theta, threads, pl, cumulate, style, stack, .check_distmetric(dist.metric), dist.average, TRUE, progressbar, embed.direction, win.ratio)
   }
   y_xmap_x = RcppSCPCM4Grid(effectmat,causemat,condmat,libsizes,lib,pred,E[-1],tau[-1],k[-1],simplex,theta,threads,pl,cumulate,style,
-                            stack, .check_distmetric(dist.metric), dist.average, TRUE, embed.direction, win.ratio, progressbar)
+                            stack, .check_distmetric(dist.metric), dist.average, TRUE, progressbar, embed.direction, win.ratio)
 
   return(.bind_xmapdf2(varname,x_xmap_y,y_xmap_x,bidirectional))
 }

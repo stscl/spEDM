@@ -61,10 +61,10 @@
   x_xmap_y = NULL
   if (bidirectional){
     x_xmap_y = RcppGCCM4Grid(causemat,effectmat,libsizes,lib,pred,E[1],tau[1],k[1],simplex,theta,threads,pl,style,stack,
-                             .check_distmetric(dist.metric),dist.average,TRUE,embed.direction,win.ratio,progressbar)
+                             .check_distmetric(dist.metric),dist.average,TRUE,progressbar,embed.direction,win.ratio)
   }
   y_xmap_x = RcppGCCM4Grid(effectmat,causemat,libsizes,lib,pred,E[2],tau[2],k[2],simplex,theta,threads,pl,style,stack,
-                           .check_distmetric(dist.metric),dist.average,TRUE,embed.direction,win.ratio,progressbar)
+                           .check_distmetric(dist.metric),dist.average,TRUE,progressbar,embed.direction,win.ratio)
 
   return(.bind_xmapdf(varname,x_xmap_y,y_xmap_x,bidirectional))
 }
@@ -99,6 +99,5 @@
 methods::setMethod("gccm", "sf", .gccm_sf_method)
 
 #' @rdname gccm
-#' @param embed.direction (optional) direction selector for embeddings (`0` returns all directions, `1-8` correspond to NW, N, NE, W, E, SW, S, SE).
 #' @param win.ratio (optional) ratio of sliding window scale to speed up state-space predictions.
 methods::setMethod("gccm", "SpatRaster", .gccm_spatraster_method)

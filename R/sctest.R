@@ -10,34 +10,24 @@
   return(.bind_sc(RcppSGC4Lattice(cause,effect,nb,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
 }
 
-.sc_spatraster_method = \(data, cause, effect, k, block = 3, boot = 399, seed = 42L, base = 2, lib = NULL, pred = NULL,
-                          threads = detectThreads(), detrend = TRUE, normalize = FALSE, progressbar = FALSE, grid.coord = TRUE){
+.sc_spatraster_method = \(data, cause, effect, k, block = 3, boot = 399, seed = 42L, base = 2, lib = NULL, pred = NULL, threads = detectThreads(),
+                          detrend = TRUE, normalize = FALSE, progressbar = FALSE, grid.coord = TRUE, embed.direction = 0){
   varname = .check_character(cause, effect)
   cause = .uni_grid(data,cause,detrend,grid.coord)
   effect = .uni_grid(data,effect,detrend,grid.coord)
   block = matrix(RcppDivideGrid(effect,block),ncol = 1)
   if (is.null(lib)) lib = which(!(is.na(cause) | is.na(effect)), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
-  return(.bind_sc(RcppSGC4Grid(cause,effect,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
+  return(.bind_sc(RcppSGC4Grid(cause,effect,embed.direction,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
 }
 
 #' spatial causality test
 #'
-#' @param data observation data.
-#' @param cause name of causal variable.
-#' @param effect name of effect variable.
+#' @inheritParams gpc
 #' @param k (optional) number of nearest neighbors used in symbolization.
 #' @param block (optional) number of blocks used in spatial block bootstrap.
-#' @param boot (optional) number of bootstraps to perform.
-#' @param seed (optional) random seed.
 #' @param base (optional) logarithm base.
-#' @param lib (optional) libraries indices (input needed: `vector` - spatial vector, `matrix` - spatial raster).
-#' @param pred (optional) predictions indices (input requirement same as `lib`).
-#' @param threads (optional) number of threads to use.
-#' @param detrend (optional) whether to remove the linear trend.
 #' @param normalize (optional) whether to normalize the result.
-#' @param progressbar (optional) whether to show the progress bar.
-#' @param nb (optional) neighbours list.
 #'
 #' @return A list
 #' \describe{

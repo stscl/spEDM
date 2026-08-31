@@ -61,12 +61,12 @@ RcppRowColFromGrid <- function(cellNum, totalCol) {
     .Call(`_spEDM_RcppRowColFromGrid`, cellNum, totalCol)
 }
 
-RcppLaggedVal4Grid <- function(mat, lagNum = 1L) {
-    .Call(`_spEDM_RcppLaggedVal4Grid`, mat, lagNum)
+RcppLaggedVal4Grid <- function(mat, lagNum = 1L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppLaggedVal4Grid`, mat, lagNum, dir)
 }
 
-RcppGenGridEmbeddings <- function(mat, E = 3L, tau = 1L, style = 1L) {
-    .Call(`_spEDM_RcppGenGridEmbeddings`, mat, E, tau, style)
+RcppGenGridEmbeddings <- function(mat, E = 3L, tau = 1L, style = 1L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppGenGridEmbeddings`, mat, E, tau, style, dir)
 }
 
 RcppGenGridEmbeddingsCom <- function(mat, E = 3L, tau = 1L, style = 1L, dir = as.integer( c(0))) {
@@ -97,56 +97,56 @@ RcppSLMTri4Grid <- function(mat1, mat2, mat3, k = 4L, step = 20L, alpha_x = 0.62
     .Call(`_spEDM_RcppSLMTri4Grid`, mat1, mat2, mat3, k, step, alpha_x, alpha_y, alpha_z, beta_xy, beta_xz, beta_yx, beta_yz, beta_zx, beta_zy, interact, noise_level, escape_threshold, random_seed)
 }
 
-RcppFNN4Grid <- function(mat, rt, eps, lib, pred, E, tau = 1L, style = 1L, stack = 0L, dist_metric = 2L, dir = as.integer( c(0)), threads = 8L, parallel_level = 0L) {
-    .Call(`_spEDM_RcppFNN4Grid`, mat, rt, eps, lib, pred, E, tau, style, stack, dist_metric, dir, threads, parallel_level)
+RcppFNN4Grid <- function(mat, rt, eps, lib, pred, E, tau = 1L, style = 1L, stack = 0L, dist_metric = 2L, threads = 8L, parallel_level = 0L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppFNN4Grid`, mat, rt, eps, lib, pred, E, tau, style, stack, dist_metric, threads, parallel_level, dir)
 }
 
-RcppSimplex4Grid <- function(source, target, lib, pred, E, b, tau, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, dir = as.integer( c(0)), threads = 8L) {
-    .Call(`_spEDM_RcppSimplex4Grid`, source, target, lib, pred, E, b, tau, style, stack, dist_metric, dist_average, dir, threads)
+RcppSimplex4Grid <- function(source, target, lib, pred, E, b, tau, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, threads = 8L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppSimplex4Grid`, source, target, lib, pred, E, b, tau, style, stack, dist_metric, dist_average, threads, dir)
 }
 
-RcppSMap4Grid <- function(source, target, lib, pred, theta, E = 3L, tau = 1L, b = 5L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, dir = as.integer( c(0)), threads = 8L) {
-    .Call(`_spEDM_RcppSMap4Grid`, source, target, lib, pred, theta, E, tau, b, style, stack, dist_metric, dist_average, dir, threads)
+RcppSMap4Grid <- function(source, target, lib, pred, theta, E = 3L, tau = 1L, b = 5L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, threads = 8L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppSMap4Grid`, source, target, lib, pred, theta, E, tau, b, style, stack, dist_metric, dist_average, threads, dir)
 }
 
-RcppMultiView4Grid <- function(xMatrix, yMatrix, lib, pred, E = 3L, tau = 1L, b = 5L, top = 5L, nvar = 3L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, threads = 8L) {
-    .Call(`_spEDM_RcppMultiView4Grid`, xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, threads)
+RcppMultiView4Grid <- function(xMatrix, yMatrix, lib, pred, E = 3L, tau = 1L, b = 5L, top = 5L, nvar = 3L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, threads = 8L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppMultiView4Grid`, xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, threads, dir)
 }
 
-RcppIC4Grid <- function(source, target, lib, pred, E, b, tau, exclude = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L) {
-    .Call(`_spEDM_RcppIC4Grid`, source, target, lib, pred, E, b, tau, exclude, style, dist_metric, threads, parallel_level)
+RcppIC4Grid <- function(source, target, lib, pred, E, b, tau, exclude = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppIC4Grid`, source, target, lib, pred, E, b, tau, exclude, style, dist_metric, threads, parallel_level, dir)
 }
 
-RcppPC4Grid <- function(source, target, lib, pred, E, b, tau, style = 1L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L, parallel_level = 0L) {
-    .Call(`_spEDM_RcppPC4Grid`, source, target, lib, pred, E, b, tau, style, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level)
+RcppPC4Grid <- function(source, target, lib, pred, E, b, tau, style = 1L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L, parallel_level = 0L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppPC4Grid`, source, target, lib, pred, E, b, tau, style, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, dir)
 }
 
-RcppGCCM4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E = 3L, tau = 1L, b = 5L, simplex = TRUE, theta = 0, threads = 8L, parallel_level = 0L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, single_sig = TRUE, dir = as.integer( c(0)), win_ratio = as.numeric( c(0,0)), progressbar = FALSE) {
-    .Call(`_spEDM_RcppGCCM4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, style, stack, dist_metric, dist_average, single_sig, dir, win_ratio, progressbar)
+RcppGCCM4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E = 3L, tau = 1L, b = 5L, simplex = TRUE, theta = 0, threads = 8L, parallel_level = 0L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, single_sig = TRUE, progressbar = FALSE, dir = as.integer( c(0)), win_ratio = as.numeric( c(0,0))) {
+    .Call(`_spEDM_RcppGCCM4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, style, stack, dist_metric, dist_average, single_sig, progressbar, dir, win_ratio)
 }
 
-RcppSCPCM4Grid <- function(xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex = TRUE, theta = 0, threads = 8L, parallel_level = 0L, cumulate = FALSE, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, single_sig = TRUE, dir = as.integer( c(0)), win_ratio = as.numeric( c(0,0)), progressbar = FALSE) {
-    .Call(`_spEDM_RcppSCPCM4Grid`, xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, cumulate, style, stack, dist_metric, dist_average, single_sig, dir, win_ratio, progressbar)
+RcppSCPCM4Grid <- function(xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex = TRUE, theta = 0, threads = 8L, parallel_level = 0L, cumulate = FALSE, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, single_sig = TRUE, progressbar = FALSE, dir = as.integer( c(0)), win_ratio = as.numeric( c(0,0))) {
+    .Call(`_spEDM_RcppSCPCM4Grid`, xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, cumulate, style, stack, dist_metric, dist_average, single_sig, progressbar, dir, win_ratio)
 }
 
-RcppGCMC4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b = 4L, r = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L, progressbar = FALSE) {
-    .Call(`_spEDM_RcppGCMC4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, progressbar)
+RcppGCMC4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b = 4L, r = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L, progressbar = FALSE, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppGCMC4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, progressbar, dir)
 }
 
-RcppGPC4Grid <- function(xMatrix, yMatrix, lib, pred, E, tau, style = 1L, b = 4L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L) {
-    .Call(`_spEDM_RcppGPC4Grid`, xMatrix, yMatrix, lib, pred, E, tau, style, b, zero_tolerance, dist_metric, relative, weighted, threads)
+RcppGPC4Grid <- function(xMatrix, yMatrix, lib, pred, E, tau, style = 1L, b = 4L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppGPC4Grid`, xMatrix, yMatrix, lib, pred, E, tau, style, b, zero_tolerance, dist_metric, relative, weighted, threads, dir)
 }
 
-RcppGPCRobust4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, style = 1L, b = 4L, boot = 99L, replace_sampling = FALSE, seed = 42L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L, parallel_level = 0L, progressbar = FALSE) {
-    .Call(`_spEDM_RcppGPCRobust4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, style, b, boot, replace_sampling, seed, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, progressbar)
+RcppGPCRobust4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, style = 1L, b = 4L, boot = 99L, replace_sampling = FALSE, seed = 42L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L, parallel_level = 0L, progressbar = FALSE, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppGPCRobust4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, style, b, boot, replace_sampling, seed, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, progressbar, dir)
 }
 
-RcppSGCSingle4Grid <- function(x, y, lib, pred, k, base = 2, symbolize = TRUE, normalize = FALSE) {
-    .Call(`_spEDM_RcppSGCSingle4Grid`, x, y, lib, pred, k, base, symbolize, normalize)
+RcppSGCSingle4Grid <- function(x, y, dir, lib, pred, k, base = 2, symbolize = TRUE, normalize = FALSE) {
+    .Call(`_spEDM_RcppSGCSingle4Grid`, x, y, dir, lib, pred, k, base, symbolize, normalize)
 }
 
-RcppSGC4Grid <- function(x, y, lib, pred, block, k, threads = 8L, boot = 399L, base = 2, seed = 42L, symbolize = TRUE, normalize = FALSE, progressbar = TRUE) {
-    .Call(`_spEDM_RcppSGC4Grid`, x, y, lib, pred, block, k, threads, boot, base, seed, symbolize, normalize, progressbar)
+RcppSGC4Grid <- function(x, y, dir, lib, pred, block, k, threads = 8L, boot = 399L, base = 2, seed = 42L, symbolize = TRUE, normalize = FALSE, progressbar = TRUE) {
+    .Call(`_spEDM_RcppSGC4Grid`, x, y, dir, lib, pred, block, k, threads, boot, base, seed, symbolize, normalize, progressbar)
 }
 
 RcppLaggedNeighbor4Lattice <- function(nb, lagNum = 1L) {

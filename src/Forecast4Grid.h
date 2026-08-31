@@ -32,6 +32,7 @@
  *   - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean). Default is 2 (Euclidean).
  *   - dist_average: Whether to average distance by the number of valid vector components. Default is true.
  *   - threads: Number of threads used from the global pool. Default is 8.
+ *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   A 2D vector where each row contains [E, b, tau, rho, mae, rmse] for a given embedding dimension.
@@ -46,7 +47,8 @@ std::vector<std::vector<double>> Simplex4Grid(const std::vector<std::vector<doub
                                               int style = 1,
                                               int dist_metric = 2,
                                               bool dist_average = true,
-                                              int threads = 8);
+                                              int threads = 8,
+                                              const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different combinations of embedding dimensions, number of nearest neighbors and
@@ -62,8 +64,8 @@ std::vector<std::vector<double>> Simplex4GridCom(const std::vector<std::vector<d
                                                  int style = 1,
                                                  int dist_metric = 2,
                                                  bool dist_average = true,
-                                                 const std::vector<int>& dir = {0},
-                                                 int threads = 8);
+                                                 int threads = 8,
+                                                 const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different theta parameters for grid data
@@ -82,6 +84,7 @@ std::vector<std::vector<double>> Simplex4GridCom(const std::vector<std::vector<d
  *   - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean). Default is 2 (Euclidean).
  *   - dist_average: Whether to average distance by the number of valid vector components. Default is true.
  *   - threads: Number of threads used from the global pool. Default is 8.
+ *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   A 2D vector where each row contains [theta, rho, mae, rmse] for a given theta value.
@@ -97,7 +100,8 @@ std::vector<std::vector<double>> SMap4Grid(const std::vector<std::vector<double>
                                            int style = 1,
                                            int dist_metric = 2,
                                            bool dist_average = true,
-                                           int threads = 8);
+                                           int threads = 8,
+                                           const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different theta parameters for grid data
@@ -114,8 +118,8 @@ std::vector<std::vector<double>> SMap4GridCom(const std::vector<std::vector<doub
                                               int style = 1,
                                               int dist_metric = 2,
                                               bool dist_average = true,
-                                              const std::vector<int>& dir = {0},
-                                              int threads = 8);
+                                              int threads = 8,
+                                              const std::vector<int>& dir = {0});
 
 /**
  * @brief Evaluate intersectional cardinality (IC) for spatial grid data.
@@ -145,6 +149,7 @@ std::vector<std::vector<double>> SMap4GridCom(const std::vector<std::vector<doub
  * @param dist_metric Distance metric selector (1: Manhattan, 2: Euclidean).
  * @param threads Maximum number of threads to use.
  * @param parallel_level If > 0, enables parallel evaluation of b for each E.
+ * @param dir Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * @return A matrix of size (|E| × |b| × |tau|) × 5 with rows: [E, b, tau, AUC, P-value]
  */
@@ -159,7 +164,8 @@ std::vector<std::vector<double>> IC4Grid(const std::vector<std::vector<double>>&
                                          int style = 1,
                                          int dist_metric = 2,
                                          int threads = 8,
-                                         int parallel_level = 0);
+                                         int parallel_level = 0,
+                                         const std::vector<int>& dir = {0});
 
 /**
  * @brief Search for optimal embedding parameters in geographical pattern causality analysis on regular grids.
@@ -218,6 +224,9 @@ std::vector<std::vector<double>> IC4Grid(const std::vector<std::vector<double>>&
  * @param parallel_level
  *   Controls the parallel level of computation.
  *
+ * @param dir
+ *   Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
+ *
  * @return
  *   A 2D matrix where each row corresponds to one (E, b, tau) parameter triplet:
  *
@@ -244,6 +253,7 @@ std::vector<std::vector<double>> PC4Grid(const std::vector<std::vector<double>>&
                                          bool relative = true,
                                          bool weighted = true,
                                          int threads = 8,
-                                         int parallel_level = 0);
+                                         int parallel_level = 0,
+                                         const std::vector<int>& dir = {0});
 
 #endif // Forecast4Grid_H

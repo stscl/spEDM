@@ -40,6 +40,7 @@
  *
  * @param x         2D grid (matrix) representing variable X.
  * @param y         2D grid (matrix) representing variable Y.
+ * @param dir       Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param lib       A vector of pairs representing the indices (row, column) of spatial units to be the library.
  * @param pred      A vector of pairs representing the indices (row, column) of spatial units to be predicted.
  * @param k         Embedding neighborhood radius (e.g., k = 1 means 3×3 window).
@@ -54,6 +55,7 @@
 std::vector<double> SGCSingle4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     size_t k,
@@ -87,6 +89,7 @@ std::vector<double> SGCSingle4Grid(
  *
  * @param x           2D grid (matrix) of variable X.
  * @param y           2D grid (matrix) of variable Y, same size as x.
+ * @param dir         Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param lib         A vector of pairs representing the indices (row, column) of spatial units to be the library.
  * @param pred        A vector of pairs representing the indices (row, column) of spatial units to be predicted.
  * @param block       Vector assigning each grid cell to a spatial block for bootstrapping.
@@ -108,6 +111,7 @@ std::vector<double> SGCSingle4Grid(
 std::vector<double> SGC4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     const std::vector<int>& block,

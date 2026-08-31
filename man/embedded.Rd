@@ -4,7 +4,7 @@
 \alias{embedded}
 \alias{embedded,sf-method}
 \alias{embedded,SpatRaster-method}
-\title{embedding spatial cross sectional data}
+\title{spatial-lag embedding}
 \usage{
 \S4method{embedded}{sf}(
   data,
@@ -54,7 +54,7 @@
 A matrix (when \code{stack} is \code{FALSE}) or list
 }
 \description{
-embedding spatial cross sectional data
+spatial-lag embedding
 }
 \examples{
 columbus = sf::read_sf(system.file("case/columbus.gpkg",package="spEDM"))

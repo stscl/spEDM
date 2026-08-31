@@ -14,14 +14,14 @@
                                 detrend = FALSE, grid.coord = TRUE, embed.direction = 0){
   mat = .uni_grid(data,target,detrend,grid.coord)
   if (!stack) {
-    res = RcppGenGridEmbeddings(mat,E,tau,style)
+    res = RcppGenGridEmbeddings(mat,E,tau,style,embed.direction)
   } else {
     res = RcppGenGridEmbeddingsCom(mat,E,tau,style,embed.direction)
   }
   return(res)
 }
 
-#' embedding spatial cross sectional data
+#' spatial-lag embedding
 #'
 #' @param data observation data.
 #' @param target name of target variable.

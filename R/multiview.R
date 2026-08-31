@@ -11,15 +11,15 @@
   return(res)
 }
 
-.multiview_spatraster_method = \(data, column, target, nvar, E = 3, k = E+2, tau = 1, style = 1, stack = FALSE, lib = NULL, pred = NULL,
-                                 dist.metric = "L2", dist.average = TRUE, top = NULL, threads = detectThreads(), detrend = TRUE, grid.coord = TRUE){
+.multiview_spatraster_method = \(data, column, target, nvar, E = 3, k = E+2, tau = 1, style = 1, stack = FALSE, lib = NULL, pred = NULL, dist.metric = "L2", 
+                                 dist.average = TRUE, top = NULL, threads = detectThreads(), detrend = TRUE, grid.coord = TRUE, embed.direction = 0){
   xmat = .multivar_grid(data,column,detrend,grid.coord)
   ymat = .multivar_grid(data,target,detrend,grid.coord)
   if (is.null(lib)) lib = .internal_library(cbind(xmat,ymat),TRUE)
   if (is.null(pred)) pred = lib
   if (is.null(top)) top = 0
   res = RcppMultiView4Grid(xmat, ymat, lib, pred, E, tau, k, top, nvar, style, stack,
-                           .check_distmetric(dist.metric), dist.average, threads)
+                           .check_distmetric(dist.metric), dist.average, threads, embed.direction)
   return(res)
 }
 
