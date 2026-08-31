@@ -91,7 +91,8 @@
 <span>  detrend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  normalize <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  progressbar <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  grid.coord <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  grid.coord <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  embed.direction <span class="op">=</span> <span class="fl">0</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -132,11 +133,11 @@
 
 
 <dt id="arg-lib">lib<a class="anchor" aria-label="anchor" href="#arg-lib"></a></dt>
-<dd><p>(optional) libraries indices (input needed: <code>vector</code> - spatial vector, <code>matrix</code> - spatial raster).</p></dd>
+<dd><p>(optional) libraries indices (input requirement same as <code>libsizes</code>).</p></dd>
 
 
 <dt id="arg-pred">pred<a class="anchor" aria-label="anchor" href="#arg-pred"></a></dt>
-<dd><p>(optional) predictions indices (input requirement same as <code>lib</code>).</p></dd>
+<dd><p>(optional) predictions indices (input requirement same as <code>libsizes</code>).</p></dd>
 
 
 <dt id="arg-threads">threads<a class="anchor" aria-label="anchor" href="#arg-threads"></a></dt>
@@ -161,6 +162,10 @@
 
 <dt id="arg-grid-coord">grid.coord<a class="anchor" aria-label="anchor" href="#arg-grid-coord"></a></dt>
 <dd><p>(optional) whether to detrend using cell center coordinates (<code>TRUE</code>) or row/column numbers (<code>FALSE</code>).</p></dd>
+
+
+<dt id="arg-embed-direction">embed.direction<a class="anchor" aria-label="anchor" href="#arg-embed-direction"></a></dt>
+<dd><p>(optional) direction selector for embeddings (<code>0</code> returns all directions, <code>1-8</code> correspond to NW, N, NE, W, E, SW, S, SE).</p></dd>
 
 </dl></div>
     <div class="section level2">

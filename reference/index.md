@@ -6,7 +6,7 @@
 
 - [`embedded(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/embedded.md)
   [`embedded(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/embedded.md)
-  : embedding spatial cross sectional data
+  : spatial-lag embedding
 - [`fnn(`*`<sf>`*`)`](https://stscl.github.io/spEDM/reference/fnn.md)
   [`fnn(`*`<SpatRaster>`*`)`](https://stscl.github.io/spEDM/reference/fnn.md)
   : false nearest neighbours

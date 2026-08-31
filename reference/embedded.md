@@ -1,6 +1,6 @@
-# embedding spatial cross sectional data
+# spatial-lag embedding
 
-embedding spatial cross sectional data
+spatial-lag embedding
 
 ## Usage
 

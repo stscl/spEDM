@@ -18,6 +18,11 @@
   console output modification
   ([\#999](https://github.com/stscl/spEDM/issues/999)).
 
+#### breaking changes
+
+- Extend anisotropic spatial-lag embedding to fully support spatial
+  raster data ([\#1012](https://github.com/stscl/spEDM/issues/1012)).
+
 #### bug fixes
 
 - Fix incorrect auto-filling of default `E`, `tau`, `k` parameters in

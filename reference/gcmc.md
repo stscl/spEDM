@@ -44,7 +44,8 @@ gcmc(
   parallel.level = "low",
   bidirectional = TRUE,
   progressbar = TRUE,
-  grid.coord = TRUE
+  grid.coord = TRUE,
+  embed.direction = 0
 )
 ```
 
@@ -124,6 +125,11 @@ gcmc(
 
   (optional) whether to detrend using cell center coordinates (`TRUE`)
   or row/column numbers (`FALSE`).
+
+- embed.direction:
+
+  (optional) direction selector for embeddings (`0` returns all
+  directions, `1-8` correspond to NW, N, NE, W, E, SW, S, SE).
 
 ## Value
 
