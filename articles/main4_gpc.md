@@ -96,9 +96,9 @@ series or spatial cross-sectional data.
 ``` r
 
 spEDM::fnn(columbus, "crime", E = 1:10, eps = stats::sd(columbus$crime))
-## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
-## [spEDM] Input E values exceeding max embeddable dimension were truncated.
-## [spEDM] Please map output indices to original E inputs before interpretation.
+## [fnn] Input E values exceeding max embeddable dimension were truncated, and values < 2 were clamped to 2.
+## [fnn] Max embedding dimension E_max is auto-computed, with results returned for dimensions 1 through E_max.
+## [fnn] Output 'E:i' (where i = 1 to E_max-1) corresponds to the comparison between dimension i and i+1.
 ##        E:1        E:2        E:3        E:4        E:5        E:6        E:7 
 ## 0.59183673 0.04081633 0.04081633 0.10204082 0.00000000 0.00000000 0.00000000 
 ##        E:8 
@@ -130,7 +130,7 @@ stats::cor.test(columbus$hoval,columbus$crime)
 
 # since the correlation is -0.574, negative causality is selected as the metric to maximize in the optimal parameter search
 spEDM::pc(columbus, "crime", "hoval", E = 5:9, k = 7:10, tau = 1, maximize = "negative")
-## The suggested E,k,tau for variable hoval is 7, 9 and 1
+## The suggested E,k,tau for variable crime is 7, 9 and 1
 ```
 
 Run geographical pattern causality analysis
@@ -443,9 +443,9 @@ Determining minimal embedding dimension:
 
 spEDM::fnn(npp, "npp", E = 1:15,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
-## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
-## [spEDM] Input E values exceeding max embeddable dimension were truncated.
-## [spEDM] Please map output indices to original E inputs before interpretation.
+## [fnn] Input E values exceeding max embeddable dimension were truncated, and values < 2 were clamped to 2.
+## [fnn] Max embedding dimension E_max is auto-computed, with results returned for dimensions 1 through E_max.
+## [fnn] Output 'E:i' (where i = 1 to E_max-1) corresponds to the comparison between dimension i and i+1.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
 ## 0.9813070569 0.5309427415 0.1322254335 0.0167630058 0.0017341040 0.0000000000 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 
@@ -480,7 +480,7 @@ stats::cor.test(~ pre + npp,
 
 g1 = spEDM::pc(npp, "pre", "npp", E = 6:10, k = 7:12, tau = 1:5, maximize = "positive")
 g1
-## The suggested E,k,tau for variable npp is 6, 9 and 5
+## The suggested E,k,tau for variable pre is 6, 9 and 5
 ```
 
 Run geographical pattern causality analysis

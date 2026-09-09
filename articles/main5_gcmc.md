@@ -88,30 +88,30 @@ minimizes false neighbours is considered optimal.
 
 ``` r
 
-spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
-## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
-## [spEDM] Input E values exceeding max embeddable dimension were truncated.
-## [spEDM] Please map output indices to original E inputs before interpretation.
+spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd), nb = popd_nb)
+## [fnn] Input E values exceeding max embeddable dimension were truncated, and values < 2 were clamped to 2.
+## [fnn] Max embedding dimension E_max is auto-computed, with results returned for dimensions 1 through E_max.
+## [fnn] Output 'E:i' (where i = 1 to E_max-1) corresponds to the comparison between dimension i and i+1.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
-## 0.9643620813 0.5516749822 0.1813970064 0.0548823949 0.0138987883 0.0035637919 
+## 0.9736091298 0.5392017106 0.1503920171 0.0299358517 0.0053456878 0.0003563792 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 
-## 0.0017818959 0.0010691376 0.0035637919 0.0021382751 0.0010691376 0.0010691376 
+## 0.0000000000 0.0003563792 0.0000000000 0.0000000000 0.0000000000 0.0000000000 
 ##         E:13         E:14 
-## 0.0014255167 0.0007127584
+## 0.0000000000 0.0000000000
 ```
 
-The false nearest neighbours (FNN) ratio decreased to approximately
-\\0.001\\ when the embedding dimension E reached \\11\\, and remained
-relatively stable thereafter. Therefore, we adopted \\E = 11\\ as the
-embedding dimension for subsequent GCMC analysis.
+The false nearest neighbours (FNN) ratio decreased to \\0\\ when the
+embedding dimension E reached \\9\\, and remained relatively stable
+thereafter. Therefore, we adopted \\E = 9\\ as the embedding dimension
+for subsequent GCMC analysis.
 
 Adopt an empirical k value derived from the square root of the product
 of embedding dimension and number of prediction samples:
 
 ``` r
 
-ceiling(sqrt(11 * nrow(popd_sf)))
-## [1] 176
+ceiling(sqrt(9 * nrow(popd_sf)))
+## [1] 159
 ```
 
 Then, run GCMC:
@@ -119,22 +119,22 @@ Then, run GCMC:
 ``` r
 
 # temperature and population density
-g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g1
-##   neighbors tem->popd  popd->tem
-## 1       176   0.58668 0.07818957
+##   neighbors tem->popd popd->tem
+## 1       159 0.6536134 0.1404612
 
 # elevation and population density
-g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g2
 ##   neighbors elev->popd popd->elev
-## 1       176  0.2730178 0.07644628
+## 1       159  0.3243147  0.1162929
 
 # elevation and temperature
-g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g3
 ##   neighbors elev->tem tem->elev
-## 1       176 0.2188468 0.4734956
+## 1       159 0.2696887 0.5324156
 ```
 
 Here we define two functions to process the results and plot the causal
@@ -209,13 +209,13 @@ res1 = list(g1,g2,g3) |>
   purrr::map(.process_xmap_result) |>
   purrr::list_rbind()
 res1
-##   cause effect         cs           sig
-## 1   tem   popd 0.58668001  1.102583e-02
-## 2  popd    tem 0.07818957 2.817486e-119
-## 3  elev   popd 0.27301782  3.996458e-13
-## 4  popd   elev 0.07644628 1.466165e-125
-## 5  elev    tem 0.21884685  6.996949e-22
-## 6   tem   elev 0.47349561  4.541299e-01
+##   cause effect        cs          sig
+## 1   tem   popd 0.6536134 1.293144e-05
+## 2  popd    tem 0.1404612 1.125569e-46
+## 3  elev   popd 0.3243147 4.915215e-07
+## 4  popd   elev 0.1162929 4.885073e-66
+## 5  elev    tem 0.2696887 6.040539e-12
+## 6   tem   elev 0.5324156 3.891521e-01
 ```
 
 Visualize the result:
@@ -277,9 +277,9 @@ Determining optimal embedding dimension:
 
 spEDM::fnn(npp, "npp", E = 1:25,
            eps = stats::sd(terra::values(npp[["npp"]]),na.rm = TRUE))
-## [spEDM] Output 'E:i' corresponds to the i-th valid embedding dimension.
-## [spEDM] Input E values exceeding max embeddable dimension were truncated.
-## [spEDM] Please map output indices to original E inputs before interpretation.
+## [fnn] Input E values exceeding max embeddable dimension were truncated, and values < 2 were clamped to 2.
+## [fnn] Max embedding dimension E_max is auto-computed, with results returned for dimensions 1 through E_max.
+## [fnn] Output 'E:i' (where i = 1 to E_max-1) corresponds to the comparison between dimension i and i+1.
 ##          E:1          E:2          E:3          E:4          E:5          E:6 
 ## 0.9714842798 0.4732490272 0.0926556420 0.0043774319 0.0000000000 0.0000000000 
 ##          E:7          E:8          E:9         E:10         E:11         E:12 
