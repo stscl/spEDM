@@ -2,7 +2,7 @@
 title: "Geographical Pattern Causality"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-04-03
+  | Last update: 2026-09-10
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >

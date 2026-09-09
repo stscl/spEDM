@@ -2,7 +2,7 @@
 title: "Spatially Convergent Partial Cross Mapping"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-02-15
+  | Last update: 2026-09-10
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >
@@ -93,13 +93,13 @@ if (!requireNamespace("MASS")) install.packages("MASS")
 sim_trispecies = \(nx,ny,seed = 123){
   grid = expand.grid(seq(0, 10, length.out = nx),
                      seq(0, 10, length.out = ny))
-  cov.fun = \(d, range = 1.5, sill=1) sill * exp(-d/range)
+  cov.fun = \(d, range = 1.5, sill = 1) sill * exp(-d/range)
   dist.mat = fields::rdist(grid)
-  cov.mat = cov.fun(dist.mat, range=1.5, sill=1)
+  cov.mat = cov.fun(dist.mat, range = 1.5, sill = 1)
   set.seed(seed)
   res = replicate(3, {
     MASS::mvrnorm(1, rep(0, nrow(grid)), cov.mat) |>
-      pmax(0) |>
+      #pmax(0) |>
       sdsfun::normalize_vector(0,1) |>
       matrix(nrow = nx, ncol = ny) |>
       terra::rast()
@@ -112,10 +112,10 @@ names(species) = c("x","y","z")
 
 sim = spEDM::slm(species, x = "x", y = "y", z = "z", k = 4,
                  step = 15, transient = 1, threshold = Inf,
-                 aggregate_fn = \(.x) mean(.x, na.rm = TRUE),
-                 alpha_x = 0.05, alpha_y = 0.05, alpha_z = 0.05,
-                 beta_xy = 1, beta_xz = 0, beta_yx = 0, beta_yz = 1,
-                 beta_zx = 1, beta_zy = 0)
+                 aggregate_fn = \(.x) .x[length(.x)],
+                 alpha_x = 0.75, alpha_y = 0.78, alpha_z = 0.76,
+                 beta_xy = 0.35, beta_xz = 0, beta_yx = 0, beta_yz = 0.35,
+                 beta_zx = 0.35, beta_zy = 0)
 
 terra::values(species[["x"]]) = sim$x
 terra::values(species[["y"]]) = sim$y
@@ -134,31 +134,16 @@ spEDM::fnn(species, "z")
 Self prediction for parameter turning:
 
 ```{r simplex_grid}
-s1 = spEDM::simplex(species, "x", "x", E = 5:10, k = 15, tau = 1)
-s2 = spEDM::simplex(species, "y", "y", E = 5:10, k = 15, tau = 1)
-s3 = spEDM::simplex(species, "z", "z", E = 5:10, k = 15, tau = 1)
+s1 = spEDM::simplex(species, "x", "x", E = 4:10, k = 12, tau = 1)
+s2 = spEDM::simplex(species, "y", "y", E = 4:10, k = 12, tau = 1)
+s3 = spEDM::simplex(species, "z", "z", E = 4:10, k = 12, tau = 1)
 list(s1,s2,s3)
 ```
-
-Due to the statistical aggregation performed after simulating with the spatial logistic map, we adopt a uniform embedding dimension for x, y, and z to reduce inference bias:
-
-``` {r fig2,fig.width=3.55,fig.height=2.85,fig.dpi=100,fig.cap=knitr::asis_output("**Figure 2**. Self cross prediction skills for three variables.")}
-if (!requireNamespace("purrr")) install.packages("purrr")
-simplex_res = purrr::map2_dfr(list(s1,s2,s3), c("x","y","z"),
-                              \(.list,.name) dplyr::mutate(.list$xmap,variable = .name))
-ggplot2::ggplot(data = simplex_res) +
-  ggplot2::geom_line(ggplot2::aes(x = E, y = rho, color = variable)) +
-  ggplot2::theme_classic()
-```
-
-<br>
-
-Since the self-prediction performance of the y variable is relatively weaker than that of x and z, we select the embedding dimension that yields the strongest predictive performance for y as the final dimension, that is $E = 9$.
 
 Investigate the causation between x and z, with y as control variables:
 
 ```{r scpcm_grid}
-xz = spEDM::scpcm(species, "x", "z", "y", E = 9, k = 15,
+xz = spEDM::scpcm(species, "x", "z", "y", E = 4, k = 12,
                   libsizes = matrix(seq(50,400,50), ncol = 1),
                   progressbar = FALSE)
 xz
@@ -166,9 +151,9 @@ xz
 
 Visualize the result:
 
-```{r fig3,fig.width=5.55,fig.height=2.95,fig.dpi=100,fig.cap=knitr::asis_output("**Figure 3**. The cross mapping between x and z. **a** x–z causality without accounting for y. **b** x–z causality controlling for y.")}
-fig2a = plot(xz,partial = FALSE,ylimits = c(0.05,0.65))
-fig2b = plot(xz,partial = TRUE,ylimits = c(0.05,0.65))
+```{r fig2,fig.width=5.55,fig.height=2.75,fig.dpi=100,fig.cap=knitr::asis_output("**Figure 2**. The cross mapping between x and z. **a** x–z causality without accounting for y. **b** x–z causality controlling for y.")}
+fig2a = plot(xz,partial = FALSE,ylimits = c(0.6,0.95))
+fig2b = plot(xz,partial = TRUE,ylimits = c(0.45,0.95))
 fig2 = cowplot::plot_grid(fig2a,fig2b,ncol = 2,label_fontfamily = 'serif',
                           labels = paste0('(',letters[1:2],')'))
 fig2

@@ -2,7 +2,7 @@
 title: "Introduction to the spEDM package"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-06-17
+  | Last update: 2026-09-10
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >
