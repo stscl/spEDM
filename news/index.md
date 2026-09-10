@@ -2,6 +2,8 @@
 
 ## spEDM 1.13
 
+CRAN release: 2026-09-09
+
 #### enhancements
 
 - Use queen contiguity to construct default `nb` when required but not
