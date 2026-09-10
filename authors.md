@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/stscl/spEDM/blob/v1.13/inst/CITATION)
+[`inst/CITATION`](https://github.com/stscl/spEDM/blob/main/inst/CITATION)
 
 Lyu, W., Dai, S., Song, Y., Zhao, W., Yi, W., Xiao, Y., Jia, N., 2026.
 Measuring causal strengths from spatial cross-sectional data with
