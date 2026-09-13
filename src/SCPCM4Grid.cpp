@@ -1447,7 +1447,7 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
   std::vector<std::vector<double>> Emb2D;
   std::vector<std::vector<std::vector<double>>> Emb3D;
   if (stack == 0){
-    Emb2D = GenGridEmbeddings(xMatrix, Ex, taux, style);
+    Emb2D = GenGridEmbeddings(xMatrix, Ex, taux, style, dir);
   } else {
     Emb3D = GenGridEmbeddingsCom(xMatrix, Ex, taux, style, dir);
   }
@@ -1503,7 +1503,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
             cumulate,
             style,
             dist_metric,
-            dist_average
+            dist_average,
+            dir
           );
         } else {
           local_results[i] = SCPCMSingle4GridOneDim(
@@ -1553,7 +1554,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
             cumulate,
             style,
             dist_metric,
-            dist_average
+            dist_average,
+            dir
           );
         } else {
           local_results[i] = SCPCMSingle4GridOneDim(
@@ -1607,7 +1609,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
             cumulate,
             style,
             dist_metric,
-            dist_average
+            dist_average,
+            dir
           );
         } else {
           local_results[i] = SCPCMSingle4GridOneDim(
@@ -1658,7 +1661,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
             cumulate,
             style,
             dist_metric,
-            dist_average
+            dist_average,
+            dir
           );
         } else {
           local_results[i] = SCPCMSingle4GridOneDim(
