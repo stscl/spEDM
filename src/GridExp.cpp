@@ -736,6 +736,7 @@ Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
+      dir_std,
       threads);
   } else {
     res_std = Simplex4GridCom(
@@ -890,6 +891,7 @@ Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
+      dir_std,
       threads);
   } else {
     res_std = SMap4GridCom(
