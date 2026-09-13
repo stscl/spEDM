@@ -109,8 +109,8 @@ RcppSMap4Grid <- function(source, target, lib, pred, theta, E = 3L, tau = 1L, b 
     .Call(`_spEDM_RcppSMap4Grid`, source, target, lib, pred, theta, E, tau, b, style, stack, dist_metric, dist_average, dir, threads)
 }
 
-RcppMultiView4Grid <- function(xMatrix, yMatrix, lib, pred, E = 3L, tau = 1L, b = 5L, top = 5L, nvar = 3L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, threads = 8L) {
-    .Call(`_spEDM_RcppMultiView4Grid`, xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, threads)
+RcppMultiView4Grid <- function(xMatrix, yMatrix, lib, pred, E = 3L, tau = 1L, b = 5L, top = 5L, nvar = 3L, style = 1L, stack = 0L, dist_metric = 2L, dist_average = TRUE, dir = as.integer( c(0)), threads = 8L) {
+    .Call(`_spEDM_RcppMultiView4Grid`, xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, dir, threads)
 }
 
 RcppIC4Grid <- function(source, target, lib, pred, E, b, tau, exclude = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L) {
