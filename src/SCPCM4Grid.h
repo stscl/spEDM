@@ -58,7 +58,8 @@ std::vector<double> PartialSimplex4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 );
 
 /**
@@ -125,7 +126,8 @@ std::vector<double> PartialSMap4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 );
 
 /**
@@ -202,6 +204,7 @@ std::vector<PartialCorRes> SCPCMSingle4Grid(
     int style,
     int dist_metric,
     bool dist_average,
+    const std::vector<int>& dir = {0},
     const std::vector<double>& win_ratios = {0,0}
 );
 
@@ -279,7 +282,8 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
     bool cumulate,
     int style,
     int dist_metric,
-    bool dist_average
+    bool dist_average,
+    const std::vector<int>& dir = {0}
 );
 
 // Perform Grid-based Spatially Convergent Partial Cross Mapping (SCPCM) for a single library size (composite embeddings version).
