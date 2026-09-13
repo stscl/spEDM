@@ -52,7 +52,8 @@ std::vector<double> PartialSimplex4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 ){
   int n_controls = controls.size();
   std::vector<double> rho(2,std::numeric_limits<double>::quiet_NaN());
@@ -69,7 +70,7 @@ std::vector<double> PartialSimplex4Grid(
         temp_pred = SimplexProjectionPrediction(temp_embedding, controls[i], lib_indices, pred_indices, num_neighbors[i], dist_metric, dist_average);
       }
       temp_conmat = GridVec2Mat(temp_pred,nrow);
-      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style);
+      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,dir);
     }
 
     std::vector<double> con_pred = SimplexProjectionPrediction(temp_embedding, target, lib_indices, pred_indices, num_neighbors[n_controls], dist_metric, dist_average);
@@ -88,7 +89,7 @@ std::vector<double> PartialSimplex4Grid(
     for (int i = 0; i < n_controls; ++i) {
       temp_pred = SimplexProjectionPrediction(vectors, controls[i], lib_indices, pred_indices, num_neighbors[0], dist_metric, dist_average);
       temp_conmat = GridVec2Mat(temp_pred,nrow);
-      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style);
+      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,grid);
       temp_pred = SimplexProjectionPrediction(temp_embedding, target, lib_indices, pred_indices, num_neighbors[i+1], dist_metric, dist_average);
       con_pred[i] = temp_pred;
     }
@@ -215,7 +216,8 @@ std::vector<double> PartialSMap4Grid(
     bool cumulate = false,
     int style = 1,
     int dist_metric = 2,
-    bool dist_average = true
+    bool dist_average = true,
+    const std::vector<int>& dir = {0}
 ){
   int n_controls = controls.size();
   std::vector<double> rho(2,std::numeric_limits<double>::quiet_NaN());
@@ -232,7 +234,7 @@ std::vector<double> PartialSMap4Grid(
         temp_pred = SMapPrediction(temp_embedding, controls[i], lib_indices, pred_indices, num_neighbors[i], theta, dist_metric, dist_average);
       }
       temp_conmat = GridVec2Mat(temp_pred,nrow);
-      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style);
+      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,dir);
     }
 
     std::vector<double> con_pred = SMapPrediction(temp_embedding, target, lib_indices, pred_indices, num_neighbors[n_controls], theta, dist_metric, dist_average);
@@ -251,7 +253,7 @@ std::vector<double> PartialSMap4Grid(
     for (int i = 0; i < n_controls; ++i) {
       temp_pred = SMapPrediction(vectors, controls[i], lib_indices, pred_indices, num_neighbors[0], theta, dist_metric, dist_average);
       temp_conmat = GridVec2Mat(temp_pred,nrow);
-      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style);
+      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,dir);
       temp_pred = SMapPrediction(temp_embedding, target, lib_indices, pred_indices, num_neighbors[i+1], theta, dist_metric, dist_average);
       con_pred[i] = temp_pred;
     }
@@ -388,6 +390,7 @@ std::vector<PartialCorRes> SCPCMSingle4Grid(
     int style,
     int dist_metric,
     bool dist_average,
+    const std::vector<int>& dir = {0},
     const std::vector<double>& win_ratios = {0,0}
 ) {
   // Extract row-wise and column-wise library sizes
@@ -446,9 +449,9 @@ std::vector<PartialCorRes> SCPCMSingle4Grid(
 
     // Run partial cross map and store results
     if (simplex) {
-      rho = PartialSimplex4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average);
+      rho = PartialSimplex4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average, dir);
     } else {
-      rho = PartialSMap4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average);
+      rho = PartialSMap4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average, dir);
     }
 
     // Directly assign a PartialCorRes struct with the three values
@@ -617,7 +620,8 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
     bool cumulate,
     int style,
     int dist_metric,
-    bool dist_average
+    bool dist_average,
+    const std::vector<int>& dir = {0}
 ) {
   int max_lib_size = lib_indices.size();
 
@@ -627,9 +631,9 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
     std::vector<double> rho(2, std::numeric_limits<double>::quiet_NaN());
     // Run partial cross map and store results
     if (simplex) {
-      rho = PartialSimplex4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average);
+      rho = PartialSimplex4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average, dir);
     } else {
-      rho = PartialSMap4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average);
+      rho = PartialSMap4Grid(xEmbedings, yPred, controls, lib_indices, pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average, dir);
     }
 
     x_xmap_y.emplace_back(lib_size, rho[0], rho[1]);
@@ -664,9 +668,9 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
       std::vector<double> rho(2, std::numeric_limits<double>::quiet_NaN());
       // Run partial cross map and store results
       if (simplex) {
-        rho = PartialSimplex4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average);
+        rho = PartialSimplex4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average, dir);
       } else {
-        rho = PartialSMap4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average);
+        rho = PartialSMap4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average, dir);
       }
       // Directly initialize a PartialCorRes struct with the three values
       PartialCorRes result(lib_size, rho[0], rho[1]);
@@ -704,9 +708,9 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
       std::vector<double> rho(2, std::numeric_limits<double>::quiet_NaN());
       // Run partial cross map and store results
       if (simplex) {
-        rho = PartialSimplex4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average);
+        rho = PartialSimplex4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, cumulate, style, dist_metric, dist_average, dir);
       } else {
-        rho = PartialSMap4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average);
+        rho = PartialSMap4Grid(xEmbedings, yPred, controls, valid_lib_indices[i], pred_indices, conEs, taus, b, totalRow, theta, cumulate, style, dist_metric, dist_average, dir);
       }
       // Directly initialize a PartialCorRes struct with the three values
       PartialCorRes result(lib_size, rho[0], rho[1]);
