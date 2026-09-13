@@ -544,7 +544,7 @@ std::vector<std::vector<double>> GCCM4Grid(
   std::vector<std::vector<double>> Emb2D;
   std::vector<std::vector<std::vector<double>>> Emb3D;
   if (stack == 0){
-    Emb2D = GenGridEmbeddings(xMatrix, E, tau, style);
+    Emb2D = GenGridEmbeddings(xMatrix, E, tau, style, dir);
   } else {
     Emb3D = GenGridEmbeddingsCom(xMatrix, E, tau, style, dir);
   }
@@ -934,7 +934,7 @@ std::vector<std::vector<double>> GCCM4GridOneDim(
   std::vector<std::vector<double>> Emb2D;
   std::vector<std::vector<std::vector<double>>> Emb3D;
   if (stack == 0){
-    Emb2D = GenGridEmbeddings(xMatrix, E, tau, style);
+    Emb2D = GenGridEmbeddings(xMatrix, E, tau, style, dir);
   } else {
     Emb3D = GenGridEmbeddingsCom(xMatrix, E, tau, style, dir);
   }
