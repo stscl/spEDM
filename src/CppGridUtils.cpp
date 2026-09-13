@@ -551,7 +551,7 @@ std::vector<std::vector<std::vector<double>>> GenGridEmbeddingsCom(
   if (tau == 0) {
     // tau = 0: lag steps are 0, 1, 2, ..., E-1
     for (int lagNum = 0; lagNum < E; ++lagNum) {
-      std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum);
+      std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum, dir);
 
       // Check if all elements in lagged_vals are NaN
       bool allNaN = true;
@@ -579,7 +579,7 @@ std::vector<std::vector<std::vector<double>>> GenGridEmbeddingsCom(
       // style == 0: include current state; lag steps: 0, τ, 2τ, ..., (E-1)τ
       for (int i = 0; i < E; ++i) {
         int lagNum = i * tau;
-        std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum);
+        std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum, dir);
 
         // Check if all elements in lagged_vals are NaN
         bool allNaN = true;
@@ -605,7 +605,7 @@ std::vector<std::vector<std::vector<double>>> GenGridEmbeddingsCom(
       // style != 0: exclude current state; lag steps: τ, 2τ, ..., Eτ
       for (int i = 1; i <= E; ++i) {
         int lagNum = i * tau;
-        std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum);
+        std::vector<std::vector<double>> lagged_vals = CppLaggedVal4Grid(mat, lagNum, dir);
 
         // Check if all elements in lagged_vals are NaN
         bool allNaN = true;
