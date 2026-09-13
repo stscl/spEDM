@@ -40,9 +40,8 @@ Rcpp::NumericVector RcppRowColFromGrid(int cellNum, int totalCol){
 
 // Wrapper function to calculate lagged values for spatial grid data
 // [[Rcpp::export(rng = false)]]
-Rcpp::NumericMatrix RcppLaggedVal4Grid(
-  const Rcpp::NumericMatrix& mat, int lagNum = 1,
-  const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
+Rcpp::NumericMatrix RcppLaggedVal4Grid(const Rcpp::NumericMatrix& mat, int lagNum = 1,
+                                       const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = mat.nrow();
   int numCols = mat.ncol();
@@ -93,7 +92,8 @@ Rcpp::NumericMatrix RcppLaggedVal4Grid(
 // Wrapper function to generate embeddings for spatial grid data
 // [[Rcpp::export(rng = false)]]
 Rcpp::NumericMatrix RcppGenGridEmbeddings(const Rcpp::NumericMatrix& mat,
-                                          int E = 3, int tau = 1, int style = 1) {
+                                          int E = 3, int tau = 1, int style = 1,
+                                          const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = mat.nrow();
   int numCols = mat.ncol();
@@ -105,8 +105,20 @@ Rcpp::NumericMatrix RcppGenGridEmbeddings(const Rcpp::NumericMatrix& mat,
     }
   }
 
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   // Call the GenGridEmbeddings function
-  std::vector<std::vector<double>> embeddings = GenGridEmbeddings(cppMat, E, tau, style);
+  std::vector<std::vector<double>> embeddings = GenGridEmbeddings(cppMat, E, tau, style, dir_std);
 
   // Convert std::vector<std::vector<double>> to Rcpp::NumericMatrix
   int rows = embeddings.size();
