@@ -65,8 +65,8 @@ RcppLaggedVal4Grid <- function(mat, lagNum = 1L, dir = as.integer( c(0))) {
     .Call(`_spEDM_RcppLaggedVal4Grid`, mat, lagNum, dir)
 }
 
-RcppGenGridEmbeddings <- function(mat, E = 3L, tau = 1L, style = 1L) {
-    .Call(`_spEDM_RcppGenGridEmbeddings`, mat, E, tau, style)
+RcppGenGridEmbeddings <- function(mat, E = 3L, tau = 1L, style = 1L, dir = as.integer( c(0))) {
+    .Call(`_spEDM_RcppGenGridEmbeddings`, mat, E, tau, style, dir)
 }
 
 RcppGenGridEmbeddingsCom <- function(mat, E = 3L, tau = 1L, style = 1L, dir = as.integer( c(0))) {
