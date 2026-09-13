@@ -943,6 +943,7 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
                                        int stack = 0,
                                        int dist_metric = 2,
                                        int dist_average = true,
+                                       const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
                                        int threads = 8){
   int numRows = yMatrix.nrow();
   int numCols = yMatrix.ncol();
@@ -1016,6 +1017,18 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
     }
   }
 
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   int num_row = xMatrix.nrow();
   int num_var = xMatrix.ncol();
 
@@ -1048,7 +1061,7 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
       std::vector<std::vector<double>> unimat = GridVec2Mat(univec,numRows);
 
       // Generate the embedding:
-      std::vector<std::vector<double>> vectors = GenGridEmbeddings(unimat,E,tau,style);
+      std::vector<std::vector<double>> vectors = GenGridEmbeddings(unimat,E,tau,style,dir_std);
 
       // Append columns from embedding into existing rows (column-wise stacking)
       for (int row = 0; row < num_row; ++row) {
@@ -1094,7 +1107,7 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
       std::vector<double> univec(num_row);
       for (int i = 0; i < num_row; ++i) univec[i] = xMatrix(i, 0);
       std::vector<std::vector<double>> unimat = GridVec2Mat(univec,numRows);
-      auto embedding = GenGridEmbeddingsCom(unimat, E, tau, style);
+      auto embedding = GenGridEmbeddingsCom(unimat, E, tau, style, dir_std);
 
       // Initialize stacked_vec with correct shape
       stacked_vec = std::move(embedding);
@@ -1108,7 +1121,7 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
       std::vector<std::vector<double>> unimat = GridVec2Mat(univec,numRows);
 
       // Get embedding for this variable
-      auto embedding = GenGridEmbeddingsCom(unimat, E, tau, style);
+      auto embedding = GenGridEmbeddingsCom(unimat, E, tau, style, dir_std);
 
       // Append each embedding block column-wise
       for (size_t j = 0; j < stacked_vec.size(); ++j) {
