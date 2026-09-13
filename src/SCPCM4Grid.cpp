@@ -89,7 +89,7 @@ std::vector<double> PartialSimplex4Grid(
     for (int i = 0; i < n_controls; ++i) {
       temp_pred = SimplexProjectionPrediction(vectors, controls[i], lib_indices, pred_indices, num_neighbors[0], dist_metric, dist_average);
       temp_conmat = GridVec2Mat(temp_pred,nrow);
-      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,grid);
+      temp_embedding = GenGridEmbeddings(temp_conmat,conEs[i],taus[i],style,dir);
       temp_pred = SimplexProjectionPrediction(temp_embedding, target, lib_indices, pred_indices, num_neighbors[i+1], dist_metric, dist_average);
       con_pred[i] = temp_pred;
     }
