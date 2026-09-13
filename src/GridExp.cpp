@@ -594,10 +594,10 @@ Rcpp::NumericVector RcppFNN4Grid(
 
   std::vector<double> fnn;
   if (stack == 0){
-    std::vector<std::vector<double>> embeddings = GenGridEmbeddings(cppMat, max_E, tau, style);
+    std::vector<std::vector<double>> embeddings = GenGridEmbeddings(cppMat, max_E, tau, style, dir_std);
     fnn = CppFNN(embeddings,lib_std,pred_std,rt_std,eps_std,L1norm,threads,parallel_level);
   } else {
-    std::vector<std::vector<std::vector<double>>> embeddings = GenGridEmbeddingsCom(cppMat, max_E, tau, style);
+    std::vector<std::vector<std::vector<double>>> embeddings = GenGridEmbeddingsCom(cppMat, max_E, tau, style, dir_std);
     fnn = CppFNN(embeddings,lib_std,pred_std,rt_std,eps_std,L1norm,threads,parallel_level);
   }
 
