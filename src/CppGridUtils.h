@@ -72,24 +72,39 @@ std::vector<std::vector<double>> GridVec2Mat(const std::vector<double>& Vec,
                                              int NROW);
 
 /**
- * Computes the lagged values for each element in a grid matrix based on a specified lag number and Moore neighborhood.
- * For each element in the matrix, the function calculates the values of its neighbors at a specified lag distance
- * in each of the 8 directions of the Moore neighborhood. If a neighbor is out of bounds, it is assigned a NaN value.
+ * Computes lagged neighbor values for each cell in a grid using a Moore
+ * neighborhood at a specified spatial lag distance, with optional directional
+ * filtering.
  *
  * Parameters:
  *   mat    - A 2D vector representing the grid data.
- *   lagNum - The number of steps to lag when considering the neighbors in the Moore neighborhood.
+ *   lagNum - The spatial lag distance. A value of 0 returns the current
+ *            value of each grid cell.
+ *   dir    - Direction selector:
+ *              {0}: retain all eight directions.
+ *              1: NW, 2: N, 3: NE, 4: W,
+ *              5: E, 6: SW, 7: S, 8: SE.
+ *            Multiple directions can be specified.
  *
  * Returns:
- *   A 2D vector containing the lagged values for each element in the grid, arranged by the specified lag number.
- *   If a neighbor is out of bounds, it is filled with NaN.
+ *   A 2D vector in which each row corresponds to a grid cell and contains
+ *   the lagged values of its selected neighbors. Neighbors outside the
+ *   grid are represented by NaN.
  *
- * Note:
- *   The return value for each element is the lagged value of the neighbors, not the index of the neighbor.
+ * Notes:
+ *   - For lagNum > 0, only cells on the outer Moore ring with Chebyshev
+ *     distance equal to lagNum are considered.
+ *   - Directional filtering is performed while constructing the neighbor
+ *     offsets, avoiding the generation of unnecessary neighbor values.
+ *   - Directions are represented internally by an 8-bit mask, with one bit
+ *     assigned to each of the eight compass directions.
+ *   - The ordering of retained neighbors follows the row-major traversal
+ *     of the Moore ring.
  */
 std::vector<std::vector<double>> CppLaggedVal4Grid(
     const std::vector<std::vector<double>>& mat,
-    int lagNum
+    int lagNum,
+    const std::vector<int>& dir = {0}
 );
 
 /**
