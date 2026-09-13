@@ -276,6 +276,11 @@ std::vector<std::vector<double>> CppLaggedVal4Grid(
  *   style - Embedding style selector:
  *             - style = 0: embedding includes current state as the first dimension.
  *             - style != 0: embedding excludes current state.
+ *   dir   - Direction selector (optional):
+ *             - If dir = {0}, returns all directional lag values (no filtering).
+ *             - If dir ∈ {1,...,8}, keeps only lag values in that direction:
+ *                 1: NW, 2: N, 3: NE, 4: W, 5: E, 6: SW, 7: S, 8: SE
+ *             - Multiple directions can be specified (e.g., {1,2,3} = NW, N, NE).
  *
  * Returns:
  *   A 2D vector (matrix) where each row contains the averaged lagged variables for
