@@ -9,6 +9,7 @@
 #include <numeric>
 #include <algorithm>
 #include <utility>
+#include <cstdint>
 #include "CppStats.h"
 
 /**
@@ -95,74 +96,167 @@ std::vector<std::vector<double>> GridVec2Mat(const std::vector<double>& Vec,
 }
 
 /**
- * Computes the lagged values for each element in a grid matrix based on a specified lag number and Moore neighborhood.
- * For each element in the matrix, the function calculates the values of its neighbors at a specified lag distance
- * in each of the 8 directions of the Moore neighborhood. If a neighbor is out of bounds, it is assigned a NaN value.
+ * Computes lagged neighbor values for each cell in a grid using a Moore
+ * neighborhood at a specified spatial lag distance, with optional directional
+ * filtering.
  *
  * Parameters:
  *   mat    - A 2D vector representing the grid data.
- *   lagNum - The number of steps to lag when considering the neighbors in the Moore neighborhood.
+ *   lagNum - The spatial lag distance. A value of 0 returns the current
+ *            value of each grid cell.
+ *   dir    - Direction selector:
+ *              {0}: retain all eight directions.
+ *              1: NW, 2: N, 3: NE, 4: W,
+ *              5: E, 6: SW, 7: S, 8: SE.
+ *            Multiple directions can be specified.
  *
  * Returns:
- *   A 2D vector containing the lagged values for each element in the grid, arranged by the specified lag number.
- *   If a neighbor is out of bounds, it is filled with NaN.
+ *   A 2D vector in which each row corresponds to a grid cell and contains
+ *   the lagged values of its selected neighbors. Neighbors outside the
+ *   grid are represented by NaN.
  *
- * Note:
- *   The return value for each element is the lagged value of the neighbors, not the index of the neighbor.
+ * Notes:
+ *   - For lagNum > 0, only cells on the outer Moore ring with Chebyshev
+ *     distance equal to lagNum are considered.
+ *   - Directional filtering is performed while constructing the neighbor
+ *     offsets, avoiding the generation of unnecessary neighbor values.
+ *   - Directions are represented internally by an 8-bit mask, with one bit
+ *     assigned to each of the eight compass directions.
+ *   - The ordering of retained neighbors follows the row-major traversal
+ *     of the Moore ring.
  */
 std::vector<std::vector<double>> CppLaggedVal4Grid(
     const std::vector<std::vector<double>>& mat,
-    int lagNum
+    int lagNum,
+    const std::vector<int>& dir = {0}
 ) {
   // Validate input
   if (mat.empty() || mat[0].empty() || lagNum < 0) {
     return {};
   }
 
-  const int rows = mat.size();
-  const int cols = mat[0].size();
+  const int rows = static_cast<int>(mat.size());
+  const int cols = static_cast<int>(mat[0].size());
   const int numCells = rows * cols;
-  const int numNeighbors = 8 * lagNum;
 
-  // If lagNum is 0, return the current values of gird row by row
+  // lagNum = 0: return the current state of each grid cell
   if (lagNum == 0) {
     std::vector<std::vector<double>> result;
+    result.reserve(numCells);
+
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         result.push_back({mat[i][j]});
       }
     }
+
     return result;
   }
 
-  // Generate all valid offsets for the given lagNum (Queen's case)
+  // -------------------------------------------------------------------------
+  // Construct an 8-bit direction mask.
+  //
+  // Bit mapping:
+  //   bit 0: NW
+  //   bit 1: N
+  //   bit 2: NE
+  //   bit 3: W
+  //   bit 4: E
+  //   bit 5: SW
+  //   bit 6: S
+  //   bit 7: SE
+  // -------------------------------------------------------------------------
+
+  uint8_t dirMask = 0xFF;  // Default: retain all directions
+
+  if (!(dir.size() == 1 && dir[0] == 0)) {
+    dirMask = 0;
+
+    for (int d : dir) {
+      if (d >= 1 && d <= 8) {
+        dirMask |= static_cast<uint8_t>(1u << (d - 1));
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Generate the selected offsets on the outer Moore ring.
+  // -------------------------------------------------------------------------
+
   std::vector<std::pair<int, int>> offsets;
+  offsets.reserve(8 * lagNum);
+
   for (int dx = -lagNum; dx <= lagNum; ++dx) {
     for (int dy = -lagNum; dy <= lagNum; ++dy) {
-      if (std::max(std::abs(dx), std::abs(dy)) == lagNum) {
+
+      // Keep only the outer Moore ring
+      if (std::max(std::abs(dx), std::abs(dy)) != lagNum) {
+        continue;
+      }
+
+      // Determine the compass direction.
+      //
+      // 1: NW
+      // 2: N
+      // 3: NE
+      // 4: W
+      // 5: E
+      // 6: SW
+      // 7: S
+      // 8: SE
+
+      int direction;
+
+      if (dx < 0) {
+        direction = (dy < 0) ? 1 : (dy == 0 ? 2 : 3);
+      }
+      else if (dx == 0) {
+        direction = (dy < 0) ? 4 : 5;
+      }
+      else {
+        direction = (dy < 0) ? 6 : (dy == 0 ? 7 : 8);
+      }
+
+      // Test the corresponding bit in the direction mask
+      if (dirMask & static_cast<uint8_t>(1u << (direction - 1))) {
         offsets.emplace_back(dx, dy);
       }
     }
   }
 
-  // Initialize result with NaN
+  const int numNeighbors = static_cast<int>(offsets.size());
+
+  // -------------------------------------------------------------------------
+  // Initialize result with NaN.
+  // -------------------------------------------------------------------------
+
+  const double NaN = std::numeric_limits<double>::quiet_NaN();
+
   std::vector<std::vector<double>> result(
-      numCells,
-      std::vector<double>(numNeighbors, std::numeric_limits<double>::quiet_NaN())
+    numCells,
+    std::vector<double>(numNeighbors, NaN)
   );
 
-  // Populate neighbor values
+  // -------------------------------------------------------------------------
+  // Populate lagged neighbor values.
+  // -------------------------------------------------------------------------
+
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < cols; ++j) {
+
       const int cellIndex = i * cols + j;
+
       for (size_t k = 0; k < offsets.size(); ++k) {
+
         const auto& [dx, dy] = offsets[k];
+
         const int ni = i + dx;
         const int nj = j + dy;
-        if (ni >= 0 && ni < rows && nj >= 0 && nj < cols) {
+
+        if (ni >= 0 && ni < rows &&
+            nj >= 0 && nj < cols) {
           result[cellIndex][k] = mat[ni][nj];
         }
-        // Else remains NaN
       }
     }
   }
