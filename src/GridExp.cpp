@@ -1937,6 +1937,7 @@ Rcpp::List RcppGCMC4Grid(
     int dist_metric = 2,
     int threads = 8,
     int parallel_level = 0,
+    const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
     bool progressbar = false){
   // Convert Rcpp NumericMatrix to std::vector<std::vector<double>>
   std::vector<std::vector<double>> xMatrix_cpp(xMatrix.nrow(), std::vector<double>(xMatrix.ncol()));
@@ -2044,9 +2045,21 @@ Rcpp::List RcppGCMC4Grid(
     libsizes_std.push_back(lib_std.size());
   }
 
+  // convert to std::vector<int>
+  std::vector<int> dir_cpp = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_cpp.begin(), dir_cpp.end());
+  dir_cpp.erase(std::unique(dir_cpp.begin(), dir_cpp.end()), dir_cpp.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_cpp.begin(), dir_cpp.end(), 0) != dir_cpp.end()) {
+    dir_cpp = {0};
+  }
+
   // Generate embeddings
-  std::vector<std::vector<double>> e1 = GenGridEmbeddings(xMatrix_cpp, E[0], tau_std[0], style);
-  std::vector<std::vector<double>> e2 = GenGridEmbeddings(yMatrix_cpp, E[1], tau_std[1], style);
+  std::vector<std::vector<double>> e1 = GenGridEmbeddings(xMatrix_cpp, E[0], tau_std[0], style, dir_cpp);
+  std::vector<std::vector<double>> e2 = GenGridEmbeddings(yMatrix_cpp, E[1], tau_std[1], style, dir_cpp);
 
   // Perform GCMC for spatial grid data
   CMCRes res = CrossMappingCardinality(e1,e2,libsizes_std,lib_std,pred_std,
