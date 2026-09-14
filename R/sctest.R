@@ -23,21 +23,11 @@
 
 #' spatial causality test
 #'
-#' @param data observation data.
-#' @param cause name of causal variable.
-#' @param effect name of effect variable.
+#' @inheritParams gpc
 #' @param k (optional) number of nearest neighbors used in symbolization.
 #' @param block (optional) number of blocks used in spatial block bootstrap.
-#' @param boot (optional) number of bootstraps to perform.
-#' @param seed (optional) random seed.
 #' @param base (optional) logarithm base.
-#' @param lib (optional) libraries indices (input needed: `vector` - spatial vector, `matrix` - spatial raster).
-#' @param pred (optional) predictions indices (input requirement same as `lib`).
-#' @param threads (optional) number of threads to use.
-#' @param detrend (optional) whether to remove the linear trend.
 #' @param normalize (optional) whether to normalize the result.
-#' @param progressbar (optional) whether to show the progress bar.
-#' @param nb (optional) neighbours list.
 #'
 #' @return A list
 #' \describe{
