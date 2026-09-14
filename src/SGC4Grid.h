@@ -46,6 +46,7 @@
  * @param base      Logarithm base used in entropy computation (default is 2, for bits).
  * @param symbolize Whether to discretize the data via symbolic transformation before entropy computation.
  * @param normalize Whether to normalize the causality scores to lie within [-1, 1] (default is false).
+ * @param dir       Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * @return A std::vector<double> of two values:
  *         - sc_x_to_y: Estimated spatial granger causality from x to y (normalized if specified).
@@ -59,7 +60,8 @@ std::vector<double> SGCSingle4Grid(
     size_t k,
     double base = 2,
     bool symbolize = true,
-    bool normalize = false
+    bool normalize = false,
+    const std::vector<int>& dir = {0}
 );
 
 /**
