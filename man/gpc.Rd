@@ -55,7 +55,8 @@
   parallel.level = "low",
   bidirectional = TRUE,
   progressbar = TRUE,
-  grid.coord = TRUE
+  grid.coord = TRUE,
+  embed.direction = 0
 )
 }
 \arguments{
@@ -106,6 +107,8 @@
 \item{nb}{(optional) neighbours list.}
 
 \item{grid.coord}{(optional) whether to detrend using cell center coordinates (\code{TRUE}) or row/column numbers (\code{FALSE}).}
+
+\item{embed.direction}{(optional) direction selector for embeddings (\code{0} returns all directions, \code{1-8} correspond to NW, N, NE, W, E, SW, S, SE).}
 }
 \value{
 A list
