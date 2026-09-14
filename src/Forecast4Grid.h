@@ -224,6 +224,9 @@ std::vector<std::vector<double>> IC4Grid(const std::vector<std::vector<double>>&
  * @param parallel_level
  *   Controls the parallel level of computation.
  *
+ * @param dir
+ *   Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
+ *
  * @return
  *   A 2D matrix where each row corresponds to one (E, b, tau) parameter triplet:
  *
@@ -250,6 +253,7 @@ std::vector<std::vector<double>> PC4Grid(const std::vector<std::vector<double>>&
                                          bool relative = true,
                                          bool weighted = true,
                                          int threads = 8,
-                                         int parallel_level = 0);
+                                         int parallel_level = 0,
+                                         const std::vector<int>& dir = {0});
 
 #endif // Forecast4Grid_H
