@@ -10,15 +10,15 @@
   return(.bind_sc(RcppSGC4Lattice(cause,effect,nb,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
 }
 
-.sc_spatraster_method = \(data, cause, effect, k, block = 3, boot = 399, seed = 42L, base = 2, lib = NULL, pred = NULL,
-                          threads = detectThreads(), detrend = TRUE, normalize = FALSE, progressbar = FALSE, grid.coord = TRUE){
+.sc_spatraster_method = \(data, cause, effect, k, block = 3, boot = 399, seed = 42L, base = 2, lib = NULL, pred = NULL, threads = detectThreads(),
+                          detrend = TRUE, normalize = FALSE, progressbar = FALSE, grid.coord = TRUE, embed.direction = 0){
   varname = .check_character(cause, effect)
   cause = .uni_grid(data,cause,detrend,grid.coord)
   effect = .uni_grid(data,effect,detrend,grid.coord)
   block = matrix(RcppDivideGrid(effect,block),ncol = 1)
   if (is.null(lib)) lib = which(!(is.na(cause) | is.na(effect)), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
-  return(.bind_sc(RcppSGC4Grid(cause,effect,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
+  return(.bind_sc(RcppSGC4Grid(cause,effect,embed.direction,lib,pred,block,k,threads,boot,base,seed,TRUE,normalize,progressbar),varname))
 }
 
 #' spatial causality test
