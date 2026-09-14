@@ -105,6 +105,13 @@ Rcpp::NumericMatrix RcppGenGridEmbeddings(const Rcpp::NumericMatrix& mat,
     }
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
   // convert to std::vector<int>
   std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
 
@@ -347,8 +354,8 @@ Rcpp::NumericMatrix RcppSLMUni4Grid(
   }
 
   // Call the core function
-  std::vector<std::vector<double>> result = SLMUni4Grid(cppMat, k, step, alpha,
-                                                        noise_level, escape_threshold, random_seed);
+  std::vector<std::vector<double>> result = SLMUni4Grid(cppMat, k, step, alpha, noise_level, 
+                                                        escape_threshold, random_seed);
 
   // Create NumericMatrix with rows = number of spatial units, cols = number of steps+1
   int n_rows = static_cast<int>(result.size());
