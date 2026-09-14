@@ -62,7 +62,7 @@ std::vector<double> SGCSingle4Grid(
     double base = 2,
     bool symbolize = true,
     bool normalize = false
-) ;
+);
 
 /**
  * @brief Compute spatial granger causality for gridded data using spatial block bootstrap.
