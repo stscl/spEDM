@@ -2352,6 +2352,7 @@ Rcpp::DataFrame RcppGPCRobust4Grid(
     bool weighted = true,
     int threads = 8,
     int parallel_level = 0,
+    const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
     bool progressbar = false) {
   // --- Convert inputs to C++ types ---
   std::vector<std::vector<double>> xMatrix_cpp(xMatrix.nrow(), std::vector<double>(xMatrix.ncol()));
@@ -2461,9 +2462,21 @@ Rcpp::DataFrame RcppGPCRobust4Grid(
   if (b < 2 || static_cast<size_t>(b) > validCellNum)
     Rcpp::stop("k cannot be less than or equal to 2 or greater than the number of non-NA values.");
 
+  // convert to std::vector<int>
+  std::vector<int> dir_cpp = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_cpp.begin(), dir_cpp.end());
+  dir_cpp.erase(std::unique(dir_cpp.begin(), dir_cpp.end()), dir_cpp.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_cpp.begin(), dir_cpp.end(), 0) != dir_cpp.end()) {
+    dir_cpp = {0};
+  }
+
   // --- Generate embeddings ---
-  std::vector<std::vector<double>> Mx = GenGridEmbeddings(xMatrix_cpp, E_std[0], tau_std[0], style);
-  std::vector<std::vector<double>> My = GenGridEmbeddings(yMatrix_cpp, E_std[1], tau_std[1], style);
+  std::vector<std::vector<double>> Mx = GenGridEmbeddings(xMatrix_cpp, E_std[0], tau_std[0], style, dir_cpp);
+  std::vector<std::vector<double>> My = GenGridEmbeddings(yMatrix_cpp, E_std[1], tau_std[1], style, dir_cpp);
 
   // --- Prepare for data slicing ---
   std::vector<size_t> selected_indices;
