@@ -549,6 +549,9 @@ std::vector<std::vector<double>> IC4Grid(const std::vector<std::vector<double>>&
  * @param parallel_level
  *   Controls the parallel level of computation.
  *
+ * @param dir
+ *   Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
+ *
  * @return
  *   A 2D matrix where each row corresponds to one (E, b, tau) parameter triplet:
  *
@@ -575,7 +578,8 @@ std::vector<std::vector<double>> PC4Grid(const std::vector<std::vector<double>>&
                                          bool relative = true,
                                          bool weighted = true,
                                          int threads = 8,
-                                         int parallel_level = 0) {
+                                         int parallel_level = 0,
+                                         const std::vector<int>& dir = {0}) {
   // Unique sorted embedding dimensions, neighbor values, and tau values
   std::vector<int> Es = E;
   std::sort(Es.begin(), Es.end());
@@ -648,8 +652,8 @@ std::vector<std::vector<double>> PC4Grid(const std::vector<std::vector<double>>&
       const int taui = std::get<2>(unique_EbTau[i]);
       // auto [Ei, bi, taui] = unique_EbTau[i]; // C++17 structured binding
 
-      auto Mx = GenGridEmbeddings(source, Ei, taui, style);
-      auto My = GenGridEmbeddings(target, Ei, taui, style);
+      auto Mx = GenGridEmbeddings(source, Ei, taui, style, dir);
+      auto My = GenGridEmbeddings(target, Ei, taui, style, dir);
       
       PatternCausalityRes res;
 
@@ -696,8 +700,8 @@ std::vector<std::vector<double>> PC4Grid(const std::vector<std::vector<double>>&
       const int taui = std::get<2>(unique_EbTau[i]);
       // auto [Ei, bi, taui] = unique_EbTau[i]; // C++17 structured binding
 
-      auto Mx = GenGridEmbeddings(source, Ei, taui, style);
-      auto My = GenGridEmbeddings(target, Ei, taui, style);
+      auto Mx = GenGridEmbeddings(source, Ei, taui, style, dir);
+      auto My = GenGridEmbeddings(target, Ei, taui, style, dir);
 
       PatternCausalityRes res;
 
