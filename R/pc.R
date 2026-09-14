@@ -11,13 +11,13 @@
 }
 
 .pc_spatraster_method = \(data, column, target, E = 2:10, k = E+2, tau = 1, style = 1, lib = NULL, pred = NULL, dist.metric = "L2", zero.tolerance = max(k),
-                          relative = TRUE, weighted = TRUE, maximize = "dark", threads = detectThreads(), detrend = FALSE, grid.coord = TRUE){
+                          relative = TRUE, weighted = TRUE, maximize = "dark", threads = detectThreads(), detrend = FALSE, grid.coord = TRUE, embed.direction = 0){
   mx = .uni_grid(data,column,detrend,grid.coord)
   my = .uni_grid(data,target,detrend,grid.coord)
   if (is.null(lib)) lib = which(!(is.na(mx) | is.na(my)), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
   res = RcppPC4Grid(mx, my, lib, pred, E, k, tau, style, zero.tolerance,
-                    .check_distmetric(dist.metric),relative,weighted,threads,1)
+                    .check_distmetric(dist.metric),relative,weighted,threads,1,embed.direction)
   return(.bind_xmapself(res,column,"pc",maximize = maximize))
 }
 
