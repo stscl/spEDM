@@ -169,7 +169,6 @@
 }
 
 .bind_xmapdf2 = \(varname,x_xmap_y,y_xmap_x,bidirectional){
-
   tyxmapx = y_xmap_x[,c(1,2,4:6),drop = FALSE]
   dyxmapx = y_xmap_x[,c(1,3,7:9),drop = FALSE]
   txxmapy = NULL
@@ -230,7 +229,7 @@
 .run_gpc = \(x, y, E, k, tau, style, lib, pred, dist.metric, zero.tolerance, relative,
              weighted, threads, bidirectional = FALSE, varname = NULL, nb = NULL,
              libsizes = NULL, boot = 9, replace = FALSE, seed = 42, parallel.level = "low",
-             progressbar = FALSE){
+             progressbar = FALSE, embed.direction = 0){
   E = .check_inputelementnum(E,4)
   tau = .check_inputelementnum(tau,4)
   k = .check_inputelementnum(k,2)
