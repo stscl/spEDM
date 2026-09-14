@@ -129,8 +129,8 @@ RcppSCPCM4Grid <- function(xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, ta
     .Call(`_spEDM_RcppSCPCM4Grid`, xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, cumulate, style, stack, dist_metric, dist_average, single_sig, dir, win_ratio, progressbar)
 }
 
-RcppGCMC4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b = 4L, r = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L, progressbar = FALSE) {
-    .Call(`_spEDM_RcppGCMC4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, progressbar)
+RcppGCMC4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b = 4L, r = 0L, style = 1L, dist_metric = 2L, threads = 8L, parallel_level = 0L, dir = as.integer( c(0)), progressbar = FALSE) {
+    .Call(`_spEDM_RcppGCMC4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, dir, progressbar)
 }
 
 RcppGPC4Grid <- function(xMatrix, yMatrix, lib, pred, E, tau, style = 1L, b = 4L, zero_tolerance = 0L, dist_metric = 2L, relative = TRUE, weighted = TRUE, threads = 8L) {
