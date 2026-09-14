@@ -2702,6 +2702,7 @@ Rcpp::DataFrame RcppGPCRobust4Grid(
 // [[Rcpp::export(rng = false)]]
 Rcpp::NumericVector RcppSGCSingle4Grid(const Rcpp::NumericMatrix& x,
                                        const Rcpp::NumericMatrix& y,
+                                       const Rcpp::IntegerVector& dir,
                                        const Rcpp::IntegerMatrix& lib,
                                        const Rcpp::IntegerMatrix& pred,
                                        int k,
@@ -2815,6 +2816,7 @@ Rcpp::NumericVector RcppSGCSingle4Grid(const Rcpp::NumericMatrix& x,
 // [[Rcpp::export(rng = false)]]
 Rcpp::NumericVector RcppSGC4Grid(const Rcpp::NumericMatrix& x,
                                  const Rcpp::NumericMatrix& y,
+                                 const Rcpp::IntegerVector& dir,
                                  const Rcpp::IntegerMatrix& lib,
                                  const Rcpp::IntegerMatrix& pred,
                                  const Rcpp::IntegerMatrix& block,
