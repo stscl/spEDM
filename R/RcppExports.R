@@ -141,12 +141,12 @@ RcppGPCRobust4Grid <- function(xMatrix, yMatrix, libsizes, lib, pred, E, tau, st
     .Call(`_spEDM_RcppGPCRobust4Grid`, xMatrix, yMatrix, libsizes, lib, pred, E, tau, style, b, boot, replace_sampling, seed, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, dir, progressbar)
 }
 
-RcppSGCSingle4Grid <- function(x, y, lib, pred, k, base = 2, symbolize = TRUE, normalize = FALSE) {
-    .Call(`_spEDM_RcppSGCSingle4Grid`, x, y, lib, pred, k, base, symbolize, normalize)
+RcppSGCSingle4Grid <- function(x, y, dir, lib, pred, k, base = 2, symbolize = TRUE, normalize = FALSE) {
+    .Call(`_spEDM_RcppSGCSingle4Grid`, x, y, dir, lib, pred, k, base, symbolize, normalize)
 }
 
-RcppSGC4Grid <- function(x, y, lib, pred, block, k, threads = 8L, boot = 399L, base = 2, seed = 42L, symbolize = TRUE, normalize = FALSE, progressbar = TRUE) {
-    .Call(`_spEDM_RcppSGC4Grid`, x, y, lib, pred, block, k, threads, boot, base, seed, symbolize, normalize, progressbar)
+RcppSGC4Grid <- function(x, y, dir, lib, pred, block, k, threads = 8L, boot = 399L, base = 2, seed = 42L, symbolize = TRUE, normalize = FALSE, progressbar = TRUE) {
+    .Call(`_spEDM_RcppSGC4Grid`, x, y, dir, lib, pred, block, k, threads, boot, base, seed, symbolize, normalize, progressbar)
 }
 
 RcppLaggedNeighbor4Lattice <- function(nb, lagNum = 1L) {
