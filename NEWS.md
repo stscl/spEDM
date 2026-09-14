@@ -10,6 +10,10 @@
 
 * Clarify output indexing and boundary handling in `fnn` generic via console output modification (#999).
 
+### breaking changes
+
+* Fully support spatial raster data with anisotropic embedding (#1012).
+
 ### bug fixes
 
 * Fix incorrect auto-filling of default `E`, `tau`, `k` parameters in `scpcm` generic (#1009).
