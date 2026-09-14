@@ -235,7 +235,7 @@ std::vector<double> SGC4Grid(
     std::vector<std::vector<double>> x_boot = GridVec2Mat(x_bs,static_cast<int>(rows));
     std::vector<std::vector<double>> y_boot = GridVec2Mat(y_bs,static_cast<int>(rows));
     // Estimate the bootstrapped realization of the spatial granger causality statistic
-    sc_bootstraps[n] = SGCSingle4Grid(x_boot,y_boot,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
+    sc_bootstraps[n] = SGCSingle4Grid(x_boot,y_boot,dir,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
   };
 
   // Configure threads
@@ -256,7 +256,7 @@ std::vector<double> SGC4Grid(
   }
 
   // The "true" spatial granger causality statistic
-  std::vector<double> sc = SGCSingle4Grid(x,y,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
+  std::vector<double> sc = SGCSingle4Grid(x,y,dir,lib,pred,static_cast<size_t>(std::abs(k)),base,symbolize,normalize);
   double scx = sc[0];
   double scy = sc[1];
   // Compute the estimated bootstrap p–value
