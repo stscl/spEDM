@@ -11,13 +11,13 @@
 }
 
 .ic_spatraster_method = \(data, column, target, E = 2:10, k = E+2, tau = 1, style = 1, lib = NULL, pred = NULL,
-                          dist.metric = "L2", threads = detectThreads(), detrend = FALSE, grid.coord = TRUE){
+                          dist.metric = "L2", threads = detectThreads(), detrend = FALSE, grid.coord = TRUE, embed.direction = 0){
   mx = .uni_grid(data,column,detrend,grid.coord)
   my = .uni_grid(data,target,detrend,grid.coord)
   if (is.null(lib)) lib = which(!(is.na(mx) | is.na(my)), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
   res = RcppIC4Grid(mx, my, lib, pred, E, k, tau, 0, style,
-                    .check_distmetric(dist.metric),threads,0)
+                    .check_distmetric(dist.metric),threads,0,embed.direction)
   return(.bind_xmapself(res,target,"ic"))
 }
 
