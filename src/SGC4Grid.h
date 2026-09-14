@@ -40,13 +40,13 @@
  *
  * @param x         2D grid (matrix) representing variable X.
  * @param y         2D grid (matrix) representing variable Y.
+ * @param dir       Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param lib       A vector of pairs representing the indices (row, column) of spatial units to be the library.
  * @param pred      A vector of pairs representing the indices (row, column) of spatial units to be predicted.
  * @param k         Embedding neighborhood radius (e.g., k = 1 means 3×3 window).
  * @param base      Logarithm base used in entropy computation (default is 2, for bits).
  * @param symbolize Whether to discretize the data via symbolic transformation before entropy computation.
  * @param normalize Whether to normalize the causality scores to lie within [-1, 1] (default is false).
- * @param dir       Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * @return A std::vector<double> of two values:
  *         - sc_x_to_y: Estimated spatial granger causality from x to y (normalized if specified).
@@ -55,14 +55,14 @@
 std::vector<double> SGCSingle4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     size_t k,
     double base = 2,
     bool symbolize = true,
-    bool normalize = false,
-    const std::vector<int>& dir = {0}
-);
+    bool normalize = false
+) ;
 
 /**
  * @brief Compute spatial granger causality for gridded data using spatial block bootstrap.
