@@ -149,6 +149,7 @@ std::vector<std::vector<double>> SMap4GridCom(const std::vector<std::vector<doub
  * @param dist_metric Distance metric selector (1: Manhattan, 2: Euclidean).
  * @param threads Maximum number of threads to use.
  * @param parallel_level If > 0, enables parallel evaluation of b for each E.
+ * @param dir Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * @return A matrix of size (|E| × |b| × |tau|) × 5 with rows: [E, b, tau, AUC, P-value]
  */
@@ -163,7 +164,8 @@ std::vector<std::vector<double>> IC4Grid(const std::vector<std::vector<double>>&
                                          int style = 1,
                                          int dist_metric = 2,
                                          int threads = 8,
-                                         int parallel_level = 0);
+                                         int parallel_level = 0,
+                                         const std::vector<int>& dir = {0});
 
 /**
  * @brief Search for optimal embedding parameters in geographical pattern causality analysis on regular grids.
