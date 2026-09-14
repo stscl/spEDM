@@ -236,7 +236,7 @@
 
   if (is.null(libsizes)){
     if (is.null(nb)){
-      res = RcppGPC4Grid(x,y,lib,pred,E,tau,style,k[1],zero.tolerance,dist.metric,relative,weighted,threads)
+      res = RcppGPC4Grid(x,y,lib,pred,E,tau,style,k[1],zero.tolerance,dist.metric,relative,weighted,threads,embed.direction)
     } else {
       res = RcppGPC4Lattice(x,y,nb,lib,pred,E,tau,style,k[1],zero.tolerance,dist.metric,relative,weighted,threads)
     }
@@ -249,7 +249,7 @@
     if (bidirectional){
       res_bi = .run_gpc(y, x, rev(E), rev(k), rev(tau), style, lib, pred,
                         dist.metric, zero.tolerance, relative, weighted,
-                        threads, FALSE, varname, nb)
+                        threads, FALSE, varname, nb, embed.direction = embed.direction)
       res_bi$causality$direction = "x_xmap_y"
       res_bi$summary$direction = "x_xmap_y"
       res$causality = rbind(res$causality,res_bi$causality)
@@ -263,11 +263,11 @@
   } else {
     pl = .check_parallellevel(parallel.level)
     if (is.null(nb)){
-      res = RcppGPCRobust4Grid(x, y, libsizes, lib, pred, E,tau, style, k[1], boot, replace,
-                               seed, zero.tolerance,dist.metric,relative,weighted,threads,pl,progressbar)
+      res = RcppGPCRobust4Grid(x, y, libsizes, lib, pred, E,tau, style, k[1], boot, replace, seed, zero.tolerance,
+                               dist.metric, relative, weighted, threads, pl, embed.direction, progressbar)
     } else {
-      res = RcppGPCRobust4Lattice(x, y, nb, libsizes, lib, pred, E,tau, style, k[1], boot, replace,
-                                  seed, zero.tolerance,dist.metric,relative,weighted,threads,pl,progressbar)
+      res = RcppGPCRobust4Lattice(x, y, nb, libsizes, lib, pred, E,tau, style, k[1], boot, replace, seed, 
+                                  zero.tolerance, dist.metric, relative, weighted, threads, pl, progressbar)
     }
     res$direction = "y_xmap_x"
     res = list(xmap = res)
@@ -275,7 +275,7 @@
     if (bidirectional){
       res_bi = .run_gpc(y, x, rev(E), rev(k), rev(tau), style, lib, pred, dist.metric,
                         zero.tolerance, relative, weighted, threads, FALSE,
-                        varname, nb, libsizes, boot, replace, seed, pl, progressbar)
+                        varname, nb, libsizes, boot, replace, seed, pl, progressbar, embed.direction)
       res_bi$xmap$direction = "x_xmap_y"
       res$xmap = rbind(res$xmap,res_bi$xmap)
     }
