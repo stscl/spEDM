@@ -707,7 +707,7 @@ Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source,
   // check each element of dir before conversion
   for (int d : dir) {
     if (d < 0 || d > 8) {
-      Rcpp::stop("direction vector elements must be in 0–8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
     }
   }
 
@@ -861,7 +861,7 @@ Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source,
   // check each element of dir before conversion
   for (int d : dir) {
     if (d < 0 || d > 8) {
-      Rcpp::stop("direction vector elements must be in 0–8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
     }
   }
 
@@ -1017,6 +1017,13 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
     }
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
   // convert to std::vector<int>
   std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
 
@@ -1169,7 +1176,8 @@ Rcpp::NumericMatrix RcppIC4Grid(const Rcpp::NumericMatrix& source,
                                 int style = 1,
                                 int dist_metric = 2,
                                 int threads = 8,
-                                int parallel_level = 0) {
+                                int parallel_level = 0,
+                                const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = target.nrow();
   int numCols = target.ncol();
@@ -1250,6 +1258,25 @@ Rcpp::NumericMatrix RcppIC4Grid(const Rcpp::NumericMatrix& source,
     b_std.push_back(b[i]);
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   std::vector<std::vector<double>> res_std = IC4Grid(
     sourceMat,
     targetMat,
@@ -1262,7 +1289,8 @@ Rcpp::NumericMatrix RcppIC4Grid(const Rcpp::NumericMatrix& source,
     style,
     dist_metric,
     threads,
-    parallel_level);
+    parallel_level,
+    dir_std);
 
   size_t n_rows = res_std.size();
   size_t n_cols = res_std[0].size();
@@ -1297,7 +1325,8 @@ Rcpp::NumericMatrix RcppPC4Grid(const Rcpp::NumericMatrix& source,
                                 bool relative = true,
                                 bool weighted = true,
                                 int threads = 8,
-                                int parallel_level = 0) {
+                                int parallel_level = 0,
+                                const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = target.nrow();
   int numCols = target.ncol();
@@ -1379,6 +1408,25 @@ Rcpp::NumericMatrix RcppPC4Grid(const Rcpp::NumericMatrix& source,
     b_std.push_back(b[i]);
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   std::vector<std::vector<double>> res_std = PC4Grid(
     sourceMat,
     targetMat,
@@ -1393,7 +1441,8 @@ Rcpp::NumericMatrix RcppPC4Grid(const Rcpp::NumericMatrix& source,
     relative,
     weighted,
     threads,
-    parallel_level);
+    parallel_level,
+    dir_std);
 
   size_t n_rows = res_std.size();
   size_t n_cols = res_std[0].size();
