@@ -111,7 +111,7 @@ std::vector<double> SGCSingle4Grid(
 std::vector<double> SGC4Grid(
     const std::vector<std::vector<double>>& x,
     const std::vector<std::vector<double>>& y,
-    const std::vector<int>& dir = {0},
+    const std::vector<int>& dir,
     const std::vector<std::pair<int, int>>& lib,
     const std::vector<std::pair<int, int>>& pred,
     const std::vector<int>& block,

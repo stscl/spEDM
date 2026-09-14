@@ -1884,7 +1884,7 @@ Rcpp::NumericMatrix RcppSCPCM4Grid(
   // check each element of dir before conversion
   for (int d : dir) {
     if (d < 0 || d > 8) {
-      Rcpp::stop("direction vector elements must be in 0–8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
     }
   }
 
@@ -2101,6 +2101,13 @@ Rcpp::List RcppGCMC4Grid(
     libsizes_std.push_back(lib_std.size());
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
   // convert to std::vector<int>
   std::vector<int> dir_cpp = Rcpp::as<std::vector<int>>(dir);
 
@@ -2247,6 +2254,13 @@ Rcpp::List RcppGPC4Grid(
   // --- Validate parameters ---
   if (b < 2 || static_cast<size_t>(b) > validCellNum)
     Rcpp::stop("k cannot be less than or equal to 2 or greater than the number of non-NA values.");
+
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
 
   // convert to std::vector<int>
   std::vector<int> dir_cpp = Rcpp::as<std::vector<int>>(dir);
@@ -2518,6 +2532,13 @@ Rcpp::DataFrame RcppGPCRobust4Grid(
   if (b < 2 || static_cast<size_t>(b) > validCellNum)
     Rcpp::stop("k cannot be less than or equal to 2 or greater than the number of non-NA values.");
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
   // convert to std::vector<int>
   std::vector<int> dir_cpp = Rcpp::as<std::vector<int>>(dir);
 
@@ -2748,10 +2769,30 @@ Rcpp::NumericVector RcppSGCSingle4Grid(const Rcpp::NumericMatrix& x,
     }
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   // Perform SGC for spatial grid data
   std::vector<double> sc = SGCSingle4Grid(
     xmat,
     ymat,
+    dir_std,
     lib_std,
     pred_std,
     k,
@@ -2863,10 +2904,30 @@ Rcpp::NumericVector RcppSGC4Grid(const Rcpp::NumericMatrix& x,
       }
   }
 
+  // check each element of dir before conversion
+  for (int d : dir) {
+    if (d < 0 || d > 8) {
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+    }
+  }
+
+  // convert to std::vector<int>
+  std::vector<int> dir_std = Rcpp::as<std::vector<int>>(dir);
+
+  // remove duplicates
+  std::sort(dir_std.begin(), dir_std.end());
+  dir_std.erase(std::unique(dir_std.begin(), dir_std.end()), dir_std.end());
+
+  // if 0 is present, override all others
+  if (std::find(dir_std.begin(), dir_std.end(), 0) != dir_std.end()) {
+    dir_std = {0};
+  }
+
   // Perform SGC for spatial grid data
   std::vector<double> sc = SGC4Grid(
     xmat,
     ymat,
+    dir_std,
     lib_std,
     pred_std,
     b_std,
