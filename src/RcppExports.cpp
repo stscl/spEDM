@@ -374,8 +374,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // RcppFNN4Grid
-Rcpp::NumericVector RcppFNN4Grid(const Rcpp::NumericMatrix& mat, const Rcpp::NumericVector& rt, const Rcpp::NumericVector& eps, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, int tau, int style, int stack, int dist_metric, const Rcpp::IntegerVector& dir, int threads, int parallel_level);
-RcppExport SEXP _spEDM_RcppFNN4Grid(SEXP matSEXP, SEXP rtSEXP, SEXP epsSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dirSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP) {
+Rcpp::NumericVector RcppFNN4Grid(const Rcpp::NumericMatrix& mat, const Rcpp::NumericVector& rt, const Rcpp::NumericVector& eps, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, int tau, int style, int stack, int dist_metric, int threads, int parallel_level, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppFNN4Grid(SEXP matSEXP, SEXP rtSEXP, SEXP epsSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type mat(matSEXP);
@@ -388,16 +388,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type style(styleSEXP);
     Rcpp::traits::input_parameter< int >::type stack(stackSEXP);
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< int >::type parallel_level(parallel_levelSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppFNN4Grid(mat, rt, eps, lib, pred, E, tau, style, stack, dist_metric, dir, threads, parallel_level));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppFNN4Grid(mat, rt, eps, lib, pred, E, tau, style, stack, dist_metric, threads, parallel_level, dir));
     return rcpp_result_gen;
 END_RCPP
 }
 // RcppSimplex4Grid
-Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source, const Rcpp::NumericMatrix& target, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& b, const Rcpp::IntegerVector& tau, int style, int stack, int dist_metric, bool dist_average, const Rcpp::IntegerVector& dir, int threads);
-RcppExport SEXP _spEDM_RcppSimplex4Grid(SEXP sourceSEXP, SEXP targetSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP bSEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP dirSEXP, SEXP threadsSEXP) {
+Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source, const Rcpp::NumericMatrix& target, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& b, const Rcpp::IntegerVector& tau, int style, int stack, int dist_metric, bool dist_average, int threads, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppSimplex4Grid(SEXP sourceSEXP, SEXP targetSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP bSEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP threadsSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type source(sourceSEXP);
@@ -411,15 +411,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type stack(stackSEXP);
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< bool >::type dist_average(dist_averageSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppSimplex4Grid(source, target, lib, pred, E, b, tau, style, stack, dist_metric, dist_average, dir, threads));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppSimplex4Grid(source, target, lib, pred, E, b, tau, style, stack, dist_metric, dist_average, threads, dir));
     return rcpp_result_gen;
 END_RCPP
 }
 // RcppSMap4Grid
-Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source, const Rcpp::NumericMatrix& target, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::NumericVector& theta, int E, int tau, int b, int style, int stack, int dist_metric, bool dist_average, const Rcpp::IntegerVector& dir, int threads);
-RcppExport SEXP _spEDM_RcppSMap4Grid(SEXP sourceSEXP, SEXP targetSEXP, SEXP libSEXP, SEXP predSEXP, SEXP thetaSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP dirSEXP, SEXP threadsSEXP) {
+Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source, const Rcpp::NumericMatrix& target, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::NumericVector& theta, int E, int tau, int b, int style, int stack, int dist_metric, bool dist_average, int threads, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppSMap4Grid(SEXP sourceSEXP, SEXP targetSEXP, SEXP libSEXP, SEXP predSEXP, SEXP thetaSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP threadsSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type source(sourceSEXP);
@@ -434,15 +434,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type stack(stackSEXP);
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< bool >::type dist_average(dist_averageSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppSMap4Grid(source, target, lib, pred, theta, E, tau, b, style, stack, dist_metric, dist_average, dir, threads));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppSMap4Grid(source, target, lib, pred, theta, E, tau, b, style, stack, dist_metric, dist_average, threads, dir));
     return rcpp_result_gen;
 END_RCPP
 }
 // RcppMultiView4Grid
-Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, int E, int tau, int b, int top, int nvar, int style, int stack, int dist_metric, int dist_average, const Rcpp::IntegerVector& dir, int threads);
-RcppExport SEXP _spEDM_RcppMultiView4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP topSEXP, SEXP nvarSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP dirSEXP, SEXP threadsSEXP) {
+Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, int E, int tau, int b, int top, int nvar, int style, int stack, int dist_metric, int dist_average, int threads, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppMultiView4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP topSEXP, SEXP nvarSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP threadsSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type xMatrix(xMatrixSEXP);
@@ -458,9 +458,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type stack(stackSEXP);
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< int >::type dist_average(dist_averageSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppMultiView4Grid(xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, dir, threads));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppMultiView4Grid(xMatrix, yMatrix, lib, pred, E, tau, b, top, nvar, style, stack, dist_metric, dist_average, threads, dir));
     return rcpp_result_gen;
 END_RCPP
 }
