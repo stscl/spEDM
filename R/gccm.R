@@ -61,7 +61,7 @@
   x_xmap_y = NULL
   if (bidirectional){
     x_xmap_y = RcppGCCM4Grid(causemat,effectmat,libsizes,lib,pred,E[1],tau[1],k[1],simplex,theta,threads,pl,style,stack,
-                             .check_distmetric(dist.metric),dist.average,TRUE,embed.direction,win.ratio,progressbar)
+                             .check_distmetric(dist.metric),dist.average,TRUE,progressbar,embed.direction,win.ratio)
   }
   y_xmap_x = RcppGCCM4Grid(effectmat,causemat,libsizes,lib,pred,E[2],tau[2],k[2],simplex,theta,threads,pl,style,stack,
                            .check_distmetric(dist.metric),dist.average,TRUE,progressbar,embed.direction,win.ratio)
