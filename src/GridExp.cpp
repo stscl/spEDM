@@ -1667,8 +1667,8 @@ Rcpp::NumericMatrix RcppGCCM4Grid(
       dist_metric,
       dist_average,
       single_sig,
-      dir_cpp,
-      progressbar
+      progressbar,
+      dir_cpp
     );
   } else{
     result = GCCM4Grid(
@@ -1689,9 +1689,9 @@ Rcpp::NumericMatrix RcppGCCM4Grid(
       dist_metric,
       dist_average,
       single_sig,
+      progressbar,
       dir_cpp,
-      win_ratio_cpp,
-      progressbar
+      win_ratio_cpp
     );
   }
 
