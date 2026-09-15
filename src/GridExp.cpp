@@ -514,9 +514,9 @@ Rcpp::NumericVector RcppFNN4Grid(
     int style = 1,
     int stack = 0,
     int dist_metric = 2,
-    const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
     int threads = 8,
-    int parallel_level = 0){
+    int parallel_level = 0,
+    const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)){
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = mat.nrow();
   int numCols = mat.ncol();
@@ -743,8 +743,8 @@ Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
-      dir_std,
-      threads);
+      threads,
+      dir_std);
   } else {
     res_std = Simplex4GridCom(
       sourceMat,
@@ -757,8 +757,8 @@ Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
-      dir_std,
-      threads);
+      threads,
+      dir_std);
   }
 
   size_t n_rows = res_std.size();
@@ -898,8 +898,8 @@ Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
-      dir_std,
-      threads);
+      threads,
+      dir_std);
   } else {
     res_std = SMap4GridCom(
       sourceMat,
@@ -913,8 +913,8 @@ Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source,
       style,
       dist_metric,
       dist_average,
-      dir_std,
-      threads);
+      threads,
+      dir_std);
   }
 
   size_t n_rows = res_std.size();
