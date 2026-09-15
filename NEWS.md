@@ -12,7 +12,7 @@
 
 ### breaking changes
 
-* Fully support spatial raster data with anisotropic embedding (#1012).
+* Extend anisotropic spatial-lag embedding to fully support spatial raster data (#1012).
 
 ### bug fixes
 
