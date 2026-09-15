@@ -58,10 +58,10 @@
   x_xmap_y = NULL
   if (bidirectional){
     x_xmap_y = RcppGCMC4Grid(causemat,effectmat,libsizes,lib,pred,E,tau,k[1],0,style,
-                             .check_distmetric(dist.metric),threads,pl,embed.direction,progressbar)
+                             .check_distmetric(dist.metric),threads,pl,progressbar,embed.direction)
   }
   y_xmap_x = RcppGCMC4Grid(effectmat,causemat,libsizes,lib,pred,rev(E),rev(tau),k[2],0,style,
-                           .check_distmetric(dist.metric),threads,pl,embed.direction,progressbar)
+                           .check_distmetric(dist.metric),threads,pl,progressbar,embed.direction)
 
   return(.bind_intersectdf(varname,x_xmap_y,y_xmap_x,bidirectional))
 }

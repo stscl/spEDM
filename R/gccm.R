@@ -64,7 +64,7 @@
                              .check_distmetric(dist.metric),dist.average,TRUE,embed.direction,win.ratio,progressbar)
   }
   y_xmap_x = RcppGCCM4Grid(effectmat,causemat,libsizes,lib,pred,E[2],tau[2],k[2],simplex,theta,threads,pl,style,stack,
-                           .check_distmetric(dist.metric),dist.average,TRUE,embed.direction,win.ratio,progressbar)
+                           .check_distmetric(dist.metric),dist.average,TRUE,progressbar,embed.direction,win.ratio)
 
   return(.bind_xmapdf(varname,x_xmap_y,y_xmap_x,bidirectional))
 }
