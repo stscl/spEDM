@@ -161,7 +161,7 @@ Rcpp::List RcppGenGridEmbeddingsCom(const Rcpp::NumericMatrix& mat,
   // check each element of dir before conversion
   for (int d : dir) {
     if (d < 0 || d > 8) {
-      Rcpp::stop("direction vector elements must be in 0–8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
+      Rcpp::stop("direction vector elements must be in 0-8; 0 represents all directions, 1–8 correspond to NW,N,NE,W,E,SW,S,SE");
     }
   }
 
@@ -637,8 +637,8 @@ Rcpp::NumericMatrix RcppSimplex4Grid(const Rcpp::NumericMatrix& source,
                                      int stack = 0,
                                      int dist_metric = 2,
                                      bool dist_average = true,
-                                     const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
-                                     int threads = 8) {
+                                     int threads = 8,
+                                     const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = target.nrow();
   int numCols = target.ncol();
@@ -793,8 +793,8 @@ Rcpp::NumericMatrix RcppSMap4Grid(const Rcpp::NumericMatrix& source,
                                   int stack = 0,
                                   int dist_metric = 2,
                                   bool dist_average = true,
-                                  const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
-                                  int threads = 8) {
+                                  int threads = 8,
+                                  const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)) {
   // Convert Rcpp::NumericMatrix to std::vector<std::vector<double>>
   int numRows = target.nrow();
   int numCols = target.ncol();
@@ -950,8 +950,8 @@ Rcpp::NumericMatrix RcppMultiView4Grid(const Rcpp::NumericMatrix& xMatrix,
                                        int stack = 0,
                                        int dist_metric = 2,
                                        int dist_average = true,
-                                       const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0),
-                                       int threads = 8){
+                                       int threads = 8,
+                                       const Rcpp::IntegerVector& dir = Rcpp::IntegerVector::create(0)){
   int numRows = yMatrix.nrow();
   int numCols = yMatrix.ncol();
 
