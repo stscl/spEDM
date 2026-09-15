@@ -61,14 +61,14 @@ std::vector<double> SGCSingle4Grid(
   // size_t cols = x[0].size();
 
   std::vector<double> wx;
-  std::vector<std::vector<double>> Ex = GenGridEmbeddings(x,1,1,dir);
+  std::vector<std::vector<double>> Ex = GenGridEmbeddings(x,1,1,1,dir);
   for (const auto& row : Ex) {
     wx.insert(wx.end(), row.begin(), row.end());
   }
   std::vector<std::vector<double>> xw = GridVec2Mat(wx,rows);
 
   std::vector<double> wy;
-  std::vector<std::vector<double>> Ey = GenGridEmbeddings(y,1,1,dir);
+  std::vector<std::vector<double>> Ey = GenGridEmbeddings(y,1,1,1,dir);
   for (const auto& row : Ey) {
     wy.insert(wy.end(), row.begin(), row.end());
   }
