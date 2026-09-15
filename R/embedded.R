@@ -21,7 +21,7 @@
   return(res)
 }
 
-#' embedding spatial cross sectional data
+#' spatial-lag embedding
 #'
 #' @param data observation data.
 #' @param target name of target variable.
