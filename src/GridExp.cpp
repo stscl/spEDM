@@ -1925,8 +1925,8 @@ Rcpp::NumericMatrix RcppSCPCM4Grid(
       dist_metric,
       dist_average,
       single_sig,
-      dir_cpp,
-      progressbar
+      progressbar,
+      dir_cpp
     );
   } else{
     result = SCPCM4Grid(
@@ -1949,9 +1949,9 @@ Rcpp::NumericMatrix RcppSCPCM4Grid(
       dist_metric,
       dist_average,
       single_sig,
+      progressbar,
       dir_cpp,
-      win_ratio_cpp,
-      progressbar
+      win_ratio_cpp
     );
   }
 
