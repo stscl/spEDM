@@ -139,32 +139,16 @@ std::vector<std::pair<int, double>> GCCMSingle4GridOneDim(
     bool dist_average
 );
 
-/**
- * Perform Geographical Convergent Cross Mapping (GCCM) for spatial grid data.
- *
- * This function calculates the cross mapping between predictor variables (xMatrix) and response variables (yMatrix)
- * over a 2D grid, using either Simplex Projection or S-Mapping. It supports parallel processing and progress tracking.
- *
- * @param xMatrix        A 2D matrix of the predictor variable's values (spatial cross-section data).
- * @param yMatrix        A 2D matrix of the response variable's values (spatial cross-section data).
- * @param lib_sizes      A 2D vector where the first sub-vector contains row-wise library sizes and the second sub-vector contains column-wise library sizes.
- * @param lib            A vector of pairs representing the indices (row, column) of spatial units to be the library.
- * @param pred           A vector of pairs representing the indices (row, column) of spatial units to be predicted.
- * @param E              The number of dimensions for attractor reconstruction.
- * @param tau            The step of spatial lags for prediction.
- * @param b              The number of nearest neighbors to use for prediction.
- * @param simplex        If true, use Simplex Projection; if false, use S-Mapping.
- * @param theta          The distance weighting parameter for S-Mapping (ignored if simplex is true).
- * @param threads        The number of threads to use for parallel processing.
+hreads        The number of threads to use for parallel processing.
  * @param parallel_level Level of parallel computing: 0 for `lower`, 1 for `higher`.
  * @param style          Embedding style selector (0: includes current state, 1: excludes it).
  * @param stack          Embedding arrangement selector (0: single - average lags, 1: composite - stack).  Default is 0 (average lags).
  * @param dist_metric    Distance metric selector (1: Manhattan, 2: Euclidean).
  * @param dist_average   Whether to average distance by the number of valid vector components.
  * @param single_sig     Whether to estimate significance and confidence intervals using a single rho value.
+ * @param progressbar    If true, display a progress bar during computation.
  * @param dir            Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * @param win_rations    Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
- * @param progressbar    If true, display a progress bar during computation.
  *
  * @return A 2D vector where each row contains the library size, mean cross mapping result,
  *         significance, and confidence interval bounds.
@@ -187,9 +171,9 @@ std::vector<std::vector<double>> GCCM4Grid(
     int dist_metric,
     bool dist_average,
     bool single_sig,
+    bool progressbar = false,
     const std::vector<int>& dir = {0},
-    const std::vector<double>& win_ratios = {0,0},
-    bool progressbar = false
+    const std::vector<double>& win_ratios = {0,0}
 );
 
 /**
