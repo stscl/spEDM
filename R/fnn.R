@@ -18,7 +18,7 @@
   if (is.null(lib)) lib = which(!is.na(mat), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
   return(RcppFNN4Grid(mat, rt, eps, lib, pred, E, tau, style, stack,
-                      .check_distmetric(dist.metric),embed.direction,threads))
+                      .check_distmetric(dist.metric),threads,0,embed.direction))
 }
 
 #' false nearest neighbours

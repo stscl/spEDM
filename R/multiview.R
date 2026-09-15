@@ -19,7 +19,7 @@
   if (is.null(pred)) pred = lib
   if (is.null(top)) top = 0
   res = RcppMultiView4Grid(xmat, ymat, lib, pred, E, tau, k, top, nvar, style, stack,
-                           .check_distmetric(dist.metric), dist.average, embed.direction, threads)
+                           .check_distmetric(dist.metric), dist.average, threads, embed.direction)
   return(res)
 }
 

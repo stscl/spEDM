@@ -17,7 +17,7 @@
   if (is.null(lib)) lib = which(!(is.na(mx) | is.na(my)), arr.ind = TRUE)
   if (is.null(pred)) pred = lib
   res = RcppSimplex4Grid(mx, my, lib, pred, E, k, tau, style, stack,
-                         .check_distmetric(dist.metric),dist.average,embed.direction,threads)
+                         .check_distmetric(dist.metric),dist.average,threads,embed.direction)
   return(.bind_xmapself(res,target,"simplex"))
 }
 
