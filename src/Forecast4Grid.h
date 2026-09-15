@@ -31,8 +31,8 @@
  *   - style: Embedding style selector (0: includes current state, 1: excludes it).  Default is 1 (excludes current state).
  *   - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean). Default is 2 (Euclidean).
  *   - dist_average: Whether to average distance by the number of valid vector components. Default is true.
- *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *   - threads: Number of threads used from the global pool. Default is 8.
+ *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   A 2D vector where each row contains [E, b, tau, rho, mae, rmse] for a given embedding dimension.
@@ -47,8 +47,8 @@ std::vector<std::vector<double>> Simplex4Grid(const std::vector<std::vector<doub
                                               int style = 1,
                                               int dist_metric = 2,
                                               bool dist_average = true,
-                                              const std::vector<int>& dir = {0},
-                                              int threads = 8);
+                                              int threads = 8,
+                                              const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different combinations of embedding dimensions, number of nearest neighbors and
@@ -64,8 +64,8 @@ std::vector<std::vector<double>> Simplex4GridCom(const std::vector<std::vector<d
                                                  int style = 1,
                                                  int dist_metric = 2,
                                                  bool dist_average = true,
-                                                 const std::vector<int>& dir = {0},
-                                                 int threads = 8);
+                                                 int threads = 8,
+                                                 const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different theta parameters for grid data
@@ -83,8 +83,8 @@ std::vector<std::vector<double>> Simplex4GridCom(const std::vector<std::vector<d
  *   - style: Embedding style selector (0: includes current state, 1: excludes it).  Default is 1 (excludes current state).
  *   - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean). Default is 2 (Euclidean).
  *   - dist_average: Whether to average distance by the number of valid vector components. Default is true.
- *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *   - threads: Number of threads used from the global pool. Default is 8.
+ *   - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   A 2D vector where each row contains [theta, rho, mae, rmse] for a given theta value.
@@ -100,8 +100,8 @@ std::vector<std::vector<double>> SMap4Grid(const std::vector<std::vector<double>
                                            int style = 1,
                                            int dist_metric = 2,
                                            bool dist_average = true,
-                                           const std::vector<int>& dir = {0},
-                                           int threads = 8);
+                                           int threads = 8,
+                                           const std::vector<int>& dir = {0});
 
 /*
  * Evaluates prediction performance of different theta parameters for grid data
@@ -118,8 +118,8 @@ std::vector<std::vector<double>> SMap4GridCom(const std::vector<std::vector<doub
                                               int style = 1,
                                               int dist_metric = 2,
                                               bool dist_average = true,
-                                              const std::vector<int>& dir = {0},
-                                              int threads = 8);
+                                              int threads = 8,
+                                              const std::vector<int>& dir = {0});
 
 /**
  * @brief Evaluate intersectional cardinality (IC) for spatial grid data.
