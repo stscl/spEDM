@@ -511,8 +511,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // RcppGCCM4Grid
-Rcpp::NumericMatrix RcppGCCM4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, int E, int tau, int b, bool simplex, double theta, int threads, int parallel_level, int style, int stack, int dist_metric, bool dist_average, bool single_sig, const Rcpp::IntegerVector& dir, const Rcpp::NumericVector& win_ratio, bool progressbar);
-RcppExport SEXP _spEDM_RcppGCCM4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP simplexSEXP, SEXP thetaSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP single_sigSEXP, SEXP dirSEXP, SEXP win_ratioSEXP, SEXP progressbarSEXP) {
+Rcpp::NumericMatrix RcppGCCM4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, int E, int tau, int b, bool simplex, double theta, int threads, int parallel_level, int style, int stack, int dist_metric, bool dist_average, bool single_sig, bool progressbar, const Rcpp::IntegerVector& dir, const Rcpp::NumericVector& win_ratio);
+RcppExport SEXP _spEDM_RcppGCCM4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP simplexSEXP, SEXP thetaSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP single_sigSEXP, SEXP progressbarSEXP, SEXP dirSEXP, SEXP win_ratioSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type xMatrix(xMatrixSEXP);
@@ -532,16 +532,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< bool >::type dist_average(dist_averageSEXP);
     Rcpp::traits::input_parameter< bool >::type single_sig(single_sigSEXP);
+    Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type win_ratio(win_ratioSEXP);
-    Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppGCCM4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, style, stack, dist_metric, dist_average, single_sig, dir, win_ratio, progressbar));
+    rcpp_result_gen = Rcpp::wrap(RcppGCCM4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, style, stack, dist_metric, dist_average, single_sig, progressbar, dir, win_ratio));
     return rcpp_result_gen;
 END_RCPP
 }
 // RcppSCPCM4Grid
-Rcpp::NumericMatrix RcppSCPCM4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::NumericMatrix& zMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, const Rcpp::IntegerVector& b, bool simplex, double theta, int threads, int parallel_level, bool cumulate, int style, int stack, int dist_metric, bool dist_average, bool single_sig, const Rcpp::IntegerVector& dir, const Rcpp::NumericVector& win_ratio, bool progressbar);
-RcppExport SEXP _spEDM_RcppSCPCM4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP zMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP simplexSEXP, SEXP thetaSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP cumulateSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP single_sigSEXP, SEXP dirSEXP, SEXP win_ratioSEXP, SEXP progressbarSEXP) {
+Rcpp::NumericMatrix RcppSCPCM4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::NumericMatrix& zMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, const Rcpp::IntegerVector& b, bool simplex, double theta, int threads, int parallel_level, bool cumulate, int style, int stack, int dist_metric, bool dist_average, bool single_sig, bool progressbar, const Rcpp::IntegerVector& dir, const Rcpp::NumericVector& win_ratio);
+RcppExport SEXP _spEDM_RcppSCPCM4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP zMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP simplexSEXP, SEXP thetaSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP cumulateSEXP, SEXP styleSEXP, SEXP stackSEXP, SEXP dist_metricSEXP, SEXP dist_averageSEXP, SEXP single_sigSEXP, SEXP progressbarSEXP, SEXP dirSEXP, SEXP win_ratioSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type xMatrix(xMatrixSEXP);
@@ -563,16 +563,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< bool >::type dist_average(dist_averageSEXP);
     Rcpp::traits::input_parameter< bool >::type single_sig(single_sigSEXP);
+    Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
     Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type win_ratio(win_ratioSEXP);
-    Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppSCPCM4Grid(xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, cumulate, style, stack, dist_metric, dist_average, single_sig, dir, win_ratio, progressbar));
+    rcpp_result_gen = Rcpp::wrap(RcppSCPCM4Grid(xMatrix, yMatrix, zMatrix, libsizes, lib, pred, E, tau, b, simplex, theta, threads, parallel_level, cumulate, style, stack, dist_metric, dist_average, single_sig, progressbar, dir, win_ratio));
     return rcpp_result_gen;
 END_RCPP
 }
 // RcppGCMC4Grid
-Rcpp::List RcppGCMC4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, int b, int r, int style, int dist_metric, int threads, int parallel_level, const Rcpp::IntegerVector& dir, bool progressbar);
-RcppExport SEXP _spEDM_RcppGCMC4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP rSEXP, SEXP styleSEXP, SEXP dist_metricSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP dirSEXP, SEXP progressbarSEXP) {
+Rcpp::List RcppGCMC4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, int b, int r, int style, int dist_metric, int threads, int parallel_level, bool progressbar, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppGCMC4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP bSEXP, SEXP rSEXP, SEXP styleSEXP, SEXP dist_metricSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP progressbarSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type xMatrix(xMatrixSEXP);
@@ -588,9 +588,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type dist_metric(dist_metricSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< int >::type parallel_level(parallel_levelSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppGCMC4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, dir, progressbar));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppGCMC4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, b, r, style, dist_metric, threads, parallel_level, progressbar, dir));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -618,8 +618,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // RcppGPCRobust4Grid
-Rcpp::DataFrame RcppGPCRobust4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, int style, int b, int boot, bool replace_sampling, unsigned long long seed, int zero_tolerance, int dist_metric, bool relative, bool weighted, int threads, int parallel_level, const Rcpp::IntegerVector& dir, bool progressbar);
-RcppExport SEXP _spEDM_RcppGPCRobust4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP bSEXP, SEXP bootSEXP, SEXP replace_samplingSEXP, SEXP seedSEXP, SEXP zero_toleranceSEXP, SEXP dist_metricSEXP, SEXP relativeSEXP, SEXP weightedSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP dirSEXP, SEXP progressbarSEXP) {
+Rcpp::DataFrame RcppGPCRobust4Grid(const Rcpp::NumericMatrix& xMatrix, const Rcpp::NumericMatrix& yMatrix, const Rcpp::IntegerMatrix& libsizes, const Rcpp::IntegerMatrix& lib, const Rcpp::IntegerMatrix& pred, const Rcpp::IntegerVector& E, const Rcpp::IntegerVector& tau, int style, int b, int boot, bool replace_sampling, unsigned long long seed, int zero_tolerance, int dist_metric, bool relative, bool weighted, int threads, int parallel_level, bool progressbar, const Rcpp::IntegerVector& dir);
+RcppExport SEXP _spEDM_RcppGPCRobust4Grid(SEXP xMatrixSEXP, SEXP yMatrixSEXP, SEXP libsizesSEXP, SEXP libSEXP, SEXP predSEXP, SEXP ESEXP, SEXP tauSEXP, SEXP styleSEXP, SEXP bSEXP, SEXP bootSEXP, SEXP replace_samplingSEXP, SEXP seedSEXP, SEXP zero_toleranceSEXP, SEXP dist_metricSEXP, SEXP relativeSEXP, SEXP weightedSEXP, SEXP threadsSEXP, SEXP parallel_levelSEXP, SEXP progressbarSEXP, SEXP dirSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type xMatrix(xMatrixSEXP);
@@ -640,9 +640,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< bool >::type weighted(weightedSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
     Rcpp::traits::input_parameter< int >::type parallel_level(parallel_levelSEXP);
-    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
     Rcpp::traits::input_parameter< bool >::type progressbar(progressbarSEXP);
-    rcpp_result_gen = Rcpp::wrap(RcppGPCRobust4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, style, b, boot, replace_sampling, seed, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, dir, progressbar));
+    Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type dir(dirSEXP);
+    rcpp_result_gen = Rcpp::wrap(RcppGPCRobust4Grid(xMatrix, yMatrix, libsizes, lib, pred, E, tau, style, b, boot, replace_sampling, seed, zero_tolerance, dist_metric, relative, weighted, threads, parallel_level, progressbar, dir));
     return rcpp_result_gen;
 END_RCPP
 }
