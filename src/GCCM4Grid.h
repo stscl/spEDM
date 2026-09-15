@@ -139,7 +139,23 @@ std::vector<std::pair<int, double>> GCCMSingle4GridOneDim(
     bool dist_average
 );
 
-hreads        The number of threads to use for parallel processing.
+/**
+ * Perform Geographical Convergent Cross Mapping (GCCM) for spatial grid data.
+ *
+ * This function calculates the cross mapping between predictor variables (xMatrix) and response variables (yMatrix)
+ * over a 2D grid, using either Simplex Projection or S-Mapping. It supports parallel processing and progress tracking.
+ *
+ * @param xMatrix        A 2D matrix of the predictor variable's values (spatial cross-section data).
+ * @param yMatrix        A 2D matrix of the response variable's values (spatial cross-section data).
+ * @param lib_sizes      A 2D vector where the first sub-vector contains row-wise library sizes and the second sub-vector contains column-wise library sizes.
+ * @param lib            A vector of pairs representing the indices (row, column) of spatial units to be the library.
+ * @param pred           A vector of pairs representing the indices (row, column) of spatial units to be predicted.
+ * @param E              The number of dimensions for attractor reconstruction.
+ * @param tau            The step of spatial lags for prediction.
+ * @param b              The number of nearest neighbors to use for prediction.
+ * @param simplex        If true, use Simplex Projection; if false, use S-Mapping.
+ * @param theta          The distance weighting parameter for S-Mapping (ignored if simplex is true).
+ * @param threads        The number of threads to use for parallel processing.
  * @param parallel_level Level of parallel computing: 0 for `lower`, 1 for `higher`.
  * @param style          Embedding style selector (0: includes current state, 1: excludes it).
  * @param stack          Embedding arrangement selector (0: single - average lags, 1: composite - stack).  Default is 0 (average lags).
