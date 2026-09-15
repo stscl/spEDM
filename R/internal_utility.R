@@ -264,7 +264,7 @@
     pl = .check_parallellevel(parallel.level)
     if (is.null(nb)){
       res = RcppGPCRobust4Grid(x, y, libsizes, lib, pred, E,tau, style, k[1], boot, replace, seed, zero.tolerance,
-                               dist.metric, relative, weighted, threads, pl, embed.direction, progressbar)
+                               dist.metric, relative, weighted, threads, pl, progressbar, embed.direction)
     } else {
       res = RcppGPCRobust4Lattice(x, y, nb, libsizes, lib, pred, E,tau, style, k[1], boot, replace, seed, 
                                   zero.tolerance, dist.metric, relative, weighted, threads, pl, progressbar)
