@@ -869,9 +869,9 @@ std::vector<PartialCorRes> SCPCMSingle4GridOneDim(
  * - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean).
  * - dist_average: Whether to average distance by the number of valid vector components.
  * - single_sig: Whether to estimate significance and confidence intervals using a single rho value.
+ * - progressbar: Boolean flag indicating whether to display a progress bar during computation.
  * - dir: Direction selector for embeddings where 0 returns all directions for embeddings, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * - win_rations: Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
- * - progressbar: Boolean flag indicating whether to display a progress bar during computation.
  *
  * Returns:
  *    A 2D vector of results, where each row contains:
@@ -905,9 +905,9 @@ std::vector<std::vector<double>> SCPCM4Grid(
     int dist_metric,                                     // Distance metric selector (1: Manhattan, 2: Euclidean)
     bool dist_average,                                   // Whether to average distance by the number of valid vector components
     bool single_sig,                                     // Whether to estimate significance and confidence intervals using a single rho value
+    bool progressbar = false,                            // Whether to print the progress bar
     const std::vector<int>& dir = {0},                   // Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
-    const std::vector<double>& win_ratios = {0,0},       // Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
-    bool progressbar = false                             // Whether to print the progress bar
+    const std::vector<double>& win_ratios = {0,0}        // Scale the sliding window step relative to the matrix width/height to speed up state-space predictions.
 ) {
   // Extract first (n_controls + 1) elements from b for bs, with safe boundary check
   std::vector<int> bs(b.begin(), b.begin() + zMatrixs.size() + 1);
@@ -1375,8 +1375,8 @@ std::vector<std::vector<double>> SCPCM4Grid(
  * - dist_metric: Distance metric selector (1: Manhattan, 2: Euclidean).
  * - dist_average: Whether to average distance by the number of valid vector components.
  * - single_sig: Whether to estimate significance and confidence intervals using a single rho value.
- * - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  * - progressbar: Display progress bar during computation
+ * - dir: Direction selector for embeddings where 0 returns all directions, 1–8 correspond to NW, N, NE, W, E, SW, S, SE, and multiple directions can be combined (e.g., {1,2,3} for NW, N, NE).
  *
  * Returns:
  *   2D vector containing:
@@ -1410,8 +1410,8 @@ std::vector<std::vector<double>> SCPCM4GridOneDim(
     int dist_metric,
     bool dist_average,
     bool single_sig,
-    const std::vector<int>& dir = {0},
-    bool progressbar = false
+    bool progressbar = false,
+    const std::vector<int>& dir = {0}
 ) {
   // Extract first (n_controls + 1) elements from b for bs, with safe boundary check
   std::vector<int> bs(b.begin(), b.begin() + zMatrixs.size() + 1);
