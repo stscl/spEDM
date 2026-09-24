@@ -134,16 +134,16 @@ spEDM::fnn(species, "z")
 Self prediction for parameter turning:
 
 ```{r simplex_grid}
-s1 = spEDM::simplex(species, "x", "x", E = 5:10, k = 12, tau = 1)
-s2 = spEDM::simplex(species, "y", "y", E = 5:10, k = 12, tau = 1)
-s3 = spEDM::simplex(species, "z", "z", E = 5:10, k = 12, tau = 1)
+s1 = spEDM::simplex(species, "x", "x", E = 4:10, k = 12, tau = 1)
+s2 = spEDM::simplex(species, "y", "y", E = 4:10, k = 12, tau = 1)
+s3 = spEDM::simplex(species, "z", "z", E = 4:10, k = 12, tau = 1)
 list(s1,s2,s3)
 ```
 
 Investigate the causation between x and z, with y as control variables:
 
 ```{r scpcm_grid}
-xz = spEDM::scpcm(species, "x", "z", "y", E = c(10,5,9), k = 12,
+xz = spEDM::scpcm(species, "x", "z", "y", E = 4, k = 12,
                   libsizes = matrix(seq(50,400,50), ncol = 1),
                   progressbar = FALSE)
 xz
@@ -151,9 +151,9 @@ xz
 
 Visualize the result:
 
-```{r fig2,fig.width=5.55,fig.height=2.95,fig.dpi=100,fig.cap=knitr::asis_output("**Figure 2**. The cross mapping between x and z. **a** x–z causality without accounting for y. **b** x–z causality controlling for y.")}
-fig2a = plot(xz,partial = FALSE,ylimits = c(0.55,0.95))
-fig2b = plot(xz,partial = TRUE,ylimits = c(0.35,0.75))
+```{r fig2,fig.width=5.55,fig.height=2.75,fig.dpi=100,fig.cap=knitr::asis_output("**Figure 2**. The cross mapping between x and z. **a** x–z causality without accounting for y. **b** x–z causality controlling for y.")}
+fig2a = plot(xz,partial = FALSE,ylimits = c(0.6,0.95))
+fig2b = plot(xz,partial = TRUE,ylimits = c(0.45,0.95))
 fig2 = cowplot::plot_grid(fig2a,fig2b,ncol = 2,label_fontfamily = 'serif',
                           labels = paste0('(',letters[1:2],')'))
 fig2
