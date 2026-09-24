@@ -2,7 +2,7 @@
 title: "Geographical Convergent Cross Mapping"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-04-05
+  | Last update: 2026-09-10
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >
@@ -103,8 +103,8 @@ popd_sf
 Determining optimal embedding dimension:
 
 ```{r simplex_lattice}
-spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 12)
-spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 12)
+spEDM::simplex(popd_sf, "pre", "pre", E = 2:10, k = 12, nb = popd_nb)
+spEDM::simplex(popd_sf, "popd", "popd", E = 2:10, k = 12, nb = popd_nb)
 ```
 
 Run GCCM:
@@ -113,7 +113,7 @@ Run GCCM:
 startTime = Sys.time()
 pd_res = spEDM::gccm(data = popd_sf, cause = "pre", effect = "popd",
                      libsizes = seq(100, 2800, by = 200),
-                     E = c(3,9), k = 12, nb = popd_nb, progressbar = FALSE)
+                     E = c(2,10), k = 12, nb = popd_nb, progressbar = FALSE)
 endTime = Sys.time()
 print(difftime(endTime,startTime, units ="mins"))
 pd_res
