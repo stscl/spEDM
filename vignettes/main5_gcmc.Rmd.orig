@@ -2,7 +2,7 @@
 title: "Geographical Cross Mapping Cardinality"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-06-15
+  | Last update: 2026-09-10
   | Last run: `r Sys.Date()`
 output: rmarkdown::html_vignette
 vignette: >
@@ -47,30 +47,30 @@ popd_sf
 The false nearest neighbours (FNN) method helps identify the appropriate embedding dimension for reconstructing the state space of a time series or spatial cross-sectional data. A low embedding dimension that minimizes false neighbours is considered optimal.
 
 ```{r fnn_lattice_data}
-spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd))
+spEDM::fnn(popd_sf, "popd", E = 1:15, eps = stats::sd(popd_sf$popd), nb = popd_nb)
 ```
 
-The false nearest neighbours (FNN) ratio decreased to approximately $0.001$ when the embedding dimension E reached $11$, and remained relatively stable thereafter. Therefore, we adopted $E = 11$ as the embedding dimension for subsequent GCMC analysis.
+The false nearest neighbours (FNN) ratio decreased to $0$ when the embedding dimension E reached $9$, and remained relatively stable thereafter. Therefore, we adopted $E = 9$ as the embedding dimension for subsequent GCMC analysis.
 
 Adopt an empirical k value derived from the square root of the product of embedding dimension and number of prediction samples:
 
 ```{r k_lattice}
-ceiling(sqrt(11 * nrow(popd_sf)))
+ceiling(sqrt(9 * nrow(popd_sf)))
 ```
 
 Then, run GCMC:
 
 ```{r case_lattice}
 # temperature and population density
-g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g1 = spEDM::gcmc(popd_sf, "tem", "popd", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g1
 
 # elevation and population density
-g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g2 = spEDM::gcmc(popd_sf, "elev", "popd", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g2
 
 # elevation and temperature
-g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 11, k = 176, nb = popd_nb, progressbar = FALSE)
+g3 = spEDM::gcmc(popd_sf, "elev", "tem", E = 9, k = 159, nb = popd_nb, progressbar = FALSE)
 g3
 ```
 
