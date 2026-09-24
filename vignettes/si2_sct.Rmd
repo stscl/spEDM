@@ -3,7 +3,7 @@ title: "Spatial Causality Test"
 author: "Wenbo Lyu"
 date: |
   | Last update: 2026-02-15
-  | Last run: 2026-04-05
+  | Last run: 2026-09-10
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{SI2. Spatial Causality Test}
