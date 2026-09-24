@@ -2,8 +2,8 @@
 title: "Spatial Logistic Map"
 author: "Wenbo Lyu"
 date: |
-  | Last update: 2026-07-20
-  | Last run: 2026-07-20
+  | Last update: 2026-09-10
+  | Last run: 2026-09-10
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{SI1. Spatial Logistic Map}
